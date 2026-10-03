@@ -1,7 +1,8 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
 from app.adapters.registry import get_adapters, search_all
+from app.agents.ranker import rank_offers
 from app.config import get_settings
 from app.matching.filter import REASON_LABELS, filter_offers
 from app.models.offers import RawOffer
@@ -59,3 +60,20 @@ async def query_products(req: QueryRequest) -> QueryResponse:
             for r in removed
         ],
     )
+
+
+class RankRequest(BaseModel):
+    query: str
+    offers: list[RawOffer]
+
+
+@router.post("/rank")
+async def rank_products(req: RankRequest) -> dict:
+    """LLM 综合排序：输入已过滤的 offers，返回排序与推荐理由。"""
+    if not req.offers:
+        raise HTTPException(status_code=400, detail="offers 为空，无需排序")
+    try:
+        return rank_offers(req.query, req.offers)
+    except RuntimeError as e:
+        raise HTTPException(status_code=503, detail=str(e)) from e
+
