@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>shopping-agent 跨平台比价</title>
+<style>
+  :root {
+    --bg: #f6f7fb; --card: #fff; --text: #1a1f36; --muted: #8b91a5;
+    --jd: #e1251b; --jd-bg: #fff1f0; --taobao: #ff6a00; --taobao-bg: #fff7ec;
+    --pdd: #e02e24; --pdd-bg: #fff1f2; --accent: #4f6ef7; --accent-dark: #3b5bdb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg); color: var(--text); min-height: 100vh;
+  }
+  .container { max-width: 920px; margin: 0 auto; padding: 40px 20px 80px; }
+
+  /* 头部 */
+  .hero { text-align: center; margin-bottom: 28px; }
+  .hero h1 { font-size: 28px; letter-spacing: -0.5px; }
+  .hero h1 span { color: var(--accent); }
+  .hero p { color: var(--muted); font-size: 14px; margin-top: 6px; }
+
+  /* 搜索 */
+  .search-bar {
+    display: flex; gap: 10px; margin-bottom: 20px;
+    background: var(--card); padding: 10px; border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(26,31,54,.06);
+  }
+  .search-bar input {
+    flex: 1; padding: 12px 18px; font-size: 15px; border: none;
+    border-radius: 10px; outline: none; background: #f6f7fb;
+  }
+  .search-bar input:focus { background: #eef1fb; }
+  .search-bar button {
+    padding: 12px 32px; font-size: 15px; font-weight: 600; border: none;
+    border-radius: 10px; background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    color: #fff; cursor: pointer; transition: opacity .15s;
+  }
+  .search-bar button:hover { opacity: .9; }
+  .search-bar button:disabled { opacity: .5; cursor: not-allowed; }
+
+  /* 平台摘要 */
+  .platform-summary {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px;
+  }
+  .p-card {
+    background: var(--card); border-radius: 14px; padding: 16px;
+    box-shadow: 0 2px 10px rgba(26,31,54,.04); position: relative; overflow: hidden;
+  }
+  .p-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .p-card.jd::before { background: var(--jd); }
+  .p-card.taobao::before { background: var(--taobao); }
+  .p-card.pdd::before { background: var(--pdd); }
+  .p-name { font-size: 13px; font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .p-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .jd .p-dot { background: var(--jd); }
+  .taobao .p-dot { background: var(--taobao); }
+  .pdd .p-dot { background: var(--pdd); }
+  .p-min { font-size: 24px; font-weight: 700; color: #cf1322; }
+  .p-min .yen { font-size: 14px; }
+  .p-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .p-cheapest { outline: 2px solid #ffa39e; }
+  .best-flag {
+    position: absolute; top: 10px; right: 10px; font-size: 11px; padding: 2px 8px;
+    border-radius: 999px; background: #fff1f0; color: #cf1322; border: 1px solid #ffa39e;
+  }
+
+  /* 工具行 */
+  .toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .toolbar .count { font-size: 13px; color: var(--muted); }
+  .tabs { display: flex; gap: 4px; background: #eceff8; border-radius: 9px; padding: 3px; }
+  .tabs button {
+    border: none; background: transparent; padding: 6px 14px; font-size: 13px;
+    border-radius: 7px; cursor: pointer; color: var(--muted);
+  }
+  .tabs button.on { background: #fff; color: var(--text); font-weight: 600; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+
+  /* 通知条 */
+  .notice {
+    background: #fffbe6; border: 1px solid #ffe58f; color: #ad6800;
+    border-radius: 10px; padding: 10px 14px; font-size: 13px; margin-bottom: 14px;
+  }
+  .notice.err { background: #fff1f0; border-color: #ffa39e; color: #cf1322; }
+
+  /* 结果卡片 */
+  .card {
+    background: var(--card); border-radius: 14px; padding: 16px; margin-bottom: 10px;
+    display: flex; gap: 14px; align-items: stretch;
+    box-shadow: 0 1px 4px rgba(26,31,54,.05); transition: box-shadow .15s, transform .15s;
+  }
+  .card:hover { box-shadow: 0 6px 20px rgba(26,31,54,.1); transform: translateY(-1px); }
+  .card.is-best { border: 1.5px solid #ffa39e; }
+  .card img {
+    width: 84px; height: 84px; object-fit: cover; border-radius: 10px;
+    background: #f2f3f7; flex-shrink: 0;
+  }
+  .card .info { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  .card .title {
+    font-size: 14px; line-height: 1.45; max-height: 42px; overflow: hidden;
+    margin-bottom: 8px; flex: 1;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tag {
+    font-size: 11px; padding: 2px 8px; border-radius: 6px; font-weight: 500;
+    border: 1px solid transparent; white-space: nowrap;
+  }
+  .tag.jd { background: var(--jd-bg); color: var(--jd); border-color: #ffccc7; }
+  .tag.taobao { background: var(--taobao-bg); color: var(--taobao); border-color: #ffd591; }
+  .tag.pdd { background: var(--pdd-bg); color: var(--pdd); border-color: #ffccc7; }
+  .tag.self { background: #f0f5ff; color: #1d39c4; border-color: #adc6ff; }
+  .tag.flagship { background: #f6ffed; color: #389e0d; border-color: #b7eb8f; }
+  .tag.subsidy { background: #fff0f6; color: #c41d7f; border-color: #ffadd2; }
+  .tag.coupon { background: #fff1f0; color: #cf1322; border-color: #ffa39e; }
+  .tag.sales { background: #f5f5f5; color: #8b91a5; border-color: #e3e5ec; }
+  .tag.best { background: #cf1322; color: #fff; }
+  .shop { color: var(--muted); font-size: 12px; }
+
+  .price-box { text-align: right; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; }
+  .price { color: #cf1322; font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .price .yen { font-size: 14px; }
+  .origin { color: #c6cad8; font-size: 12px; text-decoration: line-through; }
+  .buy {
+    margin-top: 8px; text-align: center; font-size: 12px; font-weight: 600; color: #fff;
+    text-decoration: none; border-radius: 8px; padding: 6px 14px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  }
+  .buy:hover { opacity: .9; }
+
+  /* 分组标题 */
+  .group-title {
+    display: flex; align-items: center; gap: 8px; margin: 22px 0 10px;
+    font-size: 15px; font-weight: 600;
+  }
+  .group-title::after { content: ""; flex: 1; height: 1px; background: #e3e5ec; }
+
+  /* 已过滤区 */
+  .filtered-block { margin-top: 32px; }
+  .filtered-toggle {
+    width: 100%; display: flex; justify-content: space-between; align-items: center;
+    background: var(--card); border: none; border-radius: 12px; padding: 14px 18px;
+    font-size: 13px; color: var(--muted); cursor: pointer;
+    box-shadow: 0 1px 4px rgba(26,31,54,.05);
+  }
+  .filtered-toggle .arrow { transition: transform .2s; }
+  .filtered-toggle.open .arrow { transform: rotate(180deg); }
+  .filtered-list { display: none; margin-top: 10px; }
+  .filtered-list.show { display: block; }
+  .filtered-item {
+    display: flex; gap: 12px; align-items: center; background: var(--card);
+    border-radius: 10px; padding: 10px 14px; margin-bottom: 6px; opacity: .75;
+  }
+  .filtered-item .f-title { flex: 1; font-size: 13px; color: #5c6274; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .filtered-item .f-price { font-size: 13px; color: #8b91a5; }
+  .tag.reason { background: #f5f5f5; color: #5c6274; border-color: #e3e5ec; }
+
+  .empty { text-align: center; color: var(--muted); padding: 70px 0; font-size: 14px; }
+  .skel { height: 90px; border-radius: 14px; margin-bottom: 10px; background: linear-gradient(90deg,#eee 25%,#f5f5f5 50%,#eee 75%); background-size: 200% 100%; animation: shimmer 1.2s infinite; }
+  @keyframes shimmer { to { background-position: -200% 0; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <h1>shopping<span>-agent</span></h1>
+    <p>京东 · 淘宝 · 拼多多 一次性比价，自动剔除二手 / 杂牌 / 配件</p>
+  </div>
+
+  <div class="search-bar">
+    <input id="q" placeholder="输入商品名，例如：小米手环9" />
+    <button id="btn">比价</button>
+  </div>
+
+  <div id="summary"></div>
+  <div id="notice"></div>
+  <div id="toolbar"></div>
+  <div id="results"></div>
+  <div id="filtered"></div>
+</div>
+
+<script>
+const $ = (s) => document.querySelector(s);
+const PLATFORM = {
+  jd:     { name: "京东",   cls: "jd" },
+  taobao: { name: "淘宝",   cls: "taobao" },
+  pdd:    { name: "拼多多", cls: "pdd" },
+};
+let sortMode = "price"; // price | platform
+
+$("#btn").addEventListener("click", search);
+$("#q").addEventListener("keydown", (e) => { if (e.key === "Enter") search(); });
+
+async function search() {
+  const q = $("#q").value.trim();
+  if (!q) return;
+  const btn = $("#btn");
+  btn.disabled = true; btn.textContent = "比价中…";
+  ["#summary", "#notice", "#toolbar"].forEach((s) => $(s).innerHTML = "");
+  $("#filtered").innerHTML = "";
+  $("#results").innerHTML = '<div class="skel"></div><div class="skel"></div><div class="skel"></div>';
+  try {
+    const resp = await fetch("/api/query", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query: q }),
+    });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    render(await resp.json());
+  } catch (err) {
+    $("#results").innerHTML = `<div class="empty">查询失败：${err.message}</div>`;
+  } finally {
+    btn.disabled = false; btn.textContent = "比价";
+  }
+}
+
+/* 标签推导：从 shop / title 提取品质标签 */
+function tagsOf(o, isBest) {
+  const tags = [];
+  const p = PLATFORM[o.platform];
+  if (p) tags.push(`<span class="tag ${p.cls}">${p.name}</span>`);
+  const shop = o.shop || "";
+  const title = o.title || "";
+  if (/京东自营|自营/.test(shop)) tags.push(`<span class="tag self">自营 · 品质保障</span>`);
+  if (/旗舰店/.test(shop)) tags.push(`<span class="tag flagship">旗舰店 · 官方正品</span>`);
+  if (/百亿补贴/.test(title + shop)) tags.push(`<span class="tag subsidy">百亿补贴</span>`);
+  if (o.coupon) tags.push(`<span class="tag coupon">券 ¥${o.coupon}</span>`);
+  if (isBest) tags.push(`<span class="tag best">全场最低</span>`);
+  const sales = extractSales(title, shop);
+  if (sales) tags.push(`<span class="tag sales">${sales}</span>`);
+  return tags.join("");
+}
+
+function extractSales(title, shop) {
+  const m = (shop + " " + title).match(/(已售|总售|付款)[\s]*([\d.,]+\s*[万亿千百]*)\+?(人|件)?/);
+  if (m) return `${m[1]}${m[2]}${m[3] || ""}`;
+  const m2 = (shop + " " + title).match(/([\d.,]+)\s*([万千百])?\+?\s*(人付款|人收货|件)/);
+  if (m2) return `${m2[1]}${m2[2] || ""}+ ${m2[3]}`;
+  return null;
+}
+
+function render(data) {
+  renderErrors(data.errors);
+  renderSummary(data.offers);
+  renderToolbar(data);
+  renderResults(data.offers);
+  renderFiltered(data.removed_offers || [], data.filter_stats);
+}
+
+function renderErrors(errors) {
+  const list = Object.entries(errors || {})
+    .map(([p, e]) => `${PLATFORM[p]?.name || p}：${String(e).slice(0, 80)}`)
+    .join("；");
+  if (list) $("#notice").innerHTML = `<div class="notice err">部分平台查询失败 — ${list}</div>`;
+}
+
+function renderSummary(offers) {
+  const by = {};
+  offers.forEach((o) => (by[o.platform] ??= []).push(o));
+  const mins = Object.entries(by).map(([p, list]) => ({ p, min: Math.min(...list.map((o) => o.price)), n: list.length }));
+  if (!mins.length) return;
+  const best = Math.min(...mins.map((m) => m.min));
+  $("#summary").innerHTML = `<div class="platform-summary">${mins.map((m) => `
+    <div class="p-card ${PLATFORM[m.p].cls} ${m.min === best ? "p-cheapest" : ""}">
+      ${m.min === best ? '<span class="best-flag">全网最低</span>' : ""}
+      <div class="p-name"><span class="p-dot"></span>${PLATFORM[m.p].name}</div>
+      <div class="p-min"><span class="yen">¥</span>${m.min.toFixed(2)}</div>
+      <div class="p-sub">${m.n} 条同款报价 · 最低到手价</div>
+    </div>`).join("")}</div>`;
+}
+
+function renderToolbar(data) {
+  if (!data.offers.length) return;
+  $("#toolbar").innerHTML = `
+    <span class="count">共 ${data.offers.length} 条同款报价</span>
+    <div class="tabs">
+      <button id="tab-price" class="${sortMode === "price" ? "on" : ""}" onclick="setSort('price')">按价格</button>
+      <button id="tab-platform" class="${sortMode === "platform" ? "on" : ""}" onclick="setSort('platform')">按平台</button>
+    </div>`;
+}
+window.setSort = (m) => {
+  sortMode = m;
+  document.querySelectorAll(".tabs button").forEach((b) => b.classList.toggle("on", b.id === `tab-${m}`));
+  renderResults(window.__lastData.offers);
+};
+
+function renderResults(offers) {
+  window.__lastData = { offers };
+  if (!offers.length) {
+    $("#results").innerHTML = '<div class="empty">没有拿到符合的报价（各平台 API 未配置或全部被过滤）</div>';
+    return;
+  }
+  const best = Math.min(...offers.map((o) => o.price));
+  const card = (o) => `
+    <div class="card ${o.price === best ? "is-best" : ""}">
+      ${o.image ? `<img src="${o.image}" referrerpolicy="no-referrer" loading="lazy" />` : "<img />"}
+      <div class="info">
+        <div class="title">${escapeHtml(o.title)}</div>
+        <div class="tags">
+          ${tagsOf(o, o.price === best)}
+          ${o.shop ? `<span class="shop">${escapeHtml(o.shop)}</span>` : ""}
+        </div>
+      </div>
+      <div class="price-box">
+        <div class="price"><span class="yen">¥</span>${o.price.toFixed(2)}</div>
+        ${o.original_price && o.original_price > o.price ? `<div class="origin">¥${o.original_price.toFixed(2)}</div>` : ""}
+        ${o.url ? `<a class="buy" href="${o.url}" target="_blank" rel="noopener">去购买</a>` : ""}
+      </div>
+    </div>`;
+
+  if (sortMode === "platform") {
+    const order = ["pdd", "taobao", "jd"];
+    const groups = order.filter((p) => offers.some((o) => o.platform === p));
+    $("#results").innerHTML = groups.map((p) => {
+      const list = offers.filter((o) => o.platform === p).sort((a, b) => a.price - b.price);
+      return `<div class="group-title"><span class="tag ${PLATFORM[p].cls}">${PLATFORM[p].name}</span></div>${list.map(card).join("")}`;
+    }).join("");
+  } else {
+    $("#results").innerHTML = offers.map(card).join("");
+  }
+}
+
+function renderFiltered(removed, stats) {
+  if (!removed.length) return;
+  const byReason = {};
+  removed.forEach((r) => (byReason[r.reason_label] ??= []).push(r));
+  $("#filtered").innerHTML = `
+    <div class="filtered-block">
+      <button class="filtered-toggle" onclick="this.classList.toggle('open');document.getElementById('flist').classList.toggle('show')">
+        <span>已过滤 ${removed.length} 条不相关结果（${Object.keys(byReason).map((k) => `${k} ${byReason[k].length}`).join(" · ")}）</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="filtered-list" id="flist">
+        ${removed.map((r) => `
+          <div class="filtered-item">
+            <span class="tag reason">${r.reason_label}</span>
+            <span class="f-title">${escapeHtml(r.offer.title)}</span>
+            <span class="f-price">¥${r.offer.price.toFixed(2)}</span>
+          </div>`).join("")}
+      </div>
+    </div>`;
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, (c) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+  })[c]);
+}
+</script>
+</body>
+</html>

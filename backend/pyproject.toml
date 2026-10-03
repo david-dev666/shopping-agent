@@ -1,0 +1,42 @@
+[project]
+name = "shopping-agent"
+version = "0.0.1"
+description = "跨平台比价与购物决策 agent"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "pydantic>=2.7",
+    "pydantic-settings>=2.3",
+    "httpx>=0.27",
+    "sqlalchemy>=2.0",
+    "apscheduler>=3.10",
+    "langgraph>=0.2",
+    "langchain-openai>=0.2",
+]
+
+[project.optional-dependencies]
+crawl = ["playwright>=1.45"]
+dev = ["pytest>=8.0", "pytest-asyncio>=0.23", "ruff>=0.6"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+# JS 提取器字符串不换行（换行会改变注入代码的格式）
+"app/adapters/webbridge.py" = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
