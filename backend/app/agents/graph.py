@@ -32,6 +32,7 @@ class AgentState(BaseModel):
     errors: dict[str, str] = Field(default_factory=dict)
     decision: dict[str, Any] = Field(default_factory=dict)
     recommendation: str = ""
+    rank_items: list[dict[str, Any]] = Field(default_factory=list)
     top_pick: dict[str, Any] | None = None
     trace_id: str = ""
     steps: list[dict[str, Any]] = Field(default_factory=list)
@@ -159,19 +160,21 @@ def node_match(state: AgentState) -> dict:
     return {"offers": kept, "filter_stats": stats, "steps": trace.steps}
 
 
-DECIDE_PROMPT = """你是购物决策助手。基于以下过滤后的报价给出是否值得买的判断，输出 JSON：
+DECIDE_PROMPT = """你是购物决策助手。一次完成两件事：
+①是否值得买的判断 ②全部报价的综合排序。输出 JSON：
 {{"worth": "buy"/"wait"/"skip", "confidence": 0-100, "reason": "一句话核心理由",
-"top_pick": 推荐下标或 null}}
+"summary": "整体选购建议一句话",
+"items": [{{"index": 下标, "score": 0-100综合分, "reason": "一句话理由"}}]}}
 
-评估维度：到手价 vs 整体分布（是否低价）、店铺可信度（自营/旗舰优先）、销量。
-budget 仅为用户明确提了才有值；超预算必须 skip。
+评估维度：到手价 vs 整体分布（是否低价）、店铺可信度（自营/旗舰优先）、销量、规格匹配度。
+- items 必须覆盖全部输入商品、按综合分从高到低排列，score 与顺序必须一致
+- budget 仅为用户明确提了才有值；超预算必须 skip
+- 只输出 JSON
 
 用户需求：{query}
 预算：{budget}
 报价（下标 | 平台 | 到手价 | 店铺 | 销量 | 标题）：
-{offers_text}
-
-只输出 JSON"""
+{offers_text}"""
 
 
 def _cheapest_fallback(offers: list[RawOffer]) -> dict:
@@ -192,6 +195,7 @@ def _cheapest_fallback(offers: list[RawOffer]) -> dict:
 
 
 def node_decide(state: AgentState) -> dict:
+    """一次 LLM 推理同时产出决策与全量排序，保证二者自洽。"""
     trace = _pop_trace(state)
     offers = state.offers
     if not offers:
@@ -206,7 +210,7 @@ def node_decide(state: AgentState) -> dict:
             f"{i} | {o.platform} | ¥{o.price:.2f} | {o.shop or '-'} | {sales} | {o.title[:50]}"
         )
     budget = state.intent.get("budget")
-    decision = invoke_json(
+    data = invoke_json(
         _llm(),
         DECIDE_PROMPT.format(
             query=state.query, budget=budget or "未说明", offers_text="\n".join(lines)
@@ -214,12 +218,38 @@ def node_decide(state: AgentState) -> dict:
         retries=2,
         fallback=_cheapest_fallback(offers),
     )
+
+    decision = {
+        "worth": data.get("worth"),
+        "confidence": data.get("confidence"),
+        "reason": data.get("reason"),
+    }
+    # 排序 items：确定性校验下标，越界丢弃；排序依据 LLM 顺序（与其 score 自洽）
+    valid = set(range(len(offers)))
+    seen: set[int] = set()
+    rank_items: list[dict] = []
+    for it in data.get("items") or []:
+        try:
+            idx = int(it.get("index"))
+        except (TypeError, ValueError):
+            continue
+        if idx in valid and idx not in seen:
+            seen.add(idx)
+            rank_items.append(
+                {"index": idx, "score": int(it.get("score") or 0), "reason": it.get("reason", "")}
+            )
+    # 缺失的按价格升序补在尾部
+    missing = sorted((i for i in valid if i not in seen), key=lambda i: offers[i].price)
+    for i in missing:
+        rank_items.append({"index": i, "score": 0, "reason": ""})
+
+    top_summary = rank_items[0] if rank_items else None
     trace.step(
         "decide",
         f"{len(offers)} 条报价" + (f"，预算 {budget}" if budget else ""),
-        decision,
+        {"decision": decision, "rank_count": len(rank_items), "top": top_summary},
     )
-    return {"decision": decision, "steps": trace.steps}
+    return {"decision": decision, "rank_items": rank_items, "steps": trace.steps}
 
 
 def node_recommend(state: AgentState) -> dict:
@@ -228,6 +258,9 @@ def node_recommend(state: AgentState) -> dict:
     offers = state.offers
     budget = state.intent.get("budget")
     parts = []
+
+    # 首选 = 综合排序第一名（与 decide 同一次推理产出，天然自洽）
+    top_idx = state.rank_items[0]["index"] if state.rank_items else None
 
     worth = d.get("worth")
     if worth == "buy":
@@ -239,8 +272,8 @@ def node_recommend(state: AgentState) -> dict:
     if d.get("reason"):
         parts.append(f"—— {d['reason']}")
 
-    if d.get("top_pick") is not None and 0 <= int(d["top_pick"]) < len(offers):
-        top = offers[int(d["top_pick"])]
+    if top_idx is not None and 0 <= int(top_idx) < len(offers):
+        top = offers[int(top_idx)]
         parts.append(
             f"\n\n首选：{top.platform} ¥{top.price:.2f}（{top.shop or '未知店铺'}）"
             + (f" 原价 ¥{top.original_price:.0f}" if top.original_price else "")
@@ -260,10 +293,13 @@ def node_recommend(state: AgentState) -> dict:
     # trace 定稿：落库
     save_trace(trace.to_dict())
     # top_pick 结构化返回，前端渲染高亮购买卡
-    top_offer = None
-    if d.get("top_pick") is not None and 0 <= int(d["top_pick"]) < len(offers):
-        top_offer = offers[int(d["top_pick"])].model_dump()
-    return {"recommendation": recommendation, "steps": trace.steps, "top_pick": top_offer}
+    top_offer = offers[int(top_idx)].model_dump() if top_idx is not None else None
+    return {
+        "recommendation": recommendation,
+        "steps": trace.steps,
+        "top_pick": top_offer,
+        "rank_items": state.rank_items,
+    }
 
 
 def asyncio_run(coro):
@@ -325,6 +361,7 @@ def run_agent(query: str) -> dict[str, Any]:
         "errors": final.get("errors", {}),
         "decision": final.get("decision", {}),
         "recommendation": final.get("recommendation", ""),
+        "rank_items": final.get("rank_items", []),
         "top_pick": final.get("top_pick"),
         "trace": final.get("steps", []),
     }

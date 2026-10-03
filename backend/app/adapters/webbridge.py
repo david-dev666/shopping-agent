@@ -55,11 +55,12 @@ JD_EXTRACTOR = """
 """
 
 # 淘宝搜索页提取器（从商品链接向上找卡片，price 从 innerText 正则取）
+# 同时匹配 item.taobao.com 与 detail.tmall.com（天猫商品，链接域名不同但同为 item.htm?id=）
 TAOBAO_EXTRACTOR = """
 (() => {
   const out = [];
   const seen = new Set();
-  document.querySelectorAll('a[href*="item.taobao.com/item.htm"]').forEach(a => {
+  document.querySelectorAll('a[href*="item.htm?id="]').forEach(a => {
     const id = (a.href.match(/[?&]id=(\\d+)/) || [])[1];
     if (!id || seen.has(id)) return;
     const c = a.closest('[class*=doubleCard]') || a.closest('[class*=Card]');
@@ -80,7 +81,7 @@ TAOBAO_EXTRACTOR = """
     seen.add(id);
     out.push({platform_id: id, title: (lines[0] || '').slice(0,100),
       price: parseFloat(pm[1]),
-      url: 'https://item.taobao.com/item.htm?id=' + id,
+      url: a.href.split('&')[0],
       image: img ? img.src : null,
       shop: (lines[lines.length-1] || '').slice(0,30),
       sales});
@@ -196,6 +197,14 @@ def get_webbridge_client() -> WebBridgeClient:
     return _shared_client
 
 
+# 各平台页面就绪策略：PDD 是 SSR 数据秒出，京东/淘宝懒渲染需要轮询等
+PAGE_READY = {
+    "pdd": {"first_wait": 0.3, "poll_interval": 0.5, "max_wait": 6},
+    "jd": {"first_wait": 0.5, "poll_interval": 1.0, "max_wait": 12},
+    "taobao": {"first_wait": 0.5, "poll_interval": 1.0, "max_wait": 12},
+}
+
+
 class WebBridgeAdapter:
     """通过用户真实浏览器（已登录态）采集单个平台的搜索报价。
 
@@ -205,6 +214,25 @@ class WebBridgeAdapter:
     def __init__(self, platform: str) -> None:
         self.platform = platform
 
+    async def _extract_until_ready(self, client) -> list | dict | None:
+        """轮询执行提取器，出数据即返回；超时返回最后一次结果（可能为空/None）。
+
+        替代固定 sleep：PDD 的 SSR 数据通常首个轮询周期就命中（<1s），
+        京东/淘宝懒渲染一般 2-4 个周期。
+        """
+        conf = PAGE_READY.get(self.platform, PAGE_READY["jd"])
+        await asyncio.sleep(conf["first_wait"])
+        deadline = asyncio.get_event_loop().time() + conf["max_wait"]
+        raw = None
+        while True:
+            raw = await client.evaluate_json(EXTRACTORS[self.platform])
+            # 验证页直接返回（captcha 标记），非空列表即就绪
+            if isinstance(raw, dict) or (isinstance(raw, list) and raw):
+                return raw
+            if asyncio.get_event_loop().time() >= deadline:
+                return raw
+            await asyncio.sleep(conf["poll_interval"])
+
     async def search(self, query: str) -> list[RawOffer]:
         from datetime import UTC, datetime
         from urllib.parse import quote
@@ -213,9 +241,7 @@ class WebBridgeAdapter:
         url = SEARCH_URLS[self.platform].format(kw=quote(query))
         async with client._get_lock():
             await client.navigate(url)
-            # 页面懒加载（价格异步渲染）稍等片刻
-            await asyncio.sleep(4)
-            raw = await client.evaluate_json(EXTRACTORS[self.platform])
+            raw = await self._extract_until_ready(client)
 
         # 滑块/风控验证：不绕过（项目边界），提示用户手点
         if isinstance(raw, dict) and raw.get("captcha"):

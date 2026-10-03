@@ -105,7 +105,8 @@ def test_node_recommend_assembles_output() -> None:
         trace_id="t6",
         steps=[],
         offers=_offers(),
-        decision={"worth": "buy", "confidence": 88, "reason": "低价可信", "top_pick": 1},
+        decision={"worth": "buy", "confidence": 88, "reason": "低价可信"},
+        rank_items=[{"index": 1, "score": 92, "reason": "首选"}],
         intent={"budget": 300},
     )
     with patch("app.agents.graph.save_trace") as st:
@@ -117,3 +118,6 @@ def test_node_recommend_assembles_output() -> None:
     assert "预算 ¥300" in rec
     assert st.called  # trace 落库被调用
     assert out["steps"][-1]["node"] == "recommend"
+    # top_pick 与 rank_items 第一名自洽
+    assert out["top_pick"]["price"] == 159.0
+    assert out["rank_items"][0]["index"] == 1
