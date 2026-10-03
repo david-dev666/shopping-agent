@@ -101,3 +101,31 @@ def test_unknown_sales_kept() -> None:
     kept, stats, _ = filter_offers(offers, "小米手环9")
     assert stats["low_sales"] == 0
     assert len(kept) == 1
+
+
+def test_model_token_mismatch_filtered() -> None:
+    # 搜 y7000x：老款拯救者（标题无 y7000x）被剔除
+    offers = [
+        _offer("联想拯救者R7000 游戏本", price=6599.0),
+        _offer("联想拯救者Y7000X 2026款 RTX5060", price=11298.0),
+        _offer("拯救者Y7000P 2025款", price=8999.0),
+    ]
+    kept, stats, removed = filter_offers(offers, "拯救者y7000x")
+    assert stats["model_mismatch"] == 2
+    assert removed[0]["reason"] == "model_mismatch"
+    assert len(kept) == 1 and kept[0].price == 11298.0
+
+
+def test_model_token_case_and_space_insensitive() -> None:
+    # 大小写 / 空格差异不误杀
+    offers = [_offer("联想 拯救者 Y7000X 2026款")]
+    kept, stats, _ = filter_offers(offers, "拯救者 Y7000X")
+    assert stats["model_mismatch"] == 0
+    assert len(kept) == 1
+
+
+def test_no_model_token_no_rule() -> None:
+    # query 无型号 token（纯中文/纯数字）不启用该规则
+    offers = [_offer("小米手环9 标准版"), _offer("小米手环10 NFC")]
+    kept, stats, _ = filter_offers(offers, "小米手环9")
+    assert stats["model_mismatch"] == 0

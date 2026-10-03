@@ -84,7 +84,11 @@ REASON_LABELS = {
     "off_brand": "品牌不明",
     "price_outlier": "价格异常",
     "low_sales": "销量过低",
+    "model_mismatch": "其他型号",
 }
+
+# 型号 token：字母数字混合且含数字的连续段（如 y7000x、rtx5060、手环9 中的纯数字不算）
+MODEL_TOKEN_RE = re.compile(r"[a-z][a-z0-9]*\d[a-z0-9]*", re.I)
 
 # 销量阈（件）：已知销量低于该值视为可疑渠道（二手/瑕疵/临期清仓）
 # 只在销量已知时生效；无销量数据不做判定（宁可漏不可错杀）
@@ -117,6 +121,7 @@ def filter_offers(offers: list, query: str) -> tuple[list, dict, list]:
     stats = {
         "total": len(offers), "second_hand": 0, "rival": 0,
         "accessory": 0, "off_brand": 0, "price_outlier": 0, "low_sales": 0,
+        "model_mismatch": 0,
     }
     kept: list = []
     removed: list = []
@@ -125,8 +130,19 @@ def filter_offers(offers: list, query: str) -> tuple[list, dict, list]:
         stats[reason] += 1
         removed.append({"offer": o, "reason": reason})
 
+    # 型号 token（如 y7000x）：query 里有型号时，标题必须包含（忽略空格/大小写），
+    # 否则是同系列老款/其他型号——纯品牌+品类规则拦不住它
+    norm_query = re.sub(r"[\s\-_]", "", query.lower())
+    model_tokens = [t.lower() for t in MODEL_TOKEN_RE.findall(norm_query) if len(t) >= 4]
+
     for o in offers:
         title = (o.title or "").lower()
+        norm_title = re.sub(r"[\s\-_]", "", title)
+
+        # 0. 型号精确匹配：型号 token 缺失即其他型号（如搜 y7000x 来了老款拯救者）
+        if model_tokens and not all(t in norm_title for t in model_tokens):
+            drop(o, "model_mismatch")
+            continue
 
         # 1. 二手/翻新（标题 + 店铺/销量描述文本）
         if SECOND_HAND_RE.search(title) or (o.shop and SECOND_HAND_RE.search(o.shop.lower())):

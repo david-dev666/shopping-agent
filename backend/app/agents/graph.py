@@ -32,6 +32,7 @@ class AgentState(BaseModel):
     errors: dict[str, str] = Field(default_factory=dict)
     decision: dict[str, Any] = Field(default_factory=dict)
     recommendation: str = ""
+    top_pick: dict[str, Any] | None = None
     trace_id: str = ""
     steps: list[dict[str, Any]] = Field(default_factory=list)
 
@@ -258,7 +259,11 @@ def node_recommend(state: AgentState) -> dict:
     trace.step("recommend", f"decision={worth}", recommendation[:300])
     # trace 定稿：落库
     save_trace(trace.to_dict())
-    return {"recommendation": recommendation, "steps": trace.steps}
+    # top_pick 结构化返回，前端渲染高亮购买卡
+    top_offer = None
+    if d.get("top_pick") is not None and 0 <= int(d["top_pick"]) < len(offers):
+        top_offer = offers[int(d["top_pick"])].model_dump()
+    return {"recommendation": recommendation, "steps": trace.steps, "top_pick": top_offer}
 
 
 def asyncio_run(coro):
@@ -320,5 +325,6 @@ def run_agent(query: str) -> dict[str, Any]:
         "errors": final.get("errors", {}),
         "decision": final.get("decision", {}),
         "recommendation": final.get("recommendation", ""),
+        "top_pick": final.get("top_pick"),
         "trace": final.get("steps", []),
     }

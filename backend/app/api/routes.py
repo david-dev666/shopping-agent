@@ -32,6 +32,7 @@ class FilterStats(BaseModel):
     off_brand: int = 0
     price_outlier: int = 0
     low_sales: int = 0
+    model_mismatch: int = 0
 
 
 class RemovedOffer(BaseModel):
