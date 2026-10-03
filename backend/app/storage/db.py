@@ -54,6 +54,52 @@ class FeedbackORM(Base):
     ts: Mapped[datetime] = mapped_column(DateTime)
 
 
+class TraceORM(Base):
+    """agent 运行轨迹：每个节点一步，JSON 存储，便于回放。"""
+
+    __tablename__ = "trace"
+
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    trace_id: Mapped[str] = mapped_column(String(32), index=True)
+    query: Mapped[str] = mapped_column(String(256))
+    steps_json: Mapped[str] = mapped_column(String(20000))
+    ts: Mapped[datetime] = mapped_column(DateTime)
+
+
+def save_trace(trace: dict) -> None:
+    """保存一次 agent 运行的完整轨迹。"""
+    assert _SessionLocal is not None
+    import json
+
+    with _SessionLocal() as session:
+        session.add(
+            TraceORM(
+                trace_id=trace["trace_id"],
+                query=trace["query"][:256],
+                steps_json=json.dumps(trace["steps"], ensure_ascii=False)[:20000],
+                ts=datetime.now(UTC),
+            )
+        )
+        session.commit()
+
+
+def load_trace(trace_id: str) -> dict | None:
+    """按 trace_id 读取轨迹。"""
+    assert _SessionLocal is not None
+    import json
+
+    with _SessionLocal() as session:
+        row = (
+            session.query(TraceORM)
+            .filter(TraceORM.trace_id == trace_id)
+            .order_by(TraceORM.id.desc())
+            .first()
+        )
+    if not row:
+        return None
+    return {"trace_id": row.trace_id, "query": row.query, "steps": json.loads(row.steps_json)}
+
+
 _engine = None
 _SessionLocal: sessionmaker | None = None
 

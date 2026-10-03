@@ -23,6 +23,39 @@
   .hero h1 span { color: var(--accent); }
   .hero p { color: var(--muted); font-size: 14px; margin-top: 6px; }
 
+  /* 模式切换 */
+  .mode-tabs { display: flex; gap: 4px; background: #eceff8; border-radius: 11px; padding: 4px; margin-bottom: 16px; width: fit-content; }
+  .mt-btn { border: none; background: transparent; padding: 8px 18px; font-size: 13.5px; border-radius: 8px; cursor: pointer; color: var(--muted); }
+  .mt-btn.on { background: #fff; color: var(--text); font-weight: 600; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+
+  /* Agent 回答 */
+  .agent-answer { margin-bottom: 20px; }
+  .aa-head { display: flex; gap: 12px; align-items: flex-start; }
+  .aa-avatar { font-size: 28px; background: #eef1fb; border-radius: 12px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .aa-bubble { background: var(--card); border-radius: 4px 16px 16px 16px; padding: 16px 18px; font-size: 14px; line-height: 1.7; box-shadow: 0 2px 10px rgba(26,31,54,.06); white-space: pre-wrap; }
+  .aa-meta { display: flex; gap: 8px; align-items: center; margin-top: 10px; padding-left: 56px; flex-wrap: wrap; }
+  .aa-link { font-size: 12.5px; color: var(--accent); cursor: pointer; }
+
+  /* Trace 时间线 */
+  .trace-panel { background: var(--card); border-radius: 14px; padding: 18px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(26,31,54,.05); }
+  .tp-title { font-size: 14px; font-weight: 600; margin-bottom: 14px; }
+  .tp-steps { display: flex; flex-direction: column; }
+  .tp-step { display: flex; gap: 12px; }
+  .tp-rail { display: flex; flex-direction: column; align-items: center; width: 34px; flex-shrink: 0; }
+  .tp-icon { width: 34px; height: 34px; background: #eef1fb; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .tp-line { width: 2px; flex: 1; background: #dfe3ee; min-height: 14px; margin: 4px 0; }
+  .tp-body { flex: 1; padding-bottom: 18px; min-width: 0; }
+  .tp-head { display: flex; justify-content: space-between; align-items: baseline; }
+  .tp-head b { font-size: 13.5px; }
+  .tp-time { font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .tp-desc { font-size: 12px; color: var(--muted); margin: 2px 0 8px; }
+  .tp-io { font-size: 12px; margin: 2px 0; color: #5c6274; word-break: break-all; }
+  .tp-io .tp-in, .tp-io .tp-out { display: inline-block; font-size: 10px; padding: 1px 6px; border-radius: 4px; margin-right: 6px; font-weight: 600; }
+  .tp-io .tp-in { background: #f0f5ff; color: #1d39c4; }
+  .tp-io .tp-out { background: #f6ffed; color: #389e0d; }
+  .tp-detail summary { font-size: 11.5px; color: var(--muted); cursor: pointer; margin-top: 4px; }
+  .tp-detail pre { font-size: 11px; background: #f6f7fb; border-radius: 8px; padding: 10px; margin-top: 6px; overflow-x: auto; white-space: pre-wrap; word-break: break-all; max-height: 260px; overflow-y: auto; }
+
   /* 搜索 */
   .search-bar {
     display: flex; gap: 10px; margin-bottom: 20px;
@@ -187,11 +220,18 @@
     <p>京东 · 淘宝 · 拼多多 一次性比价，自动剔除二手 / 杂牌 / 配件</p>
   </div>
 
+  <div class="mode-tabs">
+    <button class="mt-btn on" id="mode-compare" onclick="setMode('compare')">直接比价</button>
+    <button class="mt-btn" id="mode-agent" onclick="setMode('agent')">Agent 决策 🤖</button>
+  </div>
+
   <div class="search-bar">
-    <input id="q" placeholder="输入商品名，例如：小米手环9" />
+    <input id="q" placeholder="输入商品名或需求，例如：小米手环9 / 预算300买什么手环" />
     <button id="btn">比价</button>
   </div>
 
+  <div id="agent-answer"></div>
+  <div id="trace-panel"></div>
   <div id="summary"></div>
   <div id="notice"></div>
   <div id="toolbar"></div>
@@ -209,13 +249,114 @@ const PLATFORM = {
 let sortMode = "price"; // price | ai
 let aiRank = null; // {items: [{index, score, reason}], summary}
 let platformFilter = "all"; // all | jd | taobao | pdd
+let mode = "compare"; // compare | agent
+
+window.setMode = (m) => {
+  mode = m;
+  document.querySelectorAll(".mt-btn").forEach((b) => b.classList.toggle("on", b.id === `mode-${m}`));
+  $("#btn").textContent = m === "agent" ? "问 Agent" : "比价";
+  if (m === "compare") {
+    $("#agent-answer").innerHTML = "";
+    $("#trace-panel").innerHTML = "";
+  }
+};
 
 $("#btn").addEventListener("click", search);
 $("#q").addEventListener("keydown", (e) => { if (e.key === "Enter") search(); });
 
+async function runAgent(q) {
+  const btn = $("#btn");
+  btn.disabled = true; btn.textContent = "Agent 思考中…";
+  ["#agent-answer", "#trace-panel", "#summary", "#notice", "#toolbar", "#filtered"].forEach(
+    (s) => ($(s).innerHTML = "")
+  );
+  $("#results").innerHTML = '<div class="skel"></div><div class="skel"></div>';
+  try {
+    const resp = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query: q }),
+    });
+    if (!resp.ok) {
+      const err = await resp.json().catch(() => ({}));
+      throw new Error(err.detail || `HTTP ${resp.status}`);
+    }
+    const d = await resp.json();
+    renderAgentAnswer(d);
+    renderTrace(d.trace || []);
+    renderErrors(d.errors);
+    renderSummary(d.offers);
+    renderToolbar(d);
+    renderResults(d.offers);
+    window.__lastData = { offers: d.offers };
+    window.__lastQuery = q;
+  } catch (err) {
+    $("#results").innerHTML = `<div class="empty">Agent 执行失败：${escapeHtml(err.message)}</div>`;
+  } finally {
+    btn.disabled = false; btn.textContent = "问 Agent";
+  }
+}
+
+function renderAgentAnswer(d) {
+  const dec = d.decision || {};
+  const conf = dec.confidence != null ? `<span class="tag sales">置信度 ${dec.confidence}</span>` : "";
+  $("#agent-answer").innerHTML = `
+    <div class="agent-answer">
+      <div class="aa-head">
+        <span class="aa-avatar">🤖</span>
+        <div class="aa-bubble">${escapeHtml(d.recommendation || "无建议").replace(/\\n/g, "<br>")}</div>
+      </div>
+      <div class="aa-meta">${conf}
+        <span class="tag sales">trace ${d.trace_id}</span>
+        <a href="javascript:void(0)" onclick="toggleTrace()" id="trace-toggle" class="aa-link">展开执行轨迹 ▾</a>
+      </div>
+    </div>`;
+}
+
+const NODE_INFO = {
+  intent:     { name: "意图理解", icon: "🧠", desc: "从自然语言提取商品词 / 预算 / 偏好" },
+  research:   { name: "跨平台采集", icon: "🔎", desc: "三平台搜索真实报价" },
+  match:      { name: "同款过滤", icon: "🧹", desc: "剔除二手 / 杂牌 / 配件 / 低销量" },
+  decide:     { name: "购买决策", icon: "⚖️", desc: "综合价格 / 可信度 / 预算判断" },
+  recommend:  { name: "生成建议", icon: "💡", desc: "汇总首选与价格分布" },
+};
+
+function renderTrace(steps) {
+  if (!steps.length) return;
+  $("#trace-panel").innerHTML = `
+    <div class="trace-panel" id="trace-inner" style="display:none">
+      <div class="tp-title">执行轨迹（${steps.length} 步）</div>
+      <div class="tp-steps">
+        ${steps.map((s, i) => {
+          const info = NODE_INFO[s.node] || { name: s.node, icon: "•", desc: "" };
+          return `
+          <div class="tp-step">
+            <div class="tp-rail"><span class="tp-icon">${info.icon}</span>${i < steps.length - 1 ? '<span class="tp-line"></span>' : ""}</div>
+            <div class="tp-body">
+              <div class="tp-head"><b>${info.name}</b><span class="tp-time">${(s.ts || "").slice(11, 19)}</span></div>
+              <div class="tp-desc">${info.desc}</div>
+              <div class="tp-io"><span class="tp-in">in</span> ${escapeHtml(String(s.input).slice(0, 90))}</div>
+              <div class="tp-io"><span class="tp-out">out</span> ${escapeHtml(String(s.output).slice(0, 110))}</div>
+              ${s.detail ? `<details class="tp-detail"><summary>原始输出</summary><pre>${escapeHtml(s.detail)}</pre></details>` : ""}
+            </div>
+          </div>`;
+        }).join("")}
+      </div>
+    </div>`;
+}
+window.toggleTrace = () => {
+  const el = document.getElementById("trace-inner");
+  if (!el) return;
+  const showing = el.style.display !== "none";
+  el.style.display = showing ? "none" : "";
+  const t = document.getElementById("trace-toggle");
+  if (t) t.textContent = showing ? "展开执行轨迹 ▾" : "收起执行轨迹 ▴";
+};
+
 async function search() {
   let q = $("#q").value.trim();
   if (!q) { $("#q").value = q = "小米手环9"; }
+  if (mode === "agent") return runAgent(q);
   const btn = $("#btn");
   btn.disabled = true; btn.textContent = "比价中…";
   ["#summary", "#notice", "#toolbar"].forEach((s) => $(s).innerHTML = "");

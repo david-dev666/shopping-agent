@@ -141,14 +141,24 @@ EXTRACTORS = {"jd": JD_EXTRACTOR, "taobao": TAOBAO_EXTRACTOR, "pdd": PDD_EXTRACT
 class WebBridgeClient:
     """Kimi 浏览器扩展本地 daemon 的命令客户端。
 
-    所有命令共用一把锁串行执行：单 tab 模型下并发导航/求值会互相踩。
+    采集命令按调用方事件循环加锁串行执行：单 tab 模型下并发导航/求值会互相踩。
+    锁按 event loop 惰性创建（LangGraph 同步节点经线程池跑 asyncio.run，
+    每次是新循环，全局单锁会跨循环绑定报错）。
     """
 
     def __init__(self, base_url: str, session: str, timeout: float = 90.0) -> None:
         self.base_url = base_url.rstrip("/")
         self.session = session
         self.timeout = timeout
-        self._lock = asyncio.Lock()
+        self._locks: dict[int, asyncio.Lock] = {}
+
+    def _get_lock(self) -> asyncio.Lock:
+        loop_id = id(asyncio.get_running_loop())
+        lock = self._locks.get(loop_id)
+        if lock is None:
+            lock = asyncio.Lock()
+            self._locks[loop_id] = lock
+        return lock
 
     async def command(self, action: str, args: dict) -> dict:
         payload = {"action": action, "args": args, "session": self.session}
@@ -200,7 +210,7 @@ class WebBridgeAdapter:
 
         client = get_webbridge_client()
         url = SEARCH_URLS[self.platform].format(kw=quote(query))
-        async with client._lock:
+        async with client._get_lock():
             await client.navigate(url)
             # 页面懒加载（价格异步渲染）稍等片刻
             await asyncio.sleep(4)

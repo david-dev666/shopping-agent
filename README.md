@@ -76,3 +76,4 @@ shopping-agent/
 2. [docs/01-landscape.md](docs/01-landscape.md) 竞品调研
 3. [docs/02-architecture.md](docs/02-architecture.md) 架构设计
 4. [docs/03-roadmap.md](docs/03-roadmap.md) 路线图
+5. [docs/architecture.html](docs/architecture.html) Agent 架构说明（可视化网页）

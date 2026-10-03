@@ -3,12 +3,12 @@
 原则：LLM 只输出排序与理由，价格一律取采集原值，不信任模型算出的任何数字。
 """
 
-import json
 import logging
 
 from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field
 
+from app.agents.llm_utils import invoke_json
 from app.config import get_settings
 from app.models.offers import RawOffer
 
@@ -39,7 +39,7 @@ PROMPT = """你是一名购物比价助手。根据以下商品列表做综合�
 
 用户需求：{query}
 
-商品列表（下标 | 平台 | 到手价 | 原价 | 店铺 | 标题）：
+商品列表（下标 | 平台 | 到手价 | 原价 | 店铺 | 销量 | 标题）：
 {offers_text}
 
 规则：
@@ -51,30 +51,40 @@ PROMPT = """你是一名购物比价助手。根据以下商品列表做综合�
   {{"items": [{{"index": 0, "score": 85, "reason": "自营低价"}}], "summary": "一句话"}}"""
 
 
-def _extract_json(text: str) -> dict:
-    """从模型输出中提取 JSON（容忍 markdown 代码块包裹）。"""
-    text = text.strip()
-    if text.startswith("```"):
-        text = text.split("\n", 1)[1].rsplit("```", 1)[0].strip()
-    start, end = text.find("{"), text.rfind("}")
-    if start == -1 or end == -1:
-        raise ValueError(f"模型输出不含 JSON: {text[:200]}")
-    return json.loads(text[start : end + 1])
-
-
 def _offers_text(offers: list[RawOffer]) -> str:
     lines = []
     for i, o in enumerate(offers):
         orig = f"¥{o.original_price:.0f}" if o.original_price else "-"
         shop = o.shop or "-"
-        lines.append(f"{i} | {o.platform} | ¥{o.price:.2f} | {orig} | {shop} | {o.title[:60]}")
+        sales = o.sales if o.sales is not None else "-"
+        lines.append(
+            f"{i} | {o.platform} | ¥{o.price:.2f} | {orig} | {shop} | {sales} | {o.title[:60]}"
+        )
     return "\n".join(lines)
+
+
+def _price_fallback(offers: list[RawOffer]) -> dict:
+    """LLM 持续失败时的确定性降级：按到手价升序打分。"""
+    order = sorted(range(len(offers)), key=lambda i: offers[i].price)
+    n = len(offers) or 1
+    return {
+        "items": [
+            {
+                "index": i,
+                "score": max(0, 100 - round(order.index(i) * (80 / n))),
+                "reason": "价格排序兜底",
+            }
+            for i in order
+        ],
+        "summary": "AI 排序暂不可用，已按到手价升序排列",
+    }
 
 
 def rank_offers(query: str, offers: list[RawOffer]) -> dict:
     """LLM 综合排序。返回 {items: [{index, score, reason}], summary}。
 
-    未配置 LLM key 时抛出 RuntimeError，由 API 层转为错误信息。
+    未配置 LLM key 时抛 RuntimeError（API 层转 503）；
+    已配置但解析持续失败时降级为价格排序，不再 500。
     """
     settings = get_settings()
     if not settings.llm_api_key:
@@ -89,9 +99,9 @@ def rank_offers(query: str, offers: list[RawOffer]) -> dict:
 
     prompt = PROMPT.format(query=query, offers_text=_offers_text(offers))
     # 不用 with_structured_output：DeepSeek 等服务不支持 response_format，
-    # 改为提示词约定 JSON + Pydantic 校验解析
-    raw = llm.invoke(prompt)
-    result = RankResult.model_validate(_extract_json(raw.content))
+    # 改为提示词约定 JSON + 容错解析；持续失败降级为价格排序
+    data = invoke_json(llm, prompt, retries=2, fallback=_price_fallback(offers))
+    result = RankResult.model_validate(data)
 
     # 确定性校验：下标必须落在输入范围内且不重复
     valid = set(range(len(offers)))

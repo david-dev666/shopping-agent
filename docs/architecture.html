@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>shopping-agent 架构说明</title>
+<style>
+  :root {
+    --bg: #f6f7fb; --card: #fff; --text: #1a1f36; --muted: #8b91a5;
+    --accent: #4f6ef7; --accent-dark: #3b5bdb; --line: #dfe3ee;
+    --jd: #e1251b; --taobao: #ff6a00; --pdd: #e02e24;
+    --green: #389e0d; --amber: #ad6800; --red: #cf1322;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 48px 24px 100px; }
+  h1 { font-size: 30px; letter-spacing: -0.5px; }
+  h1 span { color: var(--accent); }
+  .tagline { color: var(--muted); margin: 8px 0 36px; font-size: 15px; }
+  h2 { font-size: 21px; margin: 52px 0 18px; display: flex; align-items: center; gap: 10px; }
+  h2 .num { background: var(--accent); color: #fff; font-size: 13px; width: 26px; height: 26px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  h3 { font-size: 15px; margin: 20px 0 8px; }
+  p, li { font-size: 14px; color: #3c4157; }
+  ul { padding-left: 20px; margin: 8px 0; }
+  code { background: #eef1fb; border-radius: 5px; padding: 1px 7px; font-size: 12.5px; font-family: ui-monospace, "SF Mono", Menlo, monospace; color: #3b5bdb; }
+  .card { background: var(--card); border-radius: 16px; padding: 24px 28px; box-shadow: 0 2px 12px rgba(26,31,54,.05); }
+
+  /* 核心链路横幅 */
+  .pipeline { display: flex; align-items: center; gap: 0; flex-wrap: wrap; margin: 18px 0; }
+  .pl-node { background: var(--card); border: 1.5px solid var(--line); border-radius: 12px; padding: 10px 16px; font-size: 13.5px; font-weight: 600; box-shadow: 0 1px 4px rgba(0,0,0,.04); white-space: nowrap; }
+  .pl-node.llm { border-color: #d3adf7; background: #faf5ff; color: #531dab; }
+  .pl-node.filter { border-color: #b7eb8f; background: #f6ffed; color: #389e0d; }
+  .pl-arrow { color: var(--muted); padding: 0 8px; font-size: 15px; }
+
+  /* Agent 编排流程图 */
+  .flow { display: flex; flex-direction: column; gap: 0; }
+  .fnode { display: flex; gap: 16px; }
+  .frail { display: flex; flex-direction: column; align-items: center; width: 54px; flex-shrink: 0; }
+  .ficon { width: 54px; height: 54px; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 24px; background: #eef1fb; border: 1.5px solid var(--line); }
+  .fnode.llm .ficon { background: #faf5ff; border-color: #d3adf7; }
+  .fnode.tool .ficon { background: #f0f5ff; border-color: #adc6ff; }
+  .fline { width: 2px; flex: 1; min-height: 18px; background: var(--line); margin: 5px 0; }
+  .fbody { flex: 1; padding-bottom: 26px; min-width: 0; }
+  .fbody:last-child { padding-bottom: 4px; }
+  .fhead { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .fhead b { font-size: 15.5px; }
+  .fhead .en { font-size: 12px; color: var(--muted); font-family: ui-monospace, Menlo, monospace; }
+  .kind { font-size: 10.5px; font-weight: 600; padding: 1px 9px; border-radius: 999px; }
+  .kind.llm { background: #f9f0ff; color: #531dab; border: 1px solid #d3adf7; }
+  .kind.tool { background: #f0f5ff; color: #1d39c4; border: 1px solid #adc6ff; }
+  .kind.det { background: #f6ffed; color: #389e0d; border: 1px solid #b7eb8f; }
+  .fdesc { font-size: 13px; color: var(--muted); margin: 3px 0 8px; }
+  .fio { font-size: 12.5px; margin: 3px 0; color: #3c4157; }
+  .fio b { display: inline-block; font-size: 10.5px; padding: 1px 7px; border-radius: 4px; margin-right: 7px; font-weight: 600; }
+  .fio .in b { background: #f0f5ff; color: #1d39c4; }
+  .fio .out b { background: #f6ffed; color: #389e0d; }
+
+  /* 分层表 */
+  table { width: 100%; border-collapse: collapse; margin-top: 14px; }
+  th, td { text-align: left; padding: 10px 12px; font-size: 13.5px; border-bottom: 1px solid #eef0f6; vertical-align: top; }
+  th { font-size: 12px; color: var(--muted); font-weight: 600; background: #fafbfd; }
+  td b { font-size: 13.5px; }
+
+  .pill { display: inline-block; font-size: 11.5px; padding: 1px 9px; border-radius: 999px; margin: 2px 3px 2px 0; }
+  .pill.jd { background: #fff1f0; color: var(--jd); }
+  .pill.taobao { background: #fff7ec; color: var(--taobao); }
+  .pill.pdd { background: #fff1f2; color: var(--pdd); }
+  .pill.g { background: #f6ffed; color: var(--green); }
+  .pill.a { background: #fffbe6; color: var(--amber); }
+  .pill.r { background: #fff1f0; color: var(--red); }
+
+  .note { background: #fffbe6; border: 1px solid #ffe58f; border-radius: 12px; padding: 12px 16px; font-size: 13px; color: var(--amber); margin-top: 16px; }
+  .principle { display: flex; gap: 10px; align-items: flex-start; padding: 12px 0; border-bottom: 1px dashed #eef0f6; }
+  .principle:last-child { border-bottom: none; }
+  .principle .ic { font-size: 18px; flex-shrink: 0; }
+  .footer { margin-top: 60px; color: var(--muted); font-size: 12.5px; text-align: center; }
+  .mono { font-family: ui-monospace, Menlo, monospace; font-size: 12px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+  .mini { background: #fafbfd; border: 1px solid #eef0f6; border-radius: 12px; padding: 14px 16px; }
+  .mini b { display: block; font-size: 13.5px; margin-bottom: 4px; }
+  .mini p { font-size: 12.5px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>shopping<span>-agent</span> 架构</h1>
+  <div class="tagline">输入一句话购物需求，agent 跨三平台采集真实报价、过滤不相关商品、给出是否值得买的决策与购买入口——全程轨迹可回放。</div>
+
+  <!-- 核心链路 -->
+  <div class="card">
+    <div class="pipeline">
+      <span class="pl-node">一句话需求</span><span class="pl-arrow">→</span>
+      <span class="pl-node llm">意图理解</span><span class="pl-arrow">→</span>
+      <span class="pl-node">三平台采集</span><span class="pl-arrow">→</span>
+      <span class="pl-node filter">五层过滤</span><span class="pl-arrow">→</span>
+      <span class="pl-node llm">购买决策</span><span class="pl-arrow">→</span>
+      <span class="pl-node">建议 + 购买入口</span>
+    </div>
+    <p style="margin-top:10px">金额计算、阈值判断、索引校验全部由确定性代码完成；LLM 只做理解、排序与建议，输出一律过 Pydantic 校验。</p>
+  </div>
+
+  <!-- 1. Agent 编排 -->
+  <h2><span class="num">1</span>LangGraph 编排：五个节点</h2>
+  <p><code>POST /api/chat</code> 触发一次完整运行。StateGraph 驱动状态在节点间流转，每个节点执行都记入 trace。</p>
+  <div class="card" style="margin-top:14px">
+    <div class="flow">
+      <div class="fnode llm">
+        <div class="frail"><div class="ficon">🧠</div><div class="fline"></div></div>
+        <div class="fbody">
+          <div class="fhead"><b>意图理解</b><span class="en">node_intent</span><span class="kind llm">LLM</span></div>
+          <div class="fdesc">把口语需求转成可执行的结构化参数</div>
+          <div class="fio"><span class="in"><b>in</b>「帮我看看小米手环9，预算300以内值得买吗」</span></div>
+          <div class="fio"><span class="out"><b>out</b>{"product": "小米手环9", "budget": 300, "preference": ""}</span></div>
+        </div>
+      </div>
+      <div class="fnode tool">
+        <div class="frail"><div class="ficon">🔎</div><div class="fline"></div></div>
+        <div class="fbody">
+          <div class="fhead"><b>跨平台采集</b><span class="en">node_research</span><span class="kind tool">工具</span></div>
+          <div class="fdesc">并发查询三平台，统一输出 RawOffer，全量落库（offer + crawl_log）</div>
+          <div class="fio"><span class="in"><b>in</b>小米手环9</span></div>
+          <div class="fio"><span class="out"><b>out</b>45 条原始报价（jd:15 · taobao:15 · pdd:15）</span></div>
+        </div>
+      </div>
+      <div class="fnode tool">
+        <div class="frail"><div class="ficon">🧹</div><div class="fline"></div></div>
+        <div class="fbody">
+          <div class="fhead"><b>同款过滤</b><span class="en">node_match</span><span class="kind det">确定性</span></div>
+          <div class="fdesc">五层规则过滤（详见第 3 节），每条剔除带原因，透明可复核</div>
+          <div class="fio"><span class="in"><b>in</b>45 条候选</span></div>
+          <div class="fio"><span class="out"><b>out</b>保留 18 条同款</span></div>
+        </div>
+      </div>
+      <div class="fnode llm">
+        <div class="frail"><div class="ficon">⚖️</div><div class="fline"></div></div>
+        <div class="fbody">
+          <div class="fhead"><b>购买决策</b><span class="en">node_decide</span><span class="kind llm">LLM</span></div>
+          <div class="fdesc">综合价格分布、店铺可信度、销量与预算，输出 buy / wait / skip</div>
+          <div class="fio"><span class="in"><b>in</b>18 条报价 + 预算 300</span></div>
+          <div class="fio"><span class="out"><b>out</b>{"worth": "buy", "confidence": 88, "top_pick": 0, "reason": "…"}</span></div>
+        </div>
+      </div>
+      <div class="fnode">
+        <div class="frail"><div class="ficon">💡</div></div>
+        <div class="fbody">
+          <div class="fhead"><b>生成建议</b><span class="en">node_recommend</span><span class="kind det">确定性</span></div>
+          <div class="fdesc">拼装结论、首选商品、价格分布（最低 / 中位 / 最高）与购买入口；trace 定稿落库</div>
+          <div class="fio"><span class="in"><b>in</b>decision + offers</span></div>
+          <div class="fio"><span class="out"><b>out</b>✅ 值得买——首选 pdd ¥159（已售 8.1 万件）……</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 采集层 -->
+  <h2><span class="num">2</span>采集层：双通道 adapter</h2>
+  <p>每个平台一个 adapter，统一输出 <code>RawOffer(platform, platform_id, title, price, coupon, url, image, shop, sales, ts)</code>。通道按配置自动选择：</p>
+  <div class="card" style="margin-top:14px">
+    <table>
+      <tr><th>平台</th><th>通道一：官方联盟 API</th><th>通道二：浏览器采集（默认）</th></tr>
+      <tr>
+        <td><b>京东</b> <span class="pill jd">JD</span></td>
+        <td>京东联盟 <code>jd.union.open.goods.search</code></td>
+        <td rowspan="3" style="vertical-align:middle">
+          Kimi 浏览器扩展本地 daemon（<span class="mono">127.0.0.1:10086</span>）驱动<b>用户已登录的真实浏览器</b>：<br>
+          · 京东：DOM 卡片提取（新版搜索 UI）<br>
+          · 淘宝：商品链接锚点 + 卡片文本解析<br>
+          · 拼多多：SSR 数据 <code>window.rawData</code> 直接解析<br>
+          · 遇到滑块验证不绕过，提示用户手点后恢复
+        </td>
+      </tr>
+      <tr><td><b>淘宝</b> <span class="pill taobao">TB</span></td><td>淘宝客 <code>taobao.tbk.dg.material.optional</code></td></tr>
+      <tr><td><b>拼多多</b> <span class="pill pdd">PDD</span></td><td>多多进宝 <code>pdd.ddk.goods.search</code></td></tr>
+    </table>
+    <div class="note">配了 API key 的平台优先走官方接口；两者都没有时返回空结果，<b>绝不填充假数据</b>。所有请求共用 daemon 锁串行执行，避免单 tab 互踩。同词查询缓存 5 分钟，降低真实采集频率。</div>
+  </div>
+
+  <!-- 3. 过滤 -->
+  <h2><span class="num">3</span>匹配层：五层确定性过滤</h2>
+  <div class="card">
+    <table>
+      <tr><th>#</th><th>层</th><th>规则</th><th>典型目标</th></tr>
+      <tr><td>1</td><td><b>文本特征</b></td><td>标题/店铺/描述含「二手 · 99新 · 拆封 · 官翻」</td><td><span class="pill r">二手/翻新</span></td></tr>
+      <tr><td>2</td><td><b>品牌校验</b></td><td>query 命中品牌后，标题须有<b>非「适配/兼容」语境</b>的品牌词，且无竞品主词</td><td><span class="pill r">其他品牌</span><span class="pill a">品牌不明</span></td></tr>
+      <tr><td>3</td><td><b>配件识别</b></td><td>配件词（表带/贴膜/充电器）出现在标题尾部区域</td><td><span class="pill r">纯配件</span></td></tr>
+      <tr><td>4</td><td><b>价格离群</b></td><td>到手价 &lt; 全体中位数 × 0.3（样本 ≥ 6 时）</td><td><span class="pill a">SKU 最低价陷阱</span>（详情页表带 ¥9）</td></tr>
+      <tr><td>5</td><td><b>销量阈值</b></td><td>已知销量 &lt; 300 件；销量未知不判定（防误杀新品）</td><td><span class="pill a">可疑渠道</span>（正品标题的二手卖家）</td></tr>
+    </table>
+    <p style="margin-top:12px">漏网之鱼由<b>人工反馈</b>兜底：页面一键「不相关」→ <code>feedback</code> 表永久排除。所有剔除项进入前端折叠区展示原因，过滤过程完全透明。</p>
+  </div>
+
+  <!-- 4. 可观测性 -->
+  <h2><span class="num">4</span>可观测性：trace 全程回放</h2>
+  <div class="card">
+    <div class="grid2">
+      <div class="mini"><b>每次运行一个 trace_id</b><p>五个节点的输入、输出、LLM 原始输出、时间戳全部落库（<code>trace</code> 表），通过 <code>GET /api/trace/{trace_id}</code> 随时回放。</p></div>
+      <div class="mini"><b>前端时间线</b><p>执行轨迹可视化：节点图标 + in/out 标签 + 可折叠的 LLM 原始输出。用户能看到 agent「先搜了什么、过滤掉了什么、为什么推荐这条」。</p></div>
+      <div class="mini"><b>抓取日志</b><p><code>crawl_log</code> 记录每次采集的平台、成败、数量与错误——某平台缺数据可精确归因。</p></div>
+      <div class="mini"><b>原始数据留存</b><p><code>offer</code> 表保存<b>过滤前</b>的全量报价，任何过滤误杀都可以事后审计恢复。</p></div>
+    </div>
+  </div>
+
+  <!-- 5. 决策层 -->
+  <h2><span class="num">5</span>决策层：LLM 的边界</h2>
+  <div class="card">
+    <div class="principle"><span class="ic">🧮</span><div><b>LLM 不算钱</b><p style="color:var(--muted)">价格一律取采集原值；排序下标经确定性校验，越界或缺失由代码按价格补齐。</p></div></div>
+    <div class="principle"><span class="ic">📋</span><div><b>输出过 Pydantic</b><p style="color:var(--muted)">意图、决策、排序三个 LLM 节点的输出全部结构化校验后才进入下游。</p></div></div>
+    <div class="principle"><span class="ic">✋</span><div><b>下单永远由人确认</b><p style="color:var(--muted)">agent 只给购买入口链接，不做自动下单 / 支付 / 退款。</p></div></div>
+    <div class="principle"><span class="ic">🔒</span><div><b>不绕验证码</b><p style="color:var(--muted)">滑块 / 风控检测到后提示用户手点，AI 不碰。</p></div></div>
+  </div>
+
+  <!-- 6. 技术栈 -->
+  <h2><span class="num">6</span>技术栈与代码地图</h2>
+  <div class="card">
+    <table>
+      <tr><th>层</th><th>选型</th><th>代码位置</th></tr>
+      <tr><td>HTTP 服务</td><td>FastAPI + Pydantic</td><td><code>app/api/routes.py</code></td></tr>
+      <tr><td>编排</td><td>LangGraph StateGraph</td><td><code>app/agents/graph.py</code></td></tr>
+      <tr><td>LLM</td><td>DeepSeek（OpenAI 兼容协议）</td><td><code>app/agents/ranker.py</code></td></tr>
+      <tr><td>采集</td><td>httpx（联盟 API）+ WebBridge daemon（浏览器）</td><td><code>app/adapters/</code></td></tr>
+      <tr><td>过滤</td><td>正则 + 词典 + 统计（零 LLM）</td><td><code>app/matching/filter.py</code></td></tr>
+      <tr><td>存储</td><td>SQLite（offer / crawl_log / feedback / trace）</td><td><code>app/storage/db.py</code></td></tr>
+      <tr><td>前端</td><td>单文件 HTML（比价 + Agent 双模式）</td><td><code>backend/static/index.html</code></td></tr>
+    </table>
+  </div>
+
+  <div class="footer">shopping-agent · 架构文档 · 与代码同步更新</div>
+</div>
+</body>
+</html>

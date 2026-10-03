@@ -4,11 +4,12 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
 from app.adapters.registry import get_adapters, search_all
+from app.agents.graph import run_agent
 from app.agents.ranker import rank_offers
 from app.config import get_settings
 from app.matching.filter import REASON_LABELS, filter_offers
 from app.models.offers import RawOffer
-from app.storage.db import get_feedback_ids, record_feedback, record_search
+from app.storage.db import get_feedback_ids, load_trace, record_feedback, record_search
 
 router = APIRouter(prefix="/api")
 
@@ -105,6 +106,31 @@ async def feedback(req: FeedbackRequest) -> dict:
     """用户标记某条报价不相关（二手/杂牌等），后续查询排除。"""
     record_feedback(req.platform, req.platform_id, req.reason)
     return {"ok": True}
+
+
+class ChatRequest(BaseModel):
+    query: str
+
+
+@router.post("/chat")
+async def chat(req: ChatRequest) -> dict:
+    """对话式 agent 入口：intent → research → match → decide → recommend，全程 trace。"""
+    q = req.query.strip()
+    if not q:
+        raise HTTPException(status_code=400, detail="query 为空")
+    try:
+        return run_agent(q)
+    except RuntimeError as e:
+        raise HTTPException(status_code=503, detail=str(e)) from e
+
+
+@router.get("/trace/{trace_id}")
+async def get_trace(trace_id: str) -> dict:
+    """回放某次 agent 运行的完整轨迹。"""
+    t = load_trace(trace_id)
+    if not t:
+        raise HTTPException(status_code=404, detail="trace 不存在")
+    return t
 
 
 @router.post("/rank")
