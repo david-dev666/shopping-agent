@@ -8,6 +8,7 @@ from app.agents.graph import run_agent
 from app.agents.ranker import rank_offers
 from app.config import get_settings
 from app.matching.filter import REASON_LABELS, filter_offers
+from app.matching.specs import group_specs
 from app.models.offers import RawOffer
 from app.storage.db import get_feedback_ids, load_trace, record_feedback, record_search
 
@@ -46,6 +47,8 @@ class QueryResponse(BaseModel):
     filter_stats: FilterStats = FilterStats()
     removed_offers: list[RemovedOffer] = []
     cached: bool = False
+    # 规格分组：{规格名: [platform_id, ...]}，前端做规格筛选
+    specs: dict[str, list[str]] = {}
 
 
 @router.post("/query", response_model=QueryResponse)
@@ -70,6 +73,7 @@ async def query_products(req: QueryRequest) -> QueryResponse:
 
     kept, stats, removed = filter_offers(offers, q)
 
+    spec_groups = group_specs(kept)
     resp = QueryResponse(
         query=q,
         offers=kept,
@@ -81,6 +85,7 @@ async def query_products(req: QueryRequest) -> QueryResponse:
             )
             for r in removed
         ],
+        specs={name: [o.platform_id for o in group] for name, group in spec_groups.items()},
     )
     # 滑块验证导致的失败不缓存：用户完成验证后立即重搜应触发真实采集
     needs_verify = any("NEED_MANUAL_VERIFY" in e for e in errors.values())

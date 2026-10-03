@@ -187,6 +187,8 @@
   .pf-btn.on.pf-jd { background: var(--jd); border-color: var(--jd); }
   .pf-btn.on.pf-taobao { background: var(--taobao); border-color: var(--taobao); }
   .pf-btn.on.pf-pdd { background: var(--pdd); border-color: var(--pdd); }
+  .pf-btn.spec.on { background: #531dab; border-color: #531dab; }
+  .pf-n { opacity: .7; font-size: 11px; margin-left: 2px; }
 
   /* 已过滤区 */
   .filtered-block { margin-top: 32px; }
@@ -249,6 +251,8 @@ const PLATFORM = {
 let sortMode = "price"; // price | ai
 let aiRank = null; // {items: [{index, score, reason}], summary}
 let platformFilter = "all"; // all | jd | taobao | pdd
+let specFilter = "all"; // all | 规格名
+let lastSpecs = {}; // {规格名: [platform_id...]}
 let mode = "compare"; // compare | agent
 
 window.setMode = (m) => {
@@ -364,6 +368,7 @@ async function search() {
   aiRank = null;
   sortMode = "price";
   platformFilter = "all";
+  specFilter = "all";
   window.__lastQuery = q;
   $("#results").innerHTML = '<div class="skel"></div><div class="skel"></div><div class="skel"></div>';
   try {
@@ -466,8 +471,11 @@ function renderSummary(offers) {
 
 function renderToolbar(data) {
   if (!data.offers.length) return;
+  lastSpecs = data.specs || {};
   const platforms = [...new Set(data.offers.map((o) => o.platform))];
   const cachedTag = data.cached ? ' <span class="tag sales">缓存 · 5分钟内有效</span>' : "";
+  const specNames = Object.keys(lastSpecs).filter((s) => s !== "其他");
+  const hasOther = "其他" in lastSpecs;
   $("#toolbar").innerHTML = `
     <span class="count">共 ${data.offers.length} 条同款报价${cachedTag}</span>
     <div class="tabs">
@@ -478,13 +486,30 @@ function renderToolbar(data) {
       <button class="pf-btn ${platformFilter === "all" ? "on" : ""}" data-p="all" onclick="setPlatform('all')">全部</button>
       ${platforms.map((p) => `
         <button class="pf-btn ${platformFilter === p ? "on" : ""} pf-${PLATFORM[p].cls}" data-p="${p}" onclick="setPlatform('${p}')">${PLATFORM[p].name}</button>`).join("")}
-    </div>`;
+    </div>
+    ${specNames.length + (hasOther ? 1 : 0) > 1 ? `
+    <div class="platform-filter">
+      <button class="pf-btn spec ${specFilter === "all" ? "on" : ""}" data-s="all" onclick="setSpec('all')">全部规格</button>
+      ${specNames.map((s) => `
+        <button class="pf-btn spec ${specFilter === s ? "on" : ""}" data-s="${escapeHtml(s)}" onclick="setSpec('${escapeHtml(s)}')">${escapeHtml(s)} <span class="pf-n">${lastSpecs[s].length}</span></button>`).join("")}
+      ${hasOther ? `<button class="pf-btn spec ${specFilter === "其他" ? "on" : ""}" data-s="其他" onclick="setSpec('其他')">其他 <span class="pf-n">${lastSpecs["其他"].length}</span></button>` : ""}
+    </div>` : ""}`;
 }
 window.setPlatform = (p) => {
   platformFilter = p;
-  document.querySelectorAll(".pf-btn").forEach((b) => b.classList.toggle("on", b.dataset.p === p));
+  document.querySelectorAll(".pf-btn[data-p]").forEach((b) => b.classList.toggle("on", b.dataset.p === p));
   renderResults(window.__lastData.offers);
 };
+window.setSpec = (s) => {
+  specFilter = s;
+  document.querySelectorAll(".pf-btn[data-s]").forEach((b) => b.classList.toggle("on", b.dataset.s === s));
+  renderResults(window.__lastData.offers);
+};
+function specVisible(o) {
+  if (specFilter === "all") return true;
+  const ids = lastSpecs[specFilter] || [];
+  return ids.includes(o.platform_id);
+}
 window.setSort = async (m) => {
   sortMode = m;
   document.querySelectorAll(".tabs button").forEach((b) => b.classList.toggle("on", b.id === `tab-${m}`));
@@ -533,10 +558,9 @@ function renderResults(offers) {
     $("#results").innerHTML = '<div class="empty">没有拿到符合的报价（各平台 API 未配置或全部被过滤）</div>';
     return;
   }
-  // 平台筛选
-  const visible = platformFilter === "all"
-    ? offers
-    : offers.filter((o) => o.platform === platformFilter);
+  // 平台筛选 + 规格筛选（可叠加）
+  const visible = offers.filter((o) =>
+    (platformFilter === "all" || o.platform === platformFilter) && specVisible(o));
   if (!visible.length) {
     $("#results").innerHTML = `<div class="empty">${PLATFORM[platformFilter]?.name || ""} 没有符合条件的报价</div>`;
     return;

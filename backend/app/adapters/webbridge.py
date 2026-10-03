@@ -33,8 +33,9 @@ JD_EXTRACTOR = """
     }
     const img = c.querySelector('img[data-src]')?.getAttribute('data-src')
       || c.querySelector('img')?.src;
-    const shopEl = [...c.querySelectorAll('*')].find(e =>
-      e.children.length===0 && /自营|旗舰店|专卖店|专营店/.test(e.textContent||''));
+    const cardLines = (c.innerText || '').split('\\n').map(s => s.trim()).filter(Boolean);
+    // 店铺名是卡片文本最后一行（自营/旗舰店/普通店都如此）
+    const shop = cardLines[cardLines.length - 1] || null;
     const salesM = (c.innerText || '').match(/([\\d.,]+)\\s*([万亿]?)\\+?\\s*(?:人付款|人收货|条评价)/);
     let sales = null;
     if (salesM) {
@@ -46,7 +47,7 @@ JD_EXTRACTOR = """
     out.push({platform_id: pid, title: (title||'').slice(0,100), price,
       url: 'https://item.jd.com/' + pid + '.html',
       image: img ? ('https:' + img) : null,
-      shop: shopEl ? shopEl.textContent.trim().slice(0,30) : null,
+      shop: shop ? shop.slice(0,30) : null,
       sales});
   });
   return JSON.stringify(out.slice(0,15));
