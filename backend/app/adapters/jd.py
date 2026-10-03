@@ -91,6 +91,8 @@ class JDUnionAdapter:
             final_price = max(price - (coupon or 0), 0.0)
 
             image_list = (g.get("imageInfo") or {}).get("imageList") or []
+            in_order_count = (g.get("base") or {}).get("inOrderCount30Days")
+            sales = int(in_order_count) if str(in_order_count or "").isdigit() else None
             offers.append(
                 RawOffer(
                     platform=self.platform,
@@ -102,6 +104,7 @@ class JDUnionAdapter:
                     url=g.get("materialURL"),
                     image=image_list[0].get("url") if image_list else None,
                     shop=(g.get("shopInfo") or {}).get("shopName"),
+                    sales=sales,
                     ts=now,
                 )
             )

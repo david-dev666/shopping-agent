@@ -82,7 +82,27 @@ REASON_LABELS = {
     "rival": "其他品牌",
     "accessory": "配件",
     "off_brand": "品牌不明",
+    "price_outlier": "价格异常",
+    "low_sales": "销量过低",
 }
+
+# 销量阈（件）：已知销量低于该值视为可疑渠道（二手/瑕疵/临期清仓）
+# 只在销量已知时生效；无销量数据不做判定（宁可漏不可错杀）
+LOW_SALES_THRESHOLD = 300
+
+
+def _median(values: list[float]) -> float:
+    vs = sorted(values)
+    n = len(vs)
+    if n == 0:
+        return 0.0
+    return vs[n // 2] if n % 2 else (vs[n // 2 - 1] + vs[n // 2]) / 2
+
+
+# 价格离群阈值：低于全体中位数的该比例视为异常（如 SKU 显示的是配件最低价）
+OUTLIER_RATIO = 0.3
+# 样本至少这么多才做离群检测，避免小样本中位数失真
+OUTLIER_MIN_SAMPLES = 6
 
 
 def filter_offers(offers: list, query: str) -> tuple[list, dict, list]:
@@ -94,7 +114,10 @@ def filter_offers(offers: list, query: str) -> tuple[list, dict, list]:
     brand = extract_brand(query)
     brand_alias = BRAND_ALIASES.get(brand, []) if brand else []
 
-    stats = {"total": len(offers), "second_hand": 0, "rival": 0, "accessory": 0, "off_brand": 0}
+    stats = {
+        "total": len(offers), "second_hand": 0, "rival": 0,
+        "accessory": 0, "off_brand": 0, "price_outlier": 0, "low_sales": 0,
+    }
     kept: list = []
     removed: list = []
 
@@ -105,9 +128,15 @@ def filter_offers(offers: list, query: str) -> tuple[list, dict, list]:
     for o in offers:
         title = (o.title or "").lower()
 
-        # 1. 二手/翻新
-        if SECOND_HAND_RE.search(title):
+        # 1. 二手/翻新（标题 + 店铺/销量描述文本）
+        if SECOND_HAND_RE.search(title) or (o.shop and SECOND_HAND_RE.search(o.shop.lower())):
             drop(o, "second_hand")
+            continue
+
+        # 1b. 销量过低：正规同款商品销量通常上万，几十件的多为二手/瑕疵/清仓
+        #     仅销量已知时判定，未知不处理（避免误杀新品）
+        if o.sales is not None and o.sales < LOW_SALES_THRESHOLD:
+            drop(o, "low_sales")
             continue
 
         # 2. 品牌冲突：query 有明确品牌
@@ -143,6 +172,19 @@ def filter_offers(offers: list, query: str) -> tuple[list, dict, list]:
                 continue
 
         kept.append(o)
+
+    # 4. 价格离群：过滤后基于整体分布再筛一遍。
+    #    典型 case：商品详情页有大量子 SKU（表带/贴膜），搜索页显示的是 SKU 最低价，
+    #    标题却是主体商品——标题规则拦不住，但价格必然显著偏离中位数。
+    if len(kept) >= OUTLIER_MIN_SAMPLES:
+        median = _median([o.price for o in kept])
+        if median > 0:
+            outliers = [o for o in kept if o.price < median * OUTLIER_RATIO]
+            if outliers and median * OUTLIER_RATIO > 1:
+                outlier_ids = {id(o) for o in outliers}
+                kept = [o for o in kept if id(o) not in outlier_ids]
+                for o in outliers:
+                    drop(o, "price_outlier")
 
     stats["kept"] = len(kept)
     return kept, stats, removed

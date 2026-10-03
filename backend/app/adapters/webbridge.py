@@ -10,8 +10,13 @@ from app.models.offers import RawOffer
 logger = logging.getLogger(__name__)
 
 # 京东搜索页提取器（新版 UI：JS 路由卡片，sku 从客服链接 pid 取）
+# 检测到滑块验证时返回 {"captcha": true}，由 Python 侧转为提示
 JD_EXTRACTOR = """
 (() => {
+  const txt = document.body.innerText || '';
+  if (/快速验证|访问频繁|拖动滑块|请完成验证/.test(txt)) {
+    return JSON.stringify({captcha: true, url: location.href});
+  }
   const out = [];
   document.querySelectorAll('div[class*=card]').forEach(c => {
     const priceEl = c.querySelector('span[class*=price]');
@@ -30,10 +35,19 @@ JD_EXTRACTOR = """
       || c.querySelector('img')?.src;
     const shopEl = [...c.querySelectorAll('*')].find(e =>
       e.children.length===0 && /自营|旗舰店|专卖店|专营店/.test(e.textContent||''));
+    const salesM = (c.innerText || '').match(/([\\d.,]+)\\s*([万亿]?)\\+?\\s*(?:人付款|人收货|条评价)/);
+    let sales = null;
+    if (salesM) {
+      sales = parseFloat(salesM[1].replace(/,/g, ''));
+      if (salesM[2] === '万') sales *= 10000;
+      if (salesM[2] === '亿') sales *= 100000000;
+      sales = Math.round(sales);
+    }
     out.push({platform_id: pid, title: (title||'').slice(0,100), price,
       url: 'https://item.jd.com/' + pid + '.html',
       image: img ? ('https:' + img) : null,
-      shop: shopEl ? shopEl.textContent.trim().slice(0,30) : null});
+      shop: shopEl ? shopEl.textContent.trim().slice(0,30) : null,
+      sales});
   });
   return JSON.stringify(out.slice(0,15));
 })()
@@ -54,12 +68,21 @@ TAOBAO_EXTRACTOR = """
     if (!pm) return;
     const lines = (c.innerText || '').split('\\n').map(s => s.trim()).filter(Boolean);
     const img = c.querySelector('img');
+    const salesM = flat.match(/([\\d.,]+)\\s*([万亿]?)\\+?\\s*(?:人付款|人收货)/);
+    let sales = null;
+    if (salesM) {
+      sales = parseFloat(salesM[1].replace(/,/g, ''));
+      if (salesM[2] === '万') sales *= 10000;
+      if (salesM[2] === '亿') sales *= 100000000;
+      sales = Math.round(sales);
+    }
     seen.add(id);
     out.push({platform_id: id, title: (lines[0] || '').slice(0,100),
       price: parseFloat(pm[1]),
       url: 'https://item.taobao.com/item.htm?id=' + id,
       image: img ? img.src : null,
-      shop: (lines[lines.length-1] || '').slice(0,30)});
+      shop: (lines[lines.length-1] || '').slice(0,30),
+      sales});
   });
   return JSON.stringify(out.slice(0,15));
 })()
@@ -86,13 +109,22 @@ PDD_EXTRACTOR = """
   };
   walk(d);
   if (!arr) return JSON.stringify([]);
+  const toNum = t => {
+    const m = String(t).match(/([\\d.]+)\\s*([万亿]?)\\+?(?:人|件)/);
+    if (!m) return null;
+    let n = parseFloat(m[1]);
+    if (m[2] === '万') n *= 10000;
+    if (m[2] === '亿') n *= 100000000;
+    return Math.round(n);
+  };
   return JSON.stringify(arr.slice(0,15).map(g => ({
     platform_id: String(g.goodsID),
     title: (g.goodsName || g.recTitle || '').slice(0,100),
     price: (g.price || 0) / 100,
     url: 'https://mobile.yangkeduo.com/' + (g.linkURL || ('goods.html?goods_id=' + g.goodsID)).split('&_oak')[0],
     image: (g.imgUrl || '').startsWith('//') ? 'https:' + g.imgUrl : (g.imgUrl || null),
-    shop: (g.salesTip || '').slice(0,30)
+    shop: (g.salesTip || '').slice(0,30),
+    sales: g.salesTip ? toNum(g.salesTip) : null
   })));
 })()
 """
@@ -174,6 +206,12 @@ class WebBridgeAdapter:
             await asyncio.sleep(4)
             raw = await client.evaluate_json(EXTRACTORS[self.platform])
 
+        # 滑块/风控验证：不绕过（项目边界），提示用户手点
+        if isinstance(raw, dict) and raw.get("captcha"):
+            raise RuntimeError(
+                "NEED_MANUAL_VERIFY: 平台要求人工验证，请点击页面上的「去验证」完成滑块后重试"
+            )
+
         now = datetime.now(UTC)
         offers = []
         for r in raw or []:
@@ -192,6 +230,7 @@ class WebBridgeAdapter:
                     url=r.get("url"),
                     image=r.get("image"),
                     shop=r.get("shop") or None,
+                    sales=r.get("sales"),
                     ts=now,
                 )
             )

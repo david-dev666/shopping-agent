@@ -17,4 +17,5 @@ class RawOffer(BaseModel):
     url: str | None = Field(default=None, description="购买入口")
     image: str | None = None
     shop: str | None = None
+    sales: int | None = Field(default=None, description="已售数量（件），未知为 None")
     ts: datetime = Field(default_factory=lambda: datetime.now(UTC))

@@ -117,6 +117,11 @@
   .tag.sales { background: #f5f5f5; color: #8b91a5; border-color: #e3e5ec; }
   .tag.best { background: #cf1322; color: #fff; }
   .tag.ai { background: #f9f0ff; color: #531dab; border-color: #d3adf7; }
+  .fb-btn {
+    margin-top: 6px; border: none; background: transparent; color: #b3b8c8;
+    font-size: 11px; cursor: pointer; padding: 0; text-decoration: underline dotted;
+  }
+  .fb-btn:hover { color: #cf1322; }
   .shop { color: var(--muted); font-size: 12px; }
 
   .price-box { text-align: right; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; }
@@ -209,8 +214,8 @@ $("#btn").addEventListener("click", search);
 $("#q").addEventListener("keydown", (e) => { if (e.key === "Enter") search(); });
 
 async function search() {
-  const q = $("#q").value.trim();
-  if (!q) return;
+  let q = $("#q").value.trim();
+  if (!q) { $("#q").value = q = "小米手环9"; }
   const btn = $("#btn");
   btn.disabled = true; btn.textContent = "比价中…";
   ["#summary", "#notice", "#toolbar"].forEach((s) => $(s).innerHTML = "");
@@ -269,11 +274,39 @@ function render(data) {
 }
 
 function renderErrors(errors) {
-  const list = Object.entries(errors || {})
-    .map(([p, e]) => `${PLATFORM[p]?.name || p}：${String(e).slice(0, 80)}`)
-    .join("；");
-  if (list) $("#notice").innerHTML = `<div class="notice err">部分平台查询失败 — ${list}</div>`;
+  const VERIFY_URLS = {
+    jd: "https://search.jd.com/",
+    taobao: "https://s.taobao.com/",
+    pdd: "https://mobile.yangkeduo.com/",
+  };
+  const parts = [];
+  const verifyList = [];
+  for (const [p, e] of Object.entries(errors || {})) {
+    const msg = String(e);
+    if (msg.includes("NEED_MANUAL_VERIFY")) {
+      verifyList.push(p);
+    } else {
+      parts.push(`${PLATFORM[p]?.name || p}：${msg.slice(0, 60)}`);
+    }
+  }
+  let html = "";
+  if (parts.length) html += `<div class="notice err">部分平台查询失败 — ${parts.join("；")}</div>`;
+  if (verifyList.length) {
+    const names = verifyList.map((p) => PLATFORM[p]?.name || p).join("、");
+    const links = verifyList.map((p) =>
+      `<a href="${VERIFY_URLS[p]}" target="_blank" rel="noopener" style="color:#1d39c4;font-weight:600">去${PLATFORM[p]?.name || p}验证 ↗</a>`
+    ).join("　");
+    html += `<div class="notice err">🔒 ${names}需要人工验证（滑块）— 请在打开的页面完成验证后，
+      <a href="javascript:void(0)" onclick="retryAfterVerify()" style="color:#1d39c4;font-weight:600">点此重新比价</a>　${links}</div>`;
+  }
+  if (html) $("#notice").innerHTML = html;
 }
+
+window.retryAfterVerify = () => {
+  // 清缓存重搜：验证完成后拿到新数据
+  $("#q").value = window.__lastQuery || $("#q").value;
+  search();
+};
 
 function renderSummary(offers) {
   const by = {};
@@ -293,8 +326,9 @@ function renderSummary(offers) {
 function renderToolbar(data) {
   if (!data.offers.length) return;
   const platforms = [...new Set(data.offers.map((o) => o.platform))];
+  const cachedTag = data.cached ? ' <span class="tag sales">缓存 · 5分钟内有效</span>' : "";
   $("#toolbar").innerHTML = `
-    <span class="count">共 ${data.offers.length} 条同款报价</span>
+    <span class="count">共 ${data.offers.length} 条同款报价${cachedTag}</span>
     <div class="tabs">
       <button id="tab-price" class="${sortMode === "price" ? "on" : ""}" onclick="setSort('price')">按价格</button>
       <button id="tab-ai" class="${sortMode === "ai" ? "on" : ""}" onclick="setSort('ai')">综合推荐 ✨</button>
@@ -381,7 +415,7 @@ function renderResults(offers) {
       ? `${it.reason ? `<span class="tag ai">✨ ${escapeHtml(it.reason)}</span>` : ""}${it.score ? `<span class="tag sales">综合 ${it.score}</span>` : ""}`
       : "";
     return `
-    <div class="card ${o.price === best && !aiInfo ? "is-best" : ""} ${aiInfo && ordered[0] === o ? "is-best" : ""}">
+    <div class="card ${o.price === best && !aiInfo ? "is-best" : ""} ${aiInfo && ordered[0] === o ? "is-best" : ""}" id="offer-${escapeHtml(o.platform)}-${escapeHtml(o.platform_id)}">
       ${o.image ? `<img src="${o.image}" referrerpolicy="no-referrer" loading="lazy" />` : "<img />"}
       <div class="info">
         <div class="title">${escapeHtml(o.title)}</div>
@@ -395,6 +429,7 @@ function renderResults(offers) {
         <div class="price"><span class="yen">¥</span>${o.price.toFixed(2)}</div>
         ${o.original_price && o.original_price > o.price ? `<div class="origin">¥${o.original_price.toFixed(2)}</div>` : ""}
         ${o.url ? `<a class="buy" href="${o.url}" target="_blank" rel="noopener">去购买</a>` : ""}
+        <button class="fb-btn" title="标记为二手/杂牌等不相关商品，今后不再显示" onclick="markIrrelevant('${escapeHtml(o.platform)}','${escapeHtml(o.platform_id)}')">不相关</button>
       </div>
     </div>`;
   };
@@ -423,11 +458,24 @@ function renderFiltered(removed, stats) {
     </div>`;
 }
 
+window.markIrrelevant = async (platform, platformId) => {
+  const el = document.getElementById(`offer-${platform}-${platformId}`);
+  if (el) el.remove();
+  try {
+    await fetch("/api/feedback", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ platform, platform_id: platformId }),
+    });
+  } catch (e) { /* 已从页面移除，落库失败不影响本次浏览 */ }
+};
+
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, (c) => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
   })[c]);
 }
+
 </script>
 </body>
 </html>

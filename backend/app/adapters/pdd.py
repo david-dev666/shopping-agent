@@ -73,6 +73,7 @@ class PddAdapter:
             goods_url = (
                 f"https://mobile.yangkeduo.com/goods.html?goods_id={goods_id}" if goods_id else None
             )
+            sales = g.get("sales_tip")
             offers.append(
                 RawOffer(
                     platform=self.platform,
@@ -84,6 +85,7 @@ class PddAdapter:
                     url=goods_url,
                     image=g.get("goods_thumbnail_url"),
                     shop=g.get("mall_name"),
+                    sales=int(sales) if str(sales or "").isdigit() else None,
                     ts=now,
                 )
             )

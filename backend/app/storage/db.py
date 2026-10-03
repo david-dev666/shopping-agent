@@ -26,6 +26,7 @@ class OfferORM(Base):
     url: Mapped[str | None] = mapped_column(String(1024), nullable=True)
     image: Mapped[str | None] = mapped_column(String(1024), nullable=True)
     shop: Mapped[str | None] = mapped_column(String(256), nullable=True)
+    sales: Mapped[int | None] = mapped_column(Integer, nullable=True)
     ts: Mapped[datetime] = mapped_column(DateTime)
 
 
@@ -38,6 +39,18 @@ class CrawlLogORM(Base):
     ok: Mapped[bool] = mapped_column(Boolean)
     count: Mapped[int] = mapped_column(Integer)
     error: Mapped[str | None] = mapped_column(String(1024), nullable=True)
+    ts: Mapped[datetime] = mapped_column(DateTime)
+
+
+class FeedbackORM(Base):
+    """用户人工标记「不相关」的商品，后续查询直接排除。"""
+
+    __tablename__ = "feedback"
+
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    platform: Mapped[str] = mapped_column(String(16), index=True)
+    platform_id: Mapped[str] = mapped_column(String(128), index=True)
+    reason: Mapped[str] = mapped_column(String(32), default="user_marked")
     ts: Mapped[datetime] = mapped_column(DateTime)
 
 
@@ -103,7 +116,28 @@ def record_search(
                         url=o.url,
                         image=o.image,
                         shop=o.shop,
+                        sales=o.sales,
                         ts=o.ts,
                     )
                 )
         session.commit()
+
+
+def record_feedback(platform: str, platform_id: str, reason: str) -> None:
+    """记录用户标记，后续查询排除同款。"""
+    assert _SessionLocal is not None
+    with _SessionLocal() as session:
+        session.add(
+            FeedbackORM(
+                platform=platform, platform_id=platform_id, reason=reason, ts=datetime.now(UTC)
+            )
+        )
+        session.commit()
+
+
+def get_feedback_ids() -> set[tuple[str, str]]:
+    """全部已标记商品 (platform, platform_id)。"""
+    assert _SessionLocal is not None
+    with _SessionLocal() as session:
+        rows = session.query(FeedbackORM.platform, FeedbackORM.platform_id).all()
+    return set(rows)
