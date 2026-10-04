@@ -18,7 +18,11 @@
 
 ![报价综合排序](docs/img/agent-offers.png)
 
-**执行轨迹**：intent → research → match → decide → recommend，每步输入输出可回放
+**筛选与重排**：按平台 / 规格 / 标签 / 价格筛选，点「重新筛选并排序」让 Agent 在筛选结果上重新决策
+
+![筛选与重排](docs/img/agent-filter.png)
+
+**执行轨迹**：intent → research → match → filters → decide → recommend，每步输入输出与耗时都可回放
 
 ![执行轨迹](docs/img/agent-trace.png)
 
@@ -31,9 +35,13 @@ flowchart LR
     R --> A1["联盟 API：京东 / 淘宝 / 拼多多"]
     R --> A2["Kimi 浏览器 daemon（真实登录态兜底）"]
     R --> M["match 相关性软标签"]
-    M --> D["decide 决策 + 全量排序"]
+    M --> F["filters 按筛选条件缩小候选集"]
+    F --> D["decide 决策 + 全量排序"]
     D --> C["recommend 首选 / 购买入口"]
 ```
+
+- **全量链路**：`intent → research → match → filters → decide → recommend`
+- **重排链路**：前端筛选面板点「重新筛选并排序」时走 `filters → decide → recommend`，跳过重复采集，直接在缩小后的候选集上重新决策与排序
 
 每一步都写 trace（输入 / 输出 / 耗时），前端「执行轨迹」可完整回放；金额与阈值判断全部由确定性代码完成，LLM 只负责语义与排序。
 
@@ -53,7 +61,7 @@ flowchart LR
 ## 工作方式
 
 ```
-搜索词 → 三平台采集 → 相关性标注（二手 / 竞品 / 配件 …）→ 到手价排序 → 购买入口
+搜索词 → 三平台采集 → 相关性标注（二手 / 竞品 / 配件 …）→ 用户筛选 → 综合排序 → 购买入口
 ```
 
 采集层每个平台一个 adapter，统一输出 `RawOffer`（platform / platform_id / title / price / coupon / url / shop / sales / tags / ts）：
@@ -87,7 +95,7 @@ DEMO_MODE=true uv run uvicorn app.main:app --port 8000
 1. **浏览器采集**（默认）：安装 Kimi 浏览器扩展，在浏览器中登录京东 / 淘宝 / 拼多多
 2. **官方联盟 API**：在 `backend/.env` 中填入各平台 key（参考 `backend/.env.example`），配置后优先于浏览器采集
 
-> `docker-compose.yml` 只起一个 Postgres，用于把 `DATABASE_URL` 从 SQLite 切过去，默认无需启动。
+> `docker-compose.yml` 只起一个 Postgres，用于把 `DATABASE_URL` 从 SQLite 切过去（需 `uv sync --extra postgres` 装驱动），默认无需启动。
 
 ## 评测与性能
 
@@ -100,7 +108,8 @@ DEMO_MODE=true uv run uvicorn app.main:app --port 8000
 
 - ✅ 三平台采集（联盟 API 优先 + Kimi 浏览器 daemon 兜底）
 - ✅ 相关性软标签 + 综合排序（打标项自动降级，LLM 看到标签自行降权）
-- ✅ LangGraph 五节点编排 + 全流程 trace 回放
+- ✅ LangGraph 六节点编排 + 全流程 trace 回放
+- ✅ 筛选面板：客户端即时过滤 + 「重新筛选并排序」触发 agent 在缩小后的候选集上重新决策（`/api/refine`，跳过重复采集）
 - 🚧 规格级同款匹配与置信度评估
 - 📋 价格历史曲线、目标价盯价提醒
 
@@ -125,11 +134,14 @@ shopping-agent/
 │   ├── app/
 │   │   ├── api/              HTTP 接口
 │   │   ├── adapters/         平台采集适配器
-│   │   ├── matching/         相关性标注（软标签）
+│   │   ├── matching/         相关性标注（软标签）+ 筛选
 │   │   ├── models/           数据模型
-│   │   ├── agents/           LangGraph 编排
+│   │   ├── agents/           LangGraph 编排（双入口）
 │   │   ├── demo/             DEMO_MODE 内置样例
 │   │   └── storage/          持久化
+│   ├── eval/                 规则层标注集与评测
+│   ├── scripts/              评测 / 采集耗时脚本
+│   ├── migrations/           alembic 迁移
 │   ├── static/               演示页
 │   ├── tests/
 │   └── .env.example
@@ -141,9 +153,10 @@ shopping-agent/
 ```bash
 cd backend
 uv run pytest -q                              # 单元测试 + 评测集守卫
-uv run ruff check app tests scripts eval      # lint
+uv run ruff check app tests scripts eval migrations   # lint
 uv run python scripts/eval_rules.py           # 规则层评测
 uv run python scripts/bench_crawl.py 小米手环9 # 采集耗时
+uv run alembic upgrade head                   # 版本化建表（默认启动已自动 create_all）
 ```
 
 接口自带 Swagger 文档：启动后访问 http://127.0.0.1:8000/docs 。

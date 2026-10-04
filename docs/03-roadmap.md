@@ -40,7 +40,7 @@
 
 目标：自然语言进，结构化建议出，全程可追踪。
 
-- 用 LangGraph 搭出 intent → research → match → price → decide → recommend
+- 用 LangGraph 搭出 intent → research → match → filters → decide → recommend（已完成；另提供 `filters → decide → recommend` 重排入口，支持按筛选条件重新决策）
 - 把阶段 1、2 的能力包成工具体
 - 每节点记录 trace：工具调用、token、成本、耗时
 - 前端加一个 trace 视图

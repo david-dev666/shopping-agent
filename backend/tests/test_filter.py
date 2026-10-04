@@ -1,4 +1,5 @@
-from app.matching.filter import apply_tag_guard, filter_offers
+from app.matching.filter import apply_filters, apply_tag_guard, filter_offers
+from app.models.filters import FilterSpec
 from app.models.offers import RawOffer
 
 
@@ -203,3 +204,25 @@ def test_tag_guard_noop_when_all_tagged() -> None:
     items = [{"index": 0, "score": 90}, {"index": 1, "score": 80}]
     out = apply_tag_guard(items, offers)
     assert [it["index"] for it in out] == [0, 1]
+
+
+def test_apply_filters_platform_tag_price_spec() -> None:
+    offers = [
+        RawOffer(platform="jd", platform_id="jd1", title="小米手环9 NFC版 官方", price=199.0),
+        RawOffer(
+            platform="taobao", platform_id="tb1", title="小米手环9 Pro 旗舰",
+            price=299.0, tags=["疑似二手"],
+        ),
+        RawOffer(platform="pdd", platform_id="pdd1", title="小米手环9 陶瓷特别版", price=249.0),
+    ]
+    assert [o.platform for o in apply_filters(offers, FilterSpec(platforms=["jd"]))] == ["jd"]
+    assert len(apply_filters(offers, FilterSpec(exclude_tags=["疑似二手"]))) == 2
+    assert [
+        o.platform_id for o in apply_filters(offers, FilterSpec(price_min=200, price_max=260))
+    ] == ["pdd1"]
+    assert [o.platform_id for o in apply_filters(offers, FilterSpec(spec="NFC版"))] == ["jd1"]
+
+
+def test_apply_filters_empty_is_noop() -> None:
+    offers = [_offer("小米手环9 A"), _offer("小米手环9 B")]
+    assert apply_filters(offers, FilterSpec()) == offers

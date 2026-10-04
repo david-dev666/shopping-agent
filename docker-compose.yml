@@ -1,5 +1,6 @@
 # 仅用于把 DATABASE_URL 从默认的 SQLite 切到 Postgres：
 #   docker compose up -d
+#   uv sync --extra postgres          # 安装 psycopg 驱动
 #   DATABASE_URL=postgresql+psycopg://postgres:postgres@127.0.0.1:5432/shopping_agent
 # 应用本身（FastAPI）默认直跑，不在此编排中。
 services:

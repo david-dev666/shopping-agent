@@ -4,12 +4,18 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
 from app.adapters.registry import get_adapters, search_all
-from app.agents.graph import run_agent
+from app.agents.graph import run_agent, run_refine
 from app.agents.ranker import rank_offers
 from app.config import get_settings
-from app.demo_data import demo_chat_response, demo_query_response, demo_rank_response
+from app.demo_data import (
+    demo_chat_response,
+    demo_query_response,
+    demo_rank_response,
+    demo_refine_response,
+)
 from app.matching.filter import REASON_LABELS, filter_offers
 from app.matching.specs import group_specs
+from app.models.filters import FilterSpec
 from app.models.offers import RawOffer
 from app.storage.db import get_feedback_ids, load_trace, record_feedback, record_search
 
@@ -127,7 +133,7 @@ class ChatRequest(BaseModel):
 
 @router.post("/chat")
 async def chat(req: ChatRequest) -> dict:
-    """对话式 agent 入口：intent → research → match → decide → recommend，全程 trace。"""
+    """对话式 agent 入口：intent → research → match → filters → decide → recommend，全程 trace。"""
     q = req.query.strip()
     if not q:
         raise HTTPException(status_code=400, detail="query 为空")
@@ -135,6 +141,31 @@ async def chat(req: ChatRequest) -> dict:
         return demo_chat_response()
     try:
         return run_agent(q)
+    except RuntimeError as e:
+        raise HTTPException(status_code=503, detail=str(e)) from e
+
+
+class RefineRequest(BaseModel):
+    query: str
+    offers: list[RawOffer]
+    filters: FilterSpec = FilterSpec()
+    intent: dict = {}
+
+
+@router.post("/refine")
+async def refine(req: RefineRequest) -> dict:
+    """按筛选条件重排：跳过采集与打标，复用 filters → decide → recommend。
+
+    候选集由前端回传（上次运行的 offers），筛选条件确定性应用，
+    再让 LLM 在缩小后的集合上重新决策与排序。
+    """
+    q = req.query.strip()
+    if not req.offers:
+        raise HTTPException(status_code=400, detail="offers 为空，无需重排")
+    if get_settings().demo_mode:
+        return demo_refine_response(req.filters.model_dump())
+    try:
+        return run_refine(q, req.offers, req.filters.model_dump(), req.intent)
     except RuntimeError as e:
         raise HTTPException(status_code=503, detail=str(e)) from e
 

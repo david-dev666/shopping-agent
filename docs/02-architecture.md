@@ -75,6 +75,8 @@ MatchResult
 
 归一化处理必须做在匹配之前：品牌别名、型号大小写、单位换算、容量写法（256G / 256GB / 0.25T）。
 
+> **当前实现（阶段 1）**：品牌级确定性规则打**软标签**（其他型号 / 其他品牌 / 品牌不明 / 配件 / 疑似二手 / 价格异常 / 销量偏低），**不剔除任何报价**，由前端「排除标签」一键过滤；打标项在综合排序中自动让位于未打标报价。规则层评测见 [04-metrics.md](04-metrics.md)。上面的三级匹配与置信度评估为阶段 2 目标。
+
 ## 三、存储层
 
 核心表：
@@ -106,16 +108,23 @@ estimate_deal(group_id)             是否好价，给出理由
 build_purchase_links(group_id)      生成购买入口
 ```
 
-图节点建议：
+图节点（已实现，见 `app/agents/graph.py`）。两条入口共享后三个节点：
 
 ```text
-intent        解析用户意图与约束（预算、品类、偏好）
-research      调 search_product 找候选
-match         调 resolve_match 对齐同款
-price         调 get_price_now 与 get_price_history
-decide        调 estimate_deal 判断是否值得买
-recommend     汇总成结构化建议与购买入口
-review        低置信或高风险时中断，等人工确认
+全量运行  POST /api/chat
+intent        解析用户意图与约束（预算、品类、偏好）        LLM
+research      三平台采集候选                              工具
+match         相关性打标（软标签，不剔除任何报价）         确定性
+filters       按用户筛选条件（平台 / 规格 / 标签 / 价格）缩小候选集  确定性
+decide        是否值得买 + 全量综合排序                    LLM
+recommend     汇总成结构化建议与购买入口                  确定性
+
+重排运行  POST /api/refine（跳过采集与打标，复用已有候选集）
+filters  →  decide  →  recommend
+
+规划中
+price         历史价格曲线（阶段 1 / 4）
+review        低置信或高风险时中断，等人工确认（checkpointer）
 ```
 
 关键设计点：
@@ -139,9 +148,15 @@ trace_id, node_name, input_digest, tool_calls, token_usage, cost, latency, outpu
 ## 六、接口草案
 
 ```text
-POST /api/query              自然语言询问，返回建议与 trace id
+POST /api/query              确定性比价：三平台采集 + 软标签 + 到手价
+POST /api/chat               Agent 决策：全量链路，返回建议与 trace id
+POST /api/refine             按筛选条件重排：filters → decide → recommend
+POST /api/rank               LLM 综合排序（比价模式使用）
+POST /api/feedback           标记不相关商品，后续查询排除
+GET  /api/trace/{trace_id}   一次运行的完整执行轨迹
+
+规划中
 GET  /api/product/{group_id} 商品详情、当前价、历史曲线
-GET  /api/trace/{trace_id}   一次询问的完整执行轨迹
 POST /api/watch              添加盯价
 GET  /api/watch              盯价列表与触发状态
 ```

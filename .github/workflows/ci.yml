@@ -24,7 +24,7 @@ jobs:
         run: uv sync --extra dev
 
       - name: Lint (ruff)
-        run: uv run ruff check app tests scripts eval
+        run: uv run ruff check app tests scripts eval migrations
 
       - name: Test (pytest)
         run: uv run pytest -q

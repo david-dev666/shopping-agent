@@ -196,6 +196,31 @@ def filter_offers(offers: list, query: str) -> tuple[list, dict, list]:
     return offers, stats, removed
 
 
+def apply_filters(offers: list, spec) -> list:
+    """按前端筛选条件确定性缩小候选集（平台 / 规格 / 标签 / 价格）。
+
+    与打标分离：打标是「给每条报价贴标签」，本函数是「按用户选择挑子集」。
+    规格分组在传入的全量集合上计算，保证与前端展示的分组一致。
+    """
+    from app.matching.specs import group_specs
+
+    result = list(offers)
+    if spec.platforms:
+        allowed = set(spec.platforms)
+        result = [o for o in result if o.platform in allowed]
+    if spec.exclude_tags:
+        excluded = set(spec.exclude_tags)
+        result = [o for o in result if not (set(o.tags or []) & excluded)]
+    if spec.spec:
+        ids = {o.platform_id for o in group_specs(offers).get(spec.spec, [])}
+        result = [o for o in result if o.platform_id in ids]
+    if spec.price_min is not None:
+        result = [o for o in result if o.price >= spec.price_min]
+    if spec.price_max is not None:
+        result = [o for o in result if o.price <= spec.price_max]
+    return result
+
+
 # 警示标签：带任一标签的报价在综合排序中应让位于未打标报价
 WARN_TAGS = frozenset(REASON_LABELS.values())
 

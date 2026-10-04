@@ -5,6 +5,9 @@ from app.agents.graph import (
     TraceRecorder,
     _cheapest_fallback,
     _pop_trace,
+    get_graph,
+    get_refine_graph,
+    node_filters,
     node_intent,
     node_recommend,
 )
@@ -85,6 +88,42 @@ def test_pop_trace_restores_steps() -> None:
     assert r.trace_id == "t5"
     assert len(r.steps) == 1
     assert r.steps[0]["node"] == "intent"
+
+
+# --- filters 节点 ---
+
+def test_node_filters_applies_platform_tag_price() -> None:
+    offers = [
+        RawOffer(platform="jd", platform_id="a", title="小米手环9 A", price=100.0),
+        RawOffer(platform="pdd", platform_id="b", title="小米手环9 B", price=200.0),
+        RawOffer(
+            platform="pdd", platform_id="c", title="小米手环9 C",
+            price=300.0, tags=["疑似二手"],
+        ),
+    ]
+    state = AgentState(
+        query="小米手环9",
+        trace_id="t9",
+        steps=[],
+        offers=offers,
+        filters={"platforms": ["pdd"], "exclude_tags": ["疑似二手"], "price_min": 150},
+    )
+    out = node_filters(state)
+    assert [o.platform_id for o in out["offers"]] == ["b"]
+    assert out["steps"][-1]["node"] == "filters"
+
+
+def test_node_filters_noop_without_filters() -> None:
+    offers = [RawOffer(platform="jd", platform_id="a", title="小米手环9", price=100.0)]
+    state = AgentState(query="q", trace_id="t10", steps=[], offers=offers)
+    out = node_filters(state)
+    assert len(out["offers"]) == 1
+    assert out["steps"][-1]["node"] == "filters"
+
+
+def test_both_graphs_compile() -> None:
+    assert get_graph() is not None
+    assert get_refine_graph() is not None
 
 
 # --- decide 降级 ---

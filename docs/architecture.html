@@ -84,7 +84,7 @@
 <body>
 <div class="wrap">
   <h1>shopping<span>-agent</span> 架构</h1>
-  <div class="tagline">输入一句话购物需求，agent 跨三平台采集真实报价、过滤不相关商品、给出是否值得买的决策与购买入口——全程轨迹可回放。</div>
+  <div class="tagline">输入一句话购物需求，agent 跨三平台采集真实报价、给每条报价打相关性软标签、支持按筛选条件重新决策排序——全程轨迹可回放。</div>
 
   <!-- 核心链路 -->
   <div class="card">
@@ -92,16 +92,17 @@
       <span class="pl-node">一句话需求</span><span class="pl-arrow">→</span>
       <span class="pl-node llm">意图理解</span><span class="pl-arrow">→</span>
       <span class="pl-node">三平台采集</span><span class="pl-arrow">→</span>
-      <span class="pl-node filter">五层过滤</span><span class="pl-arrow">→</span>
-      <span class="pl-node llm">购买决策</span><span class="pl-arrow">→</span>
+      <span class="pl-node filter">相关性软标签</span><span class="pl-arrow">→</span>
+      <span class="pl-node filter">用户筛选</span><span class="pl-arrow">→</span>
+      <span class="pl-node llm">购买决策 + 排序</span><span class="pl-arrow">→</span>
       <span class="pl-node">建议 + 购买入口</span>
     </div>
     <p style="margin-top:10px">金额计算、阈值判断、索引校验全部由确定性代码完成；LLM 只做理解、排序与建议，输出一律过 Pydantic 校验。</p>
   </div>
 
   <!-- 1. Agent 编排 -->
-  <h2><span class="num">1</span>LangGraph 编排：五个节点</h2>
-  <p><code>POST /api/chat</code> 触发一次完整运行。StateGraph 驱动状态在节点间流转，每个节点执行都记入 trace。</p>
+  <h2><span class="num">1</span>LangGraph 编排：两条链路</h2>
+  <p><code>POST /api/chat</code> 触发全量链路；<code>POST /api/refine</code> 复用已采集的候选集，从 <code>filters</code> 节点起重新决策与排序（跳过重复采集）。StateGraph 驱动状态在节点间流转，每个节点执行都记入 trace。</p>
   <div class="card" style="margin-top:14px">
     <div class="flow">
       <div class="fnode llm">
@@ -125,19 +126,28 @@
       <div class="fnode tool">
         <div class="frail"><div class="ficon">🧹</div><div class="fline"></div></div>
         <div class="fbody">
-          <div class="fhead"><b>同款过滤</b><span class="en">node_match</span><span class="kind det">确定性</span></div>
-          <div class="fdesc">五层规则过滤（详见第 3 节），每条剔除带原因，透明可复核</div>
+          <div class="fhead"><b>相关性标注</b><span class="en">node_match</span><span class="kind det">确定性</span></div>
+          <div class="fdesc">七条规则打软标签（详见第 3 节），<b>不剔除任何报价</b>，由前端一键排除</div>
           <div class="fio"><span class="in"><b>in</b>45 条候选</span></div>
-          <div class="fio"><span class="out"><b>out</b>保留 18 条同款</span></div>
+          <div class="fio"><span class="out"><b>out</b>45 条全部保留（疑似二手 9 · 销量偏低 11 · 其他品牌 3 …）</span></div>
+        </div>
+      </div>
+      <div class="fnode tool">
+        <div class="frail"><div class="ficon">🎛️</div><div class="fline"></div></div>
+        <div class="fbody">
+          <div class="fhead"><b>筛选候选</b><span class="en">node_filters</span><span class="kind det">确定性</span></div>
+          <div class="fdesc">按用户筛选条件（平台 / 规格 / 标签 / 价格）缩小候选集；全量运行时为空则不改变候选集</div>
+          <div class="fio"><span class="in"><b>in</b>45 条候选（平台:jd；排除标签:疑似二手；价格:-~260）</span></div>
+          <div class="fio"><span class="out"><b>out</b>保留 6 条</span></div>
         </div>
       </div>
       <div class="fnode llm">
         <div class="frail"><div class="ficon">⚖️</div><div class="fline"></div></div>
         <div class="fbody">
-          <div class="fhead"><b>购买决策</b><span class="en">node_decide</span><span class="kind llm">LLM</span></div>
-          <div class="fdesc">综合价格分布、店铺可信度、销量与预算，输出 buy / wait / skip</div>
-          <div class="fio"><span class="in"><b>in</b>18 条报价 + 预算 300</span></div>
-          <div class="fio"><span class="out"><b>out</b>{"worth": "buy", "confidence": 88, "top_pick": 0, "reason": "…"}</span></div>
+          <div class="fhead"><b>购买决策 + 排序</b><span class="en">node_decide</span><span class="kind llm">LLM</span></div>
+          <div class="fdesc">在筛选后的候选集上综合价格分布、店铺可信度、销量、标签与预算，输出 buy / wait / skip 并给全部候选打分排序</div>
+          <div class="fio"><span class="in"><b>in</b>6 条筛选后报价 + 预算</span></div>
+          <div class="fio"><span class="out"><b>out</b>{"worth": "buy", "confidence": 88, "items": [{"index": 3, "score": 86}, …]}</span></div>
         </div>
       </div>
       <div class="fnode">
@@ -176,24 +186,27 @@
   </div>
 
   <!-- 3. 过滤 -->
-  <h2><span class="num">3</span>匹配层：五层确定性过滤</h2>
+  <h2><span class="num">3</span>匹配层：七条规则打软标签</h2>
   <div class="card">
     <table>
-      <tr><th>#</th><th>层</th><th>规则</th><th>典型目标</th></tr>
-      <tr><td>1</td><td><b>文本特征</b></td><td>标题/店铺/描述含「二手 · 99新 · 拆封 · 官翻」</td><td><span class="pill r">二手/翻新</span></td></tr>
-      <tr><td>2</td><td><b>品牌校验</b></td><td>query 命中品牌后，标题须有<b>非「适配/兼容」语境</b>的品牌词，且无竞品主词</td><td><span class="pill r">其他品牌</span><span class="pill a">品牌不明</span></td></tr>
-      <tr><td>3</td><td><b>配件识别</b></td><td>配件词（表带/贴膜/充电器）出现在标题尾部区域</td><td><span class="pill r">纯配件</span></td></tr>
-      <tr><td>4</td><td><b>价格离群</b></td><td>到手价 &lt; 全体中位数 × 0.3（样本 ≥ 6 时）</td><td><span class="pill a">SKU 最低价陷阱</span>（详情页表带 ¥9）</td></tr>
-      <tr><td>5</td><td><b>销量阈值</b></td><td>已知销量 &lt; 300 件；销量未知不判定（防误杀新品）</td><td><span class="pill a">可疑渠道</span>（正品标题的二手卖家）</td></tr>
+      <tr><th>#</th><th>规则</th><th>判定</th><th>标签</th></tr>
+      <tr><td>1</td><td><b>型号不符</b></td><td>query 含型号 token（如 y7000x）而标题缺失</td><td><span class="pill r">其他型号</span></td></tr>
+      <tr><td>2</td><td><b>竞品</b></td><td>query 有品牌时标题出现其他品牌（且非「适配 / 兼容」语境）</td><td><span class="pill r">其他品牌</span></td></tr>
+      <tr><td>3</td><td><b>品牌不明</b></td><td>query 有品牌，但标题命中不了该品牌</td><td><span class="pill r">品牌不明</span></td></tr>
+      <tr><td>4</td><td><b>配件</b></td><td>配件词（表带 / 贴膜 / 充电器）无主体词，或落在标题尾部区域</td><td><span class="pill r">配件</span></td></tr>
+      <tr><td>5</td><td><b>二手翻新</b></td><td>标题 / 店铺含「二手 · 9成新 · 95新 · 拆封 · 官翻 · 回收」</td><td><span class="pill a">疑似二手</span></td></tr>
+      <tr><td>6</td><td><b>价格离群</b></td><td>到手价 &lt; 全体中位数 × 0.3（样本 ≥ 6）</td><td><span class="pill a">价格异常</span></td></tr>
+      <tr><td>7</td><td><b>销量偏低</b></td><td>已知销量 &lt; 全体中位数 × 0.2（样本 ≥ 4 且阈值 &gt; 1 件）</td><td><span class="pill a">销量偏低</span></td></tr>
     </table>
-    <p style="margin-top:12px">漏网之鱼由<b>人工反馈</b>兜底：页面一键「不相关」→ <code>feedback</code> 表永久排除。所有剔除项进入前端折叠区展示原因，过滤过程完全透明。</p>
+    <p style="margin-top:12px"><b>全部规则只打标签，不剔除任何报价</b>：标签由前端「排除标签」一键过滤；打标项在综合排序中自动让位于未打标报价（<code>apply_tag_guard</code>），并作为「标签」列透传给 LLM 供其降权。价格异常 / 销量偏低是批次相对规则，按全体中位数判定。</p>
+    <p style="margin-top:8px">漏网之鱼由<b>人工反馈</b>兜底：页面一键「不相关」→ <code>feedback</code> 表永久排除。规则层评测（micro F1 0.96）与误判案例见 <code>docs/04-metrics.md</code>。</p>
   </div>
 
   <!-- 4. 可观测性 -->
   <h2><span class="num">4</span>可观测性：trace 全程回放</h2>
   <div class="card">
     <div class="grid2">
-      <div class="mini"><b>每次运行一个 trace_id</b><p>五个节点的输入、输出、LLM 原始输出、时间戳全部落库（<code>trace</code> 表），通过 <code>GET /api/trace/{trace_id}</code> 随时回放。</p></div>
+      <div class="mini"><b>每次运行一个 trace_id</b><p>每个节点的输入、输出、LLM 原始输出、时间戳与耗时（<code>elapsed_ms</code>）全部落库（<code>trace</code> 表），通过 <code>GET /api/trace/{trace_id}</code> 随时回放。</p></div>
       <div class="mini"><b>前端时间线</b><p>执行轨迹可视化：节点图标 + in/out 标签 + 可折叠的 LLM 原始输出。用户能看到 agent「先搜了什么、过滤掉了什么、为什么推荐这条」。</p></div>
       <div class="mini"><b>抓取日志</b><p><code>crawl_log</code> 记录每次采集的平台、成败、数量与错误——某平台缺数据可精确归因。</p></div>
       <div class="mini"><b>原始数据留存</b><p><code>offer</code> 表保存<b>过滤前</b>的全量报价，任何过滤误杀都可以事后审计恢复。</p></div>
@@ -215,12 +228,12 @@
     <table>
       <tr><th>层</th><th>选型</th><th>代码位置</th></tr>
       <tr><td>HTTP 服务</td><td>FastAPI + Pydantic</td><td><code>app/api/routes.py</code></td></tr>
-      <tr><td>编排</td><td>LangGraph StateGraph</td><td><code>app/agents/graph.py</code></td></tr>
+      <tr><td>编排</td><td>LangGraph StateGraph（六节点 / 双入口）</td><td><code>app/agents/graph.py</code></td></tr>
       <tr><td>LLM</td><td>DeepSeek（OpenAI 兼容协议）</td><td><code>app/agents/ranker.py</code></td></tr>
       <tr><td>采集</td><td>httpx（联盟 API）+ WebBridge daemon（浏览器）</td><td><code>app/adapters/</code></td></tr>
       <tr><td>过滤</td><td>正则 + 词典 + 统计（零 LLM）</td><td><code>app/matching/filter.py</code></td></tr>
       <tr><td>存储</td><td>SQLite（offer / crawl_log / feedback / trace）</td><td><code>app/storage/db.py</code></td></tr>
-      <tr><td>前端</td><td>单文件 HTML（比价 + Agent 双模式）</td><td><code>backend/static/index.html</code></td></tr>
+      <tr><td>前端</td><td>单文件 HTML（比价 / Agent 双模式 + 筛选面板与重排）</td><td><code>backend/static/index.html</code></td></tr>
     </table>
   </div>
 

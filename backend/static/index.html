@@ -250,6 +250,36 @@
   .pf-btn.spec.on { background: #531dab; border-color: #531dab; }
   .pf-n { opacity: .7; font-size: 11px; margin-left: 2px; }
 
+  /* 结果头部 + 筛选面板 */
+  .toolbar-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; gap: 10px; flex-wrap: wrap; }
+  .toolbar-head .count { font-size: 13px; color: var(--muted); }
+  .filter-panel {
+    background: var(--card); border: 1px solid #e9ecf5; border-radius: 14px;
+    padding: 14px 16px; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(26,31,54,.04);
+  }
+  .fp-head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .fp-title { font-size: 13.5px; font-weight: 700; }
+  .fp-active {
+    font-size: 11.5px; font-weight: 600; color: var(--accent-dark);
+    background: #f0f5ff; border: 1px solid #adc6ff; border-radius: 999px; padding: 1px 9px;
+  }
+  .fp-reset {
+    margin-left: auto; border: none; background: transparent; color: var(--muted);
+    font-size: 12.5px; cursor: pointer; text-decoration: underline dotted;
+  }
+  .fp-reset:hover { color: var(--accent-dark); }
+  .fp-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 8px 0; border-top: 1px dashed #eef0f6; }
+  .fp-label { font-size: 12px; color: var(--muted); width: 34px; flex-shrink: 0; }
+  .fp-foot { display: flex; align-items: center; gap: 10px; margin-top: 8px; padding-top: 12px; border-top: 1px solid #eef0f6; flex-wrap: wrap; }
+  .fp-apply {
+    border: none; cursor: pointer; padding: 9px 20px; border-radius: 10px; font-size: 13.5px; font-weight: 600;
+    color: #fff; background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    box-shadow: 0 2px 8px rgba(79,110,247,.28);
+  }
+  .fp-apply:hover { opacity: .9; }
+  .fp-apply:disabled { opacity: .55; cursor: not-allowed; }
+  .fp-hint { font-size: 12.5px; color: var(--muted); }
+
   /* 价格滑块：双滑杆区间选择 */
   .price-slider {
     display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
@@ -392,6 +422,7 @@ async function runAgent(q) {
     renderToolbar(d);
     renderResults(d.offers);
     window.__lastData = d;
+    window.__base = d;
     window.__lastQuery = q;
   } catch (err) {
     $("#results").innerHTML = `<div class="empty">Agent 执行失败：${escapeHtml(err.message)}</div>`;
@@ -435,7 +466,8 @@ function renderAgentAnswer(d) {
 const NODE_INFO = {
   intent:     { name: "意图理解", icon: "🧠", desc: "从自然语言提取商品词 / 预算 / 偏好" },
   research:   { name: "跨平台采集", icon: "🔎", desc: "三平台搜索真实报价" },
-  match:      { name: "同款过滤", icon: "🧹", desc: "标注二手 / 杂牌 / 配件 / 低销量（软标签）" },
+  match:      { name: "同款标注", icon: "🧹", desc: "标注二手 / 杂牌 / 配件 / 低销量（软标签）" },
+  filters:    { name: "筛选候选", icon: "🎛️", desc: "按平台 / 规格 / 标签 / 价格缩小候选集" },
   decide:     { name: "购买决策", icon: "⚖️", desc: "综合价格 / 可信度 / 预算判断" },
   recommend:  { name: "生成建议", icon: "💡", desc: "汇总首选与价格分布" },
 };
@@ -537,6 +569,7 @@ function extractSales(title, shop) {
 
 function render(data) {
   window.__lastData = data;
+  window.__base = data;
   renderErrors(data.errors);
   renderDemoBanner(data);
   renderPriceSummary(data.offers);
@@ -641,6 +674,13 @@ function renderAgentSummary(offers, rankItems) {
     }).join("")}</div>`;
 }
 
+function activeFilterCount() {
+  return (platformFilter !== "all" ? 1 : 0)
+    + (specFilter !== "all" ? 1 : 0)
+    + excludedTags.size
+    + ((priceRange[0] != null || priceRange[1] != null) ? 1 : 0);
+}
+
 function renderToolbar(data) {
   if (!data.offers.length) return;
   lastSpecs = data.specs || {};
@@ -648,26 +688,44 @@ function renderToolbar(data) {
   const cachedTag = data.cached ? ' <span class="tag sales">缓存 · 5分钟内有效</span>' : "";
   const specNames = Object.keys(lastSpecs).filter((s) => s !== "其他");
   const hasOther = "其他" in lastSpecs;
+  const active = activeFilterCount();
   $("#toolbar").innerHTML = `
-    <span class="count">共 ${data.offers.length} 条同款报价${cachedTag}</span>
-    <div class="tabs">
-      <button id="tab-ai" class="${sortMode === "ai" ? "on" : ""}" onclick="setSort('ai')">综合推荐 ✨</button>
-      <button id="tab-price" class="${sortMode === "price" ? "on" : ""}" onclick="setSort('price')">按价格</button>
+    <div class="toolbar-head">
+      <span class="count">共 ${data.offers.length} 条同款报价${cachedTag}</span>
+      <div class="tabs">
+        <button id="tab-ai" class="${sortMode === "ai" ? "on" : ""}" onclick="setSort('ai')">综合推荐 ✨</button>
+        <button id="tab-price" class="${sortMode === "price" ? "on" : ""}" onclick="setSort('price')">按价格</button>
+      </div>
     </div>
-    <div class="platform-filter">
-      <button class="pf-btn ${platformFilter === "all" ? "on" : ""}" data-p="all" onclick="setPlatform('all')">全部</button>
-      ${platforms.map((p) => `
-        <button class="pf-btn ${platformFilter === p ? "on" : ""} pf-${PLATFORM[p].cls}" data-p="${p}" onclick="setPlatform('${p}')">${PLATFORM[p].name}</button>`).join("")}
-    </div>
-    ${specNames.length + (hasOther ? 1 : 0) > 1 ? `
-    <div class="platform-filter">
-      <button class="pf-btn spec ${specFilter === "all" ? "on" : ""}" data-s="all" onclick="setSpec('all')">全部规格</button>
-      ${specNames.map((s) => `
-        <button class="pf-btn spec ${specFilter === s ? "on" : ""}" data-s="${escapeHtml(s)}" onclick="setSpec('${escapeHtml(s)}')">${escapeHtml(s)} <span class="pf-n">${lastSpecs[s].length}</span></button>`).join("")}
-      ${hasOther ? `<button class="pf-btn spec ${specFilter === "其他" ? "on" : ""}" data-s="其他" onclick="setSpec('其他')">其他 <span class="pf-n">${lastSpecs["其他"].length}</span></button>` : ""}
-    </div>` : ""}
-    ${renderPriceSlider(data.offers)}
-    ${renderTagExclude(data.offers)}`;
+    <div class="filter-panel">
+      <div class="fp-head">
+        <span class="fp-title">🎛️ 筛选</span>
+        ${active ? `<span class="fp-active">已选 ${active} 项</span>` : ""}
+        ${active ? '<button class="fp-reset" onclick="resetFilters()">重置</button>' : ""}
+      </div>
+      <div class="fp-row">
+        <span class="fp-label">平台</span>
+        <button class="pf-btn ${platformFilter === "all" ? "on" : ""}" data-p="all" onclick="setPlatform('all')">全部</button>
+        ${platforms.map((p) => `
+          <button class="pf-btn ${platformFilter === p ? "on" : ""} pf-${PLATFORM[p].cls}" data-p="${p}" onclick="setPlatform('${p}')">${PLATFORM[p].name}</button>`).join("")}
+      </div>
+      ${specNames.length + (hasOther ? 1 : 0) > 1 ? `
+      <div class="fp-row">
+        <span class="fp-label">规格</span>
+        <button class="pf-btn spec ${specFilter === "all" ? "on" : ""}" data-s="all" onclick="setSpec('all')">全部</button>
+        ${specNames.map((s) => `
+          <button class="pf-btn spec ${specFilter === s ? "on" : ""}" data-s="${escapeHtml(s)}" onclick="setSpec('${escapeHtml(s)}')">${escapeHtml(s)} <span class="pf-n">${lastSpecs[s].length}</span></button>`).join("")}
+        ${hasOther ? `<button class="pf-btn spec ${specFilter === "其他" ? "on" : ""}" data-s="其他" onclick="setSpec('其他')">其他 <span class="pf-n">${lastSpecs["其他"].length}</span></button>` : ""}
+      </div>` : ""}
+      ${renderTagExclude(data.offers)}
+      ${renderPriceSlider(data.offers)}
+      <div class="fp-foot">
+        ${mode === "agent"
+          ? `<button class="fp-apply" id="fp-apply" onclick="applyRefine()">重新筛选并排序</button>
+             <span class="fp-hint">点击后由 Agent 在筛选结果上重新打分排序（跳过重复采集）</span>`
+          : '<span class="fp-hint">切到「Agent 决策」模式可按筛选重新排序</span>'}
+      </div>
+    </div>`;
 }
 
 let psState = { min: 0, max: 0 };
@@ -687,8 +745,8 @@ function renderPriceSlider(offers) {
   const pct = (v) => (max > min ? ((v - min) / (max - min)) * 100 : 0);
   const loP = pct(curLo), hiP = pct(curHi);
   return `
-  <div class="price-slider">
-    <span class="ps-label">价格</span>
+  <div class="fp-row">
+    <span class="fp-label">价格</span>
     <span class="ps-vals"><span id="ps-lo-v">¥${fmtNum(curLo)}</span><span class="sep">—</span><span id="ps-hi-v">¥${fmtNum(curHi)}</span></span>
     <div class="ps-track" id="ps-track">
       <div class="ps-rail"></div>
@@ -748,6 +806,7 @@ function psSync() {
   const onUp = () => {
     if (!dragTarget) return;
     dragTarget = null;
+    renderToolbar(window.__lastData);
     renderResults(window.__lastData.offers);
   };
   document.addEventListener("mouseup", onUp);
@@ -761,8 +820,8 @@ function renderTagExclude(offers) {
   const names = Object.keys(counts);
   if (!names.length) return "";
   return `
-  <div class="platform-filter">
-    <span class="ps-label">标签</span>
+  <div class="fp-row">
+    <span class="fp-label">标签</span>
     ${names.map((t) => `
       <button class="pf-btn warn ${excludedTags.has(t) ? "excluded" : ""}" data-t="${escapeHtml(t)}"
         onclick="toggleTagExclude('${escapeHtml(t)}')" title="点击排除带此标签的商品">
@@ -774,19 +833,107 @@ function renderTagExclude(offers) {
 window.toggleTagExclude = (t) => {
   if (excludedTags.has(t)) excludedTags.delete(t);
   else excludedTags.add(t);
-  // 重渲染整个工具栏（含标签行的 ✕ 状态）与结果
+  // 重渲染整个筛选面板（含计数 / 排除状态）与结果
   renderToolbar(window.__lastData);
   renderResults(window.__lastData.offers);
 };
 window.setPlatform = (p) => {
   platformFilter = p;
-  document.querySelectorAll(".pf-btn[data-p]").forEach((b) => b.classList.toggle("on", b.dataset.p === p));
+  renderToolbar(window.__lastData);
   renderResults(window.__lastData.offers);
 };
 window.setSpec = (s) => {
   specFilter = s;
-  document.querySelectorAll(".pf-btn[data-s]").forEach((b) => b.classList.toggle("on", b.dataset.s === s));
+  renderToolbar(window.__lastData);
   renderResults(window.__lastData.offers);
+};
+
+/* 收集当前筛选条件，用于触发后端重排 */
+function currentFilters() {
+  return {
+    platforms: platformFilter === "all" ? [] : [platformFilter],
+    exclude_tags: [...excludedTags],
+    spec: specFilter === "all" ? null : specFilter,
+    price_min: priceRange[0],
+    price_max: priceRange[1],
+  };
+}
+
+/* 清空筛选；若已重排过，则还原到重排前的全量候选集 */
+window.resetFilters = () => {
+  platformFilter = "all";
+  specFilter = "all";
+  excludedTags = new Set();
+  priceRange = [null, null];
+  const base = window.__base;
+  if (mode === "agent" && base && base.offers && base.offers.length) {
+    window.__lastData = base;
+    if (base.rank_items && base.rank_items.length) {
+      aiRank = { items: base.rank_items, summary: (base.decision && base.decision.reason) || "" };
+      sortMode = "ai";
+    }
+    renderAgentAnswer(base);
+    renderTrace(base.trace || []);
+    renderAgentSummary(base.offers, base.rank_items);
+    renderToolbar(base);
+    renderResults(base.offers);
+    return;
+  }
+  renderToolbar(window.__lastData);
+  renderResults(window.__lastData.offers);
+};
+
+/* 触发 Agent 重排：把筛选条件交给后端，在缩小后的候选集上重新决策与排序 */
+window.applyRefine = async () => {
+  const base = window.__base || window.__lastData;
+  if (!base || !base.offers || !base.offers.length) return;
+  const btn = document.getElementById("fp-apply");
+  if (btn) { btn.disabled = true; btn.textContent = "Agent 重新筛选与排序中…"; }
+  try {
+    const resp = await fetch("/api/refine", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        query: window.__lastQuery || base.query,
+        offers: base.offers,
+        filters: currentFilters(),
+        intent: base.intent || {},
+      }),
+    });
+    if (!resp.ok) {
+      const err = await resp.json().catch(() => ({}));
+      throw new Error(err.detail || `HTTP ${resp.status}`);
+    }
+    const d = await resp.json();
+    if (!d.offers || !d.offers.length) {
+      // 筛没了：保留上一次结果，否则筛选面板会随空结果一起消失，用户无法回调
+      $("#notice").innerHTML =
+        '<div class="notice err">当前筛选条件下没有报价，已保留上一次结果，放宽筛选后重试</div>'
+        + $("#notice").innerHTML;
+      renderToolbar(window.__lastData);
+      return;
+    }
+    window.__lastData = d;
+    if (d.rank_items && d.rank_items.length) {
+      aiRank = { items: d.rank_items, summary: (d.decision && d.decision.reason) || "" };
+      sortMode = "ai";
+    }
+    renderAgentAnswer(d);
+    renderTrace(d.trace || []);
+    renderErrors(d.errors || {});
+    renderDemoBanner(d);
+    renderAgentSummary(d.offers, d.rank_items);
+    renderToolbar(d);
+    renderResults(d.offers);
+    $("#notice").innerHTML =
+      `<div class="notice">✅ 已按筛选重新排序：保留 ${d.offers.length} 条（原 ${base.offers.length} 条）</div>`
+      + $("#notice").innerHTML;
+  } catch (err) {
+    $("#notice").innerHTML =
+      `<div class="notice err">重新排序失败：${escapeHtml(err.message)}（当前仍为客户端筛选结果）</div>`
+      + $("#notice").innerHTML;
+    renderToolbar(window.__lastData);
+  }
 };
 function specVisible(o) {
   if (specFilter === "all") return true;
@@ -837,7 +984,9 @@ async function loadAiRank() {
 
 function renderResults(offers) {
   if (!offers.length) {
-    $("#results").innerHTML = '<div class="empty">没有拿到报价（各平台 API 未配置或采集为空）</div>';
+    $("#results").innerHTML = activeFilterCount() > 0
+      ? '<div class="empty">当前筛选条件下没有报价，放宽筛选试试</div>'
+      : '<div class="empty">没有拿到报价（各平台 API 未配置或采集为空）</div>';
     return;
   }
   // 平台 + 规格 + 标签排除 + 价格区间（全部可叠加）
@@ -848,7 +997,7 @@ function renderResults(offers) {
     && (priceRange[0] == null || o.price >= priceRange[0])
     && (priceRange[1] == null || o.price <= priceRange[1]));
   if (!visible.length) {
-    $("#results").innerHTML = `<div class="empty">${PLATFORM[platformFilter]?.name || ""} 没有符合条件的报价</div>`;
+    $("#results").innerHTML = `<div class="empty">${PLATFORM[platformFilter]?.name || ""} 没有符合条件的报价（可放宽筛选）</div>`;
     return;
   }
   const best = Math.min(...visible.map((o) => o.price));

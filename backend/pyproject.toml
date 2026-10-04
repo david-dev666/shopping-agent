@@ -17,7 +17,8 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-crawl = ["playwright>=1.45"]
+# 切 Postgres 时需要：DATABASE_URL=postgresql+psycopg://...
+postgres = ["psycopg[binary]>=3.1"]
 dev = ["pytest>=8.0", "pytest-asyncio>=0.23", "ruff>=0.6"]
 
 [build-system]
@@ -37,6 +38,8 @@ select = ["E", "F", "I", "UP", "B"]
 [tool.ruff.lint.per-file-ignores]
 # JS 提取器字符串不换行（换行会改变注入代码的格式）
 "app/adapters/webbridge.py" = ["E501"]
+# alembic 模板：app 的导入必须放在 context 配置之后
+"migrations/env.py" = ["E402"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

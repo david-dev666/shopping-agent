@@ -44,15 +44,23 @@
 
 ### Agent 端到端
 
-一次 `POST /api/chat`（intent → research → match → decide → recommend）本机实测 ≈ **15 s**，节点耗时：
+一次 `POST /api/chat`（intent → research → match → filters → decide → recommend）本机实测 ≈ **15 s**，节点耗时：
 
 | 节点 | 耗时 |
 |---|---|
 | research（三平台采集） | ≈ 11.1 s |
 | decide（LLM 决策 + 全量排序） | ≈ 3.7 s |
-| intent / match / recommend | < 50 ms |
+| intent / match / filters / recommend | < 50 ms |
 
 每个节点的耗时写进 trace（`elapsed_ms`），前端「执行轨迹」直接可见；未配置 LLM 时 `decide` 走确定性降级，几乎不耗时。
+
+### 筛选重排
+
+前端筛选面板点「重新筛选并排序」走 `POST /api/refine`（filters → decide → recommend，**跳过采集**），本机实测：
+
+| 场景 | 耗时 |
+|---|---|
+| 30 条候选 → 筛选后 6 条并重新排序 | ≈ **2.0 s**（对比全量运行 ≈15 s） |
 
 ### 口径与影响因素
 

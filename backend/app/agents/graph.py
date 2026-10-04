@@ -1,6 +1,12 @@
-"""LangGraph 编排：intent → research → match → decide → recommend。
+"""LangGraph 编排：intent → research → match → filters → decide → recommend。
 
-trace 记录贯穿全流程：每个节点的输入输出、工具调用、耗时都落库，
+两条入口：
+
+- `run_agent`：一句话需求，从采集开始跑完整链路
+- `run_refine`：复用已有候选集，按用户筛选条件（平台 / 规格 / 标签 / 价格）
+  跳过 intent / research / match，直接从 filters 节点重新决策与排序
+
+trace 记录贯穿全流程：每个节点的输入输出、耗时都落库，
 前端时间线可完整回放 agent 的决策过程（可解释性）。
 """
 
@@ -15,7 +21,9 @@ from pydantic import BaseModel, Field
 from app.adapters.registry import get_adapters, search_all
 from app.agents.llm_utils import invoke_json
 from app.config import get_settings
-from app.matching.filter import apply_tag_guard, filter_offers
+from app.matching.filter import apply_filters, apply_tag_guard, filter_offers
+from app.matching.specs import group_specs
+from app.models.filters import FilterSpec
 from app.models.offers import RawOffer
 from app.storage.db import record_search, save_trace
 
@@ -28,6 +36,7 @@ class AgentState(BaseModel):
     query: str = ""
     intent: dict[str, Any] = Field(default_factory=dict)
     offers: list[RawOffer] = Field(default_factory=list)
+    filters: dict[str, Any] = Field(default_factory=dict)
     filter_stats: dict[str, Any] = Field(default_factory=dict)
     errors: dict[str, str] = Field(default_factory=dict)
     decision: dict[str, Any] = Field(default_factory=dict)
@@ -169,6 +178,34 @@ def node_match(state: AgentState) -> dict:
         detail=f"打标: {tagged or '无'} | stats: {stats}",
     )
     return {"offers": kept, "filter_stats": stats, "steps": trace.steps}
+
+
+def node_filters(state: AgentState) -> dict:
+    """应用用户筛选条件（平台 / 规格 / 标签 / 价格），确定性缩小候选集。
+
+    全量运行时 filters 为空 → 候选集不变；重排运行时跳过采集与打标，
+    直接在这里把候选集缩到用户选定的范围，再交给 decide 重新排序。
+    """
+    trace = _pop_trace(state)
+    spec = FilterSpec.model_validate(state.filters or {})
+    before = len(state.offers)
+    kept = apply_filters(state.offers, spec)
+
+    parts = []
+    if spec.platforms:
+        parts.append("平台:" + "/".join(spec.platforms))
+    if spec.spec:
+        parts.append(f"规格:{spec.spec}")
+    if spec.exclude_tags:
+        parts.append("排除标签:" + "、".join(spec.exclude_tags))
+    if spec.price_min is not None or spec.price_max is not None:
+        lo = spec.price_min if spec.price_min is not None else "-"
+        hi = spec.price_max if spec.price_max is not None else "-"
+        parts.append(f"价格:{lo}~{hi}")
+    cond = "；".join(parts) if parts else "无筛选"
+
+    trace.step("filters", f"{before} 条候选（{cond}）", f"保留 {len(kept)} 条")
+    return {"offers": kept, "steps": trace.steps}
 
 
 DECIDE_PROMPT = """你是购物决策助手。一次完成两件事：
@@ -344,45 +381,94 @@ def asyncio_run(coro):
 
 _build_lock = __import__("threading").Lock()
 _graph = None
+_refine_graph = None
 
 
 def get_graph():
+    """全量链路：intent → research → match → filters → decide → recommend。"""
     global _graph
     with _build_lock:
-        if _graph is not None:
-            return _graph
-        g = StateGraph(AgentState)
-        g.add_node("intent", node_intent)
-        g.add_node("research", node_research)
-        g.add_node("match", node_match)
-        g.add_node("decide", node_decide)
-        g.add_node("recommend", node_recommend)
-        g.set_entry_point("intent")
-        g.add_edge("intent", "research")
-        g.add_edge("research", "match")
-        g.add_edge("match", "decide")
-        g.add_edge("decide", "recommend")
-        g.add_edge("recommend", END)
-        _graph = g.compile()
+        if _graph is None:
+            g = StateGraph(AgentState)
+            g.add_node("intent", node_intent)
+            g.add_node("research", node_research)
+            g.add_node("match", node_match)
+            g.add_node("filters", node_filters)
+            g.add_node("decide", node_decide)
+            g.add_node("recommend", node_recommend)
+            g.set_entry_point("intent")
+            for src, dst in (
+                ("intent", "research"),
+                ("research", "match"),
+                ("match", "filters"),
+                ("filters", "decide"),
+                ("decide", "recommend"),
+            ):
+                g.add_edge(src, dst)
+            g.add_edge("recommend", END)
+            _graph = g.compile()
         return _graph
 
 
-def run_agent(query: str) -> dict[str, Any]:
-    """执行完整 agent 链路，返回 recommendation + offers + trace。"""
-    trace_id = uuid.uuid4().hex[:12]
-    state = AgentState(query=query.strip(), trace_id=trace_id)
-    graph = get_graph()
-    final = graph.invoke(state, config={"recursion_limit": 20})
+def get_refine_graph():
+    """重排链路：跳过采集与打标，直接在筛选后的候选集上重新决策排序。"""
+    global _refine_graph
+    with _build_lock:
+        if _refine_graph is None:
+            g = StateGraph(AgentState)
+            g.add_node("filters", node_filters)
+            g.add_node("decide", node_decide)
+            g.add_node("recommend", node_recommend)
+            g.set_entry_point("filters")
+            g.add_edge("filters", "decide")
+            g.add_edge("decide", "recommend")
+            g.add_edge("recommend", END)
+            _refine_graph = g.compile()
+        return _refine_graph
+
+
+def _response(final: dict, query: str, trace_id: str) -> dict[str, Any]:
+    """统一的 agent 响应结构（全量运行与重排共用）。"""
+    offers = final.get("offers", [])
+    spec_groups = group_specs(offers) if offers else {}
     return {
         "trace_id": trace_id,
         "query": query,
         "intent": final.get("intent", {}),
-        "offers": final.get("offers", []),
+        "offers": offers,
         "filter_stats": final.get("filter_stats", {}),
         "errors": final.get("errors", {}),
         "decision": final.get("decision", {}),
         "recommendation": final.get("recommendation", ""),
         "rank_items": final.get("rank_items", []),
         "top_pick": final.get("top_pick"),
+        "specs": {name: [o.platform_id for o in group] for name, group in spec_groups.items()},
         "trace": final.get("steps", []),
     }
+
+
+def run_agent(query: str, filters: dict[str, Any] | None = None) -> dict[str, Any]:
+    """执行完整 agent 链路，返回 recommendation + offers + trace。"""
+    trace_id = uuid.uuid4().hex[:12]
+    state = AgentState(query=query.strip(), trace_id=trace_id, filters=filters or {})
+    final = get_graph().invoke(state, config={"recursion_limit": 20})
+    return _response(final, query, trace_id)
+
+
+def run_refine(
+    query: str,
+    offers: list[RawOffer],
+    filters: dict[str, Any] | None = None,
+    intent: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """按筛选条件重排：复用已有候选集，跑 filters → decide → recommend。"""
+    trace_id = uuid.uuid4().hex[:12]
+    state = AgentState(
+        query=query.strip(),
+        trace_id=trace_id,
+        offers=list(offers),
+        filters=filters or {},
+        intent=intent or {},
+    )
+    final = get_refine_graph().invoke(state, config={"recursion_limit": 12})
+    return _response(final, query, trace_id)
