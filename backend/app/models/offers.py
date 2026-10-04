@@ -18,4 +18,6 @@ class RawOffer(BaseModel):
     image: str | None = None
     shop: str | None = None
     sales: int | None = Field(default=None, description="已售数量（件），未知为 None")
+    # 动态标注（二手/低销量/价格异常等），不参与剔除，由用户交互过滤
+    tags: list[str] = Field(default_factory=list)
     ts: datetime = Field(default_factory=lambda: datetime.now(UTC))

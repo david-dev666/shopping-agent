@@ -15,7 +15,7 @@ from pydantic import BaseModel, Field
 from app.adapters.registry import get_adapters, search_all
 from app.agents.llm_utils import invoke_json
 from app.config import get_settings
-from app.matching.filter import REASON_LABELS, filter_offers
+from app.matching.filter import apply_tag_guard, filter_offers
 from app.models.offers import RawOffer
 from app.storage.db import record_search, save_trace
 
@@ -147,15 +147,15 @@ def node_research(state: AgentState) -> dict:
 def node_match(state: AgentState) -> dict:
     trace = _pop_trace(state)
     keyword = state.intent.get("product") or state.query
-    kept, stats, removed = filter_offers(state.offers, keyword)
-    removed_brief = "; ".join(
-        f"{r['offer'].title[:30]}({REASON_LABELS[r['reason']]})" for r in removed[:10]
+    kept, stats, _ = filter_offers(state.offers, keyword)
+    tagged = ", ".join(
+        f"{k}:{v}" for k, v in stats.items() if k not in ("total", "kept") and v
     )
     trace.step(
         "match",
         f"{len(state.offers)} 条候选",
-        f"保留 {len(kept)} 条",
-        detail=f"剔除: {removed_brief} | stats: {stats}",
+        f"{len(kept)} 条全部保留（软标签）",
+        detail=f"打标: {tagged or '无'} | stats: {stats}",
     )
     return {"offers": kept, "filter_stats": stats, "steps": trace.steps}
 
@@ -166,14 +166,19 @@ DECIDE_PROMPT = """你是购物决策助手。一次完成两件事：
 "summary": "整体选购建议一句话",
 "items": [{{"index": 下标, "score": 0-100综合分, "reason": "一句话理由"}}]}}
 
-评估维度：到手价 vs 整体分布（是否低价）、店铺可信度（自营/旗舰优先）、销量、规格匹配度。
+评估维度：到手价 vs 整体分布（是否低价）、店铺可信度（自营/旗舰优先）、销量、规格匹配度、标签警示。
+- 「标签」列是系统警示（配件/其他品牌/其他型号/品牌不明/疑似二手/价格异常/销量偏低）
+- 带上述标签的报价必须显著降权：配件、其他品牌、其他型号、品牌不明者
+  原则上不得作为首选；疑似二手、价格异常者按严重程度降分
+- 销量是可穿戴/3C 类目的核心可信度指标：带「销量偏低」标签的报价
+  （尤其与多数同款差一个量级，如百件 vs 万件）不得作为首选
 - items 必须覆盖全部输入商品、按综合分从高到低排列，score 与顺序必须一致
 - budget 仅为用户明确提了才有值；超预算必须 skip
 - 只输出 JSON
 
 用户需求：{query}
 预算：{budget}
-报价（下标 | 平台 | 到手价 | 店铺 | 销量 | 标题）：
+报价（下标 | 平台 | 到手价 | 店铺 | 销量 | 标签 | 标题）：
 {offers_text}"""
 
 
@@ -206,8 +211,10 @@ def node_decide(state: AgentState) -> dict:
     lines = []
     for i, o in enumerate(offers[:20]):
         sales = o.sales if o.sales is not None else "-"
+        tags = "、".join(o.tags) if o.tags else "-"
         lines.append(
-            f"{i} | {o.platform} | ¥{o.price:.2f} | {o.shop or '-'} | {sales} | {o.title[:50]}"
+            f"{i} | {o.platform} | ¥{o.price:.2f} | {o.shop or '-'} | {sales}"
+            f" | {tags} | {o.title[:50]}"
         )
     budget = state.intent.get("budget")
     data = invoke_json(
@@ -242,6 +249,9 @@ def node_decide(state: AgentState) -> dict:
     missing = sorted((i for i in valid if i not in seen), key=lambda i: offers[i].price)
     for i in missing:
         rank_items.append({"index": i, "score": 0, "reason": ""})
+
+    # 确定性兜底：带警示标签的报价不得排在未打标报价之前
+    rank_items = apply_tag_guard(rank_items, offers)
 
     top_summary = rank_items[0] if rank_items else None
     trace.step(

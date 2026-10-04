@@ -65,7 +65,7 @@ async def query_products(req: QueryRequest) -> QueryResponse:
     adapters = get_adapters(get_settings())
     offers, errors = await search_all(q, adapters)
 
-    # 相关性过滤：剔除二手/竞品/纯配件，过滤前全量落库（保留原始数据可查）
+    # 相关性打标：命中规则写入 offer.tags（不再剔除），打标前全量落库（保留原始数据可查）
     record_search(q, offers, errors)
 
     # 用户人工标记过的商品直接排除（低置信走人工确认）

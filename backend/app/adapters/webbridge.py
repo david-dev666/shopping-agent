@@ -36,7 +36,10 @@ JD_EXTRACTOR = """
     const cardLines = (c.innerText || '').split('\\n').map(s => s.trim()).filter(Boolean);
     // 店铺名是卡片文本最后一行（自营/旗舰店/普通店都如此）
     const shop = cardLines[cardLines.length - 1] || null;
-    const salesM = (c.innerText || '').match(/([\\d.,]+)\\s*([万亿]?)\\+?\\s*(?:人付款|人收货|条评价)/);
+    const cardTxt = c.innerText || '';
+    // 京东新版搜索卡销量文案为「已售1000+」，老版为「1000+人付款/条评价」
+    const salesM = cardTxt.match(/已售\\s*([\\d.,]+)\\s*([万亿]?)\\+?/)
+      || cardTxt.match(/([\\d.,]+)\\s*([万亿]?)\\+?\\s*(?:人付款|人收货|条评价)/);
     let sales = null;
     if (salesM) {
       sales = parseFloat(salesM[1].replace(/,/g, ''));

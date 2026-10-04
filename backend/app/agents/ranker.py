@@ -10,6 +10,7 @@ from pydantic import BaseModel, Field
 
 from app.agents.llm_utils import invoke_json
 from app.config import get_settings
+from app.matching.filter import apply_tag_guard
 from app.models.offers import RawOffer
 
 logger = logging.getLogger(__name__)
@@ -36,13 +37,18 @@ PROMPT = """你是一名购物比价助手。根据以下商品列表做综合�
 2. 店铺可信度（自营 > 旗舰店 > 普通店）
 3. 销量与热度（有销量数据的加权）
 4. 标题与需求的相关度（型号/规格匹配程度）
+5. 标签警示（系统对报价的标注，见列表「标签」列）
 
 用户需求：{query}
 
-商品列表（下标 | 平台 | 到手价 | 原价 | 店铺 | 销量 | 标题）：
+商品列表（下标 | 平台 | 到手价 | 原价 | 店铺 | 销量 | 标签 | 标题）：
 {offers_text}
 
 规则：
+- 「标签」是系统警示（配件 / 其他品牌 / 其他型号 / 品牌不明 / 疑似二手 / 价格异常 / 销量偏低）
+- 带标签的报价必须降分：配件/其他品牌/其他型号/品牌不明 显著降分，原则上不得作为首选
+- 销量是可穿戴/3C 类目的核心可信度指标：带「销量偏低」标签（尤其与多数同款
+  差一个量级，如百件 vs 万件）的报价须大幅降分，不得排在高销量同款之前
 - 只允许对输入下标排序，不得编造不存在的下标
 - score 为 0-100 整数
 - reason 用中文，直接给结论，例如「自营低价，规格完全匹配」
@@ -57,8 +63,10 @@ def _offers_text(offers: list[RawOffer]) -> str:
         orig = f"¥{o.original_price:.0f}" if o.original_price else "-"
         shop = o.shop or "-"
         sales = o.sales if o.sales is not None else "-"
+        tags = "、".join(o.tags) if o.tags else "-"
         lines.append(
-            f"{i} | {o.platform} | ¥{o.price:.2f} | {orig} | {shop} | {sales} | {o.title[:60]}"
+            f"{i} | {o.platform} | ¥{o.price:.2f} | {orig} | {shop} | {sales}"
+            f" | {tags} | {o.title[:60]}"
         )
     return "\n".join(lines)
 
@@ -120,4 +128,6 @@ def rank_offers(query: str, offers: list[RawOffer]) -> dict:
         for i in missing:
             items.append({"index": i, "score": 0, "reason": ""})
 
+    # 确定性兜底：带警示标签的报价不得排在未打标报价之前
+    items = apply_tag_guard(items, offers)
     return {"items": items, "summary": result.summary}

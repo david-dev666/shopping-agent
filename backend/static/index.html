@@ -129,6 +129,14 @@
     position: absolute; top: 10px; right: 10px; font-size: 11px; padding: 2px 8px;
     border-radius: 999px; background: #fff1f0; color: #cf1322; border: 1px solid #ffa39e;
   }
+  .agent-summary-head { font-size: 12.5px; color: var(--muted); line-height: 1.6; margin-bottom: 10px; }
+  .agent-summary-head strong { color: #4a5069; font-weight: 600; }
+  .p-name .p-kind { margin-left: auto; font-size: 10.5px; font-weight: 600; color: var(--accent-dark); }
+  .p-title {
+    font-size: 12.5px; line-height: 1.4; margin-top: 6px; color: #5c6274;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .p-why { font-size: 11.5px; color: var(--muted); margin-top: 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
   /* 工具行 */
   .toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
@@ -242,6 +250,37 @@
   .pf-btn.spec.on { background: #531dab; border-color: #531dab; }
   .pf-n { opacity: .7; font-size: 11px; margin-left: 2px; }
 
+  /* 价格滑块：双滑杆区间选择 */
+  .price-slider {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+  }
+  .ps-label { font-size: 12px; color: var(--muted); flex-shrink: 0; }
+  .ps-vals { font-size: 13px; font-weight: 600; color: #cf1322; font-variant-numeric: tabular-nums; flex-shrink: 0; }
+  .ps-vals .sep { color: var(--muted); font-weight: 400; margin: 0 3px; }
+  .ps-track {
+    position: relative; flex: 1; height: 28px; min-width: 180px; max-width: 340px;
+    display: flex; align-items: center;
+  }
+  .ps-rail {
+    position: absolute; left: 0; right: 0; height: 4px; border-radius: 2px; background: #e3e5ec;
+  }
+  .ps-fill {
+    position: absolute; height: 4px; border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-dark)); pointer-events: none;
+  }
+  .ps-thumb {
+    position: absolute; width: 18px; height: 18px; border-radius: 50%; background: #fff;
+    border: 2.5px solid var(--accent); box-shadow: 0 1px 5px rgba(79,110,247,.35);
+    cursor: grab; z-index: 2; transition: transform .1s; touch-action: none;
+  }
+  .ps-thumb:hover { transform: scale(1.15); }
+  .ps-thumb:active { cursor: grabbing; transform: scale(1.25); }
+
+  /* 排除标签（软规则警示） */
+  .pf-btn.warn { border-color: #ffd591; color: #ad6800; background: #fffbe6; }
+  .pf-btn.warn.excluded { background: #f5f5f5; color: #8b91a5; text-decoration: line-through; border-color: #d9d9d9; }
+  .tag.warn { background: #fffbe6; color: #ad6800; border: 1px solid #ffd591; }
+
   /* 已过滤区 */
   .filtered-block { margin-top: 32px; }
   .filtered-toggle {
@@ -271,17 +310,17 @@
 <div class="container">
   <div class="hero">
     <h1>shopping<span>-agent</span></h1>
-    <p>京东 · 淘宝 · 拼多多 一次性比价，自动剔除二手 / 杂牌 / 配件</p>
+    <p>京东 · 淘宝 · 拼多多 一次性比价，自动标注二手 / 杂牌 / 配件（可一键排除）</p>
   </div>
 
   <div class="mode-tabs">
-    <button class="mt-btn on" id="mode-compare" onclick="setMode('compare')">直接比价</button>
-    <button class="mt-btn" id="mode-agent" onclick="setMode('agent')">Agent 决策 🤖</button>
+    <button class="mt-btn on" id="mode-agent" onclick="setMode('agent')">Agent 决策 🤖</button>
+    <button class="mt-btn" id="mode-compare" onclick="setMode('compare')">直接比价</button>
   </div>
 
   <div class="search-bar">
     <input id="q" placeholder="输入商品名或需求，例如：小米手环9 / 预算300买什么手环" />
-    <button id="btn">比价</button>
+    <button id="btn">问 Agent</button>
   </div>
 
   <div id="agent-answer"></div>
@@ -300,12 +339,14 @@ const PLATFORM = {
   taobao: { name: "淘宝",   cls: "taobao" },
   pdd:    { name: "拼多多", cls: "pdd" },
 };
-let sortMode = "price"; // price | ai
+let sortMode = "ai"; // price | ai
 let aiRank = null; // {items: [{index, score, reason}], summary}
 let platformFilter = "all"; // all | jd | taobao | pdd
 let specFilter = "all"; // all | 规格名
 let lastSpecs = {}; // {规格名: [platform_id...]}
-let mode = "compare"; // compare | agent
+let excludedTags = new Set(); // 被排除的标签（疑似二手/价格异常/销量过低）
+let priceRange = [null, null]; // 价格区间 [min, max]，null 为不限
+let mode = "agent"; // compare | agent
 
 window.setMode = (m) => {
   mode = m;
@@ -346,10 +387,10 @@ async function runAgent(q) {
     renderAgentAnswer(d);
     renderTrace(d.trace || []);
     renderErrors(d.errors);
-    renderSummary(d.offers);
+    renderAgentSummary(d.offers, d.rank_items);
     renderToolbar(d);
     renderResults(d.offers);
-    window.__lastData = { offers: d.offers };
+    window.__lastData = d;
     window.__lastQuery = q;
   } catch (err) {
     $("#results").innerHTML = `<div class="empty">Agent 执行失败：${escapeHtml(err.message)}</div>`;
@@ -393,7 +434,7 @@ function renderAgentAnswer(d) {
 const NODE_INFO = {
   intent:     { name: "意图理解", icon: "🧠", desc: "从自然语言提取商品词 / 预算 / 偏好" },
   research:   { name: "跨平台采集", icon: "🔎", desc: "三平台搜索真实报价" },
-  match:      { name: "同款过滤", icon: "🧹", desc: "剔除二手 / 杂牌 / 配件 / 低销量" },
+  match:      { name: "同款过滤", icon: "🧹", desc: "标注二手 / 杂牌 / 配件 / 低销量（软标签）" },
   decide:     { name: "购买决策", icon: "⚖️", desc: "综合价格 / 可信度 / 预算判断" },
   recommend:  { name: "生成建议", icon: "💡", desc: "汇总首选与价格分布" },
 };
@@ -442,6 +483,8 @@ async function search() {
   sortMode = "price";
   platformFilter = "all";
   specFilter = "all";
+  excludedTags = new Set();
+  priceRange = [null, null];
   window.__lastQuery = q;
   $("#results").innerHTML = '<div class="skel"></div><div class="skel"></div><div class="skel"></div>';
   try {
@@ -471,9 +514,16 @@ function tagsOf(o, isBest) {
   if (/百亿补贴/.test(title + shop)) tags.push(`<span class="tag subsidy">百亿补贴</span>`);
   if (o.coupon) tags.push(`<span class="tag coupon">券 ¥${o.coupon}</span>`);
   if (isBest) tags.push(`<span class="tag best">全场最低</span>`);
-  const sales = extractSales(title, shop);
+  // 销量优先用后端结构化字段（webbridge / 联盟 API 解析值），文本正则兜底
+  const sales = o.sales != null ? `已售 ${fmtSales(o.sales)} 件` : extractSales(title, shop);
   if (sales) tags.push(`<span class="tag sales">${sales}</span>`);
   return tags.join("");
+}
+
+function fmtSales(n) {
+  if (n >= 100000000) return (n / 100000000).toFixed(1).replace(/\.0$/, "") + "亿";
+  if (n >= 10000) return (n / 10000).toFixed(1).replace(/\.0$/, "") + "万";
+  return String(n);
 }
 
 function extractSales(title, shop) {
@@ -485,8 +535,9 @@ function extractSales(title, shop) {
 }
 
 function render(data) {
+  window.__lastData = data;
   renderErrors(data.errors);
-  renderSummary(data.offers);
+  renderPriceSummary(data.offers);
   renderToolbar(data);
   renderResults(data.offers);
   renderFiltered(data.removed_offers || [], data.filter_stats);
@@ -527,7 +578,8 @@ window.retryAfterVerify = () => {
   search();
 };
 
-function renderSummary(offers) {
+/* 直接比价模式：三平台各自的最低到手价 */
+function renderPriceSummary(offers) {
   const by = {};
   offers.forEach((o) => (by[o.platform] ??= []).push(o));
   const mins = Object.entries(by).map(([p, list]) => ({ p, min: Math.min(...list.map((o) => o.price)), n: list.length }));
@@ -542,6 +594,45 @@ function renderSummary(offers) {
     </div>`).join("")}</div>`;
 }
 
+/* Agent 决策模式：三平台各自「综合最值得买」的一条（来自 decide 节点排序，非该平台最低价） */
+function renderAgentSummary(offers, rankItems) {
+  if (!offers.length) return;
+  const meta = new Map();
+  (rankItems || []).forEach((it, i) => meta.set(it.index, { rank: i + 1, score: it.score, reason: it.reason }));
+  const counts = {};
+  offers.forEach((o) => (counts[o.platform] = (counts[o.platform] || 0) + 1));
+  // 每个平台取综合排名最靠前（rank 最小）的一条
+  const picked = {};
+  offers.forEach((o, idx) => {
+    const it = meta.get(idx);
+    const rank = it ? it.rank : Infinity;
+    if (!picked[o.platform] || rank < picked[o.platform].rank) {
+      picked[o.platform] = { o, rank, score: it?.score, reason: it?.reason };
+    }
+  });
+  const list = Object.values(picked).sort((a, b) => a.rank - b.rank);
+  if (!list.length) return;
+  const topRank = list[0].rank;
+  $("#summary").innerHTML = `
+    <div class="agent-summary-head">
+      各平台综合推荐 · Agent 按<strong>到手价 / 店铺可信度 / 销量 / 规格匹配</strong>综合权衡，
+      给每个平台挑出<strong>最值得买的一条</strong>（不是该平台最低价）
+    </div>
+    <div class="platform-summary">${list.map(({ o, rank, score, reason }) => {
+      const p = PLATFORM[o.platform];
+      const isTop = rank === topRank;
+      const scoreTxt = score != null && score > 0 ? `综合分 ${score}` : "综合分 —";
+      return `
+      <div class="p-card ${p.cls} ${isTop ? "p-cheapest" : ""}" title="${escapeHtml(o.title)}">
+        ${isTop ? '<span class="best-flag">Agent 首选</span>' : ""}
+        <div class="p-name"><span class="p-dot"></span>${p.name}<span class="p-kind">本平台首选</span></div>
+        <div class="p-min"><span class="yen">¥</span>${o.price.toFixed(2)}</div>
+        <div class="p-title">${escapeHtml(o.title)}</div>
+        <div class="p-why">${scoreTxt} · 综合排名 #${rank} · 本平台 ${counts[o.platform]} 条报价${reason ? " · " + escapeHtml(reason) : ""}</div>
+      </div>`;
+    }).join("")}</div>`;
+}
+
 function renderToolbar(data) {
   if (!data.offers.length) return;
   lastSpecs = data.specs || {};
@@ -552,8 +643,8 @@ function renderToolbar(data) {
   $("#toolbar").innerHTML = `
     <span class="count">共 ${data.offers.length} 条同款报价${cachedTag}</span>
     <div class="tabs">
-      <button id="tab-price" class="${sortMode === "price" ? "on" : ""}" onclick="setSort('price')">按价格</button>
       <button id="tab-ai" class="${sortMode === "ai" ? "on" : ""}" onclick="setSort('ai')">综合推荐 ✨</button>
+      <button id="tab-price" class="${sortMode === "price" ? "on" : ""}" onclick="setSort('price')">按价格</button>
     </div>
     <div class="platform-filter">
       <button class="pf-btn ${platformFilter === "all" ? "on" : ""}" data-p="all" onclick="setPlatform('all')">全部</button>
@@ -566,8 +657,119 @@ function renderToolbar(data) {
       ${specNames.map((s) => `
         <button class="pf-btn spec ${specFilter === s ? "on" : ""}" data-s="${escapeHtml(s)}" onclick="setSpec('${escapeHtml(s)}')">${escapeHtml(s)} <span class="pf-n">${lastSpecs[s].length}</span></button>`).join("")}
       ${hasOther ? `<button class="pf-btn spec ${specFilter === "其他" ? "on" : ""}" data-s="其他" onclick="setSpec('其他')">其他 <span class="pf-n">${lastSpecs["其他"].length}</span></button>` : ""}
-    </div>` : ""}`;
+    </div>` : ""}
+    ${renderPriceSlider(data.offers)}
+    ${renderTagExclude(data.offers)}`;
 }
+
+let psState = { min: 0, max: 0 };
+
+function fmtNum(n) {
+  return n >= 10000 ? (n / 10000).toFixed(1).replace(/\.0$/, "") + "万" : String(n);
+}
+
+function renderPriceSlider(offers) {
+  if (offers.length < 4) return "";
+  const prices = offers.map((o) => o.price);
+  const min = Math.floor(Math.min(...prices)), max = Math.ceil(Math.max(...prices));
+  if (min === max) return "";
+  psState = { min, max };
+  const [lo, hi] = priceRange;
+  const curLo = lo ?? min, curHi = hi ?? max;
+  const pct = (v) => (max > min ? ((v - min) / (max - min)) * 100 : 0);
+  const loP = pct(curLo), hiP = pct(curHi);
+  return `
+  <div class="price-slider">
+    <span class="ps-label">价格</span>
+    <span class="ps-vals"><span id="ps-lo-v">¥${fmtNum(curLo)}</span><span class="sep">—</span><span id="ps-hi-v">¥${fmtNum(curHi)}</span></span>
+    <div class="ps-track" id="ps-track">
+      <div class="ps-rail"></div>
+      <div class="ps-fill" style="left:${loP}%;width:${hiP - loP}%"></div>
+      <div class="ps-thumb" id="ps-thumb-lo" style="left:calc(${loP}% - 9px)"></div>
+      <div class="ps-thumb" id="ps-thumb-hi" style="left:calc(${hiP}% - 9px)"></div>
+    </div>
+  </div>`;
+}
+
+function psSync() {
+  const track = document.getElementById("ps-track");
+  if (!track) return;
+  const { min, max } = psState;
+  const [lo, hi] = priceRange[0] == null ? [min, max] : priceRange;
+  const pct = (v) => (max > min ? ((v - min) / (max - min)) * 100 : 0);
+  const loP = pct(lo), hiP = pct(hi);
+  const tlo = document.getElementById("ps-thumb-lo");
+  const thi = document.getElementById("ps-thumb-hi");
+  const fill = document.querySelector("#ps-track .ps-fill");
+  if (!tlo || !thi || !fill) return;
+  tlo.style.left = `calc(${loP}% - 9px)`;
+  thi.style.left = `calc(${hiP}% - 9px)`;
+  fill.style.left = loP + "%";
+  fill.style.width = (hiP - loP) + "%";
+  document.getElementById("ps-lo-v").textContent = "¥" + fmtNum(lo);
+  document.getElementById("ps-hi-v").textContent = "¥" + fmtNum(hi);
+}
+
+(function psInitDrag() {
+  let dragTarget = null;
+  document.addEventListener("mousedown", (e) => {
+    const t = e.target.closest(".ps-thumb");
+    if (t) { dragTarget = t; e.preventDefault(); }
+  });
+  document.addEventListener("touchstart", (e) => {
+    const t = e.target.closest(".ps-thumb");
+    if (t) dragTarget = t;
+  }, { passive: true });
+  const onMove = (e) => {
+    if (!dragTarget) return;
+    const track = document.getElementById("ps-track");
+    if (!track) return;
+    e.preventDefault();
+    const rect = track.getBoundingClientRect();
+    const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+    const ratio = Math.min(1, Math.max(0, x / rect.width));
+    const v = Math.round(psState.min + ratio * (psState.max - psState.min));
+    let [lo, hi] = priceRange[0] == null ? [psState.min, psState.max] : priceRange;
+    if (dragTarget.id === "ps-thumb-lo") lo = Math.min(v, hi);
+    else hi = Math.max(v, lo);
+    priceRange = [lo, hi];
+    psSync();
+  };
+  document.addEventListener("mousemove", onMove);
+  document.addEventListener("touchmove", onMove, { passive: false });
+  const onUp = () => {
+    if (!dragTarget) return;
+    dragTarget = null;
+    renderResults(window.__lastData.offers);
+  };
+  document.addEventListener("mouseup", onUp);
+  document.addEventListener("touchend", onUp);
+})();
+
+function renderTagExclude(offers) {
+  // 汇总打标项，提供「排除」开关（点击后隐藏带该标签的商品）
+  const counts = {};
+  offers.forEach((o) => (o.tags || []).forEach((t) => (counts[t] = (counts[t] || 0) + 1)));
+  const names = Object.keys(counts);
+  if (!names.length) return "";
+  return `
+  <div class="platform-filter">
+    <span class="ps-label">标签</span>
+    ${names.map((t) => `
+      <button class="pf-btn warn ${excludedTags.has(t) ? "excluded" : ""}" data-t="${escapeHtml(t)}"
+        onclick="toggleTagExclude('${escapeHtml(t)}')" title="点击排除带此标签的商品">
+        ${escapeHtml(t)} ${counts[t]}${excludedTags.has(t) ? " ✕" : ""}
+      </button>`).join("")}
+  </div>`;
+}
+
+window.toggleTagExclude = (t) => {
+  if (excludedTags.has(t)) excludedTags.delete(t);
+  else excludedTags.add(t);
+  // 重渲染整个工具栏（含标签行的 ✕ 状态）与结果
+  renderToolbar(window.__lastData);
+  renderResults(window.__lastData.offers);
+};
 window.setPlatform = (p) => {
   platformFilter = p;
   document.querySelectorAll(".pf-btn[data-p]").forEach((b) => b.classList.toggle("on", b.dataset.p === p));
@@ -626,14 +828,17 @@ async function loadAiRank() {
 }
 
 function renderResults(offers) {
-  window.__lastData = { offers };
   if (!offers.length) {
-    $("#results").innerHTML = '<div class="empty">没有拿到符合的报价（各平台 API 未配置或全部被过滤）</div>';
+    $("#results").innerHTML = '<div class="empty">没有拿到报价（各平台 API 未配置或采集为空）</div>';
     return;
   }
-  // 平台筛选 + 规格筛选（可叠加）
+  // 平台 + 规格 + 标签排除 + 价格区间（全部可叠加）
   const visible = offers.filter((o) =>
-    (platformFilter === "all" || o.platform === platformFilter) && specVisible(o));
+    (platformFilter === "all" || o.platform === platformFilter)
+    && specVisible(o)
+    && !(o.tags || []).some((t) => excludedTags.has(t))
+    && (priceRange[0] == null || o.price >= priceRange[0])
+    && (priceRange[1] == null || o.price <= priceRange[1]));
   if (!visible.length) {
     $("#results").innerHTML = `<div class="empty">${PLATFORM[platformFilter]?.name || ""} 没有符合条件的报价</div>`;
     return;
@@ -643,8 +848,8 @@ function renderResults(offers) {
   let ordered = visible, aiInfo = null;
   if (sortMode === "ai" && aiRank) {
     const byIdx = new Map(aiRank.items.map((it) => [it.index, it]));
-    ordered = aiRank.items.map((it) => offers[it.index]).filter(Boolean)
-      .filter((o) => platformFilter === "all" || o.platform === platformFilter);
+    // 从已过滤集合取（visible 与 offers 同引用），保证价格/标签/规格筛选在 AI 模式同样生效
+    ordered = aiRank.items.map((it) => offers[it.index]).filter((o) => visible.includes(o));
     aiInfo = byIdx;
   }
   const card = (o, rank) => {
@@ -658,6 +863,9 @@ function renderResults(offers) {
          </div>` : "";
     const aiTags = it && it.reason
       ? `<span class="tag ai">✨ ${escapeHtml(it.reason)}</span>` : "";
+    // 软规则标签（疑似二手/价格异常/销量过低）：醒目警示，可一键全局排除
+    const warnTags = (o.tags || []).map((t) =>
+      `<span class="tag warn" title="点击工具栏「标签」可排除所有带此标签的商品">${escapeHtml(t)}</span>`).join("");
     return `
     <div class="card ${o.price === best && !aiInfo ? "is-best" : ""} ${aiInfo && rank === 1 ? "is-best" : ""}" id="offer-${escapeHtml(o.platform)}-${escapeHtml(o.platform_id)}">
       ${rankBadge}
@@ -667,6 +875,7 @@ function renderResults(offers) {
         <div class="tags">
           ${tagsOf(o, o.price === best && !aiInfo)}
           ${aiTags}
+          ${warnTags}
           ${o.shop ? `<span class="shop">${escapeHtml(o.shop)}</span>` : ""}
         </div>
       </div>

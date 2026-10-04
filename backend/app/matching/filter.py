@@ -1,6 +1,6 @@
-"""查询结果的相关性过滤：确定性规则，不依赖 LLM。
+"""查询结果的相关性标注：确定性规则，不依赖 LLM。
 
-原则：宁可漏掉边缘商品，不让明显不相关的（二手/竞品/配件）混进比价结果。
+原则：全部规则只打软标签，不剔除任何报价；由前端「排除标签」让用户自行过滤。
 """
 
 import re
@@ -77,22 +77,23 @@ def _brand_genuine(title: str, brand_alias: list[str]) -> bool:
     return False
 
 
+# 规则 → 标签文案（既是软标签，也是前端「排除标签」使用的显示名）
 REASON_LABELS = {
-    "second_hand": "二手/翻新",
+    "second_hand": "疑似二手",
     "rival": "其他品牌",
     "accessory": "配件",
     "off_brand": "品牌不明",
     "price_outlier": "价格异常",
-    "low_sales": "销量过低",
+    "low_sales": "销量偏低",
     "model_mismatch": "其他型号",
 }
 
 # 型号 token：字母数字混合且含数字的连续段（如 y7000x、rtx5060、手环9 中的纯数字不算）
 MODEL_TOKEN_RE = re.compile(r"[a-z][a-z0-9]*\d[a-z0-9]*", re.I)
 
-# 销量阈（件）：已知销量低于该值视为可疑渠道（二手/瑕疵/临期清仓）
-# 只在销量已知时生效；无销量数据不做判定（宁可漏不可错杀）
-LOW_SALES_THRESHOLD = 300
+# 销量标签（相对判定，品类自适应）：销量低于中位数的该比例即标「销量偏低」
+# 女装（中位 5）→ < 0 标不出；标品（中位 5 万）→ < 5000 标出，均合理
+LOW_SALES_RATIO = 0.2
 
 
 def _median(values: list[float]) -> float:
@@ -110,28 +111,28 @@ OUTLIER_MIN_SAMPLES = 6
 
 
 def filter_offers(offers: list, query: str) -> tuple[list, dict, list]:
-    """过滤不相关 offer，返回 (过滤后列表, 统计信息, 被剔除列表)。
+    """全部规则统一打软标签：命中即写 offer.tags，不再剔除任何报价。
 
-    被剔除列表元素为 {"offer": ..., "reason": ...}，前端可折叠展示，
-    保持过滤过程透明、可人工复核。
+    七个规则（型号不符 / 竞品 / 品牌不明 / 配件 / 二手 / 价格异常 / 销量偏低）
+    一律只打标；由前端「排除标签」让用户自行过滤。
+    返回值保留 (offers, stats, removed) 三元素签名，removed 恒为空（兼容旧调用方）。
     """
     brand = extract_brand(query)
     brand_alias = BRAND_ALIASES.get(brand, []) if brand else []
 
     stats = {
-        "total": len(offers), "second_hand": 0, "rival": 0,
-        "accessory": 0, "off_brand": 0, "price_outlier": 0, "low_sales": 0,
-        "model_mismatch": 0,
+        "total": len(offers), "rival": 0, "accessory": 0,
+        "off_brand": 0, "model_mismatch": 0,
+        "second_hand": 0, "low_sales": 0, "price_outlier": 0,
     }
-    kept: list = []
     removed: list = []
 
-    def drop(o, reason: str) -> None:
+    def tag(o, reason: str) -> None:
         stats[reason] += 1
-        removed.append({"offer": o, "reason": reason})
+        label = REASON_LABELS[reason]
+        o.tags = [t for t in (o.tags or []) if t != label] + [label]
 
-    # 型号 token（如 y7000x）：query 里有型号时，标题必须包含（忽略空格/大小写），
-    # 否则是同系列老款/其他型号——纯品牌+品类规则拦不住它
+    # 型号 token（如 y7000x）：query 里有型号时，标题必须包含（忽略空格/大小写）
     norm_query = re.sub(r"[\s\-_]", "", query.lower())
     model_tokens = [t.lower() for t in MODEL_TOKEN_RE.findall(norm_query) if len(t) >= 4]
 
@@ -139,23 +140,11 @@ def filter_offers(offers: list, query: str) -> tuple[list, dict, list]:
         title = (o.title or "").lower()
         norm_title = re.sub(r"[\s\-_]", "", title)
 
-        # 0. 型号精确匹配：型号 token 缺失即其他型号（如搜 y7000x 来了老款拯救者）
+        # 1. 型号不符：型号 token 缺失即其他型号（如搜 y7000x 来了老款拯救者）
         if model_tokens and not all(t in norm_title for t in model_tokens):
-            drop(o, "model_mismatch")
-            continue
+            tag(o, "model_mismatch")
 
-        # 1. 二手/翻新（标题 + 店铺/销量描述文本）
-        if SECOND_HAND_RE.search(title) or (o.shop and SECOND_HAND_RE.search(o.shop.lower())):
-            drop(o, "second_hand")
-            continue
-
-        # 1b. 销量过低：正规同款商品销量通常上万，几十件的多为二手/瑕疵/清仓
-        #     仅销量已知时判定，未知不处理（避免误杀新品）
-        if o.sales is not None and o.sales < LOW_SALES_THRESHOLD:
-            drop(o, "low_sales")
-            continue
-
-        # 2. 品牌冲突：query 有明确品牌
+        # 2. 品牌冲突：query 有明确品牌时，标题须命中该品牌且不得出现竞品
         if brand:
             # 品牌词必须出现在非“适配/兼容”语境，才算真正的品牌商品
             alias_hit = _brand_genuine(title, brand_alias)
@@ -167,40 +156,67 @@ def filter_offers(offers: list, query: str) -> tuple[list, dict, list]:
                     rival_hit = r
                     break
             if rival_hit and not alias_hit:
-                drop(o, "rival")
-                continue
-            if not alias_hit:
-                # query 品牌未命中：无法确认是同品牌商品
-                drop(o, "off_brand")
-                continue
+                tag(o, "rival")
+            elif not alias_hit:
+                tag(o, "off_brand")
 
-        # 3. 配件：有配件词但无主体词
+        # 3. 配件：有配件词但无主体词；或配件词出现在标题尾部区域
         has_subject = any(s in title for s in SUBJECT_WORDS)
         has_accessory = any(a in title for a in ACCESSORY_WORDS)
         if has_accessory and not has_subject:
-            drop(o, "accessory")
-            continue
-        # 配件词位于标题尾部区域：商品本体大概率是配件（如“小米手环9 专用表带”）
-        if has_accessory and has_subject:
+            tag(o, "accessory")
+        elif has_accessory:
             acc_idx = max(title.find(a) for a in ACCESSORY_WORDS if a in title)
             if acc_idx > len(title) * 0.6:
-                drop(o, "accessory")
-                continue
+                tag(o, "accessory")
 
-        kept.append(o)
+        # 4. 二手/翻新（标题 + 店铺文本）
+        if SECOND_HAND_RE.search(title) or (o.shop and SECOND_HAND_RE.search(o.shop.lower())):
+            tag(o, "second_hand")
 
-    # 4. 价格离群：过滤后基于整体分布再筛一遍。
-    #    典型 case：商品详情页有大量子 SKU（表带/贴膜），搜索页显示的是 SKU 最低价，
-    #    标题却是主体商品——标题规则拦不住，但价格必然显著偏离中位数。
-    if len(kept) >= OUTLIER_MIN_SAMPLES:
-        median = _median([o.price for o in kept])
+    # 5. 价格异常：显著低于中位数（SKU 最低价陷阱）
+    if len(offers) >= OUTLIER_MIN_SAMPLES:
+        median = _median([o.price for o in offers])
         if median > 0:
-            outliers = [o for o in kept if o.price < median * OUTLIER_RATIO]
-            if outliers and median * OUTLIER_RATIO > 1:
-                outlier_ids = {id(o) for o in outliers}
-                kept = [o for o in kept if id(o) not in outlier_ids]
-                for o in outliers:
-                    drop(o, "price_outlier")
+            for o in offers:
+                if o.price < median * OUTLIER_RATIO and median * OUTLIER_RATIO > 1:
+                    tag(o, "price_outlier")
 
-    stats["kept"] = len(kept)
-    return kept, stats, removed
+    # 6. 销量偏低：相对中位数（品类自适应，女装/标品同一规则）
+    sales_known = [o.sales for o in offers if o.sales is not None]
+    if len(sales_known) >= 4:
+        sales_median = _median(sales_known)
+        # 阈值不足 1 件时不判定，避免低销量品类（女装）满分标
+        if sales_median * LOW_SALES_RATIO > 1:
+            for o in offers:
+                if o.sales is not None and o.sales < sales_median * LOW_SALES_RATIO:
+                    tag(o, "low_sales")
+
+    stats["kept"] = len(offers)
+    return offers, stats, removed
+
+
+# 警示标签：带任一标签的报价在综合排序中应让位于未打标报价
+WARN_TAGS = frozenset(REASON_LABELS.values())
+
+
+def apply_tag_guard(rank_items: list, offers: list) -> list:
+    """确定性兜底：带警示标签的报价不得排在未打标报价之前。
+
+    排序与 LLM 给的 score 可能冲突，这里同步压低被降级项的 score，
+    维持「分数与顺序一致」不变量（前端排名/分值环依赖它）。
+    """
+    clean: list = []
+    flagged: list = []
+    for it in rank_items:
+        tags = set(offers[it["index"]].tags or [])
+        (flagged if tags & WARN_TAGS else clean).append(it)
+    if not clean or not flagged:
+        return rank_items
+    cap = min(it.get("score", 0) for it in clean) - 1
+    demoted = []
+    for i, it in enumerate(flagged):
+        item = dict(it)
+        item["score"] = max(0, cap - i)
+        demoted.append(item)
+    return clean + demoted
