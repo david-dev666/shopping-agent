@@ -12,6 +12,9 @@ class Settings(BaseSettings):
 
     database_url: str = "sqlite:///./shopping_agent.db"
 
+    # DEMO_MODE：无数据源时返回内置样例（显式标注，仅用于开箱预览）
+    demo_mode: bool = False
+
     # Kimi 浏览器扩展 daemon（用户真实浏览器登录态采集）
     webbridge_enabled: bool = True
     webbridge_base_url: str = "http://127.0.0.1:10086"

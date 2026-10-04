@@ -50,15 +50,20 @@ class TraceRecorder:
         self.trace_id = trace_id
         self.query = query
         self.steps: list[dict[str, Any]] = []
+        self._last: datetime | None = None
 
     def step(self, node: str, input_summary: Any, output_summary: Any, detail: str = "") -> None:
+        now = datetime.now(UTC)
+        elapsed_ms = int((now - self._last).total_seconds() * 1000) if self._last else 0
+        self._last = now
         self.steps.append(
             {
                 "node": node,
                 "input": _short(input_summary),
                 "output": _short(output_summary),
                 "detail": detail[:2000],
-                "ts": datetime.now(UTC).isoformat(),
+                "elapsed_ms": elapsed_ms,
+                "ts": now.isoformat(),
             }
         )
 
@@ -126,6 +131,12 @@ def _pop_trace(state: AgentState) -> TraceRecorder:
     """从 state 里恢复 recorder（graph 节点间只传可序列化数据）。"""
     r = TraceRecorder(state.trace_id or uuid.uuid4().hex[:12], state.query)
     r.steps = list(state.steps)
+    # 恢复上一步时间戳，让每个节点的 elapsed_ms 反映该节点真实耗时
+    if r.steps and r.steps[-1].get("ts"):
+        try:
+            r._last = datetime.fromisoformat(r.steps[-1]["ts"])
+        except ValueError:
+            r._last = None
     return r
 
 

@@ -20,6 +20,17 @@ def test_second_hand_tagged_not_removed() -> None:
     assert removed == []
 
 
+def test_second_hand_n_chengxin_tagged() -> None:
+    # 「9成新 / 8成新」这类非 95/99 的成色写法也要命中
+    offers = [
+        _offer("小米手环9 银色 9成新 现货"),
+        _offer("小米手环9 全新正品"),
+    ]
+    kept, stats, _ = filter_offers(offers, "小米手环9")
+    assert stats["second_hand"] == 1
+    assert "疑似二手" in kept[0].tags
+
+
 def test_rival_brand_tagged() -> None:
     offers = [
         _offer("华为手环10 智能运动"),

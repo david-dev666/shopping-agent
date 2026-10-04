@@ -1,0 +1,36 @@
+{"query": "小米手环9", "title": "小米手环9 标准版 99新 现货包邮", "expect": ["second_hand"]}
+{"query": "小米手环9", "title": "小米手环9 NFC版 9成新 银色", "expect": ["second_hand"]}
+{"query": "小米手环9", "title": "二手 小米手环9 智能手环 功能正常", "expect": ["second_hand"]}
+{"query": "小米手环9", "title": "小米手环9 官翻 8成新 带保修", "expect": ["second_hand"]}
+{"query": "小米手环9", "title": "小米手环9 仅拆封 未使用 急出", "expect": ["second_hand"]}
+{"query": "小米手环9", "title": "小米手环9 95新 99成新 无划痕", "expect": ["second_hand"]}
+{"query": "小米手环9", "title": "小米手环9 Pro 回收价 诚收", "expect": ["second_hand"]}
+{"query": "小米手环9", "title": "小米手环9 全新正品 官方旗舰店", "expect": []}
+{"query": "小米手环9", "title": "小米手环9 NFC版 陶瓷特别版", "expect": []}
+{"query": "小米手环9", "title": "小米手环9 顺丰包邮 全新未拆", "expect": []}
+{"query": "小米手环9", "title": "小米手环9 专用表带 硅胶 替换腕带", "expect": ["accessory"]}
+{"query": "小米手环9", "title": "小米手环9 保护壳 全包防摔 透明", "expect": ["accessory"]}
+{"query": "小米手环9", "title": "小米手环9 钢化膜 高清贴膜 两片装", "expect": ["accessory"]}
+{"query": "小米手环9", "title": "小米手环9 磁吸充电线 充电底座", "expect": ["accessory"]}
+{"query": "小米手环9", "title": "小米手环9 保护套 液态硅胶 表带一体", "expect": ["accessory"]}
+{"query": "小米手环9", "title": "小米手环9 智能手环 标准版 官方", "expect": []}
+{"query": "小米手环9", "title": "小米手环9 NFC版 高清大屏 手表", "expect": []}
+{"query": "小米手环9", "title": "小米手环9 原装主机 手环本体", "expect": []}
+{"query": "小米手环9", "title": "华为手环10 智能运动手环", "expect": ["rival"]}
+{"query": "小米手环9", "title": "荣耀手环9 标准版 血氧监测", "expect": ["rival"]}
+{"query": "小米手环9", "title": "联想智能手表 运动款 长续航", "expect": ["rival"]}
+{"query": "小米手环9", "title": "Amazfit 华米手环 GTS 运动手表", "expect": ["rival"]}
+{"query": "小米手环9", "title": "小米手环9 适配华为手机 通用款", "expect": []}
+{"query": "小米手环9", "title": "小米手环9 适配苹果华为荣耀", "expect": []}
+{"query": "小米手环9", "title": "智能手环9 运动防水 高性价比", "expect": ["off_brand"]}
+{"query": "小米手环9", "title": "多功能手环 记步 睡眠监测 长续航", "expect": ["off_brand"]}
+{"query": "小米手环9", "title": "通用智能手环 大屏 蓝牙通话", "expect": ["off_brand"]}
+{"query": "小米手环9", "title": "小米手环9 高清大屏 长续航", "expect": []}
+{"query": "拯救者y7000x", "title": "联想拯救者Y7000X 2026款 RTX5060", "expect": []}
+{"query": "拯救者y7000x", "title": "联想 拯救者 y7000x 高配 32G", "expect": []}
+{"query": "拯救者y7000x", "title": "联想拯救者R7000 游戏本 16G", "expect": ["model_mismatch"]}
+{"query": "拯救者y7000x", "title": "拯救者Y7000P 2025款 电竞本", "expect": ["model_mismatch"]}
+{"query": "拯救者y7000x", "title": "联想拯救者Y9000P 2025 RTX4060", "expect": ["model_mismatch"]}
+{"query": "小米手环9", "title": "小米手环10 NFC版 新品", "expect": []}
+{"query": "小米手环9", "title": "小米手环9 全套 9成新 已过保", "expect": ["second_hand"]}
+{"query": "小米手环9", "title": "小米手环9 礼盒装 全新 送表带", "expect": []}

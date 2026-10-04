@@ -387,6 +387,7 @@ async function runAgent(q) {
     renderAgentAnswer(d);
     renderTrace(d.trace || []);
     renderErrors(d.errors);
+    renderDemoBanner(d);
     renderAgentSummary(d.offers, d.rank_items);
     renderToolbar(d);
     renderResults(d.offers);
@@ -451,7 +452,7 @@ function renderTrace(steps) {
           <div class="tp-step">
             <div class="tp-rail"><span class="tp-icon">${info.icon}</span>${i < steps.length - 1 ? '<span class="tp-line"></span>' : ""}</div>
             <div class="tp-body">
-              <div class="tp-head"><b>${info.name}</b><span class="tp-time">${(s.ts || "").slice(11, 19)}</span></div>
+              <div class="tp-head"><b>${info.name}</b><span class="tp-time">${(s.ts || "").slice(11, 19)}${s.elapsed_ms ? " · " + (s.elapsed_ms / 1000).toFixed(1) + "s" : ""}</span></div>
               <div class="tp-desc">${info.desc}</div>
               <div class="tp-io"><span class="tp-in">in</span> ${escapeHtml(String(s.input).slice(0, 90))}</div>
               <div class="tp-io"><span class="tp-out">out</span> ${escapeHtml(String(s.output).slice(0, 110))}</div>
@@ -537,6 +538,7 @@ function extractSales(title, shop) {
 function render(data) {
   window.__lastData = data;
   renderErrors(data.errors);
+  renderDemoBanner(data);
   renderPriceSummary(data.offers);
   renderToolbar(data);
   renderResults(data.offers);
@@ -570,6 +572,12 @@ function renderErrors(errors) {
       <a href="javascript:void(0)" onclick="retryAfterVerify()" style="color:#1d39c4;font-weight:600">点此重新比价</a>　${links}</div>`;
   }
   if (html) $("#notice").innerHTML = html;
+}
+
+function renderDemoBanner(d) {
+  if (!d || !d.demo) return;
+  const el = $("#notice");
+  el.innerHTML = '<div class="notice">🧪 演示数据（DEMO_MODE=true）—— 内置固定样例，非实时采集</div>' + el.innerHTML;
 }
 
 window.retryAfterVerify = () => {

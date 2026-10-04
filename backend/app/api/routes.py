@@ -7,6 +7,7 @@ from app.adapters.registry import get_adapters, search_all
 from app.agents.graph import run_agent
 from app.agents.ranker import rank_offers
 from app.config import get_settings
+from app.demo_data import demo_chat_response, demo_query_response, demo_rank_response
 from app.matching.filter import REASON_LABELS, filter_offers
 from app.matching.specs import group_specs
 from app.models.offers import RawOffer
@@ -48,6 +49,8 @@ class QueryResponse(BaseModel):
     filter_stats: FilterStats = FilterStats()
     removed_offers: list[RemovedOffer] = []
     cached: bool = False
+    # DEMO_MODE 标记：前端据此显示「演示数据」横幅
+    demo: bool = False
     # 规格分组：{规格名: [platform_id, ...]}，前端做规格筛选
     specs: dict[str, list[str]] = {}
 
@@ -55,6 +58,10 @@ class QueryResponse(BaseModel):
 @router.post("/query", response_model=QueryResponse)
 async def query_products(req: QueryRequest) -> QueryResponse:
     q = req.query.strip()
+
+    # DEMO_MODE：返回内置样例，不触发任何采集
+    if get_settings().demo_mode:
+        return QueryResponse(**demo_query_response())
 
     # 缓存命中：直接返回，不触发采集
     hit = _query_cache.get(q)
@@ -124,6 +131,8 @@ async def chat(req: ChatRequest) -> dict:
     q = req.query.strip()
     if not q:
         raise HTTPException(status_code=400, detail="query 为空")
+    if get_settings().demo_mode:
+        return demo_chat_response()
     try:
         return run_agent(q)
     except RuntimeError as e:
@@ -142,6 +151,8 @@ async def get_trace(trace_id: str) -> dict:
 @router.post("/rank")
 async def rank_products(req: RankRequest) -> dict:
     """LLM 综合排序：输入已过滤的 offers，返回排序与推荐理由。"""
+    if get_settings().demo_mode:
+        return demo_rank_response()
     if not req.offers:
         raise HTTPException(status_code=400, detail="offers 为空，无需排序")
     try:
