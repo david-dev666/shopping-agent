@@ -169,6 +169,7 @@ uv run alembic upgrade head                   # 版本化建表（默认启动�
 4. [docs/03-roadmap.md](docs/03-roadmap.md) 路线图
 5. [docs/architecture.html](docs/architecture.html) Agent 架构说明（可视化网页）
 6. [docs/04-metrics.md](docs/04-metrics.md) 准确率与耗时
+7. [docs/05-status.md](docs/05-status.md) 阶段性总结与缺口
 
 ## 已知限制
 
