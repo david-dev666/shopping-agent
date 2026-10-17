@@ -75,3 +75,11 @@ def test_query_endpoint_short_circuits_in_demo(monkeypatch) -> None:
         )
         assert r3.status_code == 200
         assert r3.json()["demo"] is True
+
+
+def test_demo_refine_does_not_restore_hidden_candidates() -> None:
+    full = demo_chat_response()
+    key = f"{full['offers'][0]['platform']}:{full['offers'][0]['platform_id']}"
+    d = demo_refine_response({}, {key})
+    assert len(d["offers"]) == 1
+    assert f"{d['offers'][0]['platform']}:{d['offers'][0]['platform_id']}" == key

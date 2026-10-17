@@ -5,6 +5,9 @@
 
 import re
 
+from app.matching.specs import extract_generation, extract_version
+from app.models.offers import offer_key
+
 # 品牌词典（query 命中品牌后，标题必须兼容该品牌且不得出现竞品主词）
 BRAND_ALIASES = {
     "小米": ["小米", "xiaomi", "xiaomi"],
@@ -18,9 +21,28 @@ BRAND_ALIASES = {
 
 # 竞品判定：query 品牌未命中这些词时，标题出现即视为其他品牌商品
 RIVAL_BRANDS = [
-    "小米", "xiaomi", "华为", "huawei", "荣耀", "honor", "联想", "lenovo",
-    "amazfit", "华米", "苹果", "apple", "三星", "samsung", "oppo", "vivo",
-    "一加", "佳明", "garmin", "小天才", "dido", "埃微",
+    "小米",
+    "xiaomi",
+    "华为",
+    "huawei",
+    "荣耀",
+    "honor",
+    "联想",
+    "lenovo",
+    "amazfit",
+    "华米",
+    "苹果",
+    "apple",
+    "三星",
+    "samsung",
+    "oppo",
+    "vivo",
+    "一加",
+    "佳明",
+    "garmin",
+    "小天才",
+    "dido",
+    "埃微",
 ]
 
 # “适配/兼容”语境词：其后出现的品牌词是卖点描述，不算竞品
@@ -28,13 +50,25 @@ COMPATIBLE_WORDS = ["适配", "兼容", "支持", "适用于"]
 
 # 二手 / 翻新特征（注：\b 对中文边界无效，用前后非数字断言）
 SECOND_HAND_RE = re.compile(
-    r"二手|\d+\s*成新|(?<![0-9])9[59]\s*新(?![0-9])|拆封|仅拆封|翻新|官翻|回收"
+    r"二手|\d+\s*成新|(?<![0-9])9[59]\s*新(?![0-9])|(?<!未)拆封|翻新|官翻|回收"
 )
 
 # 配件特征（标题只有这些、没有主体词时视为配件）
 ACCESSORY_WORDS = [
-    "表带", "腕带", "保护壳", "保护套", "保护膜", "贴膜", "钢化膜",
-    "充电器", "充电线", "充电底座", "挂绳", "收纳", "贴纸", "腕带扣",
+    "表带",
+    "腕带",
+    "保护壳",
+    "保护套",
+    "保护膜",
+    "贴膜",
+    "钢化膜",
+    "充电器",
+    "充电线",
+    "充电底座",
+    "挂绳",
+    "收纳",
+    "贴纸",
+    "腕带扣",
 ]
 
 # 主体词（任一命中则不是纯配件）
@@ -121,9 +155,14 @@ def filter_offers(offers: list, query: str) -> tuple[list, dict, list]:
     brand_alias = BRAND_ALIASES.get(brand, []) if brand else []
 
     stats = {
-        "total": len(offers), "rival": 0, "accessory": 0,
-        "off_brand": 0, "model_mismatch": 0,
-        "second_hand": 0, "low_sales": 0, "price_outlier": 0,
+        "total": len(offers),
+        "rival": 0,
+        "accessory": 0,
+        "off_brand": 0,
+        "model_mismatch": 0,
+        "second_hand": 0,
+        "low_sales": 0,
+        "price_outlier": 0,
     }
     removed: list = []
 
@@ -132,16 +171,36 @@ def filter_offers(offers: list, query: str) -> tuple[list, dict, list]:
         label = REASON_LABELS[reason]
         o.tags = [t for t in (o.tags or []) if t != label] + [label]
 
-    # 型号 token（如 y7000x）：query 里有型号时，标题必须包含（忽略空格/大小写）
-    norm_query = re.sub(r"[\s\-_]", "", query.lower())
-    model_tokens = [t.lower() for t in MODEL_TOKEN_RE.findall(norm_query) if len(t) >= 4]
+    # 保留英文词边界，避免把 Xiaomi Band 9 拼成 xiaomiband9 这个伪型号。
+    norm_query = re.sub(r"([a-z])[\s\-_]+(?=\d)", r"\1", query.lower())
+    model_tokens = [
+        t.lower()
+        for t in MODEL_TOKEN_RE.findall(norm_query)
+        if len(t) >= 4 and not re.fullmatch(r"(?:band|watch)\d+(?:pro)?", t, re.I)
+    ]
+    generation = extract_generation(query)
+    version = extract_version(query)
 
     for o in offers:
+        o.tags = [t for t in o.tags if t not in REASON_LABELS.values()]
         title = (o.title or "").lower()
         norm_title = re.sub(r"[\s\-_]", "", title)
 
         # 1. 型号不符：型号 token 缺失即其他型号（如搜 y7000x 来了老款拯救者）
         if model_tokens and not all(t in norm_title for t in model_tokens):
+            tag(o, "model_mismatch")
+        elif generation is not None:
+            actual = extract_generation(title)
+            same_brand = not brand or _brand_genuine(title, brand_alias)
+            if same_brand and actual is not None and actual != generation:
+                tag(o, "model_mismatch")
+        actual_version = extract_version(title)
+        if (
+            version
+            and actual_version
+            and version != actual_version
+            and REASON_LABELS["model_mismatch"] not in o.tags
+        ):
             tag(o, "model_mismatch")
 
         # 2. 品牌冲突：query 有明确品牌时，标题须命中该品牌且不得出现竞品
@@ -163,12 +222,13 @@ def filter_offers(offers: list, query: str) -> tuple[list, dict, list]:
         # 3. 配件：有配件词但无主体词；或配件词出现在标题尾部区域
         has_subject = any(s in title for s in SUBJECT_WORDS)
         has_accessory = any(a in title for a in ACCESSORY_WORDS)
-        if has_accessory and not has_subject:
+        # 赠品描述不等于商品主体；明确配件即使位于标题中段也应识别。
+        main_title = re.split(r"赠送|赠品|附赠|赠|送", title, maxsplit=1)[0]
+        main_accessory = any(a in main_title for a in ACCESSORY_WORDS)
+        if main_accessory and not has_subject:
             tag(o, "accessory")
-        elif has_accessory:
-            acc_idx = max(title.find(a) for a in ACCESSORY_WORDS if a in title)
-            if acc_idx > len(title) * 0.6:
-                tag(o, "accessory")
+        elif has_accessory and main_accessory:
+            tag(o, "accessory")
 
         # 4. 二手/翻新（标题 + 店铺文本）
         if SECOND_HAND_RE.search(title) or (o.shop and SECOND_HAND_RE.search(o.shop.lower())):
@@ -212,8 +272,8 @@ def apply_filters(offers: list, spec) -> list:
         excluded = set(spec.exclude_tags)
         result = [o for o in result if not (set(o.tags or []) & excluded)]
     if spec.spec:
-        ids = {o.platform_id for o in group_specs(offers).get(spec.spec, [])}
-        result = [o for o in result if o.platform_id in ids]
+        ids = {offer_key(o) for o in group_specs(offers).get(spec.spec, [])}
+        result = [o for o in result if offer_key(o) in ids]
     if spec.price_min is not None:
         result = [o for o in result if o.price >= spec.price_min]
     if spec.price_max is not None:

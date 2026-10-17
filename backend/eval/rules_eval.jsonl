@@ -31,6 +31,90 @@
 {"query": "拯救者y7000x", "title": "联想拯救者R7000 游戏本 16G", "expect": ["model_mismatch"]}
 {"query": "拯救者y7000x", "title": "拯救者Y7000P 2025款 电竞本", "expect": ["model_mismatch"]}
 {"query": "拯救者y7000x", "title": "联想拯救者Y9000P 2025 RTX4060", "expect": ["model_mismatch"]}
-{"query": "小米手环9", "title": "小米手环10 NFC版 新品", "expect": []}
+{"query": "小米手环9", "title": "小米手环10 NFC版 新品", "expect": ["model_mismatch"]}
 {"query": "小米手环9", "title": "小米手环9 全套 9成新 已过保", "expect": ["second_hand"]}
 {"query": "小米手环9", "title": "小米手环9 礼盒装 全新 送表带", "expect": []}
+{"query": "小米手环9", "title": "小米手环8 标准版 全新", "expect": ["model_mismatch"], "group": "generation"}
+{"query": "小米手环9", "title": "小米手环10 黑色 现货", "expect": ["model_mismatch"], "group": "generation"}
+{"query": "小米手环10", "title": "小米手环9 NFC版", "expect": ["model_mismatch"], "group": "generation"}
+{"query": "小米手环8", "title": "小米手环9 Pro", "expect": ["model_mismatch"], "group": "generation"}
+{"query": "小米手环9", "title": "小米手环 9 黑色 标准版", "expect": [], "group": "generation"}
+{"query": "华为手环9", "title": "华为手环8 黑色", "expect": ["model_mismatch"], "group": "generation"}
+{"query": "华为手环9", "title": "HUAWEI 手环10 新品", "expect": ["model_mismatch"], "group": "generation"}
+{"query": "荣耀手环9", "title": "HONOR 手环7 全新", "expect": ["model_mismatch"], "group": "generation"}
+{"query": "荣耀手环9", "title": "荣耀手环 9 运动版", "expect": [], "group": "generation"}
+{"query": "手环9", "title": "智能手环8 标准版", "expect": ["model_mismatch"], "group": "generation"}
+{"query": "手环9", "title": "智能手环9 标准版", "expect": [], "group": "generation"}
+{"query": "小米手环9", "title": "小米手环9 适配华为手机", "expect": [], "group": "generation"}
+{"query": "华为 Band 9", "title": "华为 Band 8 全新", "expect": ["model_mismatch"], "group": "generation"}
+{"query": "华为 Band 9", "title": "HUAWEI BAND 9 BLACK", "expect": [], "group": "generation"}
+{"query": "小米手环", "title": "小米手环10 标准版", "expect": [], "group": "generation"}
+{"query": "华为手环9", "title": "HUAWEI 手环9 NFC 全新", "expect": [], "group": "brand"}
+{"query": "荣耀手环9", "title": "HONOR 手环9 官方", "expect": [], "group": "brand"}
+{"query": "小米手环9", "title": "XIAOMI 手环9 全新", "expect": [], "group": "brand"}
+{"query": "苹果手表", "title": "Apple Watch Series 10", "expect": [], "group": "brand"}
+{"query": "三星手表", "title": "SAMSUNG Galaxy Watch", "expect": [], "group": "brand"}
+{"query": "OPPO 手表", "title": "OPPO Watch 官方", "expect": [], "group": "brand"}
+{"query": "vivo 手表", "title": "VIVO WATCH 全新", "expect": [], "group": "brand"}
+{"query": "小米手环9", "title": "荣耀手环9 官方旗舰", "expect": ["rival"], "group": "brand"}
+{"query": "华为手环9", "title": "小米手环9 标准版", "expect": ["rival"], "group": "brand"}
+{"query": "荣耀手环9", "title": "华为手环9 运动版", "expect": ["rival"], "group": "brand"}
+{"query": "苹果手表", "title": "三星智能手表", "expect": ["rival"], "group": "brand"}
+{"query": "三星手表", "title": "Apple Watch 正品", "expect": ["rival"], "group": "brand"}
+{"query": "OPPO手表", "title": "vivo智能手表", "expect": ["rival"], "group": "brand"}
+{"query": "小米手环9", "title": "联想智能手表 适配小米华为", "expect": ["rival"], "group": "brand"}
+{"query": "华为手环9", "title": "智能手环 支持华为手机", "expect": ["off_brand"], "group": "brand"}
+{"query": "荣耀手环9", "title": "蓝牙运动手环 通用款", "expect": ["off_brand"], "group": "brand"}
+{"query": "小米手环9", "title": "小米手环9 兼容苹果手机", "expect": [], "group": "brand"}
+{"query": "华为手环9", "title": "华为手环9 适用于苹果手机", "expect": [], "group": "brand"}
+{"query": "苹果手表", "title": "Apple Watch 支持华为手机", "expect": [], "group": "brand"}
+{"query": "智能手环", "title": "荣耀手环9 全新", "expect": [], "group": "brand"}
+{"query": "小米手环9", "title": "小米手环9 透明保护壳 两件装", "expect": ["accessory"], "group": "accessory"}
+{"query": "小米手环9", "title": "适用于小米手环9 保护膜", "expect": ["accessory", "off_brand"], "group": "accessory"}
+{"query": "小米手环9", "title": "小米手环9 替换表带 黑色 硅胶", "expect": ["accessory"], "group": "accessory"}
+{"query": "华为手环9", "title": "华为手环9 磁吸充电器", "expect": ["accessory"], "group": "accessory"}
+{"query": "荣耀手环9", "title": "荣耀手环9 充电线 一米", "expect": ["accessory"], "group": "accessory"}
+{"query": "小米手环9", "title": "小米手环9 充电底座 原装", "expect": ["accessory"], "group": "accessory"}
+{"query": "小米手环9", "title": "小米手环9 腕带扣 不含主机", "expect": ["accessory"], "group": "accessory"}
+{"query": "小米手环9", "title": "小米手环9 收纳包 旅行便携", "expect": ["accessory"], "group": "accessory"}
+{"query": "小米手环9", "title": "小米手环9 礼盒装 赠表带", "expect": [], "group": "accessory"}
+{"query": "小米手环9", "title": "小米手环9 全新主机 附赠保护膜", "expect": [], "group": "accessory"}
+{"query": "华为手环9", "title": "华为手环9 官方标配 送充电器", "expect": [], "group": "accessory"}
+{"query": "荣耀手环9", "title": "荣耀手环9 运动手环 赠送腕带", "expect": [], "group": "accessory"}
+{"query": "小米手环9", "title": "小米手环9 智能运动 健康监测", "expect": [], "group": "accessory"}
+{"query": "小米手环9", "title": "小米手环9 仅主机 无配件", "expect": [], "group": "accessory"}
+{"query": "小米手环9", "title": "小米手环9 全新未拆封 送表带", "expect": [], "group": "accessory"}
+{"query": "小米手环9", "title": "小米手环9 二手全套", "expect": ["second_hand"], "group": "condition"}
+{"query": "华为手环9", "title": "华为手环9 95新 正常使用", "expect": ["second_hand"], "group": "condition"}
+{"query": "荣耀手环9", "title": "荣耀手环9 99新 黑色", "expect": ["second_hand"], "group": "condition"}
+{"query": "小米手环9", "title": "小米手环9 8成新 无维修", "expect": ["second_hand"], "group": "condition"}
+{"query": "华为手环9", "title": "华为手环9 官方翻新", "expect": ["second_hand"], "group": "condition"}
+{"query": "苹果手表", "title": "Apple Watch 官翻 带保修", "expect": ["second_hand"], "group": "condition"}
+{"query": "小米手环9", "title": "小米手环9 拆封未激活", "expect": ["second_hand"], "group": "condition"}
+{"query": "小米手环9", "title": "小米手环9 回收专用链接", "expect": ["second_hand"], "group": "condition"}
+{"query": "小米手环9", "title": "小米手环9 仅拆封 全套齐全", "expect": ["second_hand"], "group": "condition"}
+{"query": "小米手环9", "title": "小米手环9 全新正品", "expect": [], "group": "condition"}
+{"query": "华为手环9", "title": "华为手环9 全新未拆", "expect": [], "group": "condition"}
+{"query": "荣耀手环9", "title": "荣耀手环9 全新 199元", "expect": [], "group": "condition"}
+{"query": "小米手环9", "title": "小米手环9 新品 支持退换", "expect": [], "group": "condition"}
+{"query": "小米手环9", "title": "小米手环9 未拆封 全新", "expect": [], "group": "condition"}
+{"query": "小米手环9", "title": "小米手环8 二手", "expect": ["model_mismatch", "second_hand"], "group": "condition"}
+{"query": "拯救者y7000x", "title": "联想拯救者 Y7000X 高配", "expect": [], "group": "model"}
+{"query": "拯救者y7000x", "title": "联想拯救者 Y7000P 高配", "expect": ["model_mismatch"], "group": "model"}
+{"query": "拯救者Y9000P", "title": "联想拯救者Y9000P 32G", "expect": [], "group": "model"}
+{"query": "拯救者Y9000P", "title": "联想拯救者Y7000P 32G", "expect": ["model_mismatch"], "group": "model"}
+{"query": "RTX5060", "title": "NVIDIA GeForce RTX5060 显卡", "expect": [], "group": "model"}
+{"query": "RTX5060", "title": "NVIDIA GeForce RTX4060 显卡", "expect": ["model_mismatch"], "group": "model"}
+{"query": "RTX 5060", "title": "NVIDIA RTX 5060 全新", "expect": [], "group": "model"}
+{"query": "ThinkPad X1", "title": "ThinkPad X1 Carbon 便携本", "expect": [], "group": "model"}
+{"query": "小米手环9", "title": "小米手环9NFC 运动健康", "expect": [], "group": "model"}
+{"query": "手环", "title": "运动手环 通用款", "expect": [], "group": "model"}
+{"query": "Xiaomi Band 9", "title": "小米手环9 黑色", "expect": [], "group": "version_alias"}
+{"query": "小米手环9", "title": "Xiaomi Band 9 Black", "expect": [], "group": "version_alias"}
+{"query": "Xiaomi Band 9", "title": "小米手环8 黑色", "expect": ["model_mismatch"], "group": "version_alias"}
+{"query": "华为 Band 9", "title": "华为手环9 运动版", "expect": [], "group": "version_alias"}
+{"query": "小米手环9 NFC版", "title": "小米手环9 标准版", "expect": ["model_mismatch"], "group": "version_alias"}
+{"query": "小米手环9 Pro", "title": "小米手环9 NFC版", "expect": ["model_mismatch"], "group": "version_alias"}
+{"query": "小米手环9 标准版", "title": "小米手环9 Pro", "expect": ["model_mismatch"], "group": "version_alias"}
+{"query": "小米手环9 NFC版", "title": "小米手环9 NFC版 黑色", "expect": [], "group": "version_alias"}
+{"query": "小米手环9 Pro", "title": "小米手环9 Pro 银色", "expect": [], "group": "version_alias"}

@@ -21,6 +21,16 @@ SPEC_PATTERNS: list[tuple[str, re.Pattern]] = [
 GEN_RE = re.compile(r"手环\s*(\d+)|band\s*(\d+)|watch\s*(\d+)", re.I)
 
 
+def extract_version(title: str) -> str | None:
+    """版本与颜色分开识别；未写明版本时不猜测。"""
+    for name, pat in SPEC_PATTERNS[:3]:
+        if pat.search(title or ""):
+            return name
+    if re.search(r"标准版|普通版|standard", title, re.I):
+        return "标准版"
+    return None
+
+
 def extract_spec(title: str) -> str | None:
     """返回标题的规格标签，无命中返回 None（前端归入「其他」）。"""
     for name, pat in SPEC_PATTERNS:

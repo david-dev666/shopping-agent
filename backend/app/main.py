@@ -7,7 +7,11 @@ from fastapi.staticfiles import StaticFiles
 from app.api.routes import router
 from app.storage.db import init_db
 
-STATIC_DIR = Path(__file__).resolve().parent.parent / "static"
+PACKAGE_DIR = Path(__file__).resolve().parent
+# Wheels keep assets inside the package; the source checkout keeps them beside app/.
+STATIC_DIR = PACKAGE_DIR / "static"
+if not STATIC_DIR.is_dir():
+    STATIC_DIR = PACKAGE_DIR.parent / "static"
 
 
 @asynccontextmanager

@@ -163,11 +163,12 @@ def test_model_token_case_and_space_insensitive() -> None:
     assert len(kept) == 1
 
 
-def test_no_model_token_no_rule() -> None:
-    # query 无型号 token（纯中文/纯数字）不启用该规则
+def test_chinese_generation_mismatch_tagged() -> None:
+    # 中文型号同样需要区分代数
     offers = [_offer("小米手环9 标准版"), _offer("小米手环10 NFC")]
     kept, stats, _ = filter_offers(offers, "小米手环9")
-    assert stats["model_mismatch"] == 0
+    assert stats["model_mismatch"] == 1
+    assert "其他型号" in kept[1].tags
 
 
 def test_nothing_is_ever_removed() -> None:

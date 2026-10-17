@@ -132,8 +132,9 @@ def test_cheapest_fallback_prefers_high_sales_low_price() -> None:
     offers = _offers()
     fb = _cheapest_fallback(offers)
     assert fb["top_pick"] == 1  # pdd：159 + 81000 销量
-    assert fb["worth"] == "buy"
-    assert fb["confidence"] == 50
+    assert fb["worth"] == "wait"
+    assert fb["confidence"] == 0
+    assert fb["items"][0]["index"] == 1
 
 
 # --- recommend 拼装 ---
@@ -151,7 +152,8 @@ def test_node_recommend_assembles_output() -> None:
     with patch("app.agents.graph.save_trace") as st:
         out = node_recommend(state)
     rec = out["recommendation"]
-    assert "值得买" in rec
+    assert "可优先考虑" in rec
+    assert "全网" not in rec
     assert "¥159.00" in rec
     assert "购买入口" in rec
     assert "预算 ¥300" in rec

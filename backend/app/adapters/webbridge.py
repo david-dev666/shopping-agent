@@ -1,6 +1,8 @@
 import asyncio
 import json
 import logging
+import threading
+from contextlib import asynccontextmanager
 
 import httpx
 
@@ -146,24 +148,26 @@ EXTRACTORS = {"jd": JD_EXTRACTOR, "taobao": TAOBAO_EXTRACTOR, "pdd": PDD_EXTRACT
 class WebBridgeClient:
     """Kimi 浏览器扩展本地 daemon 的命令客户端。
 
-    采集命令按调用方事件循环加锁串行执行：单 tab 模型下并发导航/求值会互相踩。
-    锁按 event loop 惰性创建（LangGraph 同步节点经线程池跑 asyncio.run，
-    每次是新循环，全局单锁会跨循环绑定报错）。
+    多个请求即使在线程池的不同事件循环里运行，也必须串行使用同一个 tab。
+    使用线程锁保护完整的导航与提取过程，等待时不阻塞事件循环。
     """
 
     def __init__(self, base_url: str, session: str, timeout: float = 90.0) -> None:
         self.base_url = base_url.rstrip("/")
         self.session = session
         self.timeout = timeout
-        self._locks: dict[int, asyncio.Lock] = {}
+        self._lock = threading.Lock()
 
-    def _get_lock(self) -> asyncio.Lock:
-        loop_id = id(asyncio.get_running_loop())
-        lock = self._locks.get(loop_id)
-        if lock is None:
-            lock = asyncio.Lock()
-            self._locks[loop_id] = lock
-        return lock
+    @asynccontextmanager
+    async def _get_lock(self):
+        # Agent 运行在线程池，各有独立事件循环，但共用同一个浏览器 tab。
+        # 非阻塞获取线程锁，取消等待不会遗留后台 acquire 任务。
+        while not self._lock.acquire(blocking=False):
+            await asyncio.sleep(0.05)
+        try:
+            yield
+        finally:
+            self._lock.release()
 
     async def command(self, action: str, args: dict) -> dict:
         payload = {"action": action, "args": args, "session": self.session}
@@ -173,7 +177,9 @@ class WebBridgeClient:
             body = resp.json()
         if not body.get("ok"):
             err = body.get("error", {})
-            raise RuntimeError(f"webbridge {action} failed: {err.get('code')}: {err.get('message')}")
+            raise RuntimeError(
+                f"webbridge {action} failed: {err.get('code')}: {err.get('message')}"
+            )
         return body["data"]
 
     async def navigate(self, url: str) -> None:
@@ -188,15 +194,17 @@ class WebBridgeClient:
 
 
 _shared_client: WebBridgeClient | None = None
+_client_lock = threading.Lock()
 
 
 def get_webbridge_client() -> WebBridgeClient:
     global _shared_client
-    if _shared_client is None:
-        settings = get_settings()
-        _shared_client = WebBridgeClient(
-            base_url=settings.webbridge_base_url, session="shopping-agent"
-        )
+    with _client_lock:
+        if _shared_client is None:
+            settings = get_settings()
+            _shared_client = WebBridgeClient(
+                base_url=settings.webbridge_base_url, session="shopping-agent"
+            )
     return _shared_client
 
 

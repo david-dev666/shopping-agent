@@ -28,3 +28,21 @@ jobs:
 
       - name: Test (pytest)
         run: uv run pytest -q
+
+      - name: Build and verify installed wheel
+        run: |
+          uv build --wheel --out-dir "$RUNNER_TEMP/shopping-dist"
+          uv pip install --no-deps --target "$RUNNER_TEMP/shopping-package" "$RUNNER_TEMP"/shopping-dist/*.whl
+          .venv/bin/python scripts/smoke_install.py --package-root "$RUNNER_TEMP/shopping-package"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Frontend logic and syntax
+        working-directory: .
+        run: |
+          node --check backend/static/app.js
+          node --check backend/static/stream.mjs
+          node --test frontend/tests/*.test.mjs
