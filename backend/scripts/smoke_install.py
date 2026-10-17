@@ -51,13 +51,23 @@ async def verify(package_root: Path) -> None:
                 raise RuntimeError("Packaged sample resources are unavailable")
             if not all(offer.get("match_report") for offer in result["offers"]):
                 raise RuntimeError("Packaged sample title evidence is missing")
+            refined = await client.post(
+                "/api/refine",
+                json={"snapshot_id": result["snapshot_id"], "constraints": {"budget": 1}},
+            )
+            refined.raise_for_status()
+            if refined.json()["top_pick"] is not None:
+                raise RuntimeError("Snapshot refinement ignored edited budget")
             response = await client.post(
                 "/api/chat/stream", json={"query": "小米手环9", "data_mode": "sample"}
             )
             response.raise_for_status()
             if "event: result" not in response.text:
                 raise RuntimeError("Packaged streaming endpoint failed")
-    print("Installed wheel verified: homepage, static assets, health, sample query and SSE")
+    print(
+        "Installed wheel verified: homepage, static assets, health, sample query, "
+        "snapshot refinement and SSE"
+    )
 
 
 def main() -> None:

@@ -105,7 +105,7 @@ async function search(query, refining = false, options = {}) {
   const timer = setInterval(() => $('#elapsed').textContent = `已等待 ${Math.floor((Date.now() - started) / 1000)} 秒`, 1000);
   const applied = refining ? filtersSignature() : null;
   try {
-    const body = refining ? { query: state.query, offers: state.base.offers, intent: state.base.intent || {}, filters: { ...state.filters }, constraints: { budget: state.budget, preference: state.preference }, data_mode: source } : { query: query.trim(), data_mode: source, refresh: !!options.refresh };
+    const body = refining ? { snapshot_id: state.base.snapshot_id, filters: { ...state.filters }, constraints: { budget: state.budget, preference: state.preference } } : { query: query.trim(), data_mode: source, refresh: !!options.refresh };
     const data = !refining && state.mode === 'agent'
       ? await streamChat(body, controller.signal, renderProgress)
       : await post(refining ? '/api/refine' : '/api/query', body, controller.signal);

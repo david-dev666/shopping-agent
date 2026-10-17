@@ -1,7 +1,9 @@
+import json
+import uuid
 from collections.abc import Sequence
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 
-from sqlalchemy import Boolean, DateTime, Float, Integer, String, create_engine
+from sqlalchemy import Boolean, DateTime, Float, Integer, String, Text, create_engine
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, sessionmaker
 
 from app.config import get_settings
@@ -66,11 +68,60 @@ class TraceORM(Base):
     ts: Mapped[datetime] = mapped_column(DateTime)
 
 
+class CandidateSnapshotORM(Base):
+    """不可变候选集；随机 ID 用于本地应用重排，24 小时后失效。"""
+
+    __tablename__ = "candidate_snapshot"
+
+    id: Mapped[str] = mapped_column(String(32), primary_key=True)
+    payload_json: Mapped[str] = mapped_column(Text)
+    expires_at: Mapped[datetime] = mapped_column(DateTime, index=True)
+
+
+def snapshot_response(result: dict) -> dict:
+    """只持久化重排所需数据，不保存整份响应或允许客户端覆盖。"""
+    assert _SessionLocal is not None
+    identifier = uuid.uuid4().hex
+    expires_at = datetime.now(UTC) + timedelta(hours=24)
+    payload = {
+        "query": result.get("query", ""),
+        "offers": [RawOffer.model_validate(o).model_dump(mode="json") for o in result["offers"]],
+        "intent": result.get("intent", {}),
+        **({"rank_items": result["rank_items"]} if "rank_items" in result else {}),
+        "demo": bool(result.get("demo", False)),
+    }
+    with _SessionLocal() as session:
+        session.query(CandidateSnapshotORM).filter(
+            CandidateSnapshotORM.expires_at <= datetime.now(UTC)
+        ).delete()
+        session.add(
+            CandidateSnapshotORM(
+                id=identifier,
+                payload_json=json.dumps(payload, ensure_ascii=False),
+                expires_at=expires_at,
+            )
+        )
+        session.commit()
+    return {**result, "snapshot_id": identifier, "snapshot_expires_at": expires_at.isoformat()}
+
+
+def load_candidate_snapshot(identifier: str) -> dict | None:
+    assert _SessionLocal is not None
+    with _SessionLocal() as session:
+        row = (
+            session.query(CandidateSnapshotORM)
+            .filter(
+                CandidateSnapshotORM.id == identifier,
+                CandidateSnapshotORM.expires_at > datetime.now(UTC),
+            )
+            .first()
+        )
+        return json.loads(row.payload_json) if row else None
+
+
 def save_trace(trace: dict) -> None:
     """保存一次 agent 运行的完整轨迹。"""
     assert _SessionLocal is not None
-    import json
-
     with _SessionLocal() as session:
         session.add(
             TraceORM(
@@ -86,8 +137,6 @@ def save_trace(trace: dict) -> None:
 def load_trace(trace_id: str) -> dict | None:
     """按 trace_id 读取轨迹。"""
     assert _SessionLocal is not None
-    import json
-
     with _SessionLocal() as session:
         row = (
             session.query(TraceORM)
@@ -118,9 +167,7 @@ def init_db() -> None:
     Base.metadata.create_all(get_engine())
 
 
-def record_search(
-    query: str, offers: Sequence[RawOffer], errors: dict[str, str]
-) -> None:
+def record_search(query: str, offers: Sequence[RawOffer], errors: dict[str, str]) -> None:
     """把一次搜索的结果与抓取日志落库，便于排查某平台为什么缺数据。"""
     assert _SessionLocal is not None
     now = datetime.now(UTC)

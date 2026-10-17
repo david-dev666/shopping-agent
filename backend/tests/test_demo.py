@@ -68,8 +68,7 @@ def test_query_endpoint_short_circuits_in_demo(monkeypatch) -> None:
         r3 = client.post(
             "/api/refine",
             json={
-                "query": "小米手环9",
-                "offers": [{"platform": "jd", "platform_id": "1", "title": "x", "price": 1.0}],
+                "snapshot_id": r2.json()["snapshot_id"],
                 "filters": {},
             },
         )

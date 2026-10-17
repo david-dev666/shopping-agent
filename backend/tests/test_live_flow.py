@@ -170,6 +170,8 @@ async def test_query_cache_reports_age_and_refresh_bypasses_it(monkeypatch):
             fresh = (await c.post("/api/query", json={**body, "refresh": True})).json()
         assert first["origin"] == fresh["origin"] == "live"
         assert second["origin"] == "cache" and second["cached"] is True
+        assert first["snapshot_id"] == second["snapshot_id"]
+        assert fresh["snapshot_id"] != first["snapshot_id"]
         assert second["cache_age_seconds"] >= 0
         assert len(calls) == 2
         assert fresh["offers"][0]["price"] > first["offers"][0]["price"]
@@ -178,17 +180,16 @@ async def test_query_cache_reports_age_and_refresh_bypasses_it(monkeypatch):
 
 
 async def test_sample_refine_obeys_edited_budget():
-    from app.demo_data import demo_chat_response
-
     async with httpx.AsyncClient(
         transport=httpx.ASGITransport(app=app), base_url="http://test"
     ) as c:
+        initial = (
+            await c.post("/api/chat", json={"query": "小米手环9", "data_mode": "sample"})
+        ).json()
         result = await c.post(
             "/api/refine",
             json={
-                "query": "小米手环9",
-                "data_mode": "sample",
-                "offers": demo_chat_response()["offers"],
+                "snapshot_id": initial["snapshot_id"],
                 "constraints": {"budget": 1},
             },
         )
@@ -226,8 +227,11 @@ def test_sample_preferences_affect_rule_sorting_without_calling_llm():
     from app.demo_data import demo_refine_response
 
     price_first = demo_refine_response(constraints={"preference": "价格优先"})
-    clean = [o for o in price_first["offers"] if not o["tags"]
-             and o["match_report"]["status"] not in {"conflict", "ambiguous"}]
+    clean = [
+        o
+        for o in price_first["offers"]
+        if not o["tags"] and o["match_report"]["status"] not in {"conflict", "ambiguous"}
+    ]
     assert price_first["top_pick"]["price"] == min(o["price"] for o in clean)
     shop_first = demo_refine_response(constraints={"preference": "优先自营/旗舰"})
     assert any(word in shop_first["top_pick"]["shop"] for word in ("自营", "旗舰"))
@@ -261,3 +265,35 @@ async def test_disconnect_propagates_cancellation_to_stream_worker(monkeypatch):
     assert [event async for event in events] == []
     assert signals[0].is_set()
     assert await asyncio.to_thread(stopped.wait, 1)
+
+
+@pytest.mark.parametrize("streaming", [False, True])
+async def test_live_snapshot_refinement_preserves_query_and_never_recollects(research, streaming):
+    async with httpx.AsyncClient(
+        transport=httpx.ASGITransport(app=app), base_url="http://test"
+    ) as client:
+        response = await client.post(
+            "/api/chat/stream" if streaming else "/api/chat",
+            json={"query": "预算300元买小米手环9", "data_mode": "live"},
+        )
+        initial = frames(response.text)[-1]["result"] if streaming else response.json()
+        response = await client.post(
+            "/api/refine",
+            json={
+                "snapshot_id": initial["snapshot_id"],
+                "filters": {"price_max": 200},
+                "constraints": {"budget": 100},
+            },
+        )
+        assert response.status_code == 200
+        refined = response.json()
+        assert refined["query"] == initial["query"]
+        assert refined["top_pick"] is None
+        assert refined["intent"]["budget"] == 100
+        assert len(refined["offers"]) == 1
+        restored = (
+            await client.post("/api/refine", json={"snapshot_id": refined["snapshot_id"]})
+        ).json()
+        assert len(restored["offers"]) == 2
+        assert restored["intent"]["budget"] == 300
+        assert len(research) == 1

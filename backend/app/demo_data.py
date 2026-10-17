@@ -39,7 +39,8 @@ def _normalized(name: str) -> dict:
     if "rank_items" in data:
         data["rank_items"] = guard_ranking(data["rank_items"], offers)
         eligible = [
-            item for item in data["rank_items"]
+            item
+            for item in data["rank_items"]
             if not offers[item["index"]].tags and evidence_allows_pick(offers[item["index"]])
         ]
         data["top_pick"] = (
@@ -82,6 +83,8 @@ def demo_refine_response(
     filters: dict | None = None,
     candidate_keys: set[str] | None = None,
     constraints: dict | None = None,
+    *,
+    base: dict | None = None,
 ) -> dict:
     """DEMO 模式下的重排：对样例报价**确定性应用筛选**，不调用 LLM。
 
@@ -96,7 +99,7 @@ def demo_refine_response(
     from app.models.filters import FilterSpec, PurchaseConstraints
     from app.models.offers import RawOffer, offer_key
 
-    chat = demo_chat_response()
+    chat = base if base is not None else demo_chat_response()
     offers = [RawOffer.model_validate(o) for o in chat["offers"]]
     kept = apply_filters(offers, FilterSpec.model_validate(filters or {}))
     if candidate_keys is not None:
@@ -105,7 +108,7 @@ def demo_refine_response(
 
     picked = [
         it
-        for it in chat["rank_items"]
+        for it in chat.get("rank_items", [{"index": i} for i in range(len(offers))])
         if 0 <= it["index"] < len(offers) and id(offers[it["index"]]) in keep_ids
     ]
     intent = dict(chat.get("intent", {}))
@@ -136,8 +139,12 @@ def demo_refine_response(
     if kept_offers:
         prices = [o.price for o in kept_offers]
         top = next(
-            (o for o in kept_offers if not o.tags and evidence_allows_pick(o)
-             and (budget is None or o.price <= budget)), None
+            (
+                o
+                for o in kept_offers
+                if not o.tags and evidence_allows_pick(o) and (budget is None or o.price <= budget)
+            ),
+            None,
         )
         recommendation = (
             f"（演示数据）已按筛选保留 {len(kept_offers)} 条候选；"
@@ -162,9 +169,7 @@ def demo_refine_response(
             "worth": "wait",
             "engine": "sample",
             "confidence": (chat.get("decision") or {}).get("confidence"),
-            "reason": "样例数据：已按预算、偏好与筛选更新，未调用模型"
-            if top
-            else no_pick_reason,
+            "reason": "样例数据：已按预算、偏好与筛选更新，未调用模型" if top else no_pick_reason,
         },
         "recommendation": recommendation,
         "rank_items": rank_items,

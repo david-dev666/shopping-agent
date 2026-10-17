@@ -30,9 +30,9 @@ def offline_settings(monkeypatch):
         ("/api/chat", {"query": "x" * 501}),
         (
             "/api/refine",
-            {"query": "x", "offers": [], "filters": {"price_min": 300, "price_max": 100}},
+            {"snapshot_id": "a" * 32, "filters": {"price_min": 300, "price_max": 100}},
         ),
-        ("/api/refine", {"query": "x", "offers": [], "filters": {"price_min": -1}}),
+        ("/api/refine", {"snapshot_id": "a" * 32, "filters": {"price_min": -1}}),
         ("/api/refine", {"query": "x", "offers": [], "intent": {"budget": "garbage"}}),
         (
             "/api/rank",

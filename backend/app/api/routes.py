@@ -4,11 +4,11 @@ from typing import Literal
 
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import StreamingResponse
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field
 from starlette.concurrency import run_in_threadpool
 
 from app.adapters.registry import get_adapters, search_all
-from app.agents.graph import IntentResult, run_agent, run_refine
+from app.agents.graph import run_agent, run_refine
 from app.agents.ranker import rank_offers
 from app.api.streaming import agent_events, encode_event
 from app.config import get_settings
@@ -22,7 +22,14 @@ from app.matching.filter import REASON_LABELS, filter_offers
 from app.matching.specs import group_specs
 from app.models.filters import FilterSpec, PurchaseConstraints
 from app.models.offers import RawOffer, offer_key
-from app.storage.db import get_feedback_ids, load_trace, record_feedback, record_search
+from app.storage.db import (
+    get_feedback_ids,
+    load_candidate_snapshot,
+    load_trace,
+    record_feedback,
+    record_search,
+    snapshot_response,
+)
 
 router = APIRouter(prefix="/api")
 
@@ -63,6 +70,8 @@ class RemovedOffer(BaseModel):
 
 
 class QueryResponse(BaseModel):
+    snapshot_id: str
+    snapshot_expires_at: datetime
     query: str = Field(min_length=1, max_length=500, pattern=r"\S")
     offers: list[RawOffer]
     errors: dict[str, str]
@@ -84,7 +93,7 @@ async def query_products(req: QueryRequest) -> QueryResponse:
 
     # DEMO_MODE：返回内置样例，不触发任何采集
     if use_sample(req.data_mode):
-        return QueryResponse(**demo_query_response())
+        return QueryResponse(**snapshot_response(demo_query_response()))
 
     # 缓存命中：直接返回，不触发采集
     hit = _query_cache.get(q)
@@ -112,7 +121,7 @@ async def query_products(req: QueryRequest) -> QueryResponse:
     kept, stats, removed = filter_offers(offers, q)
 
     spec_groups = group_specs(kept)
-    resp = QueryResponse(
+    response_data = dict(
         query=q,
         completed_at=datetime.now(UTC),
         offers=kept,
@@ -126,6 +135,7 @@ async def query_products(req: QueryRequest) -> QueryResponse:
         ],
         specs={name: [offer_key(o) for o in group] for name, group in spec_groups.items()},
     )
+    resp = QueryResponse(**snapshot_response(response_data))
     # 滑块验证导致的失败不缓存：用户完成验证后立即重搜应触发真实采集
     needs_verify = any("NEED_MANUAL_VERIFY" in e for e in errors.values())
     if not needs_verify:
@@ -170,55 +180,54 @@ async def chat(req: ChatRequest) -> dict:
     if not q:
         raise HTTPException(status_code=400, detail="query 为空")
     if use_sample(req.data_mode):
-        return demo_chat_response()
+        return snapshot_response(demo_chat_response())
     try:
-        return await run_in_threadpool(run_agent, q)
+        return snapshot_response(await run_in_threadpool(run_agent, q))
     except RuntimeError as e:
         raise HTTPException(status_code=503, detail=str(e)) from e
 
 
-class RefineRequest(DataModeRequest):
-    query: str = Field(min_length=1, max_length=500, pattern=r"\S")
-    offers: list[RawOffer] = Field(max_length=200)
-    filters: FilterSpec = FilterSpec()
-    intent: dict = {}
-    constraints: PurchaseConstraints | None = None
+class RefineRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
 
-    @model_validator(mode="after")
-    def validate_intent(self):
-        self.intent = IntentResult.model_validate(
-            {"product": self.query, **self.intent}
-        ).model_dump()
-        return self
+    snapshot_id: str = Field(pattern=r"^[0-9a-f]{32}$")
+    filters: FilterSpec = FilterSpec()
+    constraints: PurchaseConstraints | None = None
 
 
 @router.post("/refine")
 async def refine(req: RefineRequest) -> dict:
-    """按筛选条件重排：跳过采集与打标，复用 filters → decide → recommend。
-
-    候选集由前端回传（上次运行的 offers），筛选条件确定性应用，
-    再让 LLM 在缩小后的集合上重新决策与排序。
-    """
-    q = req.query.strip()
-    if not req.offers:
-        raise HTTPException(status_code=400, detail="offers 为空，无需重排")
-    if use_sample(req.data_mode):
-        return demo_refine_response(
+    """只接受快照 ID 和可编辑条件，查询、候选、原始意图及来源均取服务端。"""
+    snapshot = load_candidate_snapshot(req.snapshot_id)
+    if snapshot is None:
+        raise HTTPException(status_code=404, detail="候选快照不存在或已过期，请重新查询")
+    offers = [RawOffer.model_validate(o) for o in snapshot["offers"]]
+    feedback_ids = get_feedback_ids()
+    offers = [o for o in offers if (o.platform, o.platform_id) not in feedback_ids]
+    if not offers:
+        raise HTTPException(status_code=400, detail="快照中没有可用候选，请重新查询")
+    constraints = req.constraints.model_dump() if req.constraints is not None else None
+    if snapshot["demo"]:
+        result = demo_refine_response(
             req.filters.model_dump(),
-            {offer_key(o) for o in req.offers},
-            req.constraints.model_dump() if req.constraints is not None else None,
+            {offer_key(o) for o in offers},
+            constraints,
+            base=snapshot,
         )
-    try:
-        return await run_in_threadpool(
-            run_refine,
-            q,
-            req.offers,
-            req.filters.model_dump(),
-            req.intent,
-            req.constraints.model_dump() if req.constraints is not None else None,
-        )
-    except RuntimeError as e:
-        raise HTTPException(status_code=503, detail=str(e)) from e
+    else:
+        try:
+            result = await run_in_threadpool(
+                run_refine,
+                snapshot["query"],
+                offers,
+                req.filters.model_dump(),
+                snapshot["intent"],
+                constraints,
+            )
+        except RuntimeError as e:
+            raise HTTPException(status_code=503, detail=str(e)) from e
+    # 始终引用初始全量快照，放宽筛选时可恢复候选，不重写已保存的报价。
+    return {**result, "snapshot_id": req.snapshot_id}
 
 
 @router.get("/trace/{trace_id}")
@@ -265,7 +274,9 @@ async def chat_stream(req: ChatRequest, request: Request) -> StreamingResponse:
     if use_sample(req.data_mode):
 
         async def sample():
-            yield encode_event({"event": "result", "result": demo_chat_response()})
+            yield encode_event(
+                {"event": "result", "result": snapshot_response(demo_chat_response())}
+            )
 
         body = sample()
     else:
