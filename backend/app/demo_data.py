@@ -20,6 +20,7 @@ def _load(name: str) -> dict:
 def _normalized(name: str) -> dict:
     """保留冻结报价，使用当前规则更新标签、分组和展示口径。"""
     from app.matching.filter import apply_tag_guard, filter_offers
+    from app.matching.identity import evidence_allows_pick, evidence_priority
     from app.matching.specs import group_specs
     from app.models.offers import RawOffer, offer_key
 
@@ -37,7 +38,17 @@ def _normalized(name: str) -> dict:
     )
     if "rank_items" in data:
         data["rank_items"] = apply_tag_guard(data["rank_items"], offers)
-        eligible = [item for item in data["rank_items"] if not offers[item["index"]].tags]
+        data["rank_items"].sort(
+            key=lambda item: (
+                not evidence_allows_pick(offers[item["index"]]),
+                bool(offers[item["index"]].tags),
+                evidence_priority(offers[item["index"]]),
+            )
+        )
+        eligible = [
+            item for item in data["rank_items"]
+            if not offers[item["index"]].tags and evidence_allows_pick(offers[item["index"]])
+        ]
         data["top_pick"] = (
             offers[eligible[0]["index"]].model_dump(mode="json") if eligible else None
         )
@@ -49,6 +60,7 @@ def _normalized(name: str) -> dict:
         }
         data["recommendation"] = "演示数据：本次采集 30 条候选，不代表全网同款或实时成交价。"
         for item in data["rank_items"]:
+            item["score"] = 0
             item["reason"] = "冻结样例中的排序；仅供体验界面，不代表实时购买建议"
     return data
 
@@ -86,6 +98,7 @@ def demo_refine_response(
     from datetime import UTC, datetime
 
     from app.matching.filter import apply_filters
+    from app.matching.identity import evidence_allows_pick, evidence_priority
     from app.matching.specs import group_specs
     from app.models.filters import FilterSpec, PurchaseConstraints
     from app.models.offers import RawOffer, offer_key
@@ -111,7 +124,9 @@ def demo_refine_response(
     picked.sort(
         key=lambda it: (
             bool(offers[it["index"]].tags)
+            or not evidence_allows_pick(offers[it["index"]])
             or (budget is not None and offers[it["index"]].price > budget),
+            evidence_priority(offers[it["index"]]),
             not any(word in (offers[it["index"]].shop or "") for word in ("自营", "旗舰"))
             if shop_priority
             else False,
@@ -128,7 +143,8 @@ def demo_refine_response(
     if kept_offers:
         prices = [o.price for o in kept_offers]
         top = next(
-            (o for o in kept_offers if not o.tags and (budget is None or o.price <= budget)), None
+            (o for o in kept_offers if not o.tags and evidence_allows_pick(o)
+             and (budget is None or o.price <= budget)), None
         )
         recommendation = (
             f"（演示数据）已按筛选保留 {len(kept_offers)} 条候选；"
@@ -137,6 +153,10 @@ def demo_refine_response(
     else:
         top = None
         recommendation = "（演示数据）当前筛选条件下没有报价，请放宽筛选条件"
+
+    no_pick_reason = "当前没有同时符合预算与警示条件的样例候选，请调整要求"
+    if kept_offers and all(not evidence_allows_pick(o) for o in kept_offers):
+        no_pick_reason = "当前样例候选存在规格冲突或混卖，无法确认对应 SKU，请选择规格明确的报价"
 
     return {
         "trace_id": chat.get("trace_id", ""),
@@ -151,7 +171,7 @@ def demo_refine_response(
             "confidence": (chat.get("decision") or {}).get("confidence"),
             "reason": "样例数据：已按预算、偏好与筛选更新，未调用模型"
             if top
-            else "当前没有同时符合预算与警示条件的样例候选，请调整要求",
+            else no_pick_reason,
         },
         "recommendation": recommendation,
         "rank_items": rank_items,

@@ -10,7 +10,13 @@ from pydantic import BaseModel, Field
 
 from app.agents.llm_utils import invoke_json
 from app.config import get_settings
-from app.matching.filter import apply_tag_guard
+from app.matching.filter import WARN_TAGS, apply_tag_guard
+from app.matching.identity import (
+    assess_offers,
+    evidence_allows_pick,
+    evidence_priority,
+    prompt_evidence,
+)
 from app.models.offers import RawOffer
 
 logger = logging.getLogger(__name__)
@@ -67,7 +73,7 @@ def _offers_text(offers: list[RawOffer]) -> str:
         tags = "、".join(o.tags) if o.tags else "-"
         lines.append(
             f"{i} | {o.platform} | ¥{o.price:.2f} | {orig} | {shop} | {sales}"
-            f" | {tags} | {o.title[:60]}"
+            f" | {tags} | {o.title} | 标题核对: {prompt_evidence(o)}"
         )
     return "\n".join(lines)
 
@@ -95,6 +101,7 @@ def rank_offers(query: str, offers: list[RawOffer]) -> dict:
     未配置、服务不可用或输出校验失败时，降级为价格排序。
     """
     settings = get_settings()
+    assess_offers(offers, query)
     llm = (
         ChatOpenAI(
             api_key=settings.llm_api_key,
@@ -139,4 +146,13 @@ def rank_offers(query: str, offers: list[RawOffer]) -> dict:
 
     # 确定性兜底：带警示标签的报价不得排在未打标报价之前
     items = apply_tag_guard(items, offers)
+    items.sort(key=lambda item: (
+        not evidence_allows_pick(offers[item["index"]]),
+        bool(set(offers[item["index"]].tags) & WARN_TAGS),
+        evidence_priority(offers[item["index"]]),
+    ))
+    ceiling = 100
+    for item in items:
+        item["score"] = min(item["score"], ceiling)
+        ceiling = item["score"]
     return {"items": items, "summary": result.summary}

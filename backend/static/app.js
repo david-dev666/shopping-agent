@@ -1,5 +1,6 @@
-import { PLATFORMS, offerKey, money, escapeHtml as h, safeUrl, emptyFilters, filterOffers, orderOffers, validTopPick, readRecent, salesLabel, provenance, moneyRange } from './helpers.mjs';
+import { PLATFORMS, offerKey, money, escapeHtml as h, safeUrl, emptyFilters, filterOffers, orderOffers, validTopPick, readRecent, salesLabel, provenance, moneyRange } from './helpers.mjs?v=20261017-identity2';
 import { streamChat } from './stream.mjs';
+import { evidencePanel, evidenceSummary } from './evidence.mjs';
 
 const $ = selector => document.querySelector(selector);
 const icon = name => `<svg class="icon" aria-hidden="true"><use href="#i-${name}"/></svg>`;
@@ -168,6 +169,7 @@ function render() {
   const source = provenance(data);
   $('#result-heading').innerHTML = `<div><div class="result-eyebrow"><span class="origin-badge ${source.kind}">${h(source.label)}</span><span>${h(source.kind === 'live' ? '未使用查询缓存' : source.description)}</span></div><h2>${h(intent.product || data.query || state.query)}</h2><div class="request-chips"><span>${data.offers.length} 条采集候选</span>${data.completed_at ? `<span>${h(dateLabel(data.completed_at))} 完成</span>` : ''}</div></div><button type="button" class="button quiet small" data-action="refresh">${icon('clock')}${data.demo ? '真实查询' : '重新采集'}</button>`;
   renderRequirements();
+  $('#matching-summary').innerHTML = evidenceSummary(visible());
   renderFilters();
   renderRecommendation();
   renderPlatforms();
@@ -210,6 +212,7 @@ function renderFilters() {
     <section class="filter-section platform-section"><h4>购买平台</h4><div class="filter-options"><button type="button" class="chip ${!state.filters.platforms.length ? 'selected' : ''}" data-platform="all" aria-pressed="${!state.filters.platforms.length}">全部</button>${Object.entries(PLATFORMS).map(([p, name]) => `<button type="button" class="chip ${state.filters.platforms.includes(p) ? 'selected' : ''}" data-platform="${p}" aria-pressed="${state.filters.platforms.includes(p)}">${name} ${counts[p]}</button>`).join('')}</div></section>
     <details class="filter-details" ${open ? 'open' : ''}><summary>规格、价格与警示筛选</summary>
       <section class="filter-section"><label class="filter-field-label" for="spec-filter">版本 / 标题特征</label><select id="spec-filter" class="chip"><option value="">全部特征</option>${Object.keys(state.base.specs || {}).map(spec => `<option value="${h(spec)}" ${state.filters.spec === spec ? 'selected' : ''}>${h(spec)}</option>`).join('')}</select></section>
+      <section class="filter-section"><label class="filter-field-label" for="match-status">标题规格核对</label><select id="match-status" class="chip"><option value="">全部状态</option>${Object.entries({compatible:'已识别属性一致',insufficient:'规格信息不足',ambiguous:'混卖或多规格',conflict:'规格冲突'}).map(([value,label]) => `<option value="${value}" ${state.filters.match_status === value ? 'selected' : ''}>${label}</option>`).join('')}</select></section>
       <section class="filter-section"><h4>报价区间（元）</h4><div class="price-inputs"><label class="sr-only" for="price-min">最低报价</label><div class="price-field"><span aria-hidden="true">¥</span><input id="price-min" aria-describedby="price-error" type="number" min="0" step="0.01" placeholder="最低价" value="${state.filters.price_min ?? ''}"></div><span class="price-separator" aria-hidden="true">至</span><label class="sr-only" for="price-max">最高报价</label><div class="price-field"><span aria-hidden="true">¥</span><input id="price-max" aria-describedby="price-error" type="number" min="0" step="0.01" placeholder="最高价" value="${state.filters.price_max ?? ''}"></div></div><p id="price-error" class="field-error" role="status" hidden></p></section>
       <section class="filter-section"><h4>排除警示商品</h4><p class="filter-help">勾选后隐藏对应商品</p>${tags.length ? tags.map(tag => `<label class="checkbox-row"><input type="checkbox" data-tag="${h(tag)}" ${state.filters.exclude_tags.includes(tag) ? 'checked' : ''}><span class="checkbox-label">${h(tag)}</span><small class="filter-count">${offers.filter(o => (o.tags || []).includes(tag)).length}<span class="sr-only"> 条候选</span></small></label>`).join('') : '<span class="offer-meta">暂未检测到警示标签</span>'}</section>
     </details><div class="filter-foot"><button class="button primary" type="button" data-action="refine" ${!offers.length || !isStale() ? 'disabled' : ''}>更新推荐 ${icon('arrow')}</button><p>报价即时筛选。更新推荐后，首选与理由会同步调整。</p></div>`;
@@ -223,6 +226,7 @@ $('#filters').addEventListener('click', event => {
 function changeFilters(event) {
   const el = event.target;
   if (el.id === 'spec-filter') state.filters.spec = el.value || null;
+  if (el.id === 'match-status') state.filters.match_status = el.value || null;
   if (el.dataset.tag) {
     state.filters.exclude_tags = el.checked ? [...state.filters.exclude_tags, el.dataset.tag] : state.filters.exclude_tags.filter(t => t !== el.dataset.tag);
   }
@@ -253,6 +257,7 @@ function filtersChanged() {
   const edit = $('.requirement-edit');
   if (edit) edit.textContent = `${Object.values(state.formErrors).some(Boolean) ? '输入待修正' : isStale() ? '待应用' : '调整'} ▾`;
   document.querySelectorAll('#requirements button[type=submit], #filters [data-action=refine]').forEach(button => button.disabled = Object.values(state.formErrors).some(Boolean) || !isStale() || !state.base.offers.length);
+  $('#matching-summary').innerHTML = evidenceSummary(visible());
   renderRecommendation(); renderPlatforms(); renderOffers();
 }
 function resetFilters() {
@@ -274,17 +279,18 @@ function renderRecommendation() {
   }
   const url = safeUrl(top.url);
   const labels = decision.worth === 'buy' ? '本次可优先考虑' : '候选首选 · 购买前请确认';
-  const reasons = [top.shop ? '店铺信息已采集' : '店铺信息待补充', data.intent?.budget != null ? '采集报价在预算内' : '未设置预算上限', '未命中现有警示规则'];
-  $('#recommendation').innerHTML = `${note}<article class="pick-card"><div class="pick-label"><span>${icon('check')}${stale ? '上次推荐' : data.demo ? '样例候选' : labels}</span><small>${data.demo ? '样例排序' : decEngine(data)}</small></div><div class="pick-body">${image(top)}<div class="pick-info">${badge(top.platform)}${productTitle(top.title, 'h3')}<p class="pick-shop">${h(top.shop || '店铺未提供')}<br>${h(salesLabel(top.sales))} · ${h(dateLabel(top.ts))} 采集</p></div><div class="pick-price"><div><span class="price-caption">采集报价</span><span class="amount"><small>¥</small>${money(top.price)}</span></div>${url && !stale ? `<a class="button primary" href="${h(url)}" target="_blank" rel="noopener noreferrer">去平台确认 ${icon('external')}</a>` : ''}</div></div><div class="pick-evidence">${reasons.map(reason => `<span>${icon('check')}${h(reason)}</span>`).join('')}</div><details class="pick-details"><summary>为什么选它？查看依据与待确认项</summary><p>${h(decision.reason || '请结合规格和价格条件选择')}</p><ul><li>标签来自标题与规则识别，未命中警示不代表已验证同款或正品。</li><li>优惠资格、具体 SKU、运费与最终成交价需在平台确认。</li><li>${data.demo ? '此处为冻结样例，未调用模型重新验证。' : '暂无长期价格历史，无法判断历史最低价或未来涨跌。'}</li></ul></details></article>`;
+  const reasons = [top.shop ? '店铺信息已采集' : '店铺信息待补充', data.intent?.budget != null ? '采集报价在预算内' : '未设置预算上限', '未命中现有警示规则', top.match_report?.status === 'insufficient' ? '标题规格仍待确认' : '查看下方标题规格证据'];
+  $('#recommendation').innerHTML = `${note}<article class="pick-card"><div class="pick-label"><span>${icon('check')}${stale ? '上次推荐' : data.demo ? '样例候选' : labels}</span><small>${data.demo ? '样例排序' : decEngine(data)}</small></div><div class="pick-body">${image(top)}<div class="pick-info">${badge(top.platform)}${productTitle(top.title, 'h3')}<p class="pick-shop">${h(top.shop || '店铺未提供')}<br>${h(salesLabel(top.sales))} · ${h(dateLabel(top.ts))} 采集</p></div><div class="pick-price"><div><span class="price-caption">采集报价</span><span class="amount"><small>¥</small>${money(top.price)}</span></div>${url && !stale ? `<a class="button primary" href="${h(url)}" target="_blank" rel="noopener noreferrer">去平台确认 ${icon('external')}</a>` : ''}</div></div><div class="pick-evidence">${reasons.map(reason => `<span>${icon('check')}${h(reason)}</span>`).join('')}</div>${evidencePanel(top)}<details class="pick-details"><summary>为什么选它？查看依据与待确认项</summary><p>${h(decision.reason || '请结合规格和价格条件选择')}</p><ul><li>标签来自标题与规则识别，未命中警示不代表已验证同款或正品。</li><li>优惠资格、具体 SKU、运费与最终成交价需在平台确认。</li><li>${data.demo ? '此处为冻结样例，未调用模型重新验证。' : '暂无长期价格历史，无法判断历史最低价或未来涨跌。'}</li></ul></details></article>`;
 }
 function renderPlatforms() {
   const offers = visible();
   const ordered = orderOffers(offers, state.data.offers, state.data.rank_items, state.sort);
   $('#platforms').innerHTML = `<div class="platform-grid">${Object.entries(PLATFORMS).map(([p, name]) => {
     const group = offers.filter(o => o.platform === p);
-    const best = state.sort === 'price' ? ordered.find(o => o.platform === p) : ordered.find(o => o.platform === p && !(o.tags || []).length) || ordered.find(o => o.platform === p);
+    const comparable = ordered.filter(o => o.platform === p && !['conflict', 'ambiguous'].includes(o.match_report?.status));
+    const best = state.sort === 'price' ? comparable[0] : comparable.find(o => !(o.tags || []).length) || comparable[0];
     const error = state.base.errors?.[p];
-    return `<article class="platform-card ${p}"><div class="platform-card-head"><span class="platform-name"><span class="platform-dot"></span>${name}</span><span>${group.length} 条候选</span></div><div class="platform-amount">${best ? `¥${money(best.price)}` : '—'}</div><p>${best ? state.sort === 'price' ? '当前筛选最低采集报价' : '当前排序的平台候选' : error ? '采集暂不可用' : state.base.offers.some(o => o.platform === p) ? '当前筛选无报价' : '本次未获取报价'}</p>${best ? `<small>${h(best.shop || '店铺未提供')}</small>` : ''}</article>`;
+    return `<article class="platform-card ${p}"><div class="platform-card-head"><span class="platform-name"><span class="platform-dot"></span>${name}</span><span>${group.length} 条候选</span></div><div class="platform-amount">${best ? `¥${money(best.price)}` : '—'}</div><p>${best ? state.sort === 'price' ? '当前筛选最低采集报价' : '当前排序的平台候选' : group.length ? '候选规格冲突或混卖，暂无可比报价' : error ? '采集暂不可用' : state.base.offers.some(o => o.platform === p) ? '当前筛选无报价' : '本次未获取报价'}</p>${best ? `<small>${h(best.shop || '店铺未提供')}</small>` : ''}</article>`;
   }).join('')}</div>`;
 }
 function renderOffers() {
@@ -301,7 +307,7 @@ function renderOffers() {
     const url = safeUrl(o.url);
     const reason = ranks.get(key)?.reason;
     const overBudget = state.budget != null && o.price > state.budget;
-    return `<article class="offer-card" data-offer="${h(key)}">${image(o)}<div><div>${badge(o.platform)}${overBudget ? ' <span class="warning-tag">超出预算</span>' : ''}</div>${productTitle(o.title, 'h4', 'offer-title')}<div class="offer-meta">${h(o.shop || '店铺未提供')} · ${h(salesLabel(o.sales))}</div>${o.tags?.length ? `<div class="offer-tags">${o.tags.map(tag => `<span class="warning-tag">${h(tag)}</span>`).join('')}</div>` : ''}${reason && state.sort !== 'price' && !isStale() ? `<p class="offer-reason">${h(reason)}</p>` : ''}<div class="offer-actions"><span class="offer-meta">${h(dateLabel(o.ts))} 采集</span><button type="button" class="text-button" data-hide="${h(key)}">不相关</button></div></div><div class="offer-price"><span class="price-caption">采集报价</span><span class="amount"><small>¥</small>${money(o.price)}</span>${url ? `<a class="button small" href="${h(url)}" target="_blank" rel="noopener noreferrer">查看商品 ${icon('external')}</a>` : '<span class="offer-meta">暂无购买链接</span>'}<label class="compare-check"><input type="checkbox" data-compare="${h(key)}" ${state.selected.has(key) ? 'checked' : ''}>加入对比</label></div></article>`;
+    return `<article class="offer-card" data-offer="${h(key)}">${image(o)}<div><div>${badge(o.platform)}${overBudget ? ' <span class="warning-tag">超出预算</span>' : ''}</div>${productTitle(o.title, 'h4', 'offer-title')}<div class="offer-meta">${h(o.shop || '店铺未提供')} · ${h(salesLabel(o.sales))}</div>${o.tags?.length ? `<div class="offer-tags">${o.tags.map(tag => `<span class="warning-tag">${h(tag)}</span>`).join('')}</div>` : ''}${reason && state.sort !== 'price' && !isStale() ? `<p class="offer-reason">${h(reason)}</p>` : ''}<div class="offer-actions"><span class="offer-meta">${h(dateLabel(o.ts))} 采集</span><button type="button" class="text-button" data-hide="${h(key)}">不相关</button></div>${evidencePanel(o)}</div><div class="offer-price"><span class="price-caption">采集报价</span><span class="amount"><small>¥</small>${money(o.price)}</span>${url ? `<a class="button small" href="${h(url)}" target="_blank" rel="noopener noreferrer">查看商品 ${icon('external')}</a>` : '<span class="offer-meta">暂无购买链接</span>'}<label class="compare-check"><input type="checkbox" data-compare="${h(key)}" ${state.selected.has(key) ? 'checked' : ''}>加入对比</label></div></article>`;
   }).join('');
 }
 $('#offers-heading').addEventListener('change', event => { if (event.target.id === 'sort') { state.sort = event.target.value; renderOffers(); renderPlatforms(); } });
@@ -344,6 +350,7 @@ function openComparison() {
     ['采集报价', o => `<span class="amount"><small>¥</small>${money(o.price)}</span>`],
     ['平台 / 店铺', o => `${badge(o.platform)}<br>${h(o.shop || '未提供')}`],
     ['标题特征', o => h(Object.entries(state.base.specs || {}).find(([, keys]) => keys.includes(offerKey(o)))?.[0] || '未识别')],
+    ['规格核对', o => evidencePanel(o) || '尚无规格证据'],
     ['销量', o => h(salesLabel(o.sales))],
     ['警示', o => h(o.tags?.join('、') || '未命中现有规则，仍需核对同款')],
     ['采集时间', o => h(dateLabel(o.ts))],

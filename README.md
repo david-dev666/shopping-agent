@@ -33,6 +33,12 @@
 
 后续规格证据、独立评测集、价格历史与盯价任务见 [TODO.md](TODO.md)。
 
+## 标题规格证据（2026-10-17）
+
+每条候选可展开品牌、代数、版本等标题证据，区分“已识别属性一致 / 信息不足 / 混卖 / 冲突”，并按状态筛选。混卖和明确冲突不产生首选，未知规格不视为一致；排序接收完整标题。该能力优先覆盖手环代数与版本，**不是实际 SKU 或成交价验证**，容量、套装等尚未核对。
+
+边界、API 字段和后续任务见 [标题规格证据 v1](docs/07-title-evidence.md)。
+
 ## 架构
 
 ```mermaid
@@ -194,6 +200,7 @@ uv run alembic upgrade head                   # 版本化建表（默认启动�
 6. [docs/04-metrics.md](docs/04-metrics.md) 准确率与耗时
 7. [docs/05-status.md](docs/05-status.md) 阶段性总结与缺口
 8. [docs/06-ui-review.md](docs/06-ui-review.md) 前端验收与已知缺口
+9. [docs/07-title-evidence.md](docs/07-title-evidence.md) 标题规格证据与推荐约束
 
 ## 已知限制
 

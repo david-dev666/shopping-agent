@@ -32,6 +32,7 @@ async def verify(package_root: Path) -> None:
                 "/app.js": "streamChat",
                 "/helpers.mjs": "filterOffers",
                 "/stream.mjs": "TextDecoder",
+                "/evidence.mjs": "evidencePanel",
                 "/favicon.svg": "<svg",
             }.items():
                 response = await client.get(path)
@@ -48,6 +49,8 @@ async def verify(package_root: Path) -> None:
             result = response.json()
             if not result.get("demo") or not result.get("offers"):
                 raise RuntimeError("Packaged sample resources are unavailable")
+            if not all(offer.get("match_report") for offer in result["offers"]):
+                raise RuntimeError("Packaged sample title evidence is missing")
             response = await client.post(
                 "/api/chat/stream", json={"query": "小米手环9", "data_mode": "sample"}
             )

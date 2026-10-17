@@ -226,7 +226,8 @@ def test_sample_preferences_affect_rule_sorting_without_calling_llm():
     from app.demo_data import demo_refine_response
 
     price_first = demo_refine_response(constraints={"preference": "价格优先"})
-    clean = [o for o in price_first["offers"] if not o["tags"]]
+    clean = [o for o in price_first["offers"] if not o["tags"]
+             and o["match_report"]["status"] not in {"conflict", "ambiguous"}]
     assert price_first["top_pick"]["price"] == min(o["price"] for o in clean)
     shop_first = demo_refine_response(constraints={"preference": "优先自营/旗舰"})
     assert any(word in shop_first["top_pick"]["shop"] for word in ("自营", "旗舰"))

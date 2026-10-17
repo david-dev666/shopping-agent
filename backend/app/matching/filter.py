@@ -5,19 +5,10 @@
 
 import re
 
+from app.matching.brands import BRAND_ALIASES, _brand_genuine, _compatible_context, extract_brand
+from app.matching.identity import assess_offers
 from app.matching.specs import extract_generation, extract_version
 from app.models.offers import offer_key
-
-# 品牌词典（query 命中品牌后，标题必须兼容该品牌且不得出现竞品主词）
-BRAND_ALIASES = {
-    "小米": ["小米", "xiaomi", "xiaomi"],
-    "华为": ["华为", "huawei", "huawei"],
-    "荣耀": ["荣耀", "honor"],
-    "苹果": ["苹果", "apple"],
-    "三星": ["三星", "samsung"],
-    "oppo": ["oppo"],
-    "vivo": ["vivo"],
-}
 
 # 竞品判定：query 品牌未命中这些词时，标题出现即视为其他品牌商品
 RIVAL_BRANDS = [
@@ -45,9 +36,6 @@ RIVAL_BRANDS = [
     "埃微",
 ]
 
-# “适配/兼容”语境词：其后出现的品牌词是卖点描述，不算竞品
-COMPATIBLE_WORDS = ["适配", "兼容", "支持", "适用于"]
-
 # 二手 / 翻新特征（注：\b 对中文边界无效，用前后非数字断言）
 SECOND_HAND_RE = re.compile(
     r"二手|\d+\s*成新|(?<![0-9])9[59]\s*新(?![0-9])|(?<!未)拆封|翻新|官翻|回收"
@@ -73,42 +61,6 @@ ACCESSORY_WORDS = [
 
 # 主体词（任一命中则不是纯配件）
 SUBJECT_WORDS = ["手环", "手表", "band", "watch", " bracelet"]
-
-
-def extract_brand(query: str) -> str | None:
-    """从查询词提取明确品牌（最长优先）。"""
-    best = None
-    for brand, aliases in BRAND_ALIASES.items():
-        if any(a in query.lower() for a in aliases):
-            if best is None or len(brand) > len(best):
-                best = brand
-    return best
-
-
-def _compatible_context(title: str, word: str) -> bool:
-    """判断品牌词 word 首次出现位置是否在“适配/兼容”语境里。"""
-    idx = title.find(word)
-    prefix = title[max(0, idx - 12) : idx]
-    return any(c in prefix for c in COMPATIBLE_WORDS)
-
-
-def _brand_genuine(title: str, brand_alias: list[str]) -> bool:
-    """品牌词在标题中存在任一非“适配/兼容”语境的出现位置，即视为该品牌商品。
-
-    例如“小米手环9 适配华为手机”：小米开头（非兼容语境）→ 真小米；
-    “联想手表 适配苹果华为小米荣耀”：小米仅在兼容语境 → 非小米商品。
-    """
-    for a in brand_alias:
-        start = 0
-        while True:
-            idx = title.find(a, start)
-            if idx == -1:
-                break
-            prefix = title[max(0, idx - 12) : idx]
-            if not any(c in prefix for c in COMPATIBLE_WORDS):
-                return True
-            start = idx + 1
-    return False
 
 
 # 规则 → 标签文案（既是软标签，也是前端「排除标签」使用的显示名）
@@ -253,6 +205,7 @@ def filter_offers(offers: list, query: str) -> tuple[list, dict, list]:
                     tag(o, "low_sales")
 
     stats["kept"] = len(offers)
+    assess_offers(offers, query)
     return offers, stats, removed
 
 
@@ -276,6 +229,10 @@ def apply_filters(offers: list, spec) -> list:
         result = [o for o in result if offer_key(o) in ids]
     if spec.price_min is not None:
         result = [o for o in result if o.price >= spec.price_min]
+    if spec.match_status:
+        result = [
+            o for o in result if o.match_report and o.match_report.status == spec.match_status
+        ]
     if spec.price_max is not None:
         result = [o for o in result if o.price <= spec.price_max]
     return result

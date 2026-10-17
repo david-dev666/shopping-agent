@@ -5,11 +5,11 @@
 | 层 | 状态 |
 |---|---|
 | 采集 | 三平台 adapter；联盟 API 优先 + Kimi 浏览器 daemon 兜底；单 tab 串行；滑块不绕过 |
-| 标注 | 七条确定性规则打软标签、零剔除；`apply_tag_guard` 打标项排序降级；标签透传 LLM |
+| 标注 | 标题规格证据 + 七条确定性规则打软标签、零剔除；`apply_tag_guard` 打标项排序降级；标签透传 LLM |
 | 编排 | LangGraph 双入口：`intent→research→match→filters→decide→recommend` / `filters→decide→recommend`；每节点 trace 含 `elapsed_ms` |
 | 接口 | `/api/query`、`/api/chat`、`/api/chat/stream`、`/api/status`、`/api/refine`、`/api/rank`、`/api/feedback`、`/api/trace/{id}` |
 | 前端 | 双模式 + 响应式结果页 + 完整推荐卡 + 三件商品对比 + 筛选重排 + 轨迹回放 |
-| 工程化 | MIT、CI（ruff + pytest）、后端 236 项测试、前端 21 项测试；120 条开发回归样例（不是独立泛化评测）、采集耗时基准、显式样例入口、wheel 安装冒烟检查 |
+| 工程化 | MIT、CI（ruff + pytest）、后端 276 项测试、前端 26 项测试；120 条开发回归样例（不是独立泛化评测）、采集耗时基准、显式样例入口、wheel 安装冒烟检查 |
 
 ## 还差什么
 
@@ -40,3 +40,5 @@
 ## 查询与交互一致性
 
 新版前端默认显式请求 live；固定样例须主动点击，右上角仅保留“数据源”入口。直接比价的 5 分钟缓存有来源和年龄标记，可通过“重新采集”跳过；Agent 本轮仍不使用查询缓存。预算与侧重可直接编辑并复用报价重排，预算约束由代码执行；流式错误与协作停止保存部分 trace。
+
+标题规格证据 v1 已完成字段提取、四种状态、重排重算、混卖 / 冲突首选约束、证据面板和状态筛选。它不代表真实 SKU 或价格已验证；容量与套装、服务端快照、有限补查、自动追问和检查点恢复仍未完成，见 [07-title-evidence.md](07-title-evidence.md)。

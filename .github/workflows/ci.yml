@@ -45,4 +45,5 @@ jobs:
         run: |
           node --check backend/static/app.js
           node --check backend/static/stream.mjs
+          node --check backend/static/evidence.mjs
           node --test frontend/tests/*.test.mjs

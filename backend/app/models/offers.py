@@ -2,6 +2,8 @@ from datetime import UTC, datetime
 
 from pydantic import BaseModel, Field
 
+from app.models.identity import MatchReport
+
 PLATFORMS = ("jd", "taobao", "pdd")
 
 
@@ -20,6 +22,7 @@ class RawOffer(BaseModel):
     sales: int | None = Field(default=None, description="已售数量（件），未知为 None")
     # 动态标注（二手/低销量/价格异常等），不参与剔除，由用户交互过滤
     tags: list[str] = Field(default_factory=list)
+    match_report: MatchReport | None = None
     ts: datetime = Field(default_factory=lambda: datetime.now(UTC))
 
 

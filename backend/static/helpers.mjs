@@ -9,12 +9,13 @@ export function safeUrl(value) {
     return ['https:', 'http:'].includes(url.protocol) ? url.href : '';
   } catch { return ''; }
 }
-export const emptyFilters = () => ({ platforms: [], exclude_tags: [], spec: null, price_min: null, price_max: null });
+export const emptyFilters = () => ({ platforms: [], exclude_tags: [], spec: null, match_status: null, price_min: null, price_max: null });
 export function filterOffers(offers, filters, specs = {}) {
   const specKeys = filters.spec ? new Set(specs[filters.spec] || []) : null;
   return offers.filter(o => (!filters.platforms.length || filters.platforms.includes(o.platform))
     && !(o.tags || []).some(tag => filters.exclude_tags.includes(tag))
     && (!specKeys || specKeys.has(offerKey(o)))
+    && (!filters.match_status || o.match_report?.status === filters.match_status)
     && (filters.price_min == null || o.price >= filters.price_min)
     && (filters.price_max == null || o.price <= filters.price_max));
 }
@@ -27,7 +28,8 @@ export function validTopPick(data) {
   if (!data.top_pick || data.decision?.worth === 'skip') return null;
   const candidate = data.offers.find(o => offerKey(o) === offerKey(data.top_pick));
   const budget = data.intent?.budget;
-  if (!candidate || (candidate.tags || []).length || (budget != null && candidate.price > budget)) return null;
+  if (!candidate || (candidate.tags || []).length || (budget != null && candidate.price > budget)
+    || ['conflict', 'ambiguous'].includes(candidate.match_report?.status)) return null;
   return candidate;
 }
 export function readRecent(storage) {

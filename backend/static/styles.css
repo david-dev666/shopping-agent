@@ -1537,7 +1537,7 @@ dialog::backdrop {
 /* Consistent control rhythm and readable product details. */
 button,input,select { line-height:1.5; }
 .filter-options .chip { font-variant-numeric:tabular-nums; }
-#spec-filter { width:100%; }
+#spec-filter,#match-status { width:100%; }
 .filter-sidebar { scrollbar-width:thin; }
 .filter-foot { margin-top:24px; padding-top:20px; }
 .filter-foot p { margin:12px 0 0; }
@@ -2143,3 +2143,33 @@ body.is-busy #search-submit { cursor:progress; }
 .requirement-field:has(.field-error:not([hidden])) { max-width:220px; }
 .requirement-field>div:has([aria-invalid="true"]),.price-field:has([aria-invalid="true"]) { border-color:#bf654d; background:#fff8f5; }
 .requirements-editor:has([aria-invalid="true"]) .requirement-edit { color:#a34c37; }
+
+/* Title evidence is separate from ranking and never claims SKU verification. */
+.match-overview { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; padding:16px 20px; margin:-8px 0 24px; border:1px solid var(--line); border-radius:12px; background:#fff; }
+.match-overview strong { font-size:var(--text-body); }
+.match-overview p,.match-scope { margin:5px 0 0; font-size:var(--text-caption); color:var(--muted); line-height:1.6; }
+.match-counts { display:flex; flex-wrap:wrap; gap:7px; font-size:var(--text-caption); }
+.match-counts>span { border:1px solid var(--line); border-radius:6px; padding:4px 8px; color:var(--muted); }
+.match-counts b { margin-left:4px; font-variant-numeric:tabular-nums; }
+.match-counts>.conflict { color:#a34c37; border-color:#e9d4cb; }
+.match-counts>.ambiguous { color:#8b6b37; border-color:#e9dfc6; }
+.match-evidence { margin-top:14px; border-top:1px solid var(--line); padding-top:10px; font-size:var(--text-caption); color:var(--muted); }
+.match-evidence summary { display:flex; align-items:center; gap:7px; cursor:pointer; list-style:none; line-height:1.6; }
+.match-evidence summary::-webkit-details-marker { display:none; }
+.match-indicator { width:6px; height:6px; border-radius:50%; background:#81917c; flex-shrink:0; }
+.match-evidence.conflict .match-indicator { background:#b35a39; }
+.match-evidence.ambiguous .match-indicator { background:#ad853d; }
+.match-evidence.conflict summary { color:#a34c37; }
+.match-evidence.ambiguous summary { color:#8b6b37; }
+.match-expand { margin-left:auto; }
+.match-evidence[open] .match-expand { transform:rotate(180deg); }
+.match-reasons { padding-left:18px; margin:10px 0; }
+.match-fields { margin:12px 0 0; }
+.match-fields>div { display:grid; grid-template-columns:88px minmax(0,1fr); gap:12px; padding:10px 0; border-top:1px solid var(--line); }
+.match-fields dt { color:var(--ink); }
+.match-fields dt small { display:block; color:var(--muted); font-size:var(--text-caption); }
+.match-fields dd { margin:0; overflow-wrap:anywhere; }
+.match-fields dd span { display:block; }
+.match-fields q { display:block; margin-top:5px; padding:6px 9px; border-radius:5px; background:#f3f5ef; color:var(--ink); }
+.compare-table .match-evidence { margin:0; border:0; padding:0; }
+@media(max-width:700px) { .match-overview { padding:14px 16px; } .match-fields>div { grid-template-columns:70px minmax(0,1fr); gap:10px; } }
