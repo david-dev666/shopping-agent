@@ -68,7 +68,7 @@ def test_missing_version_is_unknown_not_standard():
 
 def test_compatibility_brand_does_not_become_product_brand():
     report = assess_match("小米手环9", "华为手环9 适配小米手机")
-    assert report.observed.brand == ["华为"]
+    assert next(c for c in report.checks if c.field == "brand").observed == ["华为"]
     assert report.status == "conflict"
 
 
@@ -138,8 +138,9 @@ def test_known_version_precedes_cheaper_unknown_version():
 def test_negative_version_and_feature_are_not_positive_requirements():
     report = assess_match("小米手环9 不需要NFC", "小米手环9 Pro支持NFC")
     assert report.status == "conflict"
-    assert report.requested.feature == []
-    assert report.requested.excluded["feature"] == ["NFC"]
+    feature = next(c for c in report.checks if c.field == "feature")
+    assert feature.requested == []
+    assert feature.excluded == ["NFC"]
 
 
 def test_all_mixed_or_conflicting_candidates_have_no_pick():
@@ -175,6 +176,10 @@ def test_rank_endpoint_path_rechecks_and_demotes_mixed_listing():
 def test_sample_and_http_serialization_include_real_title_evidence():
     data = demo_chat_response()
     assert all(o["match_report"]["source"] == "title_rules_v1" for o in data["offers"])
+    for candidate in data["offers"]:
+        report = candidate["match_report"]
+        assert report["checks"]
+        assert not {"query", "requested", "observed"}.intersection(report)
     assert data["top_pick"]["match_report"]["status"] not in {"conflict", "ambiguous"}
     mixed = demo_refine_response({"match_status": "ambiguous"})
     assert mixed["offers"] and mixed["top_pick"] is None

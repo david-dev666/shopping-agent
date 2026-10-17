@@ -10,11 +10,9 @@ from pydantic import BaseModel, Field
 
 from app.agents.llm_utils import invoke_json
 from app.config import get_settings
-from app.matching.filter import WARN_TAGS, apply_tag_guard
+from app.matching.filter import guard_ranking
 from app.matching.identity import (
     assess_offers,
-    evidence_allows_pick,
-    evidence_priority,
     prompt_evidence,
 )
 from app.models.offers import RawOffer
@@ -144,15 +142,4 @@ def rank_offers(query: str, offers: list[RawOffer]) -> dict:
         for i in missing:
             items.append({"index": i, "score": 0, "reason": ""})
 
-    # 确定性兜底：带警示标签的报价不得排在未打标报价之前
-    items = apply_tag_guard(items, offers)
-    items.sort(key=lambda item: (
-        not evidence_allows_pick(offers[item["index"]]),
-        bool(set(offers[item["index"]].tags) & WARN_TAGS),
-        evidence_priority(offers[item["index"]]),
-    ))
-    ceiling = 100
-    for item in items:
-        item["score"] = min(item["score"], ceiling)
-        ceiling = item["score"]
-    return {"items": items, "summary": result.summary}
+    return {"items": guard_ranking(items, offers), "summary": result.summary}

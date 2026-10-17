@@ -6,9 +6,9 @@
 import re
 
 from app.matching.brands import BRAND_ALIASES, _brand_genuine, _compatible_context, extract_brand
-from app.matching.identity import assess_offers
+from app.matching.identity import assess_offers, evidence_allows_pick, evidence_priority
 from app.matching.specs import extract_generation, extract_version
-from app.models.offers import offer_key
+from app.models.offers import RawOffer, offer_key
 
 # 竞品判定：query 品牌未命中这些词时，标题出现即视为其他品牌商品
 RIVAL_BRANDS = [
@@ -262,3 +262,29 @@ def apply_tag_guard(rank_items: list, offers: list) -> list:
         item["score"] = max(0, cap - i)
         demoted.append(item)
     return clean + demoted
+
+
+def eligible_indexes(offers: list[RawOffer], budget: float | None = None) -> set[int]:
+    return {
+        i
+        for i, o in enumerate(offers)
+        if not (set(o.tags) & WARN_TAGS)
+        and evidence_allows_pick(o)
+        and (budget is None or o.price <= budget)
+    }
+
+
+def guard_ranking(
+    rank_items: list[dict], offers: list[RawOffer], budget: float | None = None
+) -> list[dict]:
+    """统一预算、警示、规格证据的排序约束，并保持分数随名次不递增。"""
+    result = apply_tag_guard(rank_items, offers)
+    eligible = eligible_indexes(offers, budget)
+    result.sort(key=lambda item: (
+        item["index"] not in eligible, evidence_priority(offers[item["index"]])
+    ))
+    ceiling = 100
+    for item in result:
+        item["score"] = min(item["score"], ceiling)
+        ceiling = item["score"]
+    return result

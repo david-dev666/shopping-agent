@@ -30,16 +30,12 @@ class FieldMatch(BaseModel):
     requested: list[str]
     excluded: list[str] = Field(default_factory=list)
     observed: list[str]
-    query_evidence: list[str] = Field(default_factory=list)
     title_evidence: list[str] = Field(default_factory=list)
     explanation: str
 
 
 class MatchReport(BaseModel):
     status: Literal["compatible", "conflict", "ambiguous", "insufficient"]
-    query: str
-    requested: ProductIdentity
-    observed: ProductIdentity
     checks: list[FieldMatch]
     reasons: list[str]
     source: Literal["title_rules_v1"] = "title_rules_v1"

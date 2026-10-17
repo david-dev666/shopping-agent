@@ -86,11 +86,11 @@ def extract_identity(text: str) -> ProductIdentity:
     option_list = bool(re.search(rf"{variant}\s*[/、或]\s*{variant}", text, re.I))
     for match in hits["NFC版"]:
         add("feature", "NFC", match[0], excluded=not _positive(text, match.start()))
+    specific = any(
+        _positive(text, m.start())
+        for key in ("Pro", "陶瓷版", "标准版") for m in hits[key]
+    )
     for version, matches in hits.items():
-        specific = any(
-            _positive(text, m.start())
-            for key in ("Pro", "陶瓷版", "标准版") for m in hits[key]
-        )
         if version == "NFC版" and specific:
             explicit_nfc_variant = any(text[m.end():].startswith("版") for m in matches)
             if not option_list and not explicit_nfc_variant:
@@ -142,8 +142,6 @@ def assess_match(query: str, title: str) -> MatchReport:
                 requested=expected,
                 excluded=excluded,
                 observed=actual,
-                query_evidence=requested.evidence.get(field, [])
-                + requested.evidence.get(f"excluded.{field}", []),
                 title_evidence=observed.evidence.get(field, [])
                 + observed.evidence.get(f"excluded.{field}", []),
                 explanation=explanation,
@@ -165,9 +163,6 @@ def assess_match(query: str, title: str) -> MatchReport:
         reasons.append("需求缺少可识别的具体型号或代数，仅凭标题不能确认同款")
     return MatchReport(
         status=status,
-        query=query,
-        requested=requested,
-        observed=observed,
         checks=checks,
         reasons=reasons or ["已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"],
     )
@@ -199,7 +194,7 @@ def prompt_evidence(offer: RawOffer) -> str:
     return json.dumps(
         {
             "status": report.status,
-            "attributes": report.observed.model_dump(exclude={"evidence", "ambiguities"}),
+            "attributes": {c.field: c.observed for c in report.checks if c.observed},
             "reasons": report.reasons,
             "sku_verified": False,
             "price_verified": False,

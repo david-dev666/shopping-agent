@@ -27,11 +27,15 @@ from app.adapters.registry import get_adapters, search_all
 from app.agents.llm_utils import invoke_json
 from app.agents.ranker import RankedItem
 from app.config import get_settings
-from app.matching.filter import WARN_TAGS, apply_filters, apply_tag_guard, filter_offers
+from app.matching.filter import (
+    WARN_TAGS,
+    apply_filters,
+    eligible_indexes,
+    filter_offers,
+    guard_ranking,
+)
 from app.matching.identity import (
     assess_offers,
-    evidence_allows_pick,
-    evidence_priority,
     prompt_evidence,
 )
 from app.matching.specs import group_specs
@@ -322,16 +326,6 @@ def _cheapest_fallback(offers: list[RawOffer], preference: str = "") -> dict:
     }
 
 
-def eligible_indexes(offers: list[RawOffer], budget: float | None) -> set[int]:
-    return {
-        i
-        for i, o in enumerate(offers)
-        if not (set(o.tags) & WARN_TAGS)
-        and evidence_allows_pick(o)
-        and (budget is None or o.price <= budget)
-    }
-
-
 def node_decide(state: AgentState) -> dict:
     """一次 LLM 推理同时产出决策与全量排序，保证二者自洽。"""
     trace = _pop_trace(state)
@@ -390,16 +384,8 @@ def node_decide(state: AgentState) -> dict:
     for i in missing:
         rank_items.append({"index": i, "score": 0, "reason": ""})
 
-    # 确定性兜底：带警示标签的报价不得排在未打标报价之前
-    rank_items = apply_tag_guard(rank_items, offers)
-
+    rank_items = guard_ranking(rank_items, offers, budget)
     eligible = eligible_indexes(offers, budget)
-    # 预算和警示条件由代码执行，不依赖提示词承诺。
-    rank_items.sort(
-        key=lambda item: (
-            item["index"] not in eligible, evidence_priority(offers[item["index"]])
-        )
-    )
     if not eligible:
         over_budget = budget is not None and all(o.price > budget for o in offers)
         decision.update(
@@ -424,10 +410,6 @@ def node_decide(state: AgentState) -> dict:
             confidence=0,
             reason="首选仍缺少需求中的明确规格证据，请先核对标题未说明的属性和实际 SKU",
         )
-    ceiling = 100
-    for item in rank_items:
-        item["score"] = min(item["score"], ceiling)
-        ceiling = item["score"]
     top_summary = rank_items[0] if rank_items else None
     trace.step(
         "decide",

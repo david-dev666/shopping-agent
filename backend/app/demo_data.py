@@ -19,8 +19,8 @@ def _load(name: str) -> dict:
 
 def _normalized(name: str) -> dict:
     """保留冻结报价，使用当前规则更新标签、分组和展示口径。"""
-    from app.matching.filter import apply_tag_guard, filter_offers
-    from app.matching.identity import evidence_allows_pick, evidence_priority
+    from app.matching.filter import filter_offers, guard_ranking
+    from app.matching.identity import evidence_allows_pick
     from app.matching.specs import group_specs
     from app.models.offers import RawOffer, offer_key
 
@@ -37,14 +37,7 @@ def _normalized(name: str) -> dict:
         specs={spec: [offer_key(o) for o in group] for spec, group in group_specs(offers).items()},
     )
     if "rank_items" in data:
-        data["rank_items"] = apply_tag_guard(data["rank_items"], offers)
-        data["rank_items"].sort(
-            key=lambda item: (
-                not evidence_allows_pick(offers[item["index"]]),
-                bool(offers[item["index"]].tags),
-                evidence_priority(offers[item["index"]]),
-            )
-        )
+        data["rank_items"] = guard_ranking(data["rank_items"], offers)
         eligible = [
             item for item in data["rank_items"]
             if not offers[item["index"]].tags and evidence_allows_pick(offers[item["index"]])
