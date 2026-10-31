@@ -1,5 +1,6 @@
 from functools import lru_cache
 
+from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -18,6 +19,10 @@ class Settings(BaseSettings):
     # Kimi 浏览器扩展 daemon（用户真实浏览器登录态采集）
     webbridge_enabled: bool = True
     webbridge_base_url: str = "http://127.0.0.1:10086"
+
+    collection_workers: int = Field(default=4, ge=1, le=32)
+    collection_capacity: int = Field(default=16, ge=1, le=1000)
+    collection_timeout_seconds: float = Field(default=45, gt=0, le=600)
 
     tavily_api_key: str = ""
 

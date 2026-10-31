@@ -2,9 +2,11 @@ from contextlib import asynccontextmanager
 from pathlib import Path
 
 from fastapi import FastAPI
+from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from app.api.routes import router
+from app.collection import CollectionBusy, close_collection_pool
 from app.storage.db import init_db
 
 PACKAGE_DIR = Path(__file__).resolve().parent
@@ -17,10 +19,18 @@ if not STATIC_DIR.is_dir():
 @asynccontextmanager
 async def lifespan(_: FastAPI):
     init_db()
-    yield
+    try:
+        yield
+    finally:
+        close_collection_pool()
 
 
 app = FastAPI(title="shopping-agent", version="0.0.1", lifespan=lifespan)
+
+
+@app.exception_handler(CollectionBusy)
+async def collection_busy(request, exc):
+    return JSONResponse(status_code=429, content={"detail": str(exc)}, headers={"Retry-After": "2"})
 
 
 @app.get("/health")

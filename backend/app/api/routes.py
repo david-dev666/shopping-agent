@@ -7,10 +7,11 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, ConfigDict, Field
 from starlette.concurrency import run_in_threadpool
 
-from app.adapters.registry import get_adapters, search_all
+from app.adapters.registry import get_adapters
 from app.agents.graph import run_agent, run_refine
 from app.agents.ranker import rank_offers
 from app.api.streaming import agent_events, encode_event
+from app.collection import CollectionBusy, get_collection_pool, search_all
 from app.config import get_settings
 from app.demo_data import (
     demo_chat_response,
@@ -137,7 +138,11 @@ async def query_products(req: QueryRequest) -> QueryResponse:
     )
     resp = QueryResponse(**snapshot_response(response_data))
     # 滑块验证导致的失败不缓存：用户完成验证后立即重搜应触发真实采集
-    needs_verify = any("NEED_MANUAL_VERIFY" in e for e in errors.values())
+    needs_verify = any(
+        any(code in e for code in ("NEED_MANUAL_VERIFY", "CollectionBusy",
+                                   "CollectionExpired", "CollectionStopped", "TimeoutError"))
+        for e in errors.values()
+    )
     if not needs_verify:
         # 即使本次结果为空也缓存：风控/临时故障期间避免高频重试加重风控
         now = time.time()
@@ -183,6 +188,8 @@ async def chat(req: ChatRequest) -> dict:
         return snapshot_response(demo_chat_response())
     try:
         return snapshot_response(await run_in_threadpool(run_agent, q))
+    except CollectionBusy:
+        raise
     except RuntimeError as e:
         raise HTTPException(status_code=503, detail=str(e)) from e
 
@@ -224,6 +231,8 @@ async def refine(req: RefineRequest) -> dict:
                 snapshot["intent"],
                 constraints,
             )
+        except CollectionBusy:
+            raise
         except RuntimeError as e:
             raise HTTPException(status_code=503, detail=str(e)) from e
     # 始终引用初始全量快照，放宽筛选时可恢复候选，不重写已保存的报价。
@@ -248,6 +257,8 @@ async def rank_products(req: RankRequest) -> dict:
         raise HTTPException(status_code=400, detail="offers 为空，无需排序")
     try:
         return await run_in_threadpool(rank_offers, req.query, req.offers)
+    except CollectionBusy:
+        raise
     except RuntimeError as e:
         raise HTTPException(status_code=503, detail=str(e)) from e
 
@@ -259,6 +270,7 @@ def status() -> dict:
     return {
         "demo": settings.demo_mode,
         "llm_configured": bool(settings.llm_api_key),
+        "collection": get_collection_pool().stats(),
         "sources": [
             {
                 "platform": a.platform,

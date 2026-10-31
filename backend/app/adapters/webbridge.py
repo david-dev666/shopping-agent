@@ -6,6 +6,7 @@ from contextlib import asynccontextmanager
 
 import httpx
 
+from app.collection import check_collection
 from app.config import get_settings
 from app.models.offers import RawOffer
 
@@ -157,24 +158,36 @@ class WebBridgeClient:
         self.session = session
         self.timeout = timeout
         self._lock = threading.Lock()
+        self._uncertain = False
 
     @asynccontextmanager
     async def _get_lock(self):
         # Agent 运行在线程池，各有独立事件循环，但共用同一个浏览器 tab。
         # 非阻塞获取线程锁，取消等待不会遗留后台 acquire 任务。
+        check_collection()
         while not self._lock.acquire(blocking=False):
+            check_collection()
             await asyncio.sleep(0.05)
         try:
+            check_collection()
+            if self._uncertain:
+                raise RuntimeError("浏览器命令状态未知，请确认 daemon 空闲后重启应用")
             yield
         finally:
             self._lock.release()
 
     async def command(self, action: str, args: dict) -> dict:
+        check_collection()
         payload = {"action": action, "args": args, "session": self.session}
-        async with httpx.AsyncClient(timeout=self.timeout) as client:
-            resp = await client.post(f"{self.base_url}/command", json=payload)
-            resp.raise_for_status()
-            body = resp.json()
+        try:
+            async with httpx.AsyncClient(timeout=self.timeout) as client:
+                resp = await client.post(f"{self.base_url}/command", json=payload)
+                resp.raise_for_status()
+                body = resp.json()
+        except httpx.TransportError:
+            # Losing the HTTP response does not prove the browser action stopped.
+            self._uncertain = True
+            raise
         if not body.get("ok"):
             err = body.get("error", {})
             raise RuntimeError(
@@ -217,6 +230,8 @@ PAGE_READY = {
 
 
 class WebBridgeAdapter:
+    serial_browser = True
+
     """通过用户真实浏览器（已登录态）采集单个平台的搜索报价。
 
     仅在对应联盟 API 未配置时启用，配置了 API key 的平台优先走官方接口。
@@ -236,6 +251,7 @@ class WebBridgeAdapter:
         deadline = asyncio.get_event_loop().time() + conf["max_wait"]
         raw = None
         while True:
+            check_collection()
             raw = await client.evaluate_json(EXTRACTORS[self.platform])
             # 验证页直接返回（captcha 标记），非空列表即就绪
             if isinstance(raw, dict) or (isinstance(raw, list) and raw):
@@ -253,6 +269,7 @@ class WebBridgeAdapter:
         async with client._get_lock():
             await client.navigate(url)
             raw = await self._extract_until_ready(client)
+            check_collection()
 
         # 滑块/风控验证：不绕过（项目边界），提示用户手点
         if isinstance(raw, dict) and raw.get("captcha"):

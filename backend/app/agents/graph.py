@@ -23,9 +23,10 @@ from langchain_openai import ChatOpenAI
 from langgraph.graph import END, StateGraph
 from pydantic import BaseModel, Field
 
-from app.adapters.registry import get_adapters, search_all
+from app.adapters.registry import get_adapters
 from app.agents.llm_utils import invoke_json
 from app.agents.ranker import RankedItem
+from app.collection import request_cancel, search_all
 from app.config import get_settings
 from app.matching.filter import (
     WARN_TAGS,
@@ -620,6 +621,7 @@ def stream_agent(query: str, cancelled: Event | None = None) -> Iterator[dict]:
             for step in final.get("steps", [])
         ]
 
+    cancel_token = request_cancel.set(cancelled)
     try:
         yield {"event": "progress", "node": "intent", "status": "running", "trace_id": trace_id}
         while not cancelled.is_set():
@@ -667,6 +669,7 @@ def stream_agent(query: str, cancelled: Event | None = None) -> Iterator[dict]:
         )
         raise
     finally:
+        request_cancel.reset(cancel_token)
         iterator.close()
         if cancelled.is_set():
             save_trace(
