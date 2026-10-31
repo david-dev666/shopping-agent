@@ -1,0 +1,20 @@
+{
+  "revision": "306ab58dedbc68d66799cd5577754aac485827e9",
+  "app_source_sha256": "f2fec1cb7f7936631c9304a81215dc2b82993c90e691e49f34d8f562c466b95c",
+  "system": "macOS-26.5.1-arm64-arm-64bit",
+  "python": "3.11.15",
+  "endpoint": "/api/chat",
+  "delay_seconds": 15.0,
+  "sample_scope": "仅统计三平台完整返回样本，不用于估计成功率或可用性",
+  "complete_samples": 3,
+  "queries": [
+    "预算300元买小米手环9 NFC版",
+    "预算300元买华为手环9",
+    "预算300元买荣耀手环9"
+  ],
+  "mean_ms": 13185.039999999999,
+  "min_ms": 12148.47,
+  "max_ms": 14459.89,
+  "sample_mode": false,
+  "cache_bypassed": true
+}

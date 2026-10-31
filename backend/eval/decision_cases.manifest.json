@@ -1,0 +1,8 @@
+{
+  "n_cases": 18,
+  "groups": 6,
+  "sha256": "8b2b80707944f7abfcdc2946a4c8f72093a1e6555597f696ca54ddb9cf86d874",
+  "labels_frozen_before_running": true,
+  "independent_ground_truth": false,
+  "scope": "自建候选约束场景，不代表真实商品推荐准确率"
+}
