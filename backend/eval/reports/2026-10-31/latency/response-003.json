@@ -1,0 +1,4330 @@
+{
+  "trace_id": "df928cc89555",
+  "origin": "live",
+  "demo": false,
+  "cached": false,
+  "completed_at": "2026-10-31T14:52:47.450074+00:00",
+  "query": "预算300元买荣耀手环9",
+  "intent": {
+    "product": "荣耀手环9",
+    "budget": 300.0,
+    "preference": ""
+  },
+  "offers": [
+    {
+      "platform": "jd",
+      "platform_id": "10233565516091",
+      "title": "荣耀适用于荣耀手环9/10表带液态硅胶腕带honor智能运动手环九十代男女同款透气舒适替换带夏季非原装 星光色表带 适用于：荣耀手环9/10",
+      "price": 15.8,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10233565516091.html",
+      "image": "https://img11.360buyimg.com/n2/s480x480_jfs/t1/499136/10/12979/24839/6a8ca524F4a96c46b/00833203209a7ff8.jpg.avif",
+      "shop": "臻兴数码配件经营部",
+      "sales": null,
+      "tags": [
+        "配件",
+        "价格异常"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "ambiguous",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9",
+              "10"
+            ],
+            "title_evidence": [
+              "手环9/10"
+            ],
+            "explanation": "标题列出多个代数，无法对应单一报价"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题包含多个代数，无法确认此报价对应哪一代",
+          "标题列出多个代数，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:41.435181Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10233451800444",
+      "title": "荣耀适用于荣耀手环9/10表带nfc版米兰尼斯磁吸腕带智能运动手环九十代三株金属替换带HONORband9表链 米兰磁吸表带太空灰 适用：荣耀手环9/9NFC版",
+      "price": 23.8,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10233451800444.html",
+      "image": "https://img14.360buyimg.com/n2/s480x480_jfs/t1/510825/3/3095/95146/6a8b094eF568b1b92/0083320320210b82.jpg.avif",
+      "shop": "臻兴数码配件经营部",
+      "sales": null,
+      "tags": [
+        "配件",
+        "价格异常"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "ambiguous",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9",
+              "10"
+            ],
+            "title_evidence": [
+              "手环9/10",
+              "band9",
+              "手环9/9NFC",
+              "9NFC"
+            ],
+            "explanation": "标题列出多个代数，无法对应单一报价"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "nfc",
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "nfc",
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题以斜线列出多个版本，无法确认此报价对应的 SKU",
+          "标题包含多个代数，无法确认此报价对应哪一代",
+          "标题列出多个代数，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:41.435181Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "937988276625",
+      "title": "二手荣耀手环9NFC版轻薄双曲面心脏健康守护14天超长续航智能手环",
+      "price": 90.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=937988276625",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i3/684688891/O1CN014UPyO22FY8U26Kbs2_!!684688891.jpg_580x580q90.jpg",
+      "shop": "d[s65730050]",
+      "sales": 100,
+      "tags": [
+        "疑似二手"
+      ],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9NFC",
+              "9NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "二手"
+            ],
+            "title_evidence": [
+              "二手"
+            ],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:39.196268Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10235513003218",
+      "title": "荣耀（HONOR）手环9 智能手环轻薄双曲面心率健康守护运动表 荣耀手环 9 曜石黑 标准版",
+      "price": 129.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10235513003218.html",
+      "image": "https://img13.360buyimg.com/n2/s480x480_jfs/t1/524226/32/5201/80083/6aaa287aFc8439d72/00835dc5dcf465d9.jpg.avif",
+      "shop": "鸿蒙智选数码店",
+      "sales": 200,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9",
+              "手环 9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "标准版"
+            ],
+            "title_evidence": [
+              "标准版"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:41.435181Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "780192159144",
+      "title": "全新官方正品荣耀智能手环9NFC运动手环7检测心脏健康防水双曲面",
+      "price": 134.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=780192159144",
+      "image": "https://g-search2.alicdn.com/img/bao/uploaded/i4/i4/47565960/O1CN01Ec0gJy1ttjUpmGjbD_!!47565960.png_580x580q90.jpg",
+      "shop": "数码地带",
+      "sales": 100,
+      "tags": [],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "ambiguous",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9",
+              "7"
+            ],
+            "title_evidence": [
+              "手环9NFC",
+              "手环7",
+              "9NFC"
+            ],
+            "explanation": "标题列出多个代数，无法对应单一报价"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "全新"
+            ],
+            "title_evidence": [
+              "全新"
+            ],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题包含多个代数，无法确认此报价对应哪一代",
+          "标题列出多个代数，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:39.196268Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "777216054292",
+      "title": "荣耀手环9智能运动跑步超薄血氧心率蓝牙手表多功能游泳男女通用",
+      "price": 139.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=777216054292",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i2/2213996304848/O1CN01ragS601lgR4GmHOjg_!!2213996304848.jpg_580x580q90.jpg",
+      "shop": "盛华数码严选店",
+      "sales": 200,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:39.196268Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "962906532243",
+      "title": "荣耀手环9 标准版/NFC版1.57英寸轻薄双曲面心脏健康守护智能手环",
+      "price": 139.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=962906532243",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i1/2219967775840/O1CN01B89uQU1t0m8sSdkx9_!!2219967775840.jpg_580x580q90.jpg",
+      "shop": "千里驹数码严选店",
+      "sales": 35,
+      "tags": [
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC版",
+              "标准版"
+            ],
+            "title_evidence": [
+              "NFC",
+              "标准版"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题包含多个版本，无法确认此报价对应哪个版本"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:39.196268Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "857440989904",
+      "title": "荣耀手环9智能9NFC运动血氧心脏健康监测跑步计步长续航防水游泳",
+      "price": 139.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=857440989904",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i1/2712087706/O1CN01N7sI0k26nP60DluV3_!!2712087706.jpg_580x580q90.jpg",
+      "shop": "多要数码严选店",
+      "sales": 52,
+      "tags": [
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9",
+              "9NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:39.196268Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "1006705717656",
+      "title": "荣耀手环9标准版轻薄双曲面心脏健康守护14天超长续航智能手环",
+      "price": 140.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=1006705717656",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i4/2742537042/O1CN01erNSV621tID05qUVS_!!2742537042.jpg_580x580q90.jpg",
+      "shop": "爱生活数码",
+      "sales": 72,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "标准版"
+            ],
+            "title_evidence": [
+              "标准版"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:39.196268Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "100377491760",
+      "title": "荣耀手环11 18天长续航 睡眠健康监测 羽毛球模式 运动手环 智能手环 黑色 送男友送女友 国家补贴",
+      "price": 146.31,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/100377491760.html",
+      "image": "https://img10.360buyimg.com/n2/s480x480_jfs/t20271014/535403/6/2182/163026/6acf8ec8Fb066e983/0944320320936393.jpg.avif",
+      "shop": "荣耀京东自营旗舰店",
+      "sales": 20000,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "conflict",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "11"
+            ],
+            "title_evidence": [
+              "手环11"
+            ],
+            "explanation": "需求与标题中的代数不一致"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "黑色"
+            ],
+            "title_evidence": [
+              "黑色"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的代数不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:41.435181Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10169126269016",
+      "title": "荣耀手环9 标准版 1.57英寸轻薄双曲面 心脏健康守护 14天超长续航  男女时尚腕表心脏健康守护 荣耀手环9 标准版【曜石黑】",
+      "price": 148.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10169126269016.html",
+      "image": "https://img11.360buyimg.com/n2/s480x480_jfs/t1/234087/12/36571/47857/688cd281F4ffbd21a/e2380a756095922b.jpg.avif",
+      "shop": "荣耀(HONOR)授权专卖店",
+      "sales": 600,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "标准版"
+            ],
+            "title_evidence": [
+              "标准版"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:41.435181Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10169126312295",
+      "title": "荣耀手环9 标准版/NFC版 1.57英寸轻薄双曲面 心脏健康守护 14天超长续航NFC移动支付智能手环运动手环 荣耀手环9标准版【曜石黑】",
+      "price": 148.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10169126312295.html",
+      "image": "https://img10.360buyimg.com/n2/s480x480_jfs/t1/308234/1/21173/38576/688cd281Fbad6fac9/6264c16db64428fd.jpg.avif",
+      "shop": "荣耀(HONOR)授权专卖店",
+      "sales": 200,
+      "tags": [],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC版",
+              "标准版"
+            ],
+            "title_evidence": [
+              "NFC",
+              "标准版"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题包含多个版本，无法确认此报价对应哪个版本"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:41.435181Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10101247612195",
+      "title": "血氧心率5代跑步荣耀手环9曜石黑",
+      "price": 148.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10101247612195.html",
+      "image": "https://img10.360buyimg.com/n2/s480x480_jfs/t1/227243/40/16454/54462/661cb932F3e742de7/0a3545b2cf3cc6f4.jpg.avif",
+      "shop": "荣耀(HONOR)授权臻品专卖店",
+      "sales": 8000,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:41.435181Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10098908985141",
+      "title": "荣耀手环9健康监测长续航运动防水NFC公交移动支付学生男女时尚腕表心脏健康守护14天超长续航 荣耀手环9标准版【曜石黑】+贴膜*2",
+      "price": 148.05,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10098908985141.html",
+      "image": "https://img11.360buyimg.com/n2/s480x480_jfs/t1/206073/23/40431/51936/65fd0934F81aef459/cca8e3f66f053e08.jpg.avif",
+      "shop": "荣耀(HONOR)授权臻品专卖店",
+      "sales": 5000,
+      "tags": [
+        "配件"
+      ],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "标准版"
+            ],
+            "title_evidence": [
+              "标准版"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:41.435181Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10099064741758",
+      "title": "荣耀（HONOR）手环9 标准版/NFC版心脏健康守护血氧心率睡眠监测长续航NFC移动支付男女时尚腕带轻薄双曲面 荣耀手环9标准版【曜石黑】",
+      "price": 148.05,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10099064741758.html",
+      "image": "https://img13.360buyimg.com/n2/s480x480_jfs/t1/315723/17/11356/47009/6856608aF82d64e6b/a5ccd1d34ddccba3.jpg.avif",
+      "shop": "荣耀(HONOR)授权臻品专卖店",
+      "sales": 500,
+      "tags": [
+        "配件"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC版",
+              "标准版"
+            ],
+            "title_evidence": [
+              "NFC",
+              "标准版"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题包含多个版本，无法确认此报价对应哪个版本"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:41.435181Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "782498765662",
+      "title": "荣耀手环9标准版/NFC版智能运动手环心率血氧睡眠检测心脏健康",
+      "price": 149.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=782498765662",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i4/3708214343/O1CN01j0ipVc1hx93mwUiCy_!!3708214343.jpg_580x580q90.jpg",
+      "shop": "谦和数码",
+      "sales": 300,
+      "tags": [],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC版",
+              "标准版"
+            ],
+            "title_evidence": [
+              "NFC",
+              "标准版"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题包含多个版本，无法确认此报价对应哪个版本"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:39.196268Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "779827496397",
+      "title": "荣耀手环9标准版/NFC版智能运动手环心率血氧睡眠检测心脏健康",
+      "price": 149.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=779827496397",
+      "image": "https://g-search1.alicdn.com/img/bao/uploaded/i4/i1/2401606177/O1CN01TZ9jG71vV7Rf7tUqs_!!2401606177.jpg_580x580q90.jpg",
+      "shop": "酷品潮电",
+      "sales": 100,
+      "tags": [],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC版",
+              "标准版"
+            ],
+            "title_evidence": [
+              "NFC",
+              "标准版"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题包含多个版本，无法确认此报价对应哪个版本"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:39.196268Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "1053038917024",
+      "title": "荣耀手环9标准版轻薄双曲面 心脏健康守护 超长续航 智能运动手环",
+      "price": 149.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=1053038917024",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i4/856037114/O1CN01aHkSYW22QGkmroHBa_!!856037114.jpg_580x580q90.jpg",
+      "shop": "辰光智能数码店",
+      "sales": 600,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "标准版"
+            ],
+            "title_evidence": [
+              "标准版"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:39.196268Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "1025305627271",
+      "title": "荣耀手环9标准版轻薄双曲面心脏健康守护14天超长续航智能手环",
+      "price": 158.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=1025305627271",
+      "image": "https://g-search1.alicdn.com/img/bao/uploaded/i4/i2/2216383994397/O1CN01swTwq41iLscu4cr30_!!2216383994397.jpg_580x580q90.jpg",
+      "shop": "瑞宸数码电子科技",
+      "sales": 10,
+      "tags": [
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "标准版"
+            ],
+            "title_evidence": [
+              "标准版"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:39.196268Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10098760432743",
+      "title": "荣耀手环9 标准版/NFC版 1.57英寸轻薄双曲面 心脏健康守护 14天超长续航 心率智能手环运动手环 荣耀手环9-NFC版-晨辉紫 赠贴膜*2",
+      "price": 184.5,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10098760432743.html",
+      "image": "https://img13.360buyimg.com/n2/s480x480_jfs/t1/338972/37/19907/70515/68eccc44Fa7cce45e/83dae6ff949d5b0f.jpg.avif",
+      "shop": "荣耀智能手表旗舰店",
+      "sales": 2000,
+      "tags": [],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC版",
+              "标准版"
+            ],
+            "title_evidence": [
+              "NFC",
+              "标准版"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题包含多个版本，无法确认此报价对应哪个版本"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:41.435181Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10098686071739",
+      "title": "荣耀手环9 标准版/NFC版 1.57英寸轻薄双曲面 心脏健康守护 14天超长续航 智能手环运动手环 荣耀手环9-NFC版-晨辉紫 赠贴膜*2",
+      "price": 184.5,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10098686071739.html",
+      "image": "https://img14.360buyimg.com/n2/s480x480_jfs/t1/338972/37/19907/70515/68eccc44Fa7cce45e/83dae6ff949d5b0f.jpg.avif",
+      "shop": "荣耀智能手表旗舰店",
+      "sales": 6000,
+      "tags": [],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC版",
+              "标准版"
+            ],
+            "title_evidence": [
+              "NFC",
+              "标准版"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题包含多个版本，无法确认此报价对应哪个版本"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:41.435181Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "775661783451",
+      "title": "荣耀手环9智能运动男士手表睡眠心率血氧健康监测游泳防水多功能8跑步计步nfc商务女款官方旗舰",
+      "price": 209.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://detail.tmall.com/item.htm?id=775661783451",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i1/3062216912/O1CN01iUa0cg20vkXtGvAXl_!!0-item_pic.jpg_580x580q90.jpg",
+      "shop": "淘流数码专营店",
+      "sales": 92,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "nfc"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "nfc"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:39.196268Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "775659455620",
+      "title": "荣耀手环9 标准版/NFC版 1.57英寸轻薄双曲面 心脏健康守护 14天超长续航 智能手环运动手环",
+      "price": 209.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://detail.tmall.com/item.htm?id=775659455620",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i4/2454314990/O1CN01XPZ55j1mjTRhIaRaw_!!4611686018427387886-0-item_pic.jpg_580x580q90.jpg",
+      "shop": "美时数码专营店",
+      "sales": 19,
+      "tags": [
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC版",
+              "标准版"
+            ],
+            "title_evidence": [
+              "NFC",
+              "标准版"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题包含多个版本，无法确认此报价对应哪个版本"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:39.196268Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10234836336128",
+      "title": "荣耀（HONOR）手环9智能运动跑步超薄血氧心率蓝牙手表多功能游泳男女通用 颜色分类:手环9 标准版【曜石黑】送贴膜*2",
+      "price": 228.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10234836336128.html",
+      "image": "https://img13.360buyimg.com/n2/s480x480_jfs/t1/516671/22/7833/37710/6a9fad27Fe9db8f4a/0083320320964432.jpg.avif",
+      "shop": "氪物集数码店",
+      "sales": null,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "标准版"
+            ],
+            "title_evidence": [
+              "标准版"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:41.435181Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "100307274265",
+      "title": "小米手环11 黑色 新款 国家补贴 智能手环 纤薄机身 运动健康管理 专业睡眠监测 初高中生",
+      "price": 244.8,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/100307274265.html",
+      "image": "https://img10.360buyimg.com/n2/s480x480_jfs/t1/542472/27/3520/54736/6ac8c458Fa0f0d199/00833203206145a0.jpg.avif",
+      "shop": "小米京东自营旗舰店",
+      "sales": 300000,
+      "tags": [
+        "其他品牌"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "conflict",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "需求与标题中的品牌不一致"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "conflict",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "11"
+            ],
+            "title_evidence": [
+              "手环11"
+            ],
+            "explanation": "需求与标题中的代数不一致"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "黑色"
+            ],
+            "title_evidence": [
+              "黑色"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的品牌不一致",
+          "需求与标题中的代数不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:41.435181Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10237290333861",
+      "title": "荣耀手环9 智能手环心脏健康监测长续航运动监测手表健康守护 标准版曜石黑",
+      "price": 249.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10237290333861.html",
+      "image": "https://img11.360buyimg.com/n2/s480x480_jfs/t20271030/562465/40/3106/73724/6ae44e83Fadec04a1/0944320320286e52.jpg.avif",
+      "shop": "云端数码产品店",
+      "sales": null,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "标准版"
+            ],
+            "title_evidence": [
+              "标准版"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:41.435181Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "775605087939",
+      "title": "HONOR/荣耀手环9智能运动手环心脏心率血氧健康运动监测计步长续航多功能手表男女官方旗舰正品",
+      "price": 258.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://detail.tmall.com/item.htm?id=775605087939",
+      "image": "https://g-search2.alicdn.com/img/bao/uploaded/i4/i4/2200700687819/O1CN01PgCe1P27d9xdxwKPh_!!4611686018427385291-0-item_pic.jpg_580x580q90.jpg",
+      "shop": "荣耀进多专卖店",
+      "sales": 700,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:39.196268Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "902549327031",
+      "title": "荣耀手环9 智能手环运动手环11手表心率血氧监测NFC智能运动男女多功能续航防水游泳睡眠门禁卡HONOR旗舰正品",
+      "price": 289.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://detail.tmall.com/item.htm?id=902549327031",
+      "image": "https://g-search2.alicdn.com/img/bao/uploaded/i4/i3/2200783956743/O1CN01OSQO1E1zgLpPpfRlE_!!4611686018427382535-0-item_pic.jpg_580x580q90.jpg",
+      "shop": "诺信达数码专营店",
+      "sales": 400,
+      "tags": [],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "ambiguous",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9",
+              "11"
+            ],
+            "title_evidence": [
+              "手环9",
+              "手环11"
+            ],
+            "explanation": "标题列出多个代数，无法对应单一报价"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题包含多个代数，无法确认此报价对应哪一代",
+          "标题列出多个代数，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:39.196268Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "773743386426",
+      "title": "Honor荣耀手环9NFC智能运动手环心脏健康跑步监测长续航多功能手环男女情侣款通用来电提醒健康监测手环",
+      "price": 299.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://detail.tmall.com/item.htm?id=773743386426",
+      "image": "https://g-search1.alicdn.com/img/bao/uploaded/i4/i2/2202871297035/O1CN01oIHgfh21q5RgdPrha_!!4611686018427384843-0-item_pic.jpg_580x580q90.jpg",
+      "shop": "荣耀维斯特专卖店",
+      "sales": 900,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9NFC",
+              "9NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:39.196268Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10232180484272",
+      "title": "荣耀（HONOR）手环9/10智能手环轻薄双曲面心率健康守护运动表礼物 荣耀手环10 海岸蓝 标准版",
+      "price": 305.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10232180484272.html",
+      "image": "https://img12.360buyimg.com/n2/s480x480_jfs/t1/491595/7/11683/38366/6a7b2985F5d1da15e/0083320320abe7c9.jpg.avif",
+      "shop": "浩燚数码店",
+      "sales": null,
+      "tags": [],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "荣耀"
+            ],
+            "excluded": [],
+            "observed": [
+              "荣耀"
+            ],
+            "title_evidence": [
+              "荣耀"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "ambiguous",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9",
+              "10"
+            ],
+            "title_evidence": [
+              "手环9/10",
+              "手环10"
+            ],
+            "explanation": "标题列出多个代数，无法对应单一报价"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "标准版"
+            ],
+            "title_evidence": [
+              "标准版"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题包含多个代数，无法确认此报价对应哪一代",
+          "标题列出多个代数，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:52:41.435181Z"
+    }
+  ],
+  "filter_stats": {
+    "total": 30,
+    "rival": 1,
+    "accessory": 4,
+    "off_brand": 0,
+    "model_mismatch": 1,
+    "second_hand": 1,
+    "low_sales": 4,
+    "price_outlier": 2,
+    "kept": 30
+  },
+  "errors": {},
+  "decision": {
+    "engine": "llm",
+    "worth": "buy",
+    "confidence": 78,
+    "reason": "预算300元内可买到荣耀手环9标准版，京东授权店约148元、销量数千，规格匹配且无警示标签，性价比合理。"
+  },
+  "recommendation": "✅ 本次报价中可优先考虑—— 预算300元内可买到荣耀手环9标准版，京东授权店约148元、销量数千，规格匹配且无警示标签，性价比合理。\n\n首选：jd ¥148.00（荣耀(HONOR)授权臻品专卖店） 已售 8000 件\n购买入口：https://item.jd.com/10101247612195.html\n\n本次采集 30 条候选，报价 ¥15.80 ~ ¥305.00，中位 ¥148.53（你的预算 ¥300.0）\n报价来自采集页面，规格、优惠资格及最终成交价请在平台确认。",
+  "rank_items": [
+    {
+      "index": 12,
+      "score": 92,
+      "reason": "荣耀手环9曜石黑，授权臻品专卖店销量8000，148元规格匹配且无警示标签。"
+    },
+    {
+      "index": 10,
+      "score": 90,
+      "reason": "荣耀手环9标准版曜石黑，授权专卖店销量600，148元标题属性一致。"
+    },
+    {
+      "index": 17,
+      "score": 84,
+      "reason": "荣耀手环9标准版，淘宝店销量600，149元规格匹配无警示。"
+    },
+    {
+      "index": 8,
+      "score": 80,
+      "reason": "荣耀手环9标准版，140元价格略低，销量72偏低但无警示标签。"
+    },
+    {
+      "index": 5,
+      "score": 78,
+      "reason": "荣耀手环9，139元销量200，标题未标明版本需确认。"
+    },
+    {
+      "index": 3,
+      "score": 76,
+      "reason": "荣耀手环9标准版曜石黑，129元价格最低，但店铺非授权、销量200偏低。"
+    },
+    {
+      "index": 26,
+      "score": 74,
+      "reason": "荣耀手环9，专卖店销量700，258元规格匹配但价格偏高。"
+    },
+    {
+      "index": 28,
+      "score": 72,
+      "reason": "荣耀手环9 NFC版，专卖店销量900，299元接近预算上限。"
+    },
+    {
+      "index": 23,
+      "score": 68,
+      "reason": "荣耀手环9标准版，228元规格匹配，但店铺销量缺失、价格偏高。"
+    },
+    {
+      "index": 25,
+      "score": 66,
+      "reason": "荣耀手环9标准版曜石黑，249元规格匹配，但店铺销量缺失、价格偏高。"
+    },
+    {
+      "index": 21,
+      "score": 62,
+      "reason": "荣耀手环9 NFC版，209元销量92偏低，标题含多代描述需确认。"
+    },
+    {
+      "index": 7,
+      "score": 21,
+      "reason": "荣耀手环9 NFC版，139元但销量仅52带销量偏低标签，可信度不足。"
+    },
+    {
+      "index": 2,
+      "score": 20,
+      "reason": "二手荣耀手环9 NFC版，90元虽便宜但疑似二手，降权处理。"
+    },
+    {
+      "index": 13,
+      "score": 17,
+      "reason": "荣耀手环9标准版+贴膜，148.05元带配件标签，非纯手环报价。"
+    },
+    {
+      "index": 18,
+      "score": 16,
+      "reason": "荣耀手环9标准版，158元销量仅10带销量偏低标签，可信度低。"
+    },
+    {
+      "index": 19,
+      "score": 16,
+      "reason": "荣耀手环9 NFC版晨辉紫，184.5元但标题含标准版/NFC版多版本，SKU未确认。"
+    },
+    {
+      "index": 20,
+      "score": 16,
+      "reason": "荣耀手环9 NFC版，184.5元销量6000，但标题多版本并存无法确认具体SKU。"
+    },
+    {
+      "index": 11,
+      "score": 16,
+      "reason": "荣耀手环9标准版，148元但标题含标准版/NFC版多版本，SKU未确认。"
+    },
+    {
+      "index": 15,
+      "score": 16,
+      "reason": "荣耀手环9，149元但标题含标准版/NFC版多版本，无法确认版本。"
+    },
+    {
+      "index": 16,
+      "score": 16,
+      "reason": "荣耀手环9，149元销量100，标题多版本并存无法确认SKU。"
+    },
+    {
+      "index": 4,
+      "score": 16,
+      "reason": "标题含9/7多代无法确认，134元规格不明，不作首选。"
+    },
+    {
+      "index": 27,
+      "score": 16,
+      "reason": "标题含9/11多代无法确认，289元接近预算上限，规格不明。"
+    },
+    {
+      "index": 29,
+      "score": 16,
+      "reason": "标题含9/10多代且实为手环10，305元超预算，规格不符。"
+    },
+    {
+      "index": 6,
+      "score": 16,
+      "reason": "荣耀手环9，139元但销量仅35带销量偏低标签，且版本不明。"
+    },
+    {
+      "index": 14,
+      "score": 16,
+      "reason": "荣耀手环9标准版，148.05元带配件标签且标题多版本，降权。"
+    },
+    {
+      "index": 22,
+      "score": 15,
+      "reason": "荣耀手环9，209元销量19带销量偏低标签且版本不明。"
+    },
+    {
+      "index": 9,
+      "score": 14,
+      "reason": "实为荣耀手环11，其他型号标签且标题冲突，非需求型号。"
+    },
+    {
+      "index": 24,
+      "score": 13,
+      "reason": "小米手环11，其他品牌且标题冲突，完全不符合需求。"
+    },
+    {
+      "index": 0,
+      "score": 12,
+      "reason": "仅为表带配件，价格异常15.8元，非手环本体。"
+    },
+    {
+      "index": 1,
+      "score": 11,
+      "reason": "仅为表带配件，价格异常23.8元，非手环本体。"
+    }
+  ],
+  "top_pick": {
+    "platform": "jd",
+    "platform_id": "10101247612195",
+    "title": "血氧心率5代跑步荣耀手环9曜石黑",
+    "price": 148.0,
+    "original_price": null,
+    "coupon": null,
+    "url": "https://item.jd.com/10101247612195.html",
+    "image": "https://img10.360buyimg.com/n2/s480x480_jfs/t1/227243/40/16454/54462/661cb932F3e742de7/0a3545b2cf3cc6f4.jpg.avif",
+    "shop": "荣耀(HONOR)授权臻品专卖店",
+    "sales": 8000,
+    "tags": [],
+    "match_report": {
+      "status": "compatible",
+      "checks": [
+        {
+          "field": "brand",
+          "label": "品牌",
+          "status": "consistent",
+          "requested": [
+            "荣耀"
+          ],
+          "excluded": [],
+          "observed": [
+            "荣耀"
+          ],
+          "title_evidence": [
+            "荣耀"
+          ],
+          "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+        },
+        {
+          "field": "category",
+          "label": "品类",
+          "status": "consistent",
+          "requested": [
+            "手环"
+          ],
+          "excluded": [],
+          "observed": [
+            "手环"
+          ],
+          "title_evidence": [
+            "手环"
+          ],
+          "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+        },
+        {
+          "field": "model",
+          "label": "型号",
+          "status": "not_requested",
+          "requested": [],
+          "excluded": [],
+          "observed": [],
+          "title_evidence": [],
+          "explanation": "需求未限定此属性"
+        },
+        {
+          "field": "generation",
+          "label": "代数",
+          "status": "consistent",
+          "requested": [
+            "9"
+          ],
+          "excluded": [],
+          "observed": [
+            "9"
+          ],
+          "title_evidence": [
+            "手环9"
+          ],
+          "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+        },
+        {
+          "field": "version",
+          "label": "版本",
+          "status": "not_requested",
+          "requested": [],
+          "excluded": [],
+          "observed": [],
+          "title_evidence": [],
+          "explanation": "需求未限定此属性"
+        },
+        {
+          "field": "feature",
+          "label": "功能",
+          "status": "not_requested",
+          "requested": [],
+          "excluded": [],
+          "observed": [],
+          "title_evidence": [],
+          "explanation": "需求未限定此属性"
+        },
+        {
+          "field": "color",
+          "label": "颜色",
+          "status": "not_requested",
+          "requested": [],
+          "excluded": [],
+          "observed": [],
+          "title_evidence": [],
+          "explanation": "需求未限定此属性"
+        },
+        {
+          "field": "condition",
+          "label": "成色",
+          "status": "not_requested",
+          "requested": [],
+          "excluded": [],
+          "observed": [],
+          "title_evidence": [],
+          "explanation": "需求未限定此属性"
+        }
+      ],
+      "reasons": [
+        "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+      ],
+      "source": "title_rules_v1",
+      "sku_verified": false,
+      "price_verified": false
+    },
+    "ts": "2026-10-31T14:52:41.435181Z"
+  },
+  "specs": {
+    "其他": [
+      "jd:10233565516091",
+      "jd:10235513003218",
+      "taobao:780192159144",
+      "taobao:777216054292",
+      "taobao:857440989904",
+      "taobao:1006705717656",
+      "jd:10169126269016",
+      "jd:10101247612195",
+      "jd:10098908985141",
+      "taobao:1053038917024",
+      "taobao:1025305627271",
+      "taobao:775661783451",
+      "jd:10234836336128",
+      "jd:10237290333861",
+      "taobao:775605087939",
+      "taobao:902549327031",
+      "taobao:773743386426",
+      "jd:10232180484272"
+    ],
+    "NFC版": [
+      "jd:10233451800444",
+      "taobao:937988276625",
+      "taobao:962906532243",
+      "jd:10169126312295",
+      "jd:10099064741758",
+      "taobao:782498765662",
+      "taobao:779827496397",
+      "jd:10098760432743",
+      "jd:10098686071739",
+      "taobao:775659455620"
+    ],
+    "黑色": [
+      "jd:100377491760",
+      "jd:100307274265"
+    ]
+  },
+  "trace": [
+    {
+      "node": "intent",
+      "input": "预算300元买荣耀手环9",
+      "output": "{'product': '荣耀手环9', 'budget': 300.0, 'preference': ''}",
+      "detail": "",
+      "elapsed_ms": 0,
+      "ts": "2026-10-31T14:52:27.048261+00:00"
+    },
+    {
+      "node": "research",
+      "input": "荣耀手环9",
+      "output": "30 条原始报价（jd:15, taobao:15, pdd:0）",
+      "detail": "errors: {}",
+      "elapsed_ms": 14403,
+      "ts": "2026-10-31T14:52:41.452191+00:00"
+    },
+    {
+      "node": "match",
+      "input": "30 条候选",
+      "output": "30 条全部保留（软标签）",
+      "detail": "打标: rival:1, accessory:4, model_mismatch:1, second_hand:1, low_sales:4, price_outlier:2 | stats: {'total': 30, 'rival': 1, 'accessory': 4, 'off_brand': 0, 'model_mismatch': 1, 'second_hand': 1, 'low_sales': 4, 'price_outlier': 2, 'kept': 30}",
+      "elapsed_ms": 4,
+      "ts": "2026-10-31T14:52:41.456652+00:00"
+    },
+    {
+      "node": "filters",
+      "input": "30 条候选（无筛选）",
+      "output": "保留 30 条",
+      "detail": "",
+      "elapsed_ms": 2,
+      "ts": "2026-10-31T14:52:41.458791+00:00"
+    },
+    {
+      "node": "decide",
+      "input": "30 条报价，预算 300.0",
+      "output": "{'decision': {'engine': 'llm', 'worth': 'buy', 'confidence': 78, 'reason': '预算300元内可买到荣耀手环9标准版，京东授权店约148元、销量数千，规格匹配且无警示标签，性价比合理。'}, 'rank_count': 30, 'top': {'index': 12, 'score': 92, 'reason': '荣耀手环…",
+      "detail": "",
+      "elapsed_ms": 5987,
+      "ts": "2026-10-31T14:52:47.446550+00:00"
+    },
+    {
+      "node": "recommend",
+      "input": "decision=buy",
+      "output": "✅ 本次报价中可优先考虑—— 预算300元内可买到荣耀手环9标准版，京东授权店约148元、销量数千，规格匹配且无警示标签，性价比合理。\n\n首选：jd ¥148.00（荣耀(HONOR)授权臻品专卖店） 已售 8000 件\n购买入口：https://item.jd.com/10101247612195.html\n\n本次采集 30 条候选，报价 ¥15.80 ~ ¥305.00，中位 ¥148.53…",
+      "detail": "",
+      "elapsed_ms": 0,
+      "ts": "2026-10-31T14:52:47.447336+00:00"
+    }
+  ],
+  "snapshot_id": "8026e9651f5749558cc93fd9dfce670b",
+  "snapshot_expires_at": "2026-11-01T14:52:47.450274+00:00"
+}

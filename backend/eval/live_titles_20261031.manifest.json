@@ -1,0 +1,10 @@
+{
+  "frozen_at": "2026-10-31T15:13:24.734922+00:00",
+  "dataset_sha256": "0497349381efb6cd84c67cdd852e9532eafa737ec755eeead123cdf9429ebdc5",
+  "n_cases": 141,
+  "n_queries": 5,
+  "labels_frozen_before_scoring": true,
+  "independent_ground_truth": false,
+  "production_rules_modified": false,
+  "scope": "自建真实搜索标题判读；待定标签单独计数；未核验实际 SKU；不代表线上分布或推荐准确率。"
+}

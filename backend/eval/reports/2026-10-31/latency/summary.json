@@ -1,0 +1,74 @@
+{
+  "attempts": 10,
+  "queries": 4,
+  "live_responses": 9,
+  "interrupted_requests": 1,
+  "nonempty_responses": 9,
+  "all_three_nonempty": 0,
+  "all_three_nonempty_rate": 0.0,
+  "wall_all_attempts": {
+    "n": 9,
+    "p50_ms": 18407.8,
+    "p95_ms": 21602.53,
+    "min_ms": 16671.95,
+    "max_ms": 21602.53
+  },
+  "wall_nonempty_responses": {
+    "n": 9,
+    "p50_ms": 18407.8,
+    "p95_ms": 21602.53,
+    "min_ms": 16671.95,
+    "max_ms": 21602.53
+  },
+  "wall_three_platform_responses": {
+    "n": 0,
+    "p50_ms": null,
+    "p95_ms": null,
+    "min_ms": null,
+    "max_ms": null
+  },
+  "research": {
+    "n": 9,
+    "p50_ms": 12180,
+    "p95_ms": 14403,
+    "min_ms": 11207,
+    "max_ms": 14403
+  },
+  "decide": {
+    "n": 9,
+    "p50_ms": 5275,
+    "p95_ms": 6577,
+    "min_ms": 4422,
+    "max_ms": 6577
+  },
+  "engines": {
+    "llm": 9
+  },
+  "platforms": {
+    "jd": {
+      "attempts": 10,
+      "nonempty": 9,
+      "nonempty_rate": 0.9,
+      "empty_without_error": 0,
+      "errors": 0,
+      "request_failed_or_invalid": 1
+    },
+    "taobao": {
+      "attempts": 10,
+      "nonempty": 9,
+      "nonempty_rate": 0.9,
+      "empty_without_error": 0,
+      "errors": 0,
+      "request_failed_or_invalid": 1
+    },
+    "pdd": {
+      "attempts": 10,
+      "nonempty": 0,
+      "nonempty_rate": 0.0,
+      "empty_without_error": 9,
+      "errors": 0,
+      "request_failed_or_invalid": 1
+    }
+  },
+  "percentile_method": "P50 median; P95 nearest rank; descriptive for this small sample"
+}

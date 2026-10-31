@@ -1,5 +1,7 @@
 # 开发指南
 
+最新评测说明见 [2026-10-31 实测报告](10-evaluation-20261031.md)。新增的真实标题评测为离线命令；`scripts/bench_live.py` 只有显式运行才访问平台，默认小样本上限，发现访问限制、空平台或失败即停止下一轮。
+
 在仓库根目录进入 `backend` 并执行 `uv sync --extra dev`。配置参考 [.env.example](../backend/.env.example)，接口文档在服务启动后的 `/docs`。
 
 ## 常用检查

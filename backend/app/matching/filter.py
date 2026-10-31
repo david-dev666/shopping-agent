@@ -34,6 +34,8 @@ RIVAL_BRANDS = [
     "小天才",
     "dido",
     "埃微",
+    "鱼跃",
+    "测立康",
 ]
 
 # 二手 / 翻新特征（注：\b 对中文边界无效，用前后非数字断言）
@@ -176,6 +178,13 @@ def filter_offers(offers: list, query: str) -> tuple[list, dict, list]:
         has_accessory = any(a in title for a in ACCESSORY_WORDS)
         # 赠品描述不等于商品主体；明确配件即使位于标题中段也应识别。
         main_title = re.split(r"赠送|赠品|附赠|赠|送", title, maxsplit=1)[0]
+        if has_subject:
+            # 主体后附带的配件不把整个套装变成纯配件。
+            main_title = re.split(
+                r"[+＋]\s*(?:" + "|".join(map(re.escape, ACCESSORY_WORDS)) + r")",
+                main_title, maxsplit=1,
+            )[0]
+            main_title = re.sub(r"(?:时尚|智能)腕带", "", main_title)
         main_accessory = any(a in main_title for a in ACCESSORY_WORDS)
         if main_accessory and not has_subject:
             tag(o, "accessory")

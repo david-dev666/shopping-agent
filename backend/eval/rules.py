@@ -16,12 +16,13 @@ from app.models.offers import RawOffer
 
 EVAL_PATH = Path(__file__).with_name("rules_eval.jsonl")
 LABEL_TO_REASON = {v: k for k, v in REASON_LABELS.items()}
+TITLE_RULES = frozenset({"model_mismatch", "rival", "off_brand", "accessory", "second_hand"})
 
 
-def load_cases() -> list[dict]:
+def load_cases(path: Path = EVAL_PATH) -> list[dict]:
     return [
         json.loads(line)
-        for line in EVAL_PATH.read_text(encoding="utf-8").splitlines()
+        for line in path.read_text(encoding="utf-8").splitlines()
         if line.strip()
     ]
 
@@ -47,17 +48,31 @@ def _prf(tp: int, fp: int, fn: int) -> dict:
     }
 
 
-def evaluate() -> dict:
+def evaluate(cases: list[dict] | None = None) -> dict:
     """返回 {n_cases, per_rule, micro, errors}。"""
     tp: dict[str, int] = defaultdict(int)
     fp: dict[str, int] = defaultdict(int)
     fn: dict[str, int] = defaultdict(int)
-    cases = load_cases()
+    cases = load_cases() if cases is None else cases
     errors = []
+    judged = correct = 0
+    pending = 0
+    seen = set()
 
     for case in cases:
         exp = set(case["expect"])
-        got = predict(case)
+        unknown = set(case.get("unjudged", []))
+        if not exp <= TITLE_RULES or not unknown <= TITLE_RULES or exp & unknown:
+            raise ValueError("Invalid or overlapping title labels")
+        key = (case["query"], case["title"])
+        if key in seen:
+            raise ValueError("Duplicate query/title case")
+        seen.add(key)
+        got = predict(case) - unknown
+        pending += len(unknown)
+        if not unknown:
+            judged += 1
+            correct += int(exp == got)
         for r in exp & got:
             tp[r] += 1
         for r in got - exp:
@@ -73,4 +88,15 @@ def evaluate() -> dict:
     rules = sorted(set(tp) | set(fp) | set(fn))
     per_rule = {r: _prf(tp[r], fp[r], fn[r]) for r in rules}
     micro = _prf(sum(tp.values()), sum(fp.values()), sum(fn.values()))
-    return {"n_cases": len(cases), "per_rule": per_rule, "micro": micro, "errors": errors}
+    return {
+        "n_cases": len(cases),
+        "n_queries": len({case["query"] for case in cases}),
+        "label_decisions": len(cases) * len(TITLE_RULES),
+        "unjudged_label_decisions": pending,
+        "label_coverage": 1 - pending / (len(cases) * len(TITLE_RULES)) if cases else None,
+        "fully_judged_cases": judged,
+        "exact_match_rate": correct / judged if judged else None,
+        "per_rule": per_rule,
+        "micro": micro,
+        "errors": errors,
+    }

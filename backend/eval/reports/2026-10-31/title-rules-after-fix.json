@@ -1,0 +1,63 @@
+{
+  "n_cases": 141,
+  "n_queries": 5,
+  "label_decisions": 705,
+  "unjudged_label_decisions": 21,
+  "label_coverage": 0.9702127659574468,
+  "fully_judged_cases": 120,
+  "exact_match_rate": 1.0,
+  "per_rule": {
+    "accessory": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 4,
+      "fp": 0,
+      "fn": 0
+    },
+    "model_mismatch": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 13,
+      "fp": 0,
+      "fn": 0
+    },
+    "off_brand": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 3,
+      "fp": 0,
+      "fn": 0
+    },
+    "rival": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 8,
+      "fp": 0,
+      "fn": 0
+    },
+    "second_hand": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 10,
+      "fp": 0,
+      "fn": 0
+    }
+  },
+  "micro": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "tp": 38,
+    "fp": 0,
+    "fn": 0
+  },
+  "errors": [],
+  "dataset_sha256": "0497349381efb6cd84c67cdd852e9532eafa737ec755eeead123cdf9429ebdc5",
+  "app_source_sha256": "f2fec1cb7f7936631c9304a81215dc2b82993c90e691e49f34d8f562c466b95c",
+  "scope": "修复后开发回归结果；固定141条自建标题判读样本及21个待定标签保持不变，非独立泛化准确率。"
+}

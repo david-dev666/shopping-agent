@@ -1,0 +1,14 @@
+{
+  "taobao": {
+    "logged_in": true,
+    "search_results_visible": true
+  },
+  "pdd": {
+    "logged_in": true,
+    "extracted_offers": 15,
+    "reused_existing_page": true,
+    "new_search_requests": 0
+  },
+  "rate_limit_observed": false,
+  "bulk_test_resumed": false
+}

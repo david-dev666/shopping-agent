@@ -6,16 +6,26 @@
 """
 
 import argparse
+import hashlib
+import json
+from pathlib import Path
 
-from eval.rules import evaluate
+from eval.rules import EVAL_PATH, evaluate, load_cases
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--verbose", action="store_true", help="打印判错的用例")
+    parser.add_argument("--dataset", type=Path, default=EVAL_PATH)
+    parser.add_argument("--json", action="store_true", help="输出完整 JSON 报告")
     args = parser.parse_args()
 
-    m = evaluate()
+    cases = load_cases(args.dataset)
+    m = evaluate(cases)
+    m["dataset_sha256"] = hashlib.sha256(args.dataset.read_bytes()).hexdigest()
+    if args.json:
+        print(json.dumps(m, ensure_ascii=False, indent=2))
+        return
     if args.verbose:
         for e in m["errors"]:
             print(

@@ -9,6 +9,8 @@ BRAND_ALIASES = {
     "三星": ["三星", "samsung"],
     "oppo": ["oppo"],
     "vivo": ["vivo"],
+    "鱼跃": ["鱼跃"],
+    "测立康": ["测立康"],
 }
 
 

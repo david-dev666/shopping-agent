@@ -1,0 +1,26 @@
+{
+  "started_at": "2026-10-31T14:51:35.284094+00:00",
+  "revision": "a7e46c277665f236adea456ee703ce7376605e14",
+  "app_source_sha256": "c224fdde30fb77bd94e114f3020aa04f6f3b6e1a46e2613a46e71ed8f5170293",
+  "system": "macOS-26.5.1-arm64-arm-64bit",
+  "python": "3.11.15",
+  "endpoint": "/api/chat",
+  "queries": [
+    "预算300元买小米手环9 NFC版",
+    "预算300元买华为手环9",
+    "预算300元买荣耀手环9",
+    "预算8000元买拯救者Y7000X"
+  ],
+  "repeats": 3,
+  "delay_seconds": 5.0,
+  "request_timeout_seconds": 120,
+  "sequential": true,
+  "sample_mode": false,
+  "cache_bypassed": true,
+  "stopped_reason": "user_paused_for_login",
+  "recorded_attempts": 10,
+  "completed_responses": 9,
+  "interrupted_requests": 1,
+  "planned_requests": 12,
+  "note": "The interrupted request has no invented latency. These measurements precede PDD login recovery."
+}

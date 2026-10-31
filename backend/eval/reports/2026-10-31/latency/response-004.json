@@ -1,0 +1,3791 @@
+{
+  "trace_id": "999322adf580",
+  "origin": "live",
+  "demo": false,
+  "cached": false,
+  "completed_at": "2026-10-31T14:53:10.868128+00:00",
+  "query": "预算8000元买拯救者Y7000X",
+  "intent": {
+    "product": "联想拯救者Y7000X",
+    "budget": 8000.0,
+    "preference": ""
+  },
+  "offers": [
+    {
+      "platform": "taobao",
+      "platform_id": "647857545244",
+      "title": "【 zui便宜26款新品】联想拯救者Y7000X2026R7000X26轻薄游戏正品",
+      "price": 4999.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=647857545244",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i2/2211932602083/O1CN01hArWYE7W1zK6Pnd2~crop,0,151,3160,3160~_!!2211932602083.jpg_580x580q90.jpg",
+      "shop": "西北联想华硕戴尔商城",
+      "sales": 5,
+      "tags": [
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "insufficient",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "unknown",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明型号，不能视为一致"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题未明确说明型号，不能视为一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:03.906912Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "876285769267",
+      "title": "i9联想拯救者Y7000X/Y9000P/Y7000P游戏笔记本电脑2026酷睿Ultra7",
+      "price": 6588.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=876285769267",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i1/2215100025738/O1CN01bf0HBsDvcaG1chua_!!2215100025738.jpg_580x580q90.jpg",
+      "shop": "Ienovo品牌正品笔记本",
+      "sales": 76,
+      "tags": [],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "ambiguous",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y7000X",
+              "Y9000P",
+              "Y7000P"
+            ],
+            "title_evidence": [
+              "Y7000X",
+              "Y9000P",
+              "Y7000P"
+            ],
+            "explanation": "标题列出多个型号，无法对应单一报价"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题列出多个型号，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:03.906912Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "1082452557089",
+      "title": "Lenovo/联想拯救者Y7000X 电竞游戏笔记本高性价比",
+      "price": 7699.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://detail.tmall.com/item.htm?id=1082452557089",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i2/6000000006470/O1CN01qx2fuiVDpoJ1chua_!!6000000006470-0-sm.jpg_580x580q90.jpg",
+      "shop": "天猫超市",
+      "sales": 100,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "consistent",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y7000X"
+            ],
+            "title_evidence": [
+              "Y7000X"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:03.906912Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "801740311905",
+      "title": "【补贴2000】26款联想拯救者Y7000X Y7000P 战7000学生笔记本电脑",
+      "price": 7799.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=801740311905",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i4/14267290/O1CN011wlmYSWZbWE5CGWG_!!4611686018427384730-0-item_pic.jpg_580x580q90.jpg",
+      "shop": "联想笔记本特惠商城",
+      "sales": 75,
+      "tags": [],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "ambiguous",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y7000X",
+              "Y7000P"
+            ],
+            "title_evidence": [
+              "Y7000X",
+              "Y7000P"
+            ],
+            "explanation": "标题列出多个型号，无法对应单一报价"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题列出多个型号，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:03.906912Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "1091508536064",
+      "title": "Lenovo/联想 拯救者 拯救者 Y7000X2026新品/Y7000P/Y9000P游戏本",
+      "price": 7979.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=1091508536064",
+      "image": "https://g-search2.alicdn.com/img/bao/uploaded/i4/i1/2209034380012/O1CN01JV6ct4tzJkJ37MJM_!!2209034380012.png_580x580q90.jpg",
+      "shop": "联想智成科技店",
+      "sales": 6,
+      "tags": [
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "ambiguous",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y7000P",
+              "Y9000P"
+            ],
+            "title_evidence": [
+              "Y7000P",
+              "Y9000P"
+            ],
+            "explanation": "标题列出多个型号，无法对应单一报价"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题列出多个型号，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:03.906912Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "100402388532",
+      "title": "机械革命蛟龙16Pro2026(R9-8945HX 16G 1T RTX5060 300Hz)",
+      "price": 9989.28,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/100402388532.html",
+      "image": "https://img12.360buyimg.com/n2/s480x480_jfs/t1/552572/12/6520/1505031/6ae487b8F1bef8902/02584004004096c7.png.avif",
+      "shop": "机械革命京东自营旗舰店",
+      "sales": 40000,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "conflict",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "RTX5060"
+            ],
+            "title_evidence": [
+              "RTX5060"
+            ],
+            "explanation": "需求与标题中的型号不一致"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "Pro"
+            ],
+            "title_evidence": [
+              "Pro"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的型号不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:06.413853Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "1053816501854",
+      "title": "Lenovo/联想 拯救者 R7000X/Y7000X/Y7000P/Y7000 2026款 游戏本",
+      "price": 10030.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=1053816501854",
+      "image": "https://g-search1.alicdn.com/img/bao/uploaded/i4/i4/2582800641/O1CN01WAhtXv1Gbd1eIyV9H_!!2582800641.jpg_580x580q90.jpg",
+      "shop": "XR硅基情愫",
+      "sales": 14,
+      "tags": [
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "ambiguous",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y7000X",
+              "Y7000P",
+              "Y7000"
+            ],
+            "title_evidence": [
+              "Y7000X",
+              "Y7000P",
+              "Y7000"
+            ],
+            "explanation": "标题列出多个型号，无法对应单一报价"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题列出多个型号，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:03.906912Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "100354173048",
+      "title": "联想拯救者Y7000X 2026游戏本",
+      "price": 10090.53,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/100354173048.html",
+      "image": "https://img13.360buyimg.com/n2/s480x480_jfs/t1/562556/36/2705/114960/6ae46729F6f983dff/008332032000bf78.jpg.avif",
+      "shop": "联想京东自营旗舰店",
+      "sales": 60000,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "consistent",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y7000X"
+            ],
+            "title_evidence": [
+              "Y7000X"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:06.413853Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10237940103852",
+      "title": "联想26款拯救者Y9000P UItra9-290HX 5060系列高端电竞学生高刷电竞游戏笔记本电脑 26款黑 Y7000X Core7-245HX  5060 16G内存/1T固态 定制套餐 官方",
+      "price": 10199.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10237940103852.html",
+      "image": "https://img12.360buyimg.com/n2/s480x480_jfs/t1/526970/25/4949/155177/6aaa493cF9bfa5448/00833203207c43eb.jpg.avif",
+      "shop": "岚芯笔记本专营店",
+      "sales": null,
+      "tags": [],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "ambiguous",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y9000P",
+              "Y7000X"
+            ],
+            "title_evidence": [
+              "Y9000P",
+              "Y7000X"
+            ],
+            "explanation": "标题列出多个型号，无法对应单一报价"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题列出多个型号，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:06.413853Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "1059196992648",
+      "title": "联想拯救者Y7000X Core7-245/16G/512G/5060 竞技笔记本电脑",
+      "price": 10388.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=1059196992648",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i2/2213281633273/O1CN01XQELI71a35SwYviEJ_!!2213281633273.jpg_580x580q90.jpg",
+      "shop": "恒泰信达笔记本店",
+      "sales": 3,
+      "tags": [
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "consistent",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y7000X"
+            ],
+            "title_evidence": [
+              "Y7000X"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:03.906912Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10162684152730",
+      "title": "联想（Lenovo）【2026补贴15%至高1500】拯救者Y7000/Y7000X P图设计电竞游戏RTX5060独显笔记本FD36电脑学生电脑 14代i7HX 5060 16G 512G 标配 |",
+      "price": 10788.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10162684152730.html",
+      "image": "https://img10.360buyimg.com/n2/s480x480_jfs/t1/470907/12/4547/180895/6a45df3aF89f6ed43/0083320320ce4ab5.jpg.avif",
+      "shop": "JDG京东电竞官方旗舰店",
+      "sales": 1000,
+      "tags": [],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "ambiguous",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y7000",
+              "Y7000X",
+              "RTX5060"
+            ],
+            "title_evidence": [
+              "Y7000",
+              "Y7000X",
+              "RTX5060"
+            ],
+            "explanation": "标题列出多个型号，无法对应单一报价"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题列出多个型号，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:06.413853Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "100265748693",
+      "title": "联想拯救者Y7000X 2026游戏本",
+      "price": 11109.03,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/100265748693.html",
+      "image": "https://img13.360buyimg.com/n2/s480x480_jfs/t1/543009/37/17118/117525/6ae462aaFa0ee7ab6/0083320320095088.jpg.avif",
+      "shop": "联想京东自营旗舰店",
+      "sales": 60000,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "consistent",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y7000X"
+            ],
+            "title_evidence": [
+              "Y7000X"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:06.413853Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "1085919724680",
+      "title": "Lenovo/联想 拯救者 Y7000X 2026电竞本大学生设计编程剪辑全能本",
+      "price": 11198.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=1085919724680",
+      "image": "https://g-search1.alicdn.com/img/bao/uploaded/i4/i1/2213276189869/O1CN019t8yb6jSXNF1bRuG~crop,0,37,790,790~_!!2213276189869.jpg_580x580q90.jpg",
+      "shop": "惠民数码优选店",
+      "sales": 5,
+      "tags": [
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "consistent",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y7000X"
+            ],
+            "title_evidence": [
+              "Y7000X"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:03.906912Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "100251638133",
+      "title": "华硕天选6 Pro 酷睿版 国家补贴 16英寸游戏本 笔记本电脑(Ultra5-235HX 16G 512G RTX5060 高色域)青",
+      "price": 11499.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/100251638133.html",
+      "image": "https://img13.360buyimg.com/n2/s480x480_jfs/t1/429454/25/13605/824993/69febdb8F35c7beae/093b32032040d2fc.png.avif",
+      "shop": "华硕京东自营官方旗舰店",
+      "sales": 300000,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "conflict",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "RTX5060"
+            ],
+            "title_evidence": [
+              "RTX5060"
+            ],
+            "explanation": "需求与标题中的型号不一致"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "Pro"
+            ],
+            "title_evidence": [
+              "Pro"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的型号不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:06.413853Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "1054752908506",
+      "title": "联想拯救者Y7000X 2026款电竞屏学生设计P图高性能游戏笔记本电脑",
+      "price": 11999.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=1054752908506",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i1/2004510591/O1CN01EnJ8rx1GEjDqjCyIe_!!4611686018427381631-0-item_pic.jpg_580x580q90.jpg",
+      "shop": "广州百脑汇实体店",
+      "sales": 35,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "consistent",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y7000X"
+            ],
+            "title_evidence": [
+              "Y7000X"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:03.906912Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "100378346366",
+      "title": "联想拯救者Y7000X 2026 电竞游戏本笔记本电脑(Ultra7 251HX 24G 1T RTX5060 2.5k 165Hz OLED 黑)国补",
+      "price": 12030.53,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/100378346366.html",
+      "image": "https://img11.360buyimg.com/n2/s480x480_jfs/t1/552108/26/9834/101338/6ae4675cF765afd38/008332032014b036.jpg.avif",
+      "shop": "联想京东自营旗舰店",
+      "sales": 60000,
+      "tags": [],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "ambiguous",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y7000X",
+              "RTX5060"
+            ],
+            "title_evidence": [
+              "Y7000X",
+              "RTX5060"
+            ],
+            "explanation": "标题列出多个型号，无法对应单一报价"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题列出多个型号，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:06.413853Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "100289927477",
+      "title": "联想拯救者Y7000X 2026 电竞游戏本笔记本电脑(Ultra7 251HX 24G 1T RTX5060 2.5k 165Hz OLED 白)国补",
+      "price": 12321.53,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/100289927477.html",
+      "image": "https://img12.360buyimg.com/n2/s480x480_jfs/t1/548075/5/10607/111042/6ae46779F95a67cc4/0083320320799cd9.jpg.avif",
+      "shop": "联想京东自营旗舰店",
+      "sales": 60000,
+      "tags": [],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "ambiguous",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y7000X",
+              "RTX5060"
+            ],
+            "title_evidence": [
+              "Y7000X",
+              "RTX5060"
+            ],
+            "explanation": "标题列出多个型号，无法对应单一报价"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题列出多个型号，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:06.413853Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "100270446299",
+      "title": "联想（Lenovo）拯救者Y7000X笔记本电脑电竞游戏本2026 U7-251 16G+1T/RTX5060-8G 碳晶黑+游戏鼠标套装1号店专供",
+      "price": 12399.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/100270446299.html",
+      "image": "https://img14.360buyimg.com/n2/s480x480_jfs/t1/548164/15/58/113572/6acf19c2Fc25232e4/0083320320d884ef.jpg.avif",
+      "shop": "1号会员店",
+      "sales": 4000,
+      "tags": [],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "ambiguous",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y7000X",
+              "RTX5060"
+            ],
+            "title_evidence": [
+              "Y7000X",
+              "RTX5060"
+            ],
+            "explanation": "标题列出多个型号，无法对应单一报价"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题列出多个型号，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:06.413853Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10227447097658",
+      "title": "联想（Lenovo）拯救者Y7000X 2026 15.3英寸电竞游戏本笔记本电脑 Ultra 7 251HX 24G 1T RTX5060黑",
+      "price": 12449.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10227447097658.html",
+      "image": "https://img13.360buyimg.com/n2/s480x480_jfs/t1/551631/5/7101/105843/6adf46f3F6b17afd7/00833203203b07cf.png.avif",
+      "shop": "联想官方旗舰店",
+      "sales": 2000,
+      "tags": [],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "ambiguous",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y7000X",
+              "RTX5060"
+            ],
+            "title_evidence": [
+              "Y7000X",
+              "RTX5060"
+            ],
+            "explanation": "标题列出多个型号，无法对应单一报价"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题列出多个型号，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:06.413853Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10227452074018",
+      "title": "联想（Lenovo）拯救者Y7000X 2026 15.3英寸电竞游戏本笔记本电脑 Ultra 7 251HX 24G 1T RTX5060黑",
+      "price": 12449.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10227452074018.html",
+      "image": "https://img13.360buyimg.com/n2/s480x480_jfs/t1/546469/20/10368/96976/6adf41f2Fb7fb09eb/0083320320127cc2.png.avif",
+      "shop": "联想拯救者官方旗舰店",
+      "sales": 1000,
+      "tags": [],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "ambiguous",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y7000X",
+              "RTX5060"
+            ],
+            "title_evidence": [
+              "Y7000X",
+              "RTX5060"
+            ],
+            "explanation": "标题列出多个型号，无法对应单一报价"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题列出多个型号，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:06.413853Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10222578015293",
+      "title": "联想（Lenovo）拯救者Y7000X/Y7000 2026/2025款 RTX5060独显电竞屏校园学生设计P图高性能游戏笔记本电脑 Core7 245HX 16G 512G 5060丨黑丨标配 补",
+      "price": 12581.4,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10222578015293.html",
+      "image": "https://img13.360buyimg.com/n2/s480x480_jfs/t20271030/553409/27/8122/247219/6ae41495Ff0942b78/0944320320222370.jpg.avif",
+      "shop": "联想（lenovo）仕捷专卖店",
+      "sales": 100,
+      "tags": [],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "ambiguous",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y7000X",
+              "Y7000",
+              "RTX5060"
+            ],
+            "title_evidence": [
+              "Y7000X",
+              "Y7000",
+              "RTX5060"
+            ],
+            "explanation": "标题列出多个型号，无法对应单一报价"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题列出多个型号，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:06.413853Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10227447097659",
+      "title": "联想（Lenovo）拯救者Y7000X 2026 15.3英寸电竞游戏本笔记本电脑 Ultra 7 251HX 24G 1T RTX5060白",
+      "price": 12749.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10227447097659.html",
+      "image": "https://img14.360buyimg.com/n2/s480x480_jfs/t1/547955/10/9047/106650/6adf46ddF3064b960/00833203202e0984.png.avif",
+      "shop": "联想官方旗舰店",
+      "sales": 2000,
+      "tags": [],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "ambiguous",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y7000X",
+              "RTX5060"
+            ],
+            "title_evidence": [
+              "Y7000X",
+              "RTX5060"
+            ],
+            "explanation": "标题列出多个型号，无法对应单一报价"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题列出多个型号，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:06.413853Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "1076137862857",
+      "title": "【政府补贴15%】26款联想拯救者Y7000X酷睿Ultra7处理器天禧AI RTX5060/RTX5070学生高端电竞游戏笔记本电脑",
+      "price": 13199.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://detail.tmall.com/item.htm?id=1076137862857",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i3/2218536532979/O1CN01A3xTUy88gXK1chua_!!4611686018427386867-0-item_pic.jpg_580x580q90.jpg",
+      "shop": "天猫优品官方旗舰店",
+      "sales": 10,
+      "tags": [
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "ambiguous",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y7000X",
+              "RTX5060",
+              "RTX5070"
+            ],
+            "title_evidence": [
+              "Y7000X",
+              "RTX5060",
+              "RTX5070"
+            ],
+            "explanation": "标题列出多个型号，无法对应单一报价"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题列出多个型号，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:03.906912Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "1075976827747",
+      "title": "【政府补贴+百亿频道金刚券】 Lenovo/联想 拯救者 Y7000X",
+      "price": 14499.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://detail.tmall.com/item.htm?id=1075976827747",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i2/2218536532979/O1CN01Hr6CEOgE78E1chua_!!4611686018427386867-2-item_pic.png_580x580q90.jpg",
+      "shop": "天猫优品官方旗舰店",
+      "sales": 5,
+      "tags": [
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "consistent",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y7000X"
+            ],
+            "title_evidence": [
+              "Y7000X"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:03.906912Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "1079165775681",
+      "title": "【政府补贴15%】联想拯救者Y7000X 2026 酷睿Ultra7 251HX可选RTX5060游戏电竞笔记本电脑AIPC笔记本电脑",
+      "price": 14599.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://detail.tmall.com/item.htm?id=1079165775681",
+      "image": "https://g-search1.alicdn.com/img/bao/uploaded/i4/i4/2215532095020/O1CN01rkuuYAKEtgH2vH2e_!!4611686018427381292-2-item_pic.png_580x580q90.jpg",
+      "shop": "天猫校园会员官方旗舰店",
+      "sales": 3,
+      "tags": [
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "ambiguous",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y7000X",
+              "RTX5060"
+            ],
+            "title_evidence": [
+              "Y7000X",
+              "RTX5060"
+            ],
+            "explanation": "标题列出多个型号，无法对应单一报价"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题列出多个型号，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:03.906912Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "1053026061988",
+      "title": "【政府补贴15%】联想拯救者 Y7000X 2026新品 酷睿Ultra7 251HX游戏本电竞笔记本电脑大学生电竞本官方正品",
+      "price": 15699.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://detail.tmall.com/item.htm?id=1053026061988",
+      "image": "https://g-search2.alicdn.com/img/bao/uploaded/i4/i1/459462135/O1CN01olNXYQAFoTC2vH2e_!!4611686018427385335-0-item_pic.jpg_580x580q90.jpg",
+      "shop": "联想艾克兰斯专卖店",
+      "sales": 100,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "consistent",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y7000X"
+            ],
+            "title_evidence": [
+              "Y7000X"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:03.906912Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10219385549737",
+      "title": "联想（Lenovo）拯救者Y7000X 2026 15.3英寸电竞游戏本笔记本电脑 Ultra 7 251HX 16G 1T RTX5070白",
+      "price": 15799.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10219385549737.html",
+      "image": "https://img12.360buyimg.com/n2/s480x480_jfs/t1/558183/31/1013/107012/6adf4707F7ed93993/0083320320d2cc38.png.avif",
+      "shop": "联想官方旗舰店",
+      "sales": 2000,
+      "tags": [],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "ambiguous",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y7000X",
+              "RTX5070"
+            ],
+            "title_evidence": [
+              "Y7000X",
+              "RTX5070"
+            ],
+            "explanation": "标题列出多个型号，无法对应单一报价"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题列出多个型号，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:06.413853Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "924274521923",
+      "title": "【官方直营】联想拯救者Y7000X/Y7000P/Y9000P2026酷睿Ultra9/RTX5060独显游戏编程设计PS学生办公笔记本电脑",
+      "price": 16499.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://detail.tmall.com/item.htm?id=924274521923",
+      "image": "https://g-search2.alicdn.com/img/bao/uploaded/i4/i1/2200675249400/O1CN01F2GBNxh9mYB1chua_!!2200675249400.jpg_580x580q90.jpg",
+      "shop": "来酷智生活旗舰店",
+      "sales": 4000,
+      "tags": [],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "ambiguous",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y7000X",
+              "Y7000P",
+              "RTX5060"
+            ],
+            "title_evidence": [
+              "Y7000X",
+              "Y7000P",
+              "RTX5060"
+            ],
+            "explanation": "标题列出多个型号，无法对应单一报价"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题列出多个型号，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:03.906912Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "100352143438",
+      "title": "华硕天选7 Pro Max 国家补贴 18英寸游戏本笔记本电脑(锐龙9 9955HX 32G 1T RTX5070Ti 2.5K 300Hz)灰",
+      "price": 17309.01,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/100352143438.html",
+      "image": "https://img13.360buyimg.com/n2/s480x480_jfs/t1/551826/33/7159/122596/6ae30428F027797d3/0083320320fff91d.jpg.avif",
+      "shop": "华硕京东自营官方旗舰店",
+      "sales": 10000,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "conflict",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "RTX5070TI"
+            ],
+            "title_evidence": [
+              "RTX5070Ti"
+            ],
+            "explanation": "需求与标题中的型号不一致"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "Pro"
+            ],
+            "title_evidence": [
+              "Pro"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的型号不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:06.413853Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "1080832686501",
+      "title": "【国家补贴15%+95折】联想拯救者Y7000X高性能电竞游戏笔记本电脑视频剪辑设计渲染学生办公吃鸡游戏笔记本81",
+      "price": 22999.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://detail.tmall.com/item.htm?id=1080832686501",
+      "image": "https://g-search1.alicdn.com/img/bao/uploaded/i4/i1/2213856588863/O1CN01HUOWiPmx2bK1chua_!!4611686018427384895-0-item_pic.jpg_580x580q90.jpg",
+      "shop": "天猫数码家电自营旗舰店",
+      "sales": 77,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "consistent",
+            "requested": [
+              "Y7000X"
+            ],
+            "excluded": [],
+            "observed": [
+              "Y7000X"
+            ],
+            "title_evidence": [
+              "Y7000X"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T14:53:03.906912Z"
+    }
+  ],
+  "filter_stats": {
+    "total": 30,
+    "rival": 0,
+    "accessory": 0,
+    "off_brand": 0,
+    "model_mismatch": 3,
+    "second_hand": 0,
+    "low_sales": 8,
+    "price_outlier": 0,
+    "kept": 30
+  },
+  "errors": {},
+  "decision": {
+    "engine": "llm",
+    "worth": "wait",
+    "confidence": 72,
+    "reason": "预算8000元内仅少数标题匹配Y7000X的报价，但均未验证SKU/价格且部分销量偏低，可信度不足"
+  },
+  "recommendation": "⏳ 建议确认后再买—— 预算8000元内仅少数标题匹配Y7000X的报价，但均未验证SKU/价格且部分销量偏低，可信度不足\n\n首选：taobao ¥7699.00（天猫超市） 已售 100 件\n购买入口：https://detail.tmall.com/item.htm?id=1082452557089\n\n本次采集 30 条候选，报价 ¥4999.00 ~ ¥22999.00，中位 ¥12014.76（你的预算 ¥8000.0）\n报价来自采集页面，规格、优惠资格及最终成交价请在平台确认。",
+  "rank_items": [
+    {
+      "index": 2,
+      "score": 78,
+      "reason": "标题匹配Y7000X且7699元在预算内、天猫超市销量100，但SKU与价格未验证"
+    },
+    {
+      "index": 7,
+      "score": 35,
+      "reason": "联想京东自营销量6万可信，但10090元超预算"
+    },
+    {
+      "index": 11,
+      "score": 33,
+      "reason": "自营高销量但11109元超预算"
+    },
+    {
+      "index": 14,
+      "score": 18,
+      "reason": "11999元超预算，店铺为实体店销量35"
+    },
+    {
+      "index": 25,
+      "score": 6,
+      "reason": "15699元超预算"
+    },
+    {
+      "index": 29,
+      "score": 3,
+      "reason": "22999元严重超预算"
+    },
+    {
+      "index": 9,
+      "score": 0,
+      "reason": "10388元超预算且销量仅3，可信度低"
+    },
+    {
+      "index": 12,
+      "score": 0,
+      "reason": "11198元超预算且销量仅5"
+    },
+    {
+      "index": 23,
+      "score": 0,
+      "reason": "14499元超预算且销量仅5"
+    },
+    {
+      "index": 0,
+      "score": 0,
+      "reason": "4999元异常低价且销量仅5、标题型号不明，可信度低"
+    },
+    {
+      "index": 3,
+      "score": 0,
+      "reason": "7799元在预算内但标题含Y7000P多型号，无法对应单一报价"
+    },
+    {
+      "index": 1,
+      "score": 0,
+      "reason": "6588元低价但标题列Y7000X/Y9000P/Y7000P多型号，型号不明"
+    },
+    {
+      "index": 10,
+      "score": 0,
+      "reason": "10788元超预算且标题含Y7000/Y7000X多型号"
+    },
+    {
+      "index": 8,
+      "score": 0,
+      "reason": "10199元超预算且标题含Y9000P/Y7000X多型号"
+    },
+    {
+      "index": 15,
+      "score": 0,
+      "reason": "12030元超预算且标题多型号"
+    },
+    {
+      "index": 16,
+      "score": 0,
+      "reason": "12321元超预算且标题多型号"
+    },
+    {
+      "index": 17,
+      "score": 0,
+      "reason": "12399元超预算且标题多型号"
+    },
+    {
+      "index": 18,
+      "score": 0,
+      "reason": "12449元超预算且标题多型号"
+    },
+    {
+      "index": 19,
+      "score": 0,
+      "reason": "12449元超预算且标题多型号"
+    },
+    {
+      "index": 20,
+      "score": 0,
+      "reason": "12581元超预算且标题多型号"
+    },
+    {
+      "index": 21,
+      "score": 0,
+      "reason": "12749元超预算且标题多型号"
+    },
+    {
+      "index": 26,
+      "score": 0,
+      "reason": "15799元超预算且标题多型号"
+    },
+    {
+      "index": 27,
+      "score": 0,
+      "reason": "16499元超预算且标题多型号"
+    },
+    {
+      "index": 4,
+      "score": 0,
+      "reason": "7979元接近预算上限但销量仅6且标题多型号，风险高"
+    },
+    {
+      "index": 6,
+      "score": 0,
+      "reason": "10030元超预算、销量14偏低且多型号"
+    },
+    {
+      "index": 22,
+      "score": 0,
+      "reason": "13199元超预算、销量10偏低且多型号"
+    },
+    {
+      "index": 24,
+      "score": 0,
+      "reason": "14599元超预算、销量3偏低且多型号"
+    },
+    {
+      "index": 5,
+      "score": 0,
+      "reason": "机械革命其他型号且9989元超预算"
+    },
+    {
+      "index": 13,
+      "score": 0,
+      "reason": "华硕其他型号且11499元超预算"
+    },
+    {
+      "index": 28,
+      "score": 0,
+      "reason": "华硕其他型号且17309元严重超预算"
+    }
+  ],
+  "top_pick": {
+    "platform": "taobao",
+    "platform_id": "1082452557089",
+    "title": "Lenovo/联想拯救者Y7000X 电竞游戏笔记本高性价比",
+    "price": 7699.0,
+    "original_price": null,
+    "coupon": null,
+    "url": "https://detail.tmall.com/item.htm?id=1082452557089",
+    "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i2/6000000006470/O1CN01qx2fuiVDpoJ1chua_!!6000000006470-0-sm.jpg_580x580q90.jpg",
+    "shop": "天猫超市",
+    "sales": 100,
+    "tags": [],
+    "match_report": {
+      "status": "compatible",
+      "checks": [
+        {
+          "field": "brand",
+          "label": "品牌",
+          "status": "not_requested",
+          "requested": [],
+          "excluded": [],
+          "observed": [],
+          "title_evidence": [],
+          "explanation": "需求未限定此属性"
+        },
+        {
+          "field": "category",
+          "label": "品类",
+          "status": "not_requested",
+          "requested": [],
+          "excluded": [],
+          "observed": [],
+          "title_evidence": [],
+          "explanation": "需求未限定此属性"
+        },
+        {
+          "field": "model",
+          "label": "型号",
+          "status": "consistent",
+          "requested": [
+            "Y7000X"
+          ],
+          "excluded": [],
+          "observed": [
+            "Y7000X"
+          ],
+          "title_evidence": [
+            "Y7000X"
+          ],
+          "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+        },
+        {
+          "field": "generation",
+          "label": "代数",
+          "status": "not_requested",
+          "requested": [],
+          "excluded": [],
+          "observed": [],
+          "title_evidence": [],
+          "explanation": "需求未限定此属性"
+        },
+        {
+          "field": "version",
+          "label": "版本",
+          "status": "not_requested",
+          "requested": [],
+          "excluded": [],
+          "observed": [],
+          "title_evidence": [],
+          "explanation": "需求未限定此属性"
+        },
+        {
+          "field": "feature",
+          "label": "功能",
+          "status": "not_requested",
+          "requested": [],
+          "excluded": [],
+          "observed": [],
+          "title_evidence": [],
+          "explanation": "需求未限定此属性"
+        },
+        {
+          "field": "color",
+          "label": "颜色",
+          "status": "not_requested",
+          "requested": [],
+          "excluded": [],
+          "observed": [],
+          "title_evidence": [],
+          "explanation": "需求未限定此属性"
+        },
+        {
+          "field": "condition",
+          "label": "成色",
+          "status": "not_requested",
+          "requested": [],
+          "excluded": [],
+          "observed": [],
+          "title_evidence": [],
+          "explanation": "需求未限定此属性"
+        }
+      ],
+      "reasons": [
+        "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+      ],
+      "source": "title_rules_v1",
+      "sku_verified": false,
+      "price_verified": false
+    },
+    "ts": "2026-10-31T14:53:03.906912Z"
+  },
+  "specs": {
+    "其他": [
+      "taobao:647857545244",
+      "taobao:876285769267",
+      "taobao:1082452557089",
+      "taobao:801740311905",
+      "taobao:1091508536064",
+      "jd:100402388532",
+      "taobao:1053816501854",
+      "jd:100354173048",
+      "jd:10237940103852",
+      "taobao:1059196992648",
+      "jd:10162684152730",
+      "jd:100265748693",
+      "taobao:1085919724680",
+      "taobao:1054752908506",
+      "jd:100378346366",
+      "jd:100289927477",
+      "jd:100270446299",
+      "jd:10227447097658",
+      "jd:10227452074018",
+      "jd:10222578015293",
+      "jd:10227447097659",
+      "taobao:1076137862857",
+      "taobao:1075976827747",
+      "taobao:1079165775681",
+      "taobao:1053026061988",
+      "jd:10219385549737",
+      "taobao:924274521923",
+      "taobao:1080832686501"
+    ],
+    "Pro": [
+      "jd:100251638133",
+      "jd:100352143438"
+    ]
+  },
+  "trace": [
+    {
+      "node": "intent",
+      "input": "预算8000元买拯救者Y7000X",
+      "output": "{'product': '联想拯救者Y7000X', 'budget': 8000.0, 'preference': ''}",
+      "detail": "",
+      "elapsed_ms": 0,
+      "ts": "2026-10-31T14:52:53.205773+00:00"
+    },
+    {
+      "node": "research",
+      "input": "联想拯救者Y7000X",
+      "output": "30 条原始报价（jd:15, taobao:15, pdd:0）",
+      "detail": "errors: {}",
+      "elapsed_ms": 13226,
+      "ts": "2026-10-31T14:53:06.432100+00:00"
+    },
+    {
+      "node": "match",
+      "input": "30 条候选",
+      "output": "30 条全部保留（软标签）",
+      "detail": "打标: model_mismatch:3, low_sales:8 | stats: {'total': 30, 'rival': 0, 'accessory': 0, 'off_brand': 0, 'model_mismatch': 3, 'second_hand': 0, 'low_sales': 8, 'price_outlier': 0, 'kept': 30}",
+      "elapsed_ms": 4,
+      "ts": "2026-10-31T14:53:06.436714+00:00"
+    },
+    {
+      "node": "filters",
+      "input": "30 条候选（无筛选）",
+      "output": "保留 30 条",
+      "detail": "",
+      "elapsed_ms": 3,
+      "ts": "2026-10-31T14:53:06.439790+00:00"
+    },
+    {
+      "node": "decide",
+      "input": "30 条报价，预算 8000.0",
+      "output": "{'decision': {'engine': 'llm', 'worth': 'wait', 'confidence': 72, 'reason': '预算8000元内仅少数标题匹配Y7000X的报价，但均未验证SKU/价格且部分销量偏低，可信度不足'}, 'rank_count': 30, 'top': {'index': 2, 'score': 78, 'reason': '标题匹配Y70…",
+      "detail": "",
+      "elapsed_ms": 4422,
+      "ts": "2026-10-31T14:53:10.862017+00:00"
+    },
+    {
+      "node": "recommend",
+      "input": "decision=wait",
+      "output": "⏳ 建议确认后再买—— 预算8000元内仅少数标题匹配Y7000X的报价，但均未验证SKU/价格且部分销量偏低，可信度不足\n\n首选：taobao ¥7699.00（天猫超市） 已售 100 件\n购买入口：https://detail.tmall.com/item.htm?id=1082452557089\n\n本次采集 30 条候选，报价 ¥4999.00 ~ ¥22999.00，中位 ¥12014…",
+      "detail": "",
+      "elapsed_ms": 0,
+      "ts": "2026-10-31T14:53:10.862892+00:00"
+    }
+  ],
+  "snapshot_id": "fddfed0ce6ab4736aaea2272dd192a88",
+  "snapshot_expires_at": "2026-11-01T14:53:10.868328+00:00"
+}

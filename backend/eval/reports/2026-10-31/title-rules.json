@@ -1,0 +1,585 @@
+{
+  "n_cases": 141,
+  "n_queries": 5,
+  "label_decisions": 705,
+  "unjudged_label_decisions": 21,
+  "label_coverage": 0.9702127659574468,
+  "fully_judged_cases": 120,
+  "exact_match_rate": 0.95,
+  "per_rule": {
+    "accessory": {
+      "precision": 0.6667,
+      "recall": 1.0,
+      "f1": 0.8,
+      "tp": 4,
+      "fp": 2,
+      "fn": 0
+    },
+    "model_mismatch": {
+      "precision": 1.0,
+      "recall": 0.9231,
+      "f1": 0.96,
+      "tp": 12,
+      "fp": 0,
+      "fn": 1
+    },
+    "off_brand": {
+      "precision": 0.5,
+      "recall": 1.0,
+      "f1": 0.6667,
+      "tp": 3,
+      "fp": 3,
+      "fn": 0
+    },
+    "rival": {
+      "precision": 1.0,
+      "recall": 0.625,
+      "f1": 0.7692,
+      "tp": 5,
+      "fp": 0,
+      "fn": 3
+    },
+    "second_hand": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 10,
+      "fp": 0,
+      "fn": 0
+    }
+  },
+  "micro": {
+    "precision": 0.8718,
+    "recall": 0.8947,
+    "f1": 0.8831,
+    "tp": 34,
+    "fp": 5,
+    "fn": 4
+  },
+  "errors": [
+    {
+      "query": "预算300元买小米手环9 NFC版",
+      "title": "小米手环9Pro运动健康防水睡眠心率智能手环运动手环NFC全面屏",
+      "expect": [
+        "model_mismatch"
+      ],
+      "got": []
+    },
+    {
+      "query": "预算300元买华为手环9",
+      "title": "鱼跃腕部动态血压记录仪智能手表Watch A1 医用智能健康手环 血压心率 深空灰L码",
+      "expect": [
+        "rival"
+      ],
+      "got": [
+        "off_brand"
+      ]
+    },
+    {
+      "query": "预算300元买华为手环9",
+      "title": "测立康【医护新升级】2026全新智能血压血糖手表测心率血氧尿酸血脂心脏心电健康睡眠运动监测手表 典雅黑【医疗级准】实时动态监测+进口芯片+高清通话 NFC门禁+SOS一键呼救+远程亲友监控",
+      "expect": [
+        "rival"
+      ],
+      "got": [
+        "off_brand"
+      ]
+    },
+    {
+      "query": "预算300元买荣耀手环9",
+      "title": "荣耀手环9健康监测长续航运动防水NFC公交移动支付学生男女时尚腕表心脏健康守护14天超长续航 荣耀手环9标准版【曜石黑】+贴膜*2",
+      "expect": [],
+      "got": [
+        "accessory"
+      ]
+    },
+    {
+      "query": "预算300元买荣耀手环9",
+      "title": "荣耀（HONOR）手环9 标准版/NFC版心脏健康守护血氧心率睡眠监测长续航NFC移动支付男女时尚腕带轻薄双曲面 荣耀手环9标准版【曜石黑】",
+      "expect": [],
+      "got": [
+        "accessory"
+      ]
+    },
+    {
+      "query": "预算300元买华为手环9",
+      "title": "测立康【非凡控糖大师】高精准无创不扎针测血糖血压心率心电心脏健康监测手表高端礼赠血脂尿酸健康 银钛钢【血糖血压监测+慢性健康管家+多维健康管理】",
+      "expect": [
+        "rival"
+      ],
+      "got": [
+        "off_brand"
+      ]
+    }
+  ],
+  "dataset_sha256": "0497349381efb6cd84c67cdd852e9532eafa737ec755eeead123cdf9429ebdc5",
+  "by_query": {
+    "小米手环9": {
+      "n_cases": 15,
+      "n_queries": 1,
+      "label_decisions": 75,
+      "unjudged_label_decisions": 1,
+      "label_coverage": 0.9866666666666667,
+      "fully_judged_cases": 14,
+      "exact_match_rate": 1.0,
+      "per_rule": {
+        "model_mismatch": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        }
+      },
+      "micro": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "errors": []
+    },
+    "预算300元买华为手环9": {
+      "n_cases": 29,
+      "n_queries": 1,
+      "label_decisions": 145,
+      "unjudged_label_decisions": 2,
+      "label_coverage": 0.9862068965517241,
+      "fully_judged_cases": 27,
+      "exact_match_rate": 0.8888888888888888,
+      "per_rule": {
+        "accessory": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "model_mismatch": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 3,
+          "fp": 0,
+          "fn": 0
+        },
+        "off_brand": {
+          "precision": 0.25,
+          "recall": 1.0,
+          "f1": 0.4,
+          "tp": 1,
+          "fp": 3,
+          "fn": 0
+        },
+        "rival": {
+          "precision": 1.0,
+          "recall": 0.25,
+          "f1": 0.4,
+          "tp": 1,
+          "fp": 0,
+          "fn": 3
+        },
+        "second_hand": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        }
+      },
+      "micro": {
+        "precision": 0.7,
+        "recall": 0.7,
+        "f1": 0.7,
+        "tp": 7,
+        "fp": 3,
+        "fn": 3
+      },
+      "errors": [
+        {
+          "query": "预算300元买华为手环9",
+          "title": "鱼跃腕部动态血压记录仪智能手表Watch A1 医用智能健康手环 血压心率 深空灰L码",
+          "expect": [
+            "rival"
+          ],
+          "got": [
+            "off_brand"
+          ]
+        },
+        {
+          "query": "预算300元买华为手环9",
+          "title": "测立康【医护新升级】2026全新智能血压血糖手表测心率血氧尿酸血脂心脏心电健康睡眠运动监测手表 典雅黑【医疗级准】实时动态监测+进口芯片+高清通话 NFC门禁+SOS一键呼救+远程亲友监控",
+          "expect": [
+            "rival"
+          ],
+          "got": [
+            "off_brand"
+          ]
+        },
+        {
+          "query": "预算300元买华为手环9",
+          "title": "测立康【非凡控糖大师】高精准无创不扎针测血糖血压心率心电心脏健康监测手表高端礼赠血脂尿酸健康 银钛钢【血糖血压监测+慢性健康管家+多维健康管理】",
+          "expect": [
+            "rival"
+          ],
+          "got": [
+            "off_brand"
+          ]
+        }
+      ]
+    },
+    "预算300元买小米手环9 NFC版": {
+      "n_cases": 32,
+      "n_queries": 1,
+      "label_decisions": 160,
+      "unjudged_label_decisions": 14,
+      "label_coverage": 0.9125,
+      "fully_judged_cases": 18,
+      "exact_match_rate": 0.9444444444444444,
+      "per_rule": {
+        "accessory": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "model_mismatch": {
+          "precision": 1.0,
+          "recall": 0.6667,
+          "f1": 0.8,
+          "tp": 2,
+          "fp": 0,
+          "fn": 1
+        },
+        "off_brand": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        },
+        "rival": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 3,
+          "fp": 0,
+          "fn": 0
+        },
+        "second_hand": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 8,
+          "fp": 0,
+          "fn": 0
+        }
+      },
+      "micro": {
+        "precision": 1.0,
+        "recall": 0.9412,
+        "f1": 0.9697,
+        "tp": 16,
+        "fp": 0,
+        "fn": 1
+      },
+      "errors": [
+        {
+          "query": "预算300元买小米手环9 NFC版",
+          "title": "小米手环9Pro运动健康防水睡眠心率智能手环运动手环NFC全面屏",
+          "expect": [
+            "model_mismatch"
+          ],
+          "got": []
+        }
+      ]
+    },
+    "预算300元买荣耀手环9": {
+      "n_cases": 29,
+      "n_queries": 1,
+      "label_decisions": 145,
+      "unjudged_label_decisions": 4,
+      "label_coverage": 0.9724137931034482,
+      "fully_judged_cases": 25,
+      "exact_match_rate": 0.92,
+      "per_rule": {
+        "accessory": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6667,
+          "tp": 2,
+          "fp": 2,
+          "fn": 0
+        },
+        "model_mismatch": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "rival": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        },
+        "second_hand": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 1,
+          "fp": 0,
+          "fn": 0
+        }
+      },
+      "micro": {
+        "precision": 0.7143,
+        "recall": 1.0,
+        "f1": 0.8333,
+        "tp": 5,
+        "fp": 2,
+        "fn": 0
+      },
+      "errors": [
+        {
+          "query": "预算300元买荣耀手环9",
+          "title": "荣耀手环9健康监测长续航运动防水NFC公交移动支付学生男女时尚腕表心脏健康守护14天超长续航 荣耀手环9标准版【曜石黑】+贴膜*2",
+          "expect": [],
+          "got": [
+            "accessory"
+          ]
+        },
+        {
+          "query": "预算300元买荣耀手环9",
+          "title": "荣耀（HONOR）手环9 标准版/NFC版心脏健康守护血氧心率睡眠监测长续航NFC移动支付男女时尚腕带轻薄双曲面 荣耀手环9标准版【曜石黑】",
+          "expect": [],
+          "got": [
+            "accessory"
+          ]
+        }
+      ]
+    },
+    "预算8000元买拯救者Y7000X": {
+      "n_cases": 36,
+      "n_queries": 1,
+      "label_decisions": 180,
+      "unjudged_label_decisions": 0,
+      "label_coverage": 1.0,
+      "fully_judged_cases": 36,
+      "exact_match_rate": 1.0,
+      "per_rule": {
+        "model_mismatch": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 4,
+          "fp": 0,
+          "fn": 0
+        }
+      },
+      "micro": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0
+      },
+      "errors": []
+    }
+  },
+  "by_platform": {
+    "jd": {
+      "n_cases": 62,
+      "n_queries": 4,
+      "label_decisions": 310,
+      "unjudged_label_decisions": 7,
+      "label_coverage": 0.9774193548387097,
+      "fully_judged_cases": 55,
+      "exact_match_rate": 0.9090909090909091,
+      "per_rule": {
+        "accessory": {
+          "precision": 0.6667,
+          "recall": 1.0,
+          "f1": 0.8,
+          "tp": 4,
+          "fp": 2,
+          "fn": 0
+        },
+        "model_mismatch": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 10,
+          "fp": 0,
+          "fn": 0
+        },
+        "off_brand": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6667,
+          "tp": 3,
+          "fp": 3,
+          "fn": 0
+        },
+        "rival": {
+          "precision": 1.0,
+          "recall": 0.625,
+          "f1": 0.7692,
+          "tp": 5,
+          "fp": 0,
+          "fn": 3
+        },
+        "second_hand": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 5,
+          "fp": 0,
+          "fn": 0
+        }
+      },
+      "micro": {
+        "precision": 0.8438,
+        "recall": 0.9,
+        "f1": 0.871,
+        "tp": 27,
+        "fp": 5,
+        "fn": 3
+      },
+      "errors": [
+        {
+          "query": "预算300元买华为手环9",
+          "title": "鱼跃腕部动态血压记录仪智能手表Watch A1 医用智能健康手环 血压心率 深空灰L码",
+          "expect": [
+            "rival"
+          ],
+          "got": [
+            "off_brand"
+          ]
+        },
+        {
+          "query": "预算300元买华为手环9",
+          "title": "测立康【医护新升级】2026全新智能血压血糖手表测心率血氧尿酸血脂心脏心电健康睡眠运动监测手表 典雅黑【医疗级准】实时动态监测+进口芯片+高清通话 NFC门禁+SOS一键呼救+远程亲友监控",
+          "expect": [
+            "rival"
+          ],
+          "got": [
+            "off_brand"
+          ]
+        },
+        {
+          "query": "预算300元买荣耀手环9",
+          "title": "荣耀手环9健康监测长续航运动防水NFC公交移动支付学生男女时尚腕表心脏健康守护14天超长续航 荣耀手环9标准版【曜石黑】+贴膜*2",
+          "expect": [],
+          "got": [
+            "accessory"
+          ]
+        },
+        {
+          "query": "预算300元买荣耀手环9",
+          "title": "荣耀（HONOR）手环9 标准版/NFC版心脏健康守护血氧心率睡眠监测长续航NFC移动支付男女时尚腕带轻薄双曲面 荣耀手环9标准版【曜石黑】",
+          "expect": [],
+          "got": [
+            "accessory"
+          ]
+        },
+        {
+          "query": "预算300元买华为手环9",
+          "title": "测立康【非凡控糖大师】高精准无创不扎针测血糖血压心率心电心脏健康监测手表高端礼赠血脂尿酸健康 银钛钢【血糖血压监测+慢性健康管家+多维健康管理】",
+          "expect": [
+            "rival"
+          ],
+          "got": [
+            "off_brand"
+          ]
+        }
+      ]
+    },
+    "taobao": {
+      "n_cases": 64,
+      "n_queries": 4,
+      "label_decisions": 320,
+      "unjudged_label_decisions": 13,
+      "label_coverage": 0.959375,
+      "fully_judged_cases": 51,
+      "exact_match_rate": 0.9803921568627451,
+      "per_rule": {
+        "model_mismatch": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 1
+        },
+        "second_hand": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 5,
+          "fp": 0,
+          "fn": 0
+        }
+      },
+      "micro": {
+        "precision": 1.0,
+        "recall": 0.8333,
+        "f1": 0.9091,
+        "tp": 5,
+        "fp": 0,
+        "fn": 1
+      },
+      "errors": [
+        {
+          "query": "预算300元买小米手环9 NFC版",
+          "title": "小米手环9Pro运动健康防水睡眠心率智能手环运动手环NFC全面屏",
+          "expect": [
+            "model_mismatch"
+          ],
+          "got": []
+        }
+      ]
+    },
+    "pdd": {
+      "n_cases": 15,
+      "n_queries": 1,
+      "label_decisions": 75,
+      "unjudged_label_decisions": 1,
+      "label_coverage": 0.9866666666666667,
+      "fully_judged_cases": 14,
+      "exact_match_rate": 1.0,
+      "per_rule": {
+        "model_mismatch": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 2,
+          "fp": 0,
+          "fn": 0
+        }
+      },
+      "micro": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      "errors": []
+    }
+  }
+}

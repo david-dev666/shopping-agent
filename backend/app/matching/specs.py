@@ -8,8 +8,8 @@ import re
 
 # 规格词典：key 为规范名，value 为标题匹配用的正则（按顺序取首个命中）
 SPEC_PATTERNS: list[tuple[str, re.Pattern]] = [
-    ("Pro", re.compile(r"pro\b|pro版", re.I)),
-    ("NFC版", re.compile(r"nfc版|nfc\b", re.I)),
+    ("Pro", re.compile(r"(?<![a-z])pro(?![a-z])", re.I)),
+    ("NFC版", re.compile(r"(?<![a-z])nfc(?![a-z])", re.I)),
     ("陶瓷版", re.compile(r"陶瓷")),
     ("银色", re.compile(r"银色")),
     ("黑色", re.compile(r"黑色")),
