@@ -1,0 +1,132 @@
+"""Measure real HTTP/model refinement of saved, previously live-collected candidates."""
+import hashlib
+import json
+import platform
+import statistics
+import subprocess
+import time
+import urllib.request
+from collections import Counter
+from datetime import UTC, datetime
+from pathlib import Path
+
+from app.storage.db import init_db, snapshot_response
+
+ROOT = Path('/Users/dbw/code_space/shopping-agent')
+OUT = Path('/tmp/shopping-live-20261101.y5HIAb/refine-confirmed')
+BASE = 'http://127.0.0.1:8131'
+SOURCES = ROOT / 'backend/eval/reports/decision-and-latency-20261101/complete-latency'
+
+
+def save(name, obj):
+    (OUT / name).write_text(json.dumps(obj, ensure_ascii=False, indent=2) + '\n')
+
+
+def status():
+    with urllib.request.urlopen(BASE + '/api/status', timeout=5) as response:
+        return json.load(response)
+
+
+def main():
+    OUT.mkdir(exist_ok=False)
+    init_db()
+    cases = []
+    for p in sorted(SOURCES.glob('response-*.json')):
+        source = json.loads(p.read_text())
+        seeded = snapshot_response(source)
+        cases.append({'source_file': str(p.relative_to(ROOT)),
+                      'source_sha256': hashlib.sha256(p.read_bytes()).hexdigest(),
+                      'query': source['query'], 'snapshot_id': seeded['snapshot_id'],
+                      'candidate_count': len(source['offers']),
+                      'source_completed_at': source.get('completed_at')})
+    # Explicit simulated-user clarification is setup, separate from timed budget edits.
+    prepared = []
+    for index, case in enumerate(cases):
+        probe = json.loads((Path('/tmp/shopping-live-20261101.y5HIAb/refine') / f'response-{index + 1:03d}.json').read_text())
+        questions = probe.get('clarification_questions', [])
+        answers = {q['field']: '不限' for q in questions}
+        if answers:
+            request = urllib.request.Request(BASE + '/api/refine',
+                data=json.dumps({'snapshot_id': case['snapshot_id'], 'answers': answers,
+                                 'constraints': {'budget': 350, 'preference': '综合考虑'}}).encode(),
+                headers={'Content-Type': 'application/json'}, method='POST')
+            with urllib.request.urlopen(request, timeout=100) as response:
+                completed = json.load(response)
+            save(f'clarification-setup-{index + 1:03d}.json', completed)
+            if completed.get('status') != 'complete' or completed.get('decision', {}).get('engine') != 'llm':
+                raise RuntimeError('Clarification setup did not reach actual model decision')
+            case.update(snapshot_id=completed['snapshot_id'], setup_answers=answers)
+        prepared.append(case)
+    cases = prepared
+    source_hash = hashlib.sha256()
+    for p in sorted((ROOT / 'backend/app').rglob('*.py')):
+        source_hash.update(str(p.relative_to(ROOT)).encode())
+        source_hash.update(p.read_bytes())
+    initial = status()
+    metadata = {'started_at': datetime.now(UTC).isoformat(),
+                'revision': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
+                'app_source_sha256': source_hash.hexdigest(),
+                'mode': 'saved_real_candidates_refinement', 'endpoint': '/api/refine',
+                'planned_requests': 9, 'queries': 3, 'budget_variants': [250, 350, 450],
+                'live_collection': False, 'real_model': True, 'system': platform.platform(),
+                'fixtures': cases, 'collection_before': initial['collection'],
+                'scope': '已完成规格澄清的历史真实采集报价，每组45条；仅测预算调整后的HTTP及真实模型重新决策，不包含采集、预先澄清或人工输入等待。'}
+    save('metadata.json', metadata)
+    rows = []
+    with (OUT / 'samples.jsonl').open('w') as log:
+        for repeat, budget in enumerate((250, 350, 450), 1):
+            for case in cases:
+                index = len(rows) + 1
+                payload = {'snapshot_id': case['snapshot_id'], 'filters': {},
+                           'constraints': {'budget': budget, 'preference': '综合考虑'}}
+                request = urllib.request.Request(BASE + '/api/refine',
+                    data=json.dumps(payload).encode(), headers={'Content-Type': 'application/json'},
+                    method='POST')
+                row = {'index': index, 'round': repeat, 'query': case['query'], 'budget': budget,
+                       'candidate_count': case['candidate_count'], 'started_at': datetime.now(UTC).isoformat()}
+                started = time.perf_counter()
+                try:
+                    with urllib.request.urlopen(request, timeout=100) as response:
+                        body = json.load(response)
+                        row['http_status'] = response.status
+                    save(f'response-{index:03d}.json', body)
+                    row.update(status=body.get('status'), engine=body.get('decision', {}).get('engine'),
+                               node_ms={s['node']: s['elapsed_ms'] for s in body.get('trace', [])},
+                               response_file=f'response-{index:03d}.json',
+                               returned_candidates=len(body.get('offers', [])),
+                               snapshot_unchanged=body.get('snapshot_id') == case['snapshot_id'])
+                except Exception as exc:
+                    row.update(error_type=type(exc).__name__, error=str(exc))
+                row['wall_ms'] = round((time.perf_counter() - started) * 1000, 2)
+                rows.append(row)
+                log.write(json.dumps(row, ensure_ascii=False) + '\n'); log.flush()
+                print(json.dumps(row, ensure_ascii=False), flush=True)
+                if row.get('error_type'):
+                    break
+                time.sleep(2)
+            if rows[-1].get('error_type'):
+                break
+    final = status()
+    valid = [r for r in rows if r.get('engine') == 'llm' and r.get('status') == 'complete']
+    values = [r['wall_ms'] for r in valid]
+    summary = {'attempts': len(rows), 'distinct_queries': len({r['query'] for r in rows}),
+               'model_completed': len(valid), 'errors': sum('error_type' in r for r in rows),
+               'statuses': dict(Counter(r.get('status', r.get('error_type')) for r in rows)),
+               'mean_ms': statistics.mean(values) if values else None,
+               'median_ms': statistics.median(values) if values else None,
+               'min_ms': min(values) if values else None, 'max_ms': max(values) if values else None,
+               'collection_submitted_delta': final['collection']['submitted'] - initial['collection']['submitted'],
+               'all_snapshots_unchanged': all(r.get('snapshot_unchanged') for r in rows),
+               'per_query': {q: {'n': len(t := [r['wall_ms'] for r in valid if r['query'] == q]),
+                                 'mean_ms': statistics.mean(t) if t else None,
+                                 'min_ms': min(t) if t else None, 'max_ms': max(t) if t else None}
+                             for q in sorted({r['query'] for r in rows})},
+               'scope': metadata['scope']}
+    save('summary.json', summary)
+    metadata.update(finished_at=datetime.now(UTC).isoformat(), collection_after=final['collection'])
+    save('metadata.json', metadata)
+    print(json.dumps(summary, ensure_ascii=False), flush=True)
+
+
+if __name__ == '__main__':
+    main()

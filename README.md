@@ -63,6 +63,7 @@ FastAPI 提供接口并托管原生 HTML / CSS / JS，LangGraph 编排流程，S
 ## 开发与文档
 
 - [开发指南](docs/08-development.md)：测试、安装包、数据库迁移及目录说明。
+- [当前性能实测](docs/14-performance-20261101.md)：三组实时需求的五次有效完整查询，以及九次已有报价重新决策耗时。
 - [当前 Agent 评测](docs/13-agent-evaluation.md)：真实模型工作流、多轮澄清与约束前后对照。
 - [历史实测](docs/11-decision-evaluation.md)：早期决策约束与三平台耗时。
 - [标题标签评测](docs/10-evaluation-20261031.md)：141条真实需求—标题样本及回归结果。

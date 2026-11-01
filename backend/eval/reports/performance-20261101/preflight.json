@@ -1,0 +1,9 @@
+{
+  "recorded_at": "2026-11-01T02:40:58.015447+00:00",
+  "observed_before_measurement": true,
+  "platform": "jd",
+  "message": "访问频繁，无法搜索，请稍后再试",
+  "new_live_collection_requests": 0,
+  "decision": "postpone full three-platform collection benchmark",
+  "configured_model": "deepseek-chat"
+}

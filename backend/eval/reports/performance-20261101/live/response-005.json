@@ -1,0 +1,6521 @@
+{
+  "trace_id": "67e162d15789",
+  "status": "complete",
+  "clarification_questions": [],
+  "clarifications": {},
+  "effective_query": "预算300元买华为手环9 标准版",
+  "origin": "live",
+  "demo": false,
+  "cached": false,
+  "completed_at": "2026-11-01T02:44:31.238462+00:00",
+  "query": "预算300元买华为手环9 标准版",
+  "intent": {
+    "product": "华为手环9 标准版",
+    "budget": 300.0,
+    "preference": ""
+  },
+  "offers": [
+    {
+      "platform": "taobao",
+      "platform_id": "896209301284",
+      "title": "二手正品华为手环9 NFC /标准版智能手环轻薄舒适",
+      "price": 100.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=896209301284",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i2/684688891/O1CN014XDPoR2FY8SZ0V1a0_!!684688891.jpg_580x580q90.jpg_.webp",
+      "shop": "d[s65730050]",
+      "sales": 98,
+      "tags": [
+        "其他型号",
+        "疑似二手"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9 NFC",
+              "9 NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "ambiguous",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版",
+              "标准版"
+            ],
+            "title_evidence": [
+              "NFC",
+              "标准版"
+            ],
+            "explanation": "标题列出多个版本，无法对应单一报价"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "二手"
+            ],
+            "title_evidence": [
+              "二手"
+            ],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题包含多个版本，无法确认此报价对应哪个版本",
+          "标题列出多个版本，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:21.793844Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "1027045884927",
+      "title": "HUAWEI/华为手环9智能运动NFC门禁公交离线支付运动健康",
+      "price": 108.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=1027045884927",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i3/2215057154575/O1CN01Me3m8c1jfP7rNd2CE_!!2215057154575.jpg_580x580q90.jpg",
+      "shop": "晋福数码",
+      "sales": 27,
+      "tags": [
+        "其他型号",
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的版本不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:21.793844Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "860613115859",
+      "title": "华为HUAWEI手环9运动心率睡眠监测智能手表健康监测时尚款特价",
+      "price": 123.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=860613115859",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i3/2216129810828/O1CN01HiCR7o1HzGxciOh6N_!!2216129810828.jpg_580x580q90.jpg_.webp",
+      "shop": "群升数码",
+      "sales": 500,
+      "tags": [],
+      "match_report": {
+        "status": "insufficient",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "unknown",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明版本，不能视为一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题未明确说明版本，不能视为一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:21.793844Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "852712733969",
+      "title": "华为智能手环9全面屏手表超薄血氧检测快充长续航运动监测NFC",
+      "price": 124.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=852712733969",
+      "image": "https://g-search2.alicdn.com/img/bao/uploaded/i4/i4/1962016977/O1CN01vnYu6M21PWMOVj52r_!!1962016977.jpg_580x580q90.jpg_.webp",
+      "shop": "亲橙优品企业店",
+      "sales": 100,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的版本不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:21.793844Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10213161061011",
+      "title": "华为（HUAWEI）手环 9 华为手环NFC版智能运动手环轻薄睡眠心率定位监测心律失常提示 手环 9 星空黑 标准版",
+      "price": 145.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10213161061011.html",
+      "image": "https://img11.360buyimg.com/n2/s480x480_jfs/t1/423695/8/16816/95399/69ef25baF723fc22c/00835dc5dc614f95.jpg.avif",
+      "shop": "鸿蒙智选数码店",
+      "sales": 500,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环 9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "ambiguous",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版",
+              "标准版"
+            ],
+            "title_evidence": [
+              "NFC",
+              "标准版"
+            ],
+            "explanation": "标题列出多个版本，无法对应单一报价"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题包含多个版本，无法确认此报价对应哪个版本",
+          "标题列出多个版本，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:23.763768Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10213041945008",
+      "title": "",
+      "price": 145.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10213041945008.html",
+      "image": "https://img13.360buyimg.com/n2/s480x480_jfs/t1/422364/10/14072/53565/69e9b55dF5e74c2d8/00833203208d63b6.jpg.avif",
+      "shop": "智联融合特惠数码店",
+      "sales": 300,
+      "tags": [
+        "品牌不明"
+      ],
+      "match_report": {
+        "status": "insufficient",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "unknown",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明品牌，不能视为一致"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "unknown",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明品类，不能视为一致"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "unknown",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明代数，不能视为一致"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "unknown",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明版本，不能视为一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题未明确说明品牌，不能视为一致",
+          "标题未明确说明品类，不能视为一致",
+          "标题未明确说明代数，不能视为一致",
+          "标题未明确说明版本，不能视为一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:23.763768Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10236526553090",
+      "title": "华为手环9/手环9NFC全天舒适佩戴睡眠健康管理长续航心率血氧监测游泳防水 手环 9 星空黑 标准版",
+      "price": 145.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10236526553090.html",
+      "image": "https://img10.360buyimg.com/n2/s480x480_jfs/t1/532546/10/6762/42923/6abb4327F450b9094/00833203209852a7.jpg.avif",
+      "shop": "悦听智戴",
+      "sales": null,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9/手环9NFC",
+              "手环 9",
+              "9NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "标准版"
+            ],
+            "title_evidence": [
+              "标准版"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:23.763768Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10226701832932",
+      "title": "华为（HUAWEI）手环9 华为手环NFC智能手环华为手表运动轻薄健康男心率睡眠监测心律失常女款 手环 9 星空黑 标准版",
+      "price": 145.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10226701832932.html",
+      "image": "https://img12.360buyimg.com/n2/s480x480_jfs/t1/473461/24/4454/84426/6a48ca00Fdf5abe43/00833203203c71f1.jpg.avif",
+      "shop": "聆时智能穿戴店",
+      "sales": 80,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9",
+              "手环 9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "标准版"
+            ],
+            "title_evidence": [
+              "标准版"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:23.763768Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "1001411167406",
+      "title": "华为手环 10 标准版 智能手表手环",
+      "price": 152.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=1001411167406",
+      "image": "https://img.pddpic.com/mms-goods-image/2026-09-08/1a76449f-18e5-46fb-9364-942d920cf167.jpeg.a.jpeg",
+      "shop": "本店已拼16.7万+件",
+      "sales": 167000,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "conflict",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "10"
+            ],
+            "title_evidence": [
+              "手环 10"
+            ],
+            "explanation": "需求与标题中的代数不一致"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "标准版"
+            ],
+            "title_evidence": [
+              "标准版"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的代数不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:20.104129Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10221514212063",
+      "title": "华为手环9标准版智能手环佩戴舒适睡眠监测睡眠健康NFC版男女通用 华为手环9标准版-黑色-95新",
+      "price": 153.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10221514212063.html",
+      "image": "https://img13.360buyimg.com/n2/s480x480_jfs/t1/434139/33/7531/25877/6a040b14Fac8b0754/008333c336d578c5.jpg.avif",
+      "shop": "手环严选小店",
+      "sales": null,
+      "tags": [
+        "其他型号",
+        "疑似二手"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "ambiguous",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版",
+              "标准版"
+            ],
+            "title_evidence": [
+              "NFC",
+              "标准版"
+            ],
+            "explanation": "标题列出多个版本，无法对应单一报价"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "黑色"
+            ],
+            "title_evidence": [
+              "黑色"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题包含多个版本，无法确认此报价对应哪个版本",
+          "标题列出多个版本，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:23.763768Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "832821727106",
+      "title": "华为手环9 NFC智能运动血氧心率监测长续航脉搏早搏科学睡眠指导",
+      "price": 159.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=832821727106",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i3/2962770033/O1CN01V9IgnC1C7A3lb8rPY_!!2962770033.jpg_580x580q90.jpg_.webp",
+      "shop": "鹏宇数码通讯商城",
+      "sales": 400,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9 NFC",
+              "9 NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的版本不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:21.793844Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "982845666736",
+      "title": "华为手环 9 标准版 智能手环运动轻薄健康心率睡眠监测心律失常",
+      "price": 165.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=982845666736",
+      "image": "https://img.pddpic.com/mms-goods-image/2026-07-29/07d6ee0c-20c3-47ee-81aa-5b000e95a38d.jpeg.a.jpeg",
+      "shop": "本店已拼1221件",
+      "sales": 1221,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环 9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "标准版"
+            ],
+            "title_evidence": [
+              "标准版"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:20.104129Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "861281918653",
+      "title": "华为手环9 NFC智能运动血氧心率监测长续航脉搏早搏科学睡眠指导",
+      "price": 165.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=861281918653",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i3/2217763845001/O1CN017hxYqA1moVk9URAmO_!!2217763845001.jpg_580x580q90.jpg_.webp",
+      "shop": "南方数码通讯商城",
+      "sales": 15,
+      "tags": [
+        "其他型号",
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9 NFC",
+              "9 NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的版本不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:21.793844Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "1007823440108",
+      "title": "华为手环9智能运动NFC跑步血氧心率监测健康蓝牙彩屏多功能睡眠",
+      "price": 166.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=1007823440108",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i3/2213996304848/O1CN01HIeTvQ1lgREyCVma5_!!2213996304848.jpg_580x580q90.jpg_.webp",
+      "shop": "盛华数码严选店",
+      "sales": 99,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的版本不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:21.793844Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "985507241124",
+      "title": "华为手环9标准版智能手环轻薄舒适睡眠监测心律失常提示运动手环",
+      "price": 166.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=985507241124",
+      "image": "https://g-search1.alicdn.com/img/bao/uploaded/i4/i3/2219967775840/O1CN0152zHEt1t0m7RoEpdJ_!!2219967775840.jpg_580x580q90.jpg_.webp",
+      "shop": "千里驹数码严选店",
+      "sales": 45,
+      "tags": [
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "标准版"
+            ],
+            "title_evidence": [
+              "标准版"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:21.793844Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "986161408733",
+      "title": "华为手环9NFC原装智能运动防水长续航心率健康睡眠血氧监测轻薄",
+      "price": 166.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=986161408733",
+      "image": "https://g-search1.alicdn.com/img/bao/uploaded/i4/i2/2213996304848/O1CN01YatYMR1lgRDumK7HN_!!2213996304848.jpg_580x580q90.jpg_.webp",
+      "shop": "盛华数码严选店",
+      "sales": 58,
+      "tags": [
+        "其他型号",
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9NFC",
+              "9NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的版本不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:21.793844Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "669628501663",
+      "title": "华为手环9标准版/NFC版智能运动手环心率血氧睡眠检测心脏健康",
+      "price": 169.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=669628501663",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i3/3708214343/O1CN017fupyP1hx98qzJQJa_!!3708214343.jpg_580x580q90.jpg_.webp",
+      "shop": "谦和数码",
+      "sales": 200,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "ambiguous",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版",
+              "标准版"
+            ],
+            "title_evidence": [
+              "NFC",
+              "标准版"
+            ],
+            "explanation": "标题列出多个版本，无法对应单一报价"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题包含多个版本，无法确认此报价对应哪个版本",
+          "标题列出多个版本，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:21.793844Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "783907621327",
+      "title": "华为手环9标准版/NFC版智能运动手环心率血氧睡眠检测心脏健康",
+      "price": 169.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=783907621327",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i1/2401606177/O1CN01wL47uK1vV7SGqMUG2_!!2401606177.jpg_580x580q90.jpg",
+      "shop": "酷品潮电",
+      "sales": 100,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "ambiguous",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版",
+              "标准版"
+            ],
+            "title_evidence": [
+              "NFC",
+              "标准版"
+            ],
+            "explanation": "标题列出多个版本，无法对应单一报价"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题包含多个版本，无法确认此报价对应哪个版本",
+          "标题列出多个版本，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:21.793844Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "999173103064",
+      "title": "华为手环9 NFC智能手环轻薄舒适睡眠监测心律失常提示运动手环",
+      "price": 175.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=999173103064",
+      "image": "https://img.pddpic.com/open-gw/2026-09-04/e226b13f-bf6e-4711-ae09-a85e6b6caf7c.jpeg",
+      "shop": "全店好评470条",
+      "sales": null,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9 NFC",
+              "9 NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的版本不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:20.104129Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "932622242702",
+      "title": "华为手环9 NFC原装智能运动防水长续航心率健康睡眠血氧监测轻薄",
+      "price": 175.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=932622242702",
+      "image": "https://img.pddpic.com/mms-goods-image/2026-04-03/6eecff90-7a49-42f9-ae0f-8c46fb50201d.jpeg.a.jpeg",
+      "shop": "全店总售51.6万+件",
+      "sales": 516000,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9 NFC",
+              "9 NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的版本不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:20.104129Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "932621008902",
+      "title": "华为手环9智能运动NFC跑步血氧心率监测健康蓝牙彩屏多功能睡眠",
+      "price": 175.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=932621008902",
+      "image": "https://img.pddpic.com/mms-goods-image/2026-04-03/6108b035-d6e8-4b52-8ce2-521d280a7074.png.a.jpeg",
+      "shop": "已抢26件",
+      "sales": 26,
+      "tags": [
+        "其他型号",
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的版本不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:20.104129Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "932622651961",
+      "title": "华为手环9 NFC原装智能运动防水长续航心率健康睡眠血氧监测轻薄",
+      "price": 175.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=932622651961",
+      "image": "https://img.pddpic.com/mms-goods-image/2026-04-03/ce421121-4766-4efd-ac3f-e6db3e96c68b.jpeg.a.jpeg",
+      "shop": "品牌热销5000万+件",
+      "sales": 50000000,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9 NFC",
+              "9 NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的版本不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:20.104129Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "962888151006",
+      "title": "华为手环9 NFC原装智能运动防水长续航心率健康睡眠血氧监测轻薄",
+      "price": 175.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=962888151006",
+      "image": "https://img.pddpic.com/open-gw/2026-06-05/8f04a238-4ce6-4560-8cb9-dbffb543fad2.jpeg",
+      "shop": "本店已拼5690件",
+      "sales": 5690,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9 NFC",
+              "9 NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的版本不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:20.104129Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "876560031884",
+      "title": "华为手环9标准版/NFC版智能运动手环心率血氧睡眠检测心脏健康",
+      "price": 175.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=876560031884",
+      "image": "https://g-search2.alicdn.com/img/bao/uploaded/i4/i1/3708214343/O1CN01Dkx1T21hx98umzS8c_!!3708214343.jpg_580x580q90.jpg_.webp",
+      "shop": "谦和数码",
+      "sales": 200,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "ambiguous",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版",
+              "标准版"
+            ],
+            "title_evidence": [
+              "NFC",
+              "标准版"
+            ],
+            "explanation": "标题列出多个版本，无法对应单一报价"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题包含多个版本，无法确认此报价对应哪个版本",
+          "标题列出多个版本，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:21.793844Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "1053128215525",
+      "title": "华为手环9标准/NFC版智能运动心率失常血氧睡眠监测运动游泳男女",
+      "price": 175.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=1053128215525",
+      "image": "https://g-search2.alicdn.com/img/bao/uploaded/i4/i1/856037114/O1CN01pOdNb722QGku3IYDl_!!856037114.jpg_580x580q90.jpg",
+      "shop": "辰光智能数码店",
+      "sales": 300,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的版本不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:21.793844Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "939933938226",
+      "title": "24小时发货华为手环9 标准版智能运动手环 超长续航心率睡眠血氧",
+      "price": 177.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=939933938226",
+      "image": "https://img.pddpic.com/mms-goods-image/2026-04-16/649b3aba-cbe2-4d14-ab66-ce61bcf9e9df.jpeg.a.jpeg",
+      "shop": "已抢22件",
+      "sales": 22,
+      "tags": [
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "标准版"
+            ],
+            "title_evidence": [
+              "标准版"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:20.104129Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "851445141880",
+      "title": "华为手环9标准版手环智能监测运动睡眠心率长续航防水男女款通用",
+      "price": 179.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=851445141880",
+      "image": "https://img.pddpic.com/open-gw/2025-11-08/00ec50bd-edfb-4cf5-929f-f52604d3d052.jpeg",
+      "shop": "已抢337件",
+      "sales": 337,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "标准版"
+            ],
+            "title_evidence": [
+              "标准版"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:20.104129Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10190961374508",
+      "title": "",
+      "price": 188.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10190961374508.html",
+      "image": "https://img13.360buyimg.com/n2/s480x480_jfs/t1/343298/35/13257/52106/68f08c07F71e64fd9/bd2718da913521b2.jpg.avif",
+      "shop": "华为(HUAWEI) 选经营店",
+      "sales": 1000,
+      "tags": [
+        "品牌不明"
+      ],
+      "match_report": {
+        "status": "insufficient",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "unknown",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明品牌，不能视为一致"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "unknown",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明品类，不能视为一致"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "unknown",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明代数，不能视为一致"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "unknown",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明版本，不能视为一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题未明确说明品牌，不能视为一致",
+          "标题未明确说明品类，不能视为一致",
+          "标题未明确说明代数，不能视为一致",
+          "标题未明确说明版本，不能视为一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:23.763768Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10199963541338",
+      "title": "华为（HUAWEI）手环9标准版/NFC版智能运动手环 轻薄睡眠心率定位监测心律失常提示 支持智能亮度调节 快充长续航 【原封盒装】华为手环9标准版 羽纱白",
+      "price": 189.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10199963541338.html",
+      "image": "https://img13.360buyimg.com/n2/s480x480_jfs/t1/439568/23/2982/88946/6a13270bF5f4ce51c/00833203208a1cf4.jpg.avif",
+      "shop": "华为进多配件专卖店",
+      "sales": 100,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "ambiguous",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版",
+              "标准版"
+            ],
+            "title_evidence": [
+              "NFC",
+              "标准版"
+            ],
+            "explanation": "标题列出多个版本，无法对应单一报价"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题包含多个版本，无法确认此报价对应哪个版本",
+          "标题列出多个版本，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:23.763768Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10191014967181",
+      "title": "",
+      "price": 189.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10191014967181.html",
+      "image": "https://img11.360buyimg.com/n2/s480x480_jfs/t1/329012/22/22739/92739/68eceb95Fa0bfb5d3/1534d2535033394b.jpg.avif",
+      "shop": "华为进多配件专卖店",
+      "sales": 8000,
+      "tags": [
+        "品牌不明"
+      ],
+      "match_report": {
+        "status": "insufficient",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "unknown",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明品牌，不能视为一致"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "unknown",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明品类，不能视为一致"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "unknown",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明代数，不能视为一致"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "unknown",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明版本，不能视为一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题未明确说明品牌，不能视为一致",
+          "标题未明确说明品类，不能视为一致",
+          "标题未明确说明代数，不能视为一致",
+          "标题未明确说明版本，不能视为一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:23.763768Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "735830633499",
+      "title": "华为手环9标准版 智能轻薄舒适睡眠监测心律失常提示长续航测心率",
+      "price": 190.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=735830633499",
+      "image": "https://img.pddpic.com/mms-material-img/2025-04-20/5829fd82-7709-4744-9840-df93041d595f.jpeg.a.jpeg",
+      "shop": "全店总售63.5万+件",
+      "sales": 635000,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "标准版"
+            ],
+            "title_evidence": [
+              "标准版"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:20.104129Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10100762350325",
+      "title": "",
+      "price": 191.25,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10100762350325.html",
+      "image": "https://img10.360buyimg.com/n2/s480x480_jfs/t1/540853/17/4361/122714/6ac86a15Fcd8a5ec1/008332032002b3fd.jpg.avif",
+      "shop": "米航智能数码店",
+      "sales": 500,
+      "tags": [
+        "品牌不明"
+      ],
+      "match_report": {
+        "status": "insufficient",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "unknown",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明品牌，不能视为一致"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "unknown",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明品类，不能视为一致"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "unknown",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明代数，不能视为一致"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "unknown",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明版本，不能视为一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题未明确说明品牌，不能视为一致",
+          "标题未明确说明品类，不能视为一致",
+          "标题未明确说明代数，不能视为一致",
+          "标题未明确说明版本，不能视为一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:23.763768Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "874918319259",
+      "title": "华为手环9 标准版智能轻薄舒适睡眠监测心律失常提示长续航测心率",
+      "price": 199.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=874918319259",
+      "image": "https://img.pddpic.com/mms-goods-image/2025-09-09/e180d0e1-39db-4f57-ba72-01e195ca550c.jpeg.a.jpeg",
+      "shop": "全店好评6520条",
+      "sales": null,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "标准版"
+            ],
+            "title_evidence": [
+              "标准版"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:20.104129Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "976651789824",
+      "title": "华为手环9 标准版智能轻薄舒适睡眠监测心律失常提示长续航测心率",
+      "price": 199.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=976651789824",
+      "image": "https://img.pddpic.com/open-gw/2026-07-12/6f122ae5-cf92-48ca-ba5c-07acb126b1ba.jpeg",
+      "shop": "全店好评1129条",
+      "sales": null,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "标准版"
+            ],
+            "title_evidence": [
+              "标准版"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:20.104129Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "1014172675440",
+      "title": "华为手环9 睡眠健康管理长续航心率失常提醒轻薄舒适运动智能手环",
+      "price": 199.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=1014172675440",
+      "image": "https://img.pddpic.com/mms-goods-image/2026-10-09/0b588df5-03c9-4ee7-9416-036604f03c22.png.a.jpeg",
+      "shop": "全店回购3.5万件",
+      "sales": 35000,
+      "tags": [],
+      "match_report": {
+        "status": "insufficient",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "unknown",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明版本，不能视为一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题未明确说明版本，不能视为一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:20.104129Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "979973265424",
+      "title": "华为手环9智能手环标准版/NFC版款心率血氧睡眠监测运动手环全新",
+      "price": 216.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=979973265424",
+      "image": "https://img.pddpic.com/mms-material-img/2024-11-12/d740ef68-64f4-46ec-9bc5-944f43b39064.jpeg",
+      "shop": "全店总售62.3万+件",
+      "sales": 623000,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "ambiguous",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版",
+              "标准版"
+            ],
+            "title_evidence": [
+              "NFC",
+              "标准版"
+            ],
+            "explanation": "标题列出多个版本，无法对应单一报价"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "全新"
+            ],
+            "title_evidence": [
+              "全新"
+            ],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题包含多个版本，无法确认此报价对应哪个版本",
+          "标题列出多个版本，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:20.104129Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10231345761375",
+      "title": "华为（HUAWEI）手环9代新款智能电子手表男女款运动心率血氧检测 手环9[柠檬黄-标准版]送表带+贴",
+      "price": 219.9,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10231345761375.html",
+      "image": "https://img10.360buyimg.com/n2/s480x480_jfs/t1/499164/33/1084/128586/6a715bdfF80ef8c21/0083320320e7d638.jpg.avif",
+      "shop": "欧鹏数码专营店",
+      "sales": null,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "标准版"
+            ],
+            "title_evidence": [
+              "标准版"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:23.763768Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10237971004603",
+      "title": "华为（HUAWEI）手环 9 华为 手环NFC版 智能运动手环轻薄睡眠心率定位监测心律失常提示 手环 9 手环 9 星空黑 标准版",
+      "price": 222.6,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10237971004603.html",
+      "image": "https://img13.360buyimg.com/n2/s480x480_jfs/t1/547678/30/8184/67989/6ad9fe3eF2513291e/008332032070de18.jpg.avif",
+      "shop": "梓鼓梨专营店",
+      "sales": 10,
+      "tags": [
+        "其他型号",
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环 9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "ambiguous",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版",
+              "标准版"
+            ],
+            "title_evidence": [
+              "NFC",
+              "标准版"
+            ],
+            "explanation": "标题列出多个版本，无法对应单一报价"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题包含多个版本，无法确认此报价对应哪个版本",
+          "标题列出多个版本，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:23.763768Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "781486639974",
+      "title": "【顺丰速发！】华为手环9智能手表运动游泳专用防水男心率睡眠监测手环10pro长续航9NFC女士女款官方旗舰新款",
+      "price": 242.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://detail.tmall.com/item.htm?id=781486639974",
+      "image": "https://gw.alicdn.com/imgextra/O1CN01nVqNQ729PXOEPsBdg_!!2407018060-0-yinheaigc.jpg_580x580q90.jpg_.webp",
+      "shop": "华为乐之途专卖店",
+      "sales": 1000,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "ambiguous",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9",
+              "10"
+            ],
+            "title_evidence": [
+              "手环9",
+              "手环10pro",
+              "10pro",
+              "9NFC"
+            ],
+            "explanation": "标题列出多个代数，无法对应单一报价"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "Pro"
+            ],
+            "title_evidence": [
+              "pro"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的版本不一致",
+          "标题包含多个代数，无法确认此报价对应哪一代",
+          "标题列出多个代数，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:21.793844Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10231345325558",
+      "title": "华为（HUAWEI）新款手环9NFC款智能手表游泳专用防水9pro心率血氧睡眠监测跑步手 手环9[NFC版-羽纱白]+星空色尼龙",
+      "price": 279.75,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10231345325558.html",
+      "image": "https://img13.360buyimg.com/n2/s480x480_jfs/t1/496851/37/3294/94467/6a715bdfFa5637b0b/0083320320a89572.jpg.avif",
+      "shop": "欧鹏数码专营店",
+      "sales": null,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9NFC",
+              "手环9",
+              "9NFC",
+              "9pro"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "ambiguous",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "Pro",
+              "NFC版"
+            ],
+            "title_evidence": [
+              "pro",
+              "NFC"
+            ],
+            "explanation": "标题列出多个版本，无法对应单一报价"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题包含多个版本，无法确认此报价对应哪个版本",
+          "标题列出多个版本，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:23.763768Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "773062737576",
+      "title": "华为手环9智能手表轻薄舒适睡眠健康监测心率血氧标准版正品",
+      "price": 285.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=773062737576",
+      "image": "https://img.pddpic.com/open-gw/2025-07-04/8ad30f3d-9a7a-4579-a142-2ce7ce7589f6.jpeg",
+      "shop": "全店总售100万+件",
+      "sales": 1000000,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "标准版"
+            ],
+            "title_evidence": [
+              "标准版"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:20.104129Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "781486575009",
+      "title": "【国家补贴15%】华为手环9NFC智能手环华为手表运动轻薄健康男手环10心率睡眠监测心律失常女款9pro官方旗舰",
+      "price": 310.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://detail.tmall.com/item.htm?id=781486575009",
+      "image": "https://gw.alicdn.com/imgextra/O1CN01eoSOyH1OJmWCGkbPb_!!4611686018427380405-0-item_pic.jpg_580x580q90.jpg_.webp",
+      "shop": "华为五洲联鑫专卖店",
+      "sales": 1000,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "ambiguous",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9",
+              "10"
+            ],
+            "title_evidence": [
+              "手环9NFC",
+              "手环10",
+              "9NFC",
+              "9pro"
+            ],
+            "explanation": "标题列出多个代数，无法对应单一报价"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "Pro"
+            ],
+            "title_evidence": [
+              "pro"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的版本不一致",
+          "标题包含多个代数，无法确认此报价对应哪一代",
+          "标题列出多个代数，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:21.793844Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10103136828095",
+      "title": "华为原装手环9智能运动手环超长续航心率睡眠血氧NFC游泳防水轻薄舒适商务监测健康智能手表 华为手环9-标准版【星空黑】配表带+高清贴膜*2",
+      "price": 399.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10103136828095.html",
+      "image": "https://img10.360buyimg.com/n2/s480x480_jfs/t1/264984/29/18675/48518/67aa4631F5a1224a3/4b6ffd8d7ec65cf7.jpg.avif",
+      "shop": "博汇优数码专营店",
+      "sales": 400,
+      "tags": [
+        "其他型号",
+        "配件"
+      ],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "标准版"
+            ],
+            "title_evidence": [
+              "标准版"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:23.763768Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10128031893824",
+      "title": "华为原装手环9智能运动手环超长续航心率睡眠血氧NFC游泳防水轻薄舒适商务监测健康智能手表 【标准版-拂晓粉】+玫瑰金米兰尼斯",
+      "price": 429.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10128031893824.html",
+      "image": "https://img14.360buyimg.com/n2/s480x480_jfs/t1/240709/19/24372/113466/674d85a9F663bbe9c/c5afd4df806da062.jpg.avif",
+      "shop": "博汇优数码专营店",
+      "sales": 400,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "标准版"
+            ],
+            "title_evidence": [
+              "标准版"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "玫瑰金"
+            ],
+            "title_evidence": [
+              "玫瑰金"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:23.763768Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10231179928150",
+      "title": "华为（HUAWEI）原装手环9智能运动手环超长续航心率睡眠血氧NFC游泳防水轻薄舒适商务监测健康智能手表 NFC版【星空黑】+活力橙编织表带+贴膜",
+      "price": 473.55,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10231179928150.html",
+      "image": "https://img10.360buyimg.com/n2/s480x480_jfs/t1/518463/31/13661/50166/6aa96aa2F7b6cd3ab/0083320320e4f3ca.jpg.avif",
+      "shop": "欧鹏数码专营店",
+      "sales": null,
+      "tags": [
+        "其他型号",
+        "配件"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "华为"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "标准版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的版本不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-11-01T02:44:23.763768Z"
+    }
+  ],
+  "filter_stats": {
+    "total": 45,
+    "rival": 0,
+    "accessory": 2,
+    "off_brand": 4,
+    "model_mismatch": 30,
+    "second_hand": 2,
+    "low_sales": 7,
+    "price_outlier": 0,
+    "kept": 45
+  },
+  "errors": {},
+  "decision": {
+    "engine": "llm",
+    "worth": "buy",
+    "confidence": 72,
+    "reason": "预算300元内有多条标题属性与华为手环9标准版一致的报价，其中拼多多高销量款约190元，性价比合理，但均未验证SKU与正品，需下单前确认版本。"
+  },
+  "recommendation": "✅ 本次报价中可优先考虑—— 预算300元内有多条标题属性与华为手环9标准版一致的报价，其中拼多多高销量款约190元，性价比合理，但均未验证SKU与正品，需下单前确认版本。\n\n首选：pdd ¥190.00（全店总售63.5万+件） 已售 635000 件\n购买入口：https://mobile.yangkeduo.com/goods.html?goods_id=735830633499\n\n本次采集 45 条候选，报价 ¥100.00 ~ ¥473.55，中位 ¥175.00（你的预算 ¥300.0）\n报价来自采集页面，规格、优惠资格及最终成交价请在平台确认。",
+  "rank_items": [
+    {
+      "index": 30,
+      "score": 88,
+      "reason": "标题明确华为手环9标准版，拼多多销量63.5万+，190元在预算内，可信度较高。"
+    },
+    {
+      "index": 40,
+      "score": 85,
+      "reason": "标题明确标准版正品，销量100万+，285元接近预算上限但可信度高。"
+    },
+    {
+      "index": 11,
+      "score": 82,
+      "reason": "标题明确标准版，销量1221件中等，165元价格低，但SKU未验证。"
+    },
+    {
+      "index": 26,
+      "score": 78,
+      "reason": "标题明确标准版，销量337件，179元合理，无警示标签。"
+    },
+    {
+      "index": 36,
+      "score": 74,
+      "reason": "标题明确标准版，219.9元含赠品，京东店铺但销量缺失。"
+    },
+    {
+      "index": 32,
+      "score": 70,
+      "reason": "标题明确标准版，199元，但销量缺失仅有好评数。"
+    },
+    {
+      "index": 33,
+      "score": 68,
+      "reason": "标题明确标准版，199元，销量缺失仅有好评数。"
+    },
+    {
+      "index": 34,
+      "score": 62,
+      "reason": "标题未明确版本，199元，销量3.5万较高但版本存疑。"
+    },
+    {
+      "index": 2,
+      "score": 45,
+      "reason": "标题未明确版本，123元低价但版本不明，销量500中等。"
+    },
+    {
+      "index": 14,
+      "score": 44,
+      "reason": "标题明确标准版，但销量仅45件偏低，166元可信度不足。"
+    },
+    {
+      "index": 25,
+      "score": 43,
+      "reason": "标题明确标准版，但销量仅22件偏低，177元可信度低。"
+    },
+    {
+      "index": 6,
+      "score": 42,
+      "reason": "标题属性一致但含NFC字样且销量缺失，145元版本存疑。"
+    },
+    {
+      "index": 7,
+      "score": 41,
+      "reason": "标题属性一致但含NFC字样，销量80偏低，145元可信度不足。"
+    },
+    {
+      "index": 42,
+      "score": 11,
+      "reason": "配件搭售且399元超预算，不可选。"
+    },
+    {
+      "index": 43,
+      "score": 10,
+      "reason": "429元超预算且含配件，不可选。"
+    },
+    {
+      "index": 5,
+      "score": 10,
+      "reason": "品牌不明且标题缺失，145元不可选。"
+    },
+    {
+      "index": 27,
+      "score": 10,
+      "reason": "品牌不明且标题缺失，188元不可选。"
+    },
+    {
+      "index": 29,
+      "score": 10,
+      "reason": "品牌不明且标题缺失，189元不可选。"
+    },
+    {
+      "index": 31,
+      "score": 10,
+      "reason": "品牌不明且标题缺失，191.25元不可选。"
+    },
+    {
+      "index": 16,
+      "score": 10,
+      "reason": "标题含标准版/NFC双版本，无法确认对应版本，169元。"
+    },
+    {
+      "index": 17,
+      "score": 10,
+      "reason": "标题含双版本无法确认，销量100偏低，169元。"
+    },
+    {
+      "index": 23,
+      "score": 10,
+      "reason": "标题含双版本无法确认，175元，版本不明。"
+    },
+    {
+      "index": 28,
+      "score": 10,
+      "reason": "标题含双版本无法确认，189元，销量100偏低。"
+    },
+    {
+      "index": 35,
+      "score": 10,
+      "reason": "标题含双版本无法确认，216元，版本不明。"
+    },
+    {
+      "index": 4,
+      "score": 10,
+      "reason": "标题含NFC版与标准版双版本，145元无法确认对应版本。"
+    },
+    {
+      "index": 37,
+      "score": 10,
+      "reason": "标题含双版本，销量仅10件偏低，222.6元。"
+    },
+    {
+      "index": 39,
+      "score": 10,
+      "reason": "标题含Pro/NFC多版本，279.75元接近预算且版本混乱。"
+    },
+    {
+      "index": 0,
+      "score": 10,
+      "reason": "二手且标题含NFC/标准双版本，100元虽低但风险高。"
+    },
+    {
+      "index": 9,
+      "score": 10,
+      "reason": "疑似二手95新，标题含双版本，153元风险高。"
+    },
+    {
+      "index": 1,
+      "score": 10,
+      "reason": "标题为NFC版与需求冲突，销量27偏低，108元不可选。"
+    },
+    {
+      "index": 3,
+      "score": 10,
+      "reason": "标题为NFC版与需求冲突，124元版本不符。"
+    },
+    {
+      "index": 10,
+      "score": 10,
+      "reason": "标题为NFC版与需求冲突，159元版本不符。"
+    },
+    {
+      "index": 12,
+      "score": 10,
+      "reason": "NFC版冲突且销量15偏低，165元不可选。"
+    },
+    {
+      "index": 13,
+      "score": 10,
+      "reason": "NFC版冲突，166元版本不符。"
+    },
+    {
+      "index": 15,
+      "score": 10,
+      "reason": "NFC版冲突且销量58偏低，166元不可选。"
+    },
+    {
+      "index": 18,
+      "score": 10,
+      "reason": "NFC版冲突，175元版本不符。"
+    },
+    {
+      "index": 19,
+      "score": 10,
+      "reason": "NFC版冲突，175元版本不符。"
+    },
+    {
+      "index": 20,
+      "score": 10,
+      "reason": "NFC版冲突且销量26偏低，175元不可选。"
+    },
+    {
+      "index": 21,
+      "score": 10,
+      "reason": "NFC版冲突，175元版本不符。"
+    },
+    {
+      "index": 22,
+      "score": 10,
+      "reason": "NFC版冲突，175元版本不符。"
+    },
+    {
+      "index": 24,
+      "score": 10,
+      "reason": "NFC版冲突，175元版本不符。"
+    },
+    {
+      "index": 8,
+      "score": 10,
+      "reason": "标题为手环10与需求代数冲突，152元不可选。"
+    },
+    {
+      "index": 38,
+      "score": 10,
+      "reason": "标题含9/10多代及Pro，242元版本混乱。"
+    },
+    {
+      "index": 41,
+      "score": 10,
+      "reason": "标题含9/10多代及Pro，310元超预算且版本不符。"
+    },
+    {
+      "index": 44,
+      "score": 9,
+      "reason": "NFC版冲突、配件搭售且473.55元超预算，不可选。"
+    }
+  ],
+  "top_pick": {
+    "platform": "pdd",
+    "platform_id": "735830633499",
+    "title": "华为手环9标准版 智能轻薄舒适睡眠监测心律失常提示长续航测心率",
+    "price": 190.0,
+    "original_price": null,
+    "coupon": null,
+    "url": "https://mobile.yangkeduo.com/goods.html?goods_id=735830633499",
+    "image": "https://img.pddpic.com/mms-material-img/2025-04-20/5829fd82-7709-4744-9840-df93041d595f.jpeg.a.jpeg",
+    "shop": "全店总售63.5万+件",
+    "sales": 635000,
+    "tags": [],
+    "match_report": {
+      "status": "compatible",
+      "checks": [
+        {
+          "field": "brand",
+          "label": "品牌",
+          "status": "consistent",
+          "requested": [
+            "华为"
+          ],
+          "excluded": [],
+          "observed": [
+            "华为"
+          ],
+          "title_evidence": [
+            "华为"
+          ],
+          "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+        },
+        {
+          "field": "category",
+          "label": "品类",
+          "status": "consistent",
+          "requested": [
+            "手环"
+          ],
+          "excluded": [],
+          "observed": [
+            "手环"
+          ],
+          "title_evidence": [
+            "手环"
+          ],
+          "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+        },
+        {
+          "field": "model",
+          "label": "型号",
+          "status": "not_requested",
+          "requested": [],
+          "excluded": [],
+          "observed": [],
+          "title_evidence": [],
+          "explanation": "需求未限定此属性"
+        },
+        {
+          "field": "generation",
+          "label": "代数",
+          "status": "consistent",
+          "requested": [
+            "9"
+          ],
+          "excluded": [],
+          "observed": [
+            "9"
+          ],
+          "title_evidence": [
+            "手环9"
+          ],
+          "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+        },
+        {
+          "field": "version",
+          "label": "版本",
+          "status": "consistent",
+          "requested": [
+            "标准版"
+          ],
+          "excluded": [],
+          "observed": [
+            "标准版"
+          ],
+          "title_evidence": [
+            "标准版"
+          ],
+          "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+        },
+        {
+          "field": "feature",
+          "label": "功能",
+          "status": "not_requested",
+          "requested": [],
+          "excluded": [],
+          "observed": [],
+          "title_evidence": [],
+          "explanation": "需求未限定此属性"
+        },
+        {
+          "field": "color",
+          "label": "颜色",
+          "status": "not_requested",
+          "requested": [],
+          "excluded": [],
+          "observed": [],
+          "title_evidence": [],
+          "explanation": "需求未限定此属性"
+        },
+        {
+          "field": "condition",
+          "label": "成色",
+          "status": "not_requested",
+          "requested": [],
+          "excluded": [],
+          "observed": [],
+          "title_evidence": [],
+          "explanation": "需求未限定此属性"
+        }
+      ],
+      "reasons": [
+        "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+      ],
+      "source": "title_rules_v1",
+      "sku_verified": false,
+      "price_verified": false
+    },
+    "ts": "2026-11-01T02:44:20.104129Z"
+  },
+  "specs": {
+    "NFC版": [
+      "taobao:896209301284",
+      "taobao:1027045884927",
+      "taobao:852712733969",
+      "jd:10213161061011",
+      "jd:10236526553090",
+      "jd:10226701832932",
+      "jd:10221514212063",
+      "taobao:832821727106",
+      "taobao:861281918653",
+      "taobao:1007823440108",
+      "taobao:986161408733",
+      "taobao:669628501663",
+      "taobao:783907621327",
+      "pdd:999173103064",
+      "pdd:932622242702",
+      "pdd:932621008902",
+      "pdd:932622651961",
+      "pdd:962888151006",
+      "taobao:876560031884",
+      "taobao:1053128215525",
+      "jd:10199963541338",
+      "pdd:979973265424",
+      "jd:10237971004603",
+      "jd:10103136828095",
+      "jd:10128031893824",
+      "jd:10231179928150"
+    ],
+    "其他": [
+      "taobao:860613115859",
+      "jd:10213041945008",
+      "pdd:1001411167406",
+      "pdd:982845666736",
+      "taobao:985507241124",
+      "pdd:939933938226",
+      "pdd:851445141880",
+      "jd:10190961374508",
+      "jd:10191014967181",
+      "pdd:735830633499",
+      "jd:10100762350325",
+      "pdd:874918319259",
+      "pdd:976651789824",
+      "pdd:1014172675440",
+      "jd:10231345761375",
+      "pdd:773062737576"
+    ],
+    "Pro": [
+      "taobao:781486639974",
+      "jd:10231345325558",
+      "taobao:781486575009"
+    ]
+  },
+  "trace": [
+    {
+      "node": "intent",
+      "input": "预算300元买华为手环9 标准版",
+      "output": "{'product': '华为手环9 标准版', 'budget': 300.0, 'preference': ''}",
+      "detail": "",
+      "elapsed_ms": 0,
+      "ts": "2026-11-01T02:44:18.948959+00:00"
+    },
+    {
+      "node": "research",
+      "input": "华为手环9 标准版",
+      "output": "45 条原始报价（jd:15, taobao:15, pdd:15）",
+      "detail": "errors: {}",
+      "elapsed_ms": 4836,
+      "ts": "2026-11-01T02:44:23.785327+00:00"
+    },
+    {
+      "node": "match",
+      "input": "45 条候选",
+      "output": "45 条全部保留（软标签）",
+      "detail": "打标: accessory:2, off_brand:4, model_mismatch:30, second_hand:2, low_sales:7 | stats: {'total': 45, 'rival': 0, 'accessory': 2, 'off_brand': 4, 'model_mismatch': 30, 'second_hand': 2, 'low_sales': 7, 'price_outlier': 0, 'kept': 45}",
+      "elapsed_ms": 5,
+      "ts": "2026-11-01T02:44:23.791290+00:00"
+    },
+    {
+      "node": "filters",
+      "input": "45 条候选（无筛选）",
+      "output": "保留 45 条",
+      "detail": "",
+      "elapsed_ms": 2,
+      "ts": "2026-11-01T02:44:23.794219+00:00"
+    },
+    {
+      "node": "review",
+      "input": "45 条候选",
+      "output": "关键规格无需补充",
+      "detail": "确认规格: {} | 生效需求: 预算300元买华为手环9 标准版",
+      "elapsed_ms": 0,
+      "ts": "2026-11-01T02:44:23.794806+00:00"
+    },
+    {
+      "node": "decide",
+      "input": "45 条报价，预算 300.0",
+      "output": "{'decision': {'engine': 'llm', 'worth': 'buy', 'confidence': 72, 'reason': '预算300元内有多条标题属性与华为手环9标准版一致的报价，其中拼多多高销量款约190元，性价比合理，但均未验证SKU与正品，需下单前确认版本。'}, 'rank_count': 45, 'top': {'index': 30, 'score': …",
+      "detail": "",
+      "elapsed_ms": 7437,
+      "ts": "2026-11-01T02:44:31.232641+00:00"
+    },
+    {
+      "node": "recommend",
+      "input": "decision=buy",
+      "output": "✅ 本次报价中可优先考虑—— 预算300元内有多条标题属性与华为手环9标准版一致的报价，其中拼多多高销量款约190元，性价比合理，但均未验证SKU与正品，需下单前确认版本。\n\n首选：pdd ¥190.00（全店总售63.5万+件） 已售 635000 件\n购买入口：https://mobile.yangkeduo.com/goods.html?goods_id=735830633499\n\n本次采…",
+      "detail": "",
+      "elapsed_ms": 1,
+      "ts": "2026-11-01T02:44:31.233884+00:00"
+    }
+  ],
+  "snapshot_id": "1f2ddefc55f64387854e2349766354a9",
+  "snapshot_expires_at": "2026-11-02T02:44:31.238698+00:00"
+}

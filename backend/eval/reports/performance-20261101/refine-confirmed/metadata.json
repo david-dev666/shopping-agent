@@ -1,0 +1,65 @@
+{
+  "started_at": "2026-11-01T02:37:56.531109+00:00",
+  "revision": "c862dda0e1d142f275379cf8ff10c6b131acbf36",
+  "app_source_sha256": "c145a6c3567e09022660afc49a5ffc693f22a03ac717dfaacfaefffee4959353",
+  "mode": "saved_real_candidates_refinement",
+  "endpoint": "/api/refine",
+  "planned_requests": 9,
+  "queries": 3,
+  "budget_variants": [
+    250,
+    350,
+    450
+  ],
+  "live_collection": false,
+  "real_model": true,
+  "system": "macOS-26.5.1-arm64-arm-64bit",
+  "fixtures": [
+    {
+      "source_file": "backend/eval/reports/decision-and-latency-20261101/complete-latency/response-001.json",
+      "source_sha256": "190fa9942af5087356c549f6d5b5b633278f2b5a917cfccd0a4de40f2e015519",
+      "query": "预算300元买小米手环9 NFC版",
+      "snapshot_id": "d6c2426670a44389af6707c554648773",
+      "candidate_count": 45,
+      "source_completed_at": "2026-10-31T15:57:29.928821+00:00"
+    },
+    {
+      "source_file": "backend/eval/reports/decision-and-latency-20261101/complete-latency/response-002.json",
+      "source_sha256": "9b05f213f6a3a793f76a7e8bbeebd2609af833e90b67fb320eed1d1775d95293",
+      "query": "预算300元买华为手环9",
+      "snapshot_id": "12f599e5c66b4806a9a4a7182f47a9d5",
+      "candidate_count": 45,
+      "source_completed_at": "2026-10-31T15:57:57.086093+00:00",
+      "setup_answers": {
+        "version": "不限"
+      }
+    },
+    {
+      "source_file": "backend/eval/reports/decision-and-latency-20261101/complete-latency/response-003.json",
+      "source_sha256": "fefa1f95ac0692a412e6f6e52ca5288f13ab8c663a4504d21d5632663d580cb5",
+      "query": "预算300元买荣耀手环9",
+      "snapshot_id": "c0384027679e45ed8c1e48898bda3026",
+      "candidate_count": 45,
+      "source_completed_at": "2026-10-31T15:58:25.041466+00:00",
+      "setup_answers": {
+        "version": "不限"
+      }
+    }
+  ],
+  "collection_before": {
+    "submitted": 0,
+    "joined": 0,
+    "rejected": 0,
+    "outstanding": 0,
+    "capacity": 16
+  },
+  "scope": "已完成规格澄清的历史真实采集报价，每组45条；仅测预算调整后的HTTP及真实模型重新决策，不包含采集、预先澄清或人工输入等待。",
+  "finished_at": "2026-11-01T02:39:26.097396+00:00",
+  "collection_after": {
+    "submitted": 0,
+    "joined": 0,
+    "rejected": 0,
+    "outstanding": 0,
+    "capacity": 16
+  }
+}

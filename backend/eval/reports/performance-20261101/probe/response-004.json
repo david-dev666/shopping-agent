@@ -1,0 +1,6725 @@
+{
+  "trace_id": "b812798eff60",
+  "status": "complete",
+  "clarification_questions": [],
+  "clarifications": {},
+  "effective_query": "预算300元买小米手环9 NFC版",
+  "origin": "refine",
+  "demo": false,
+  "cached": false,
+  "completed_at": "2026-11-01T02:36:30.012612+00:00",
+  "query": "预算300元买小米手环9 NFC版",
+  "intent": {
+    "product": "小米手环9 NFC版",
+    "budget": 350.0,
+    "preference": "综合考虑"
+  },
+  "offers": [
+    {
+      "platform": "taobao",
+      "platform_id": "922752112508",
+      "title": "小米手环9智能运动手环NFC男女澎湃血氧睡眠检测米家澎湃系统",
+      "price": 142.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=922752112508",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i3/2216129810828/O1CN01MO7LkJ1HzGzt6juNB_!!2216129810828.jpg_580x580q90.jpg",
+      "shop": "群升数码",
+      "sales": 100,
+      "tags": [
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:20.448631Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "1089300583787",
+      "title": "小米手环9/9NFC运动健康手环陶瓷版睡眠心率血氧检测门禁支付",
+      "price": 144.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=1089300583787",
+      "image": "https://g-search1.alicdn.com/img/bao/uploaded/i4/i2/2214201576760/O1CN01nlOuocrrMLK1chua_!!2214201576760.jpg_580x580q90.jpg",
+      "shop": "好机汇3c数码",
+      "sales": 3,
+      "tags": [
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9/9NFC",
+              "9NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "ambiguous",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版",
+              "陶瓷版"
+            ],
+            "title_evidence": [
+              "NFC",
+              "陶瓷版"
+            ],
+            "explanation": "标题列出多个版本，无法对应单一报价"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题以斜线列出多个版本，无法确认此报价对应的 SKU",
+          "标题包含多个版本，无法确认此报价对应哪个版本",
+          "标题列出多个版本，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:20.448631Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "1065525120375",
+      "title": "小米手环9标准版NFC陶瓷版智能手环健康监测离线支付运动手环",
+      "price": 149.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=1065525120375",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i3/2206592426357/O1CN01AuuO7f1wpYwRGcHjr_!!2206592426357.heic_580x580q90.jpg",
+      "shop": "无敌哈密瓜玩机",
+      "sales": 100,
+      "tags": [
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "ambiguous",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "标准版",
+              "陶瓷版"
+            ],
+            "title_evidence": [
+              "标准版",
+              "陶瓷版"
+            ],
+            "explanation": "标题列出多个版本，无法对应单一报价"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题包含多个版本，无法确认此报价对应哪个版本",
+          "标题列出多个版本，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:20.448631Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "1077279884462",
+      "title": "【正品无刻字】小米手环9 /9NFC智能运动男女离线支付手环8升级款",
+      "price": 155.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=1077279884462",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i4/3312524427/O1CN01V5Ti1jQbQvK1chua_!!3312524427.jpg_580x580q90.jpg",
+      "shop": "阿强数码优选",
+      "sales": 34,
+      "tags": [
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "ambiguous",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9",
+              "8"
+            ],
+            "title_evidence": [
+              "手环9 /9NFC",
+              "手环8",
+              "9NFC"
+            ],
+            "explanation": "标题列出多个代数，无法对应单一报价"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题以斜线列出多个版本，无法确认此报价对应的 SKU",
+          "标题包含多个代数，无法确认此报价对应哪一代",
+          "标题列出多个代数，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:20.448631Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "1091201788812",
+      "title": "小米手环9/9NFC手环运动健康心率睡眠血氧监测长续航支付门禁闹钟",
+      "price": 169.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=1091201788812",
+      "image": "https://g-search1.alicdn.com/img/bao/uploaded/i4/i1/1749034318/O1CN01rx7BtwpO5sG49oPo_!!1749034318.jpg_580x580q90.jpg",
+      "shop": "米乐腕趣数码",
+      "sales": 23,
+      "tags": [
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9/9NFC",
+              "9NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题以斜线列出多个版本，无法确认此报价对应的 SKU"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:20.448631Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "854442011114",
+      "title": "小米手环9/nfc智能运动手表黑银粉蓝门禁离线支付手环二手9新",
+      "price": 169.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=854442011114",
+      "image": "https://g-search1.alicdn.com/img/bao/uploaded/i4/i3/2218441773897/O1CN01bzOIGu1eesTmrlr3B_!!2218441773897.jpg_580x580q90.jpg",
+      "shop": "小满电子",
+      "sales": 500,
+      "tags": [
+        "疑似二手"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "nfc"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "nfc"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "二手"
+            ],
+            "title_evidence": [
+              "二手"
+            ],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题以斜线列出多个版本，无法确认此报价对应的 SKU"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:20.448631Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "888099041008",
+      "title": "小米手环9/9NFC/Pro运动健康手环睡眠心率血氧检测门禁支付长续航",
+      "price": 181.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=888099041008",
+      "image": "https://g-search1.alicdn.com/img/bao/uploaded/i4/i2/1902316531/O1CN01rdKez41y7Fow9x616_!!1902316531.jpg_580x580q90.jpg",
+      "shop": "江华景云数码",
+      "sales": 6000,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9/9NFC",
+              "9NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "ambiguous",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "Pro",
+              "NFC版"
+            ],
+            "title_evidence": [
+              "Pro",
+              "NFC"
+            ],
+            "explanation": "标题列出多个版本，无法对应单一报价"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题以斜线列出多个版本，无法确认此报价对应的 SKU",
+          "标题包含多个版本，无法确认此报价对应哪个版本",
+          "标题列出多个版本，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:20.448631Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "994411591352",
+      "title": "华为手环9/NFC智能运动手表防水长续航心率健康监测官方正品男女",
+      "price": 185.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=994411591352",
+      "image": "https://img.pddpic.com/mms-goods-image/2026-08-26/0f6d0815-aca1-4c5a-b085-7bd47495c790.jpeg.a.jpeg",
+      "shop": "已抢32件",
+      "sales": 32,
+      "tags": [
+        "其他品牌",
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "conflict",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "需求与标题中的品牌不一致"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的品牌不一致",
+          "标题以斜线列出多个版本，无法确认此报价对应的 SKU"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:17.821315Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "957053594410",
+      "title": "小米手环9/9NFC运动健康手环睡眠心率血氧检测门禁移动支付长续航",
+      "price": 188.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=957053594410",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i4/1902316531/O1CN01VbsjsN1y7Fjv16bHg_!!1902316531.jpg_580x580q90.jpg",
+      "shop": "江华景云数码",
+      "sales": 400,
+      "tags": [],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9/9NFC",
+              "9NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题以斜线列出多个版本，无法确认此报价对应的 SKU"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:20.448631Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "1086673260103",
+      "title": "小米手环9NFC/标准手环刻字智能手环nfc版健康监测睡眠心率血氧",
+      "price": 190.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=1086673260103",
+      "image": "https://g-search2.alicdn.com/img/bao/uploaded/i4/i4/2221153915508/O1CN01vA0PoJqp7xH1chua_!!2221153915508.jpg_580x580q90.jpg",
+      "shop": "加速度数码优品",
+      "sales": 100,
+      "tags": [
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9NFC",
+              "9NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC",
+              "nfc"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC",
+              "nfc"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:20.448631Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "1083698067918",
+      "title": "小米手环9健康陶瓷多功能刻字特别版监测智能NFC心率睡眠运动99新",
+      "price": 190.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=1083698067918",
+      "image": "https://g-search3.alicdn.com/img/bao/uploaded/i4/i2/2221153915508/O1CN01WRCsNsLGXGE1chua_!!2221153915508.jpg_580x580q90.jpg",
+      "shop": "加速度数码优品",
+      "sales": 200,
+      "tags": [
+        "疑似二手"
+      ],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:20.448631Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10127059495603",
+      "title": "运动手环9/9NFC智能运动健康监测睡眠管理心率血氧超长续航二手 运动手环9 NFC版 银色 90新 #简装刻字款#",
+      "price": 199.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10127059495603.html",
+      "image": "https://img13.360buyimg.com/n2/s480x480_jfs/t1/274092/9/17471/45835/67f6105cF36a55892/981d2b6c38b013f6.jpg.avif",
+      "shop": "百汇数码工作室",
+      "sales": 6000,
+      "tags": [
+        "品牌不明",
+        "疑似二手"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "unknown",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明品牌，不能视为一致"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9/9NFC",
+              "手环9 NFC",
+              "9NFC",
+              "9 NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "银色"
+            ],
+            "title_evidence": [
+              "银色"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "二手"
+            ],
+            "title_evidence": [
+              "二手"
+            ],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题以斜线列出多个版本，无法确认此报价对应的 SKU",
+          "标题未明确说明品牌，不能视为一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:22.744193Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10224763209573",
+      "title": "黑色小米运动手环9 NFC版简装",
+      "price": 199.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10224763209573.html",
+      "image": "https://img13.360buyimg.com/n2/s480x480_jfs/t1/442355/39/17456/48742/6a27b255F6bc960a7/0083320320b5b9e5.jpg.avif",
+      "shop": "丛昕数码工作室",
+      "sales": 700,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9 NFC",
+              "9 NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "黑色"
+            ],
+            "title_evidence": [
+              "黑色"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:22.744193Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10224763209561",
+      "title": "小米（MI）小米手环9/9NFC版智能手环运动健康监测睡眠管理心率血氧超长续航二手 小米运动手环9 NFC版 银色 店保180天【90新-95新】袋装刻字",
+      "price": 199.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10224763209561.html",
+      "image": "https://img11.360buyimg.com/n2/s480x480_jfs/t1/455128/26/2431/46663/6a27b228Fb820c1ce/0083320320012b57.jpg.avif",
+      "shop": "丛昕数码工作室",
+      "sales": 700,
+      "tags": [
+        "疑似二手"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9/9NFC",
+              "手环9 NFC",
+              "9NFC",
+              "9 NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "银色"
+            ],
+            "title_evidence": [
+              "银色"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "二手"
+            ],
+            "title_evidence": [
+              "二手"
+            ],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题以斜线列出多个版本，无法确认此报价对应的 SKU"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:22.744193Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10237995376865",
+      "title": "",
+      "price": 199.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10237995376865.html",
+      "image": "https://img10.360buyimg.com/n2/s480x480_jfs/t1/442214/23/18106/85024/6a2919e9F3fc1b536/0083320320f8d2dd.jpg.avif",
+      "shop": "悠米数码工作室",
+      "sales": 50,
+      "tags": [
+        "品牌不明",
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "insufficient",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "unknown",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明品牌，不能视为一致"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "unknown",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明品类，不能视为一致"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "unknown",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明代数，不能视为一致"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "unknown",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明版本，不能视为一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "unknown",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明功能，不能视为一致"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题未明确说明品牌，不能视为一致",
+          "标题未明确说明品类，不能视为一致",
+          "标题未明确说明代数，不能视为一致",
+          "标题未明确说明版本，不能视为一致",
+          "标题未明确说明功能，不能视为一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:22.744193Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10237995376889",
+      "title": "小米（MI）小米手环9/9NFC版智能健康监测睡眠管理心率血氧超长续航运动手环二手 小米运动手环9 NFC版 银色 店保180天【90新-95新】#袋装#",
+      "price": 199.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10237995376889.html",
+      "image": "https://img14.360buyimg.com/n2/s480x480_jfs/t1/450068/1/8312/79999/6a2919b0Fc73c75ca/008332032044b9b2.jpg.avif",
+      "shop": "悠米数码工作室",
+      "sales": 50,
+      "tags": [
+        "疑似二手",
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9/9NFC",
+              "手环9 NFC",
+              "9NFC",
+              "9 NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "银色"
+            ],
+            "title_evidence": [
+              "银色"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "二手"
+            ],
+            "title_evidence": [
+              "二手"
+            ],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题以斜线列出多个版本，无法确认此报价对应的 SKU"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:22.744193Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10166179124986",
+      "title": "小米智能手环9/9NFC版智能手环运动手环血氧心率睡眠监测全面屏长续航男女智能手环【二手95成新】 小米手环9 银色",
+      "price": 215.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10166179124986.html",
+      "image": "https://img11.360buyimg.com/n2/s480x480_jfs/t1/305002/32/19515/72059/687c5a0dF18be628d/fd3c7d59d75d25df.jpg.avif",
+      "shop": "亦安拍拍二手设备专营店",
+      "sales": 200,
+      "tags": [
+        "疑似二手"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9/9NFC",
+              "手环9",
+              "9NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "银色"
+            ],
+            "title_evidence": [
+              "银色"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "二手"
+            ],
+            "title_evidence": [
+              "二手",
+              "95成新"
+            ],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题以斜线列出多个版本，无法确认此报价对应的 SKU"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:22.744193Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "979973265424",
+      "title": "华为手环9智能手环标准版/NFC版款心率血氧睡眠监测运动手环全新",
+      "price": 216.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=979973265424",
+      "image": "https://img.pddpic.com/mms-material-img/2024-11-12/d740ef68-64f4-46ec-9bc5-944f43b39064.jpeg",
+      "shop": "全店总售62.2万+件",
+      "sales": 622000,
+      "tags": [
+        "其他品牌"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "conflict",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "需求与标题中的品牌不一致"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "ambiguous",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版",
+              "标准版"
+            ],
+            "title_evidence": [
+              "NFC",
+              "标准版"
+            ],
+            "explanation": "标题列出多个版本，无法对应单一报价"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "全新"
+            ],
+            "title_evidence": [
+              "全新"
+            ],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的品牌不一致",
+          "标题包含多个版本，无法确认此报价对应哪个版本",
+          "标题列出多个版本，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:17.821315Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10222479082254",
+      "title": "小米（MI）手环 9 智能手环男女炫彩大屏双通道监测运动触屏手表 小米手环 9 黑色 NFC版",
+      "price": 224.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10222479082254.html",
+      "image": "https://img14.360buyimg.com/n2/s480x480_jfs/t1/435254/36/6791/51628/6a0c496fF1c0f8ef8/00833203209ae8b3.jpg.avif",
+      "shop": "悦听智戴",
+      "sales": 300,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环 9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "黑色"
+            ],
+            "title_evidence": [
+              "黑色"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:22.744193Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10222479082255",
+      "title": "小米（MI）手环 9 智能手环男女炫彩大屏双通道监测运动触屏手表 小米手环 9 银色 NFC版",
+      "price": 229.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10222479082255.html",
+      "image": "https://img10.360buyimg.com/n2/s480x480_jfs/t1/433414/19/17757/51359/6a0c496eF8b03d0d0/00833203208c781e.jpg.avif",
+      "shop": "悦听智戴",
+      "sales": 300,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环 9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "银色"
+            ],
+            "title_evidence": [
+              "银色"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:22.744193Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10222479082257",
+      "title": "小米（MI）手环 9 智能手环男女炫彩大屏双通道监测运动触屏手表 小米手环 9 粉金 NFC版",
+      "price": 229.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10222479082257.html",
+      "image": "https://img12.360buyimg.com/n2/s480x480_jfs/t1/431763/27/14823/51715/6a0c496eF0e5aefa4/0083320320fd541b.jpg.avif",
+      "shop": "悦听智戴",
+      "sales": 300,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环 9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:22.744193Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "1023311383411",
+      "title": "小米手环9Pro运动健康睡眠血氧心率监测智能学生手表防水NFC续航",
+      "price": 269.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=1023311383411",
+      "image": "https://img.pddpic.com/mms-goods-image/2026-10-31/0c662587-ea49-497a-91b3-8545c0824231.jpeg",
+      "shop": "本店已拼1225件",
+      "sales": 1225,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9Pro",
+              "9Pro"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "Pro"
+            ],
+            "title_evidence": [
+              "Pro"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的版本不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:17.821315Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "966068253591",
+      "title": "小米手环9 NFC陶瓷版血氧心率睡眠监测男女运动健康智能防水手表",
+      "price": 269.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=966068253591",
+      "image": "https://g-search2.alicdn.com/img/bao/uploaded/i4/i1/2793036174/O1CN010UDFBz1vTkOR5XK56_!!2793036174.jpg_580x580q90.jpg",
+      "shop": "华东体验店",
+      "sales": 900,
+      "tags": [],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9 NFC",
+              "9 NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "陶瓷版"
+            ],
+            "title_evidence": [
+              "陶瓷版"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的版本不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:20.448631Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "100244561503",
+      "title": "华为手环11 NFC版 悦动白 铝合金表壳1.62英寸流畅大屏专业睡眠健康监测华为运动手环",
+      "price": 269.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/100244561503.html",
+      "image": "https://img13.360buyimg.com/n2/s480x480_jfs/t1/539322/5/11901/72287/6acf5e2cFaf7e22ad/0083320320b24cf3.jpg.avif",
+      "shop": "华为京东自营旗舰店",
+      "sales": 300000,
+      "tags": [
+        "其他品牌"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "conflict",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "需求与标题中的品牌不一致"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "conflict",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "11"
+            ],
+            "title_evidence": [
+              "手环11 NFC",
+              "11 NFC"
+            ],
+            "explanation": "需求与标题中的代数不一致"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的品牌不一致",
+          "需求与标题中的代数不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:22.744193Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "989688749560",
+      "title": "小米手环9智能运动健康10nfc血氧睡眠心率监测陶瓷特别版长续航",
+      "price": 274.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=989688749560",
+      "image": "https://g-search1.alicdn.com/img/bao/uploaded/i4/i3/2214995950235/O1CN019BPYvv1DbgAw5W1Hb_!!2214995950235.jpg_580x580q90.jpg",
+      "shop": "羊驼数码",
+      "sales": 2000,
+      "tags": [],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "ambiguous",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9",
+              "10"
+            ],
+            "title_evidence": [
+              "手环9",
+              "10nfc"
+            ],
+            "explanation": "标题列出多个代数，无法对应单一报价"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "陶瓷版"
+            ],
+            "title_evidence": [
+              "陶瓷特别版"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "nfc"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的版本不一致",
+          "标题包含多个代数，无法确认此报价对应哪一代",
+          "标题列出多个代数，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:20.448631Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "815737623763",
+      "title": "小米手环9Pro智能运动健康防水血氧睡眠心率监测微信支付全面屏",
+      "price": 278.9,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=815737623763",
+      "image": "https://img.pddpic.com/mms-goods-image/2025-09-11/c6d97d19-3826-48eb-8712-95d28a0ed54a.jpeg.a.jpeg",
+      "shop": "全店好评2.6万条",
+      "sales": null,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9Pro",
+              "9Pro"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "Pro"
+            ],
+            "title_evidence": [
+              "Pro"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "unknown",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明功能，不能视为一致"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的版本不一致",
+          "标题未明确说明功能，不能视为一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:17.821315Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "1020722578045",
+      "title": "【爆款】小米手环9 Pro 智能户外运动手表心率血氧监测超长续航",
+      "price": 279.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=1020722578045",
+      "image": "https://img.pddpic.com/mms-goods-image/2026-09-17/a93225ee-f3d9-4e71-932c-c193fb0d015f.png.a.jpeg",
+      "shop": "本店已拼1.5万件",
+      "sales": 15000,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9 Pro",
+              "9 Pro"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "Pro"
+            ],
+            "title_evidence": [
+              "Pro"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "unknown",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明功能，不能视为一致"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的版本不一致",
+          "标题未明确说明功能，不能视为一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:17.821315Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "976651262374",
+      "title": "华为手环9 NFC版",
+      "price": 289.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=976651262374",
+      "image": "https://img.pddpic.com/open-gw/2026-07-12/086b7a24-9d59-47cb-a251-49561ccaddb6.jpeg",
+      "shop": "全店好评1116条",
+      "sales": null,
+      "tags": [
+        "其他品牌"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "conflict",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "需求与标题中的品牌不一致"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9 NFC",
+              "9 NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的品牌不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:17.821315Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "828605300348",
+      "title": "小米手环9 /9NFC陶瓷版智能运动记步血氧睡眠监测离线支付长续航",
+      "price": 299.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=828605300348",
+      "image": "https://img.pddpic.com/mms-material-img/2024-10-01/5f2a4126-4252-4ca9-b218-ccf043c46751.jpeg",
+      "shop": "本店已拼3.4万件",
+      "sales": 34000,
+      "tags": [],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9 /9NFC",
+              "9NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "ambiguous",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版",
+              "陶瓷版"
+            ],
+            "title_evidence": [
+              "NFC",
+              "陶瓷版"
+            ],
+            "explanation": "标题列出多个版本，无法对应单一报价"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题以斜线列出多个版本，无法确认此报价对应的 SKU",
+          "标题包含多个版本，无法确认此报价对应哪个版本",
+          "标题列出多个版本，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:17.821315Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10121801549605",
+      "title": "小米手环9Pro 智能手环9Pro 智能支付 多功能NFC 多重健康监测 睡眠呼吸暂停监测心率血氧监测运动手环 小米手环9Pro 黑色",
+      "price": 299.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10121801549605.html",
+      "image": "https://img10.360buyimg.com/n2/s480x480_jfs/t1/542478/24/10300/89542/6ad8638eF03ae4df0/00833203203ddc04.jpg.avif",
+      "shop": "小米智能旗舰店",
+      "sales": 10000,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9Pro",
+              "9Pro"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "Pro"
+            ],
+            "title_evidence": [
+              "Pro"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "黑色"
+            ],
+            "title_evidence": [
+              "黑色"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的版本不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:22.744193Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "898571755694",
+      "title": "小米手环9/10Pro大屏nfc防水手表心率监测男女运动健康智能腕表",
+      "price": 308.99,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=898571755694",
+      "image": "https://img.pddpic.com/mms-goods-image/2026-01-24/65e12c6e-0d8d-4467-829d-aaaab8e39f88.jpeg.a.jpeg",
+      "shop": "已抢2956件",
+      "sales": 2956,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "ambiguous",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "ambiguous",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9",
+              "10"
+            ],
+            "title_evidence": [
+              "手环9/10Pro",
+              "10Pro"
+            ],
+            "explanation": "标题列出多个代数，无法对应单一报价"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "ambiguous",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "Pro",
+              "NFC版"
+            ],
+            "title_evidence": [
+              "Pro",
+              "nfc"
+            ],
+            "explanation": "标题列出多个版本，无法对应单一报价"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "nfc"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题以斜线列出多个版本，无法确认此报价对应的 SKU",
+          "标题包含多个代数，无法确认此报价对应哪一代",
+          "标题包含多个版本，无法确认此报价对应哪个版本",
+          "标题列出多个代数，无法对应单一报价",
+          "标题列出多个版本，无法对应单一报价"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:17.821315Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "1058684592993",
+      "title": "小米手环9Pro运动健康防水睡眠心率智能手环运动手环NFC全面屏",
+      "price": 309.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=1058684592993",
+      "image": "https://g-search2.alicdn.com/img/bao/uploaded/i4/i2/2206864856349/O1CN01bzNXCv1wltld573l5_!!2206864856349.jpg_580x580q90.jpg",
+      "shop": "小米甄选企业店",
+      "sales": 2000,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9Pro",
+              "9Pro"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "Pro"
+            ],
+            "title_evidence": [
+              "Pro"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的版本不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:20.448631Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "10236622422668",
+      "title": "小米手环9Pro 智能支付 多功能NFC 多重健康监测 睡眠呼吸暂停监测心率血氧监测运动手环 黑色",
+      "price": 309.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/10236622422668.html",
+      "image": "https://img13.360buyimg.com/n2/s480x480_jfs/t1/537748/4/3433/42160/6ad3b8cbFc8bb2639/065c3203204056a8.png.avif",
+      "shop": "小米平板电脑旗舰店",
+      "sales": 400,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9Pro",
+              "9Pro"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "Pro"
+            ],
+            "title_evidence": [
+              "Pro"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "黑色"
+            ],
+            "title_evidence": [
+              "黑色"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的版本不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:22.744193Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "100326341960",
+      "title": "华为 手环11 Pro NFC海岛蓝铝合金表壳1.62英寸高亮大屏刷新率达到60Hz",
+      "price": 319.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/100326341960.html",
+      "image": "https://img10.360buyimg.com/n2/s480x480_jfs/t1/548148/31/352/68619/6acf5e36Ff38524a3/0083320320161790.jpg.avif",
+      "shop": "华为京东自营旗舰店",
+      "sales": 200000,
+      "tags": [
+        "其他型号",
+        "其他品牌"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "conflict",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "需求与标题中的品牌不一致"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "conflict",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "11"
+            ],
+            "title_evidence": [
+              "手环11 Pro",
+              "11 Pro"
+            ],
+            "explanation": "需求与标题中的代数不一致"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "Pro"
+            ],
+            "title_evidence": [
+              "Pro"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的品牌不一致",
+          "需求与标题中的代数不一致",
+          "需求与标题中的版本不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:22.744193Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "100326342022",
+      "title": "华为 手环11ProNFC羽砂黑铝合金表壳1.62英寸高亮大屏刷新率达到60Hz华为运动智能手环",
+      "price": 319.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/100326342022.html",
+      "image": "https://img12.360buyimg.com/n2/s480x480_jfs/t1/536564/16/8634/68259/6acf5e34F7be50907/00833203205d0a68.jpg.avif",
+      "shop": "华为京东自营旗舰店",
+      "sales": 200000,
+      "tags": [
+        "其他品牌"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "conflict",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "华为"
+            ],
+            "title_evidence": [
+              "华为"
+            ],
+            "explanation": "需求与标题中的品牌不一致"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "conflict",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "11"
+            ],
+            "title_evidence": [
+              "手环11Pro"
+            ],
+            "explanation": "需求与标题中的代数不一致"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "unknown",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明版本，不能视为一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "unknown",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明功能，不能视为一致"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的品牌不一致",
+          "需求与标题中的代数不一致",
+          "标题未明确说明版本，不能视为一致",
+          "标题未明确说明功能，不能视为一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:22.744193Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "1017168180241",
+      "title": "小米小米手环9运动健康防水睡眠心率智能手环手表NFC全面屏长续航",
+      "price": 329.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=1017168180241",
+      "image": "https://g-search2.alicdn.com/img/bao/uploaded/i4/i2/1062686906/O1CN01DuB0cr20t0Ll1FyOS_!!1062686906.png_580x580q90.jpg",
+      "shop": "米链数码正品店",
+      "sales": 200,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:20.448631Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "889733146127",
+      "title": "小米手环10运动健康防水睡眠心率智能手环NFC全面屏长续航9升级版",
+      "price": 344.95,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=889733146127",
+      "image": "https://img.pddpic.com/mms-material-img/2025-07-19/e91f342e-f810-43b4-8fe8-b2564863bd2d.jpeg",
+      "shop": "本店已拼10.9万+件",
+      "sales": 109000,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "conflict",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "10"
+            ],
+            "title_evidence": [
+              "手环10"
+            ],
+            "explanation": "需求与标题中的代数不一致"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的代数不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:17.821315Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "1009384379163",
+      "title": "小米手环9Pro 多功能运动健康睡眠心率智能手环 NFC防水运动手表9",
+      "price": 349.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=1009384379163",
+      "image": "https://img.pddpic.com/mms-goods-image/2026-06-07/7061a0d2-82d7-4edc-82af-29bb3a819658.jpeg",
+      "shop": "本店已拼2405件",
+      "sales": 2405,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9Pro",
+              "手表9",
+              "9Pro"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "Pro"
+            ],
+            "title_evidence": [
+              "Pro"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的版本不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:17.821315Z"
+    },
+    {
+      "platform": "taobao",
+      "platform_id": "826000763342",
+      "title": "小米手环9运动健康防水睡眠心率智能手环手表NFC全面屏长续航微信",
+      "price": 349.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.taobao.com/item.htm?id=826000763342",
+      "image": "https://g-search2.alicdn.com/img/bao/uploaded/i4/i2/63163313/O1CN01ZRrEY6BskAC2XrKe_!!63163313.png_580x580q90.jpg",
+      "shop": "小米北京正品店",
+      "sales": 51,
+      "tags": [
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:20.448631Z"
+    },
+    {
+      "platform": "jd",
+      "platform_id": "100399339916",
+      "title": "小米手环11NFC版 黑色 新品上市",
+      "price": 349.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://item.jd.com/100399339916.html",
+      "image": "https://img11.360buyimg.com/n2/s480x480_jfs/t1/537432/40/9052/54599/6ac8c459F880d8bee/00833203201804ca.jpg.avif",
+      "shop": "小米京东自营旗舰店",
+      "sales": 200000,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "conflict",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "11"
+            ],
+            "title_evidence": [
+              "手环11NFC",
+              "11NFC"
+            ],
+            "explanation": "需求与标题中的代数不一致"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [
+              "黑色"
+            ],
+            "title_evidence": [
+              "黑色"
+            ],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的代数不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:22.744193Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "681246123397",
+      "title": "小米手环9Pro 新品智能手环9Pro 智能支付 多功能NFC 多重健康监",
+      "price": 355.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=681246123397",
+      "image": "https://img.pddpic.com/open-gw/2024-12-06/63eaaf7e-dd3a-4491-96d8-ba3eba200acb.png",
+      "shop": "本店已拼3.1万件",
+      "sales": 31000,
+      "tags": [
+        "其他型号"
+      ],
+      "match_report": {
+        "status": "conflict",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9Pro",
+              "9Pro"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "conflict",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "Pro"
+            ],
+            "title_evidence": [
+              "Pro"
+            ],
+            "explanation": "需求与标题中的版本不一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "需求与标题中的版本不一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:17.821315Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "1022042244290",
+      "title": "小米手环运动健康防水睡眠心率智能手环手表NFC全面屏长续航微信",
+      "price": 373.8,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=1022042244290",
+      "image": "https://img.pddpic.com/mms-goods-image/2026-10-28/c829b44e-31da-4e8a-9207-b1c5a00b0f43.jpeg.a.jpeg",
+      "shop": "本店已拼1.4万件",
+      "sales": 14000,
+      "tags": [],
+      "match_report": {
+        "status": "insufficient",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "unknown",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明代数，不能视为一致"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题未明确说明代数，不能视为一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:17.821315Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "807994737260",
+      "title": "XIAOMI小米手环9nfc智能手环运动支付睡眠血氧心率跑步表防水通用",
+      "price": 399.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=807994737260",
+      "image": "https://img.pddpic.com/open-gw/2025-09-01/6bea4e5b-3b12-44d5-b2c6-595bf61099ed.png",
+      "shop": "全店好评9506条",
+      "sales": null,
+      "tags": [],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9nfc",
+              "9nfc"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "nfc"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "nfc"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:17.821315Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "86491737346",
+      "title": "小米手环",
+      "price": 454.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=86491737346",
+      "image": "https://t00img.yangkeduo.com/goods/images/2020-01-29/11210705-86f2-4c45-a683-39101bf7291f.jpeg",
+      "shop": "本店已拼7393件",
+      "sales": 7393,
+      "tags": [],
+      "match_report": {
+        "status": "insufficient",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "unknown",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明代数，不能视为一致"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "unknown",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明版本，不能视为一致"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "unknown",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "标题未明确说明功能，不能视为一致"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "标题未明确说明代数，不能视为一致",
+          "标题未明确说明版本，不能视为一致",
+          "标题未明确说明功能，不能视为一致"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:17.821315Z"
+    },
+    {
+      "platform": "pdd",
+      "platform_id": "763627925337",
+      "title": "小米手环9NFC运动健康防水睡眠心率智能时尚手环手表全面屏",
+      "price": 499.0,
+      "original_price": null,
+      "coupon": null,
+      "url": "https://mobile.yangkeduo.com/goods.html?goods_id=763627925337",
+      "image": "https://img.pddpic.com/mms-material-img/2025-06-17/6ed3ef1c-04c5-4129-95b2-0b065b5423c9.jpeg.a.jpeg",
+      "shop": "已抢14件",
+      "sales": 14,
+      "tags": [
+        "销量偏低"
+      ],
+      "match_report": {
+        "status": "compatible",
+        "checks": [
+          {
+            "field": "brand",
+            "label": "品牌",
+            "status": "consistent",
+            "requested": [
+              "小米"
+            ],
+            "excluded": [],
+            "observed": [
+              "小米"
+            ],
+            "title_evidence": [
+              "小米"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "category",
+            "label": "品类",
+            "status": "consistent",
+            "requested": [
+              "手环"
+            ],
+            "excluded": [],
+            "observed": [
+              "手环"
+            ],
+            "title_evidence": [
+              "手环"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "model",
+            "label": "型号",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "generation",
+            "label": "代数",
+            "status": "consistent",
+            "requested": [
+              "9"
+            ],
+            "excluded": [],
+            "observed": [
+              "9"
+            ],
+            "title_evidence": [
+              "手环9NFC",
+              "9NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "version",
+            "label": "版本",
+            "status": "consistent",
+            "requested": [
+              "NFC版"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC版"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "feature",
+            "label": "功能",
+            "status": "consistent",
+            "requested": [
+              "NFC"
+            ],
+            "excluded": [],
+            "observed": [
+              "NFC"
+            ],
+            "title_evidence": [
+              "NFC"
+            ],
+            "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+          },
+          {
+            "field": "color",
+            "label": "颜色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          },
+          {
+            "field": "condition",
+            "label": "成色",
+            "status": "not_requested",
+            "requested": [],
+            "excluded": [],
+            "observed": [],
+            "title_evidence": [],
+            "explanation": "需求未限定此属性"
+          }
+        ],
+        "reasons": [
+          "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+        ],
+        "source": "title_rules_v1",
+        "sku_verified": false,
+        "price_verified": false
+      },
+      "ts": "2026-10-31T15:57:17.821315Z"
+    }
+  ],
+  "filter_stats": {},
+  "errors": {},
+  "decision": {
+    "engine": "llm",
+    "worth": "wait",
+    "confidence": 62,
+    "reason": "所有报价均未验证具体SKU与价格条件，且低价位普遍销量偏低或标题版本混杂，无法确认是小米手环9 NFC版正品新货"
+  },
+  "recommendation": "⏳ 建议确认后再买—— 所有报价均未验证具体SKU与价格条件，且低价位普遍销量偏低或标题版本混杂，无法确认是小米手环9 NFC版正品新货\n\n首选：jd ¥224.00（悦听智戴） 已售 300 件\n购买入口：https://item.jd.com/10222479082254.html\n\n本次采集 45 条候选，报价 ¥142.00 ~ ¥499.00，中位 ¥269.00（你的预算 ¥350.0）\n报价来自采集页面，规格、优惠资格及最终成交价请在平台确认。",
+  "rank_items": [
+    {
+      "index": 18,
+      "score": 78,
+      "reason": "标题属性一致且为黑色NFC版，销量300中等，无警示标签，但SKU与价格未验证"
+    },
+    {
+      "index": 19,
+      "score": 77,
+      "reason": "标题属性一致银色NFC版，销量300，无警示标签，规格证据仍待确认"
+    },
+    {
+      "index": 20,
+      "score": 76,
+      "reason": "标题属性一致粉金NFC版，销量300，无警示标签，颜色属性略缺"
+    },
+    {
+      "index": 12,
+      "score": 74,
+      "reason": "标题明确黑色小米手环9 NFC版简装，销量700，但简装含义与SKU未验证"
+    },
+    {
+      "index": 35,
+      "score": 70,
+      "reason": "标题属性一致，销量200偏低，价格偏高且SKU未验证"
+    },
+    {
+      "index": 42,
+      "score": 52,
+      "reason": "标题属性一致但价格399超预算，且无销量数据"
+    },
+    {
+      "index": 9,
+      "score": 7,
+      "reason": "标题属性一致但销量仅100偏低，且标题含标准版字样需确认SKU"
+    },
+    {
+      "index": 0,
+      "score": 6,
+      "reason": "标题属性一致但销量仅100偏低，价格异常低，SKU与价格条件未验证"
+    },
+    {
+      "index": 38,
+      "score": 4,
+      "reason": "标题属性一致但销量仅51偏低，价格接近预算上限"
+    },
+    {
+      "index": 10,
+      "score": 0,
+      "reason": "疑似二手，标题含陶瓷特别版，降权"
+    },
+    {
+      "index": 44,
+      "score": 0,
+      "reason": "标题属性一致但销量仅14偏低，价格499超预算"
+    },
+    {
+      "index": 41,
+      "score": 0,
+      "reason": "标题未明确代数，信息不足且价格超预算"
+    },
+    {
+      "index": 43,
+      "score": 0,
+      "reason": "标题仅小米手环，代数版本功能均不明，价格超预算"
+    },
+    {
+      "index": 14,
+      "score": 0,
+      "reason": "品牌不明、销量偏低且标题信息不足，无法确认"
+    },
+    {
+      "index": 8,
+      "score": 0,
+      "reason": "标题含9/9NFC多版本，销量400，无法确认对应SKU"
+    },
+    {
+      "index": 28,
+      "score": 0,
+      "reason": "标题含NFC版与陶瓷版多版本，销量3.4万较高但SKU无法确认"
+    },
+    {
+      "index": 22,
+      "score": 0,
+      "reason": "陶瓷版与需求版本冲突"
+    },
+    {
+      "index": 24,
+      "score": 0,
+      "reason": "陶瓷版且含9/10多代数，版本冲突"
+    },
+    {
+      "index": 4,
+      "score": 0,
+      "reason": "标题含9/9NFC多版本，销量23偏低，无法确认对应SKU"
+    },
+    {
+      "index": 1,
+      "score": 0,
+      "reason": "标题含NFC版与陶瓷版多版本，销量仅3，无法确认SKU"
+    },
+    {
+      "index": 2,
+      "score": 0,
+      "reason": "标题含标准版与陶瓷版多版本，销量100偏低，无法确认SKU"
+    },
+    {
+      "index": 3,
+      "score": 0,
+      "reason": "标题含9与8多代数，销量34偏低，无法确认对应SKU"
+    },
+    {
+      "index": 5,
+      "score": 0,
+      "reason": "疑似二手且标题多版本，销量500，降权明显"
+    },
+    {
+      "index": 13,
+      "score": 0,
+      "reason": "疑似二手且标题多版本，降权"
+    },
+    {
+      "index": 15,
+      "score": 0,
+      "reason": "疑似二手且销量偏低，降权"
+    },
+    {
+      "index": 16,
+      "score": 0,
+      "reason": "疑似二手且标题多版本，降权"
+    },
+    {
+      "index": 11,
+      "score": 0,
+      "reason": "品牌不明且疑似二手，不得作为首选"
+    },
+    {
+      "index": 6,
+      "score": 0,
+      "reason": "其他型号标签，标题含Pro与NFC多版本，不得作为首选"
+    },
+    {
+      "index": 7,
+      "score": 0,
+      "reason": "华为品牌与需求冲突，其他品牌且销量偏低"
+    },
+    {
+      "index": 17,
+      "score": 0,
+      "reason": "华为品牌与需求冲突，其他品牌"
+    },
+    {
+      "index": 21,
+      "score": 0,
+      "reason": "Pro型号与需求冲突，其他型号"
+    },
+    {
+      "index": 23,
+      "score": 0,
+      "reason": "华为品牌与代数均冲突，其他品牌"
+    },
+    {
+      "index": 25,
+      "score": 0,
+      "reason": "Pro型号冲突，其他型号"
+    },
+    {
+      "index": 26,
+      "score": 0,
+      "reason": "Pro型号冲突，其他型号"
+    },
+    {
+      "index": 27,
+      "score": 0,
+      "reason": "华为品牌冲突，其他品牌"
+    },
+    {
+      "index": 29,
+      "score": 0,
+      "reason": "Pro型号冲突，其他型号"
+    },
+    {
+      "index": 30,
+      "score": 0,
+      "reason": "含Pro与9/10多代数，其他型号且无法确认"
+    },
+    {
+      "index": 31,
+      "score": 0,
+      "reason": "Pro型号冲突，其他型号"
+    },
+    {
+      "index": 32,
+      "score": 0,
+      "reason": "Pro型号冲突，其他型号"
+    },
+    {
+      "index": 33,
+      "score": 0,
+      "reason": "华为品牌与代数冲突，其他品牌其他型号"
+    },
+    {
+      "index": 34,
+      "score": 0,
+      "reason": "华为品牌与代数冲突，其他品牌"
+    },
+    {
+      "index": 36,
+      "score": 0,
+      "reason": "小米手环10代数冲突，其他型号"
+    },
+    {
+      "index": 37,
+      "score": 0,
+      "reason": "Pro型号冲突，其他型号"
+    },
+    {
+      "index": 39,
+      "score": 0,
+      "reason": "小米手环11代数冲突，其他型号"
+    },
+    {
+      "index": 40,
+      "score": 0,
+      "reason": "Pro型号冲突，其他型号"
+    }
+  ],
+  "top_pick": {
+    "platform": "jd",
+    "platform_id": "10222479082254",
+    "title": "小米（MI）手环 9 智能手环男女炫彩大屏双通道监测运动触屏手表 小米手环 9 黑色 NFC版",
+    "price": 224.0,
+    "original_price": null,
+    "coupon": null,
+    "url": "https://item.jd.com/10222479082254.html",
+    "image": "https://img14.360buyimg.com/n2/s480x480_jfs/t1/435254/36/6791/51628/6a0c496fF1c0f8ef8/00833203209ae8b3.jpg.avif",
+    "shop": "悦听智戴",
+    "sales": 300,
+    "tags": [],
+    "match_report": {
+      "status": "compatible",
+      "checks": [
+        {
+          "field": "brand",
+          "label": "品牌",
+          "status": "consistent",
+          "requested": [
+            "小米"
+          ],
+          "excluded": [],
+          "observed": [
+            "小米"
+          ],
+          "title_evidence": [
+            "小米"
+          ],
+          "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+        },
+        {
+          "field": "category",
+          "label": "品类",
+          "status": "consistent",
+          "requested": [
+            "手环"
+          ],
+          "excluded": [],
+          "observed": [
+            "手环"
+          ],
+          "title_evidence": [
+            "手环"
+          ],
+          "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+        },
+        {
+          "field": "model",
+          "label": "型号",
+          "status": "not_requested",
+          "requested": [],
+          "excluded": [],
+          "observed": [],
+          "title_evidence": [],
+          "explanation": "需求未限定此属性"
+        },
+        {
+          "field": "generation",
+          "label": "代数",
+          "status": "consistent",
+          "requested": [
+            "9"
+          ],
+          "excluded": [],
+          "observed": [
+            "9"
+          ],
+          "title_evidence": [
+            "手环 9"
+          ],
+          "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+        },
+        {
+          "field": "version",
+          "label": "版本",
+          "status": "consistent",
+          "requested": [
+            "NFC版"
+          ],
+          "excluded": [],
+          "observed": [
+            "NFC版"
+          ],
+          "title_evidence": [
+            "NFC"
+          ],
+          "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+        },
+        {
+          "field": "feature",
+          "label": "功能",
+          "status": "consistent",
+          "requested": [
+            "NFC"
+          ],
+          "excluded": [],
+          "observed": [
+            "NFC"
+          ],
+          "title_evidence": [
+            "NFC"
+          ],
+          "explanation": "标题声明与需求一致，仍需核对实际 SKU"
+        },
+        {
+          "field": "color",
+          "label": "颜色",
+          "status": "not_requested",
+          "requested": [],
+          "excluded": [],
+          "observed": [
+            "黑色"
+          ],
+          "title_evidence": [
+            "黑色"
+          ],
+          "explanation": "需求未限定此属性"
+        },
+        {
+          "field": "condition",
+          "label": "成色",
+          "status": "not_requested",
+          "requested": [],
+          "excluded": [],
+          "observed": [],
+          "title_evidence": [],
+          "explanation": "需求未限定此属性"
+        }
+      ],
+      "reasons": [
+        "已识别的标题属性一致，不代表实际 SKU 或价格条件已验证"
+      ],
+      "source": "title_rules_v1",
+      "sku_verified": false,
+      "price_verified": false
+    },
+    "ts": "2026-10-31T15:57:22.744193Z"
+  },
+  "specs": {
+    "NFC版": [
+      "taobao:922752112508",
+      "taobao:1089300583787",
+      "taobao:1065525120375",
+      "taobao:1077279884462",
+      "taobao:1091201788812",
+      "taobao:854442011114",
+      "pdd:994411591352",
+      "taobao:957053594410",
+      "taobao:1086673260103",
+      "taobao:1083698067918",
+      "jd:10127059495603",
+      "jd:10224763209573",
+      "jd:10224763209561",
+      "jd:10237995376889",
+      "jd:10166179124986",
+      "pdd:979973265424",
+      "jd:10222479082254",
+      "jd:10222479082255",
+      "jd:10222479082257",
+      "taobao:966068253591",
+      "jd:100244561503",
+      "taobao:989688749560",
+      "pdd:976651262374",
+      "pdd:828605300348",
+      "taobao:1017168180241",
+      "pdd:889733146127",
+      "taobao:826000763342",
+      "jd:100399339916",
+      "pdd:1022042244290",
+      "pdd:807994737260",
+      "pdd:763627925337"
+    ],
+    "Pro": [
+      "taobao:888099041008",
+      "pdd:1023311383411",
+      "pdd:815737623763",
+      "pdd:1020722578045",
+      "jd:10121801549605",
+      "pdd:898571755694",
+      "taobao:1058684592993",
+      "jd:10236622422668",
+      "jd:100326341960",
+      "pdd:1009384379163",
+      "pdd:681246123397"
+    ],
+    "其他": [
+      "jd:10237995376865",
+      "jd:100326342022",
+      "pdd:86491737346"
+    ]
+  },
+  "trace": [
+    {
+      "node": "filters",
+      "input": "45 条候选（无筛选）",
+      "output": "保留 45 条",
+      "detail": "",
+      "elapsed_ms": 0,
+      "ts": "2026-11-01T02:36:23.668163+00:00"
+    },
+    {
+      "node": "review",
+      "input": "45 条候选",
+      "output": "关键规格无需补充",
+      "detail": "确认规格: {} | 生效需求: 预算300元买小米手环9 NFC版",
+      "elapsed_ms": 0,
+      "ts": "2026-11-01T02:36:23.668809+00:00"
+    },
+    {
+      "node": "decide",
+      "input": "45 条报价，预算 350.0",
+      "output": "{'decision': {'engine': 'llm', 'worth': 'wait', 'confidence': 62, 'reason': '所有报价均未验证具体SKU与价格条件，且低价位普遍销量偏低或标题版本混杂，无法确认是小米手环9 NFC版正品新货'}, 'rank_count': 45, 'top': {'index': 18, 'score': 78, 'reason': …",
+      "detail": "",
+      "elapsed_ms": 6339,
+      "ts": "2026-11-01T02:36:30.008491+00:00"
+    },
+    {
+      "node": "recommend",
+      "input": "decision=wait",
+      "output": "⏳ 建议确认后再买—— 所有报价均未验证具体SKU与价格条件，且低价位普遍销量偏低或标题版本混杂，无法确认是小米手环9 NFC版正品新货\n\n首选：jd ¥224.00（悦听智戴） 已售 300 件\n购买入口：https://item.jd.com/10222479082254.html\n\n本次采集 45 条候选，报价 ¥142.00 ~ ¥499.00，中位 ¥269.00（你的预算 ¥350.…",
+      "detail": "",
+      "elapsed_ms": 0,
+      "ts": "2026-11-01T02:36:30.009405+00:00"
+    }
+  ],
+  "snapshot_id": "66844146006646299ac90c6a49befae8"
+}

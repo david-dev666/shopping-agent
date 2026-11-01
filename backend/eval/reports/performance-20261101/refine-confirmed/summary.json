@@ -1,0 +1,36 @@
+{
+  "attempts": 9,
+  "distinct_queries": 3,
+  "model_completed": 9,
+  "errors": 0,
+  "statuses": {
+    "complete": 9
+  },
+  "mean_ms": 7939.19,
+  "median_ms": 7346.33,
+  "min_ms": 6621.47,
+  "max_ms": 13007.5,
+  "collection_submitted_delta": 0,
+  "all_snapshots_unchanged": true,
+  "per_query": {
+    "预算300元买华为手环9": {
+      "n": 3,
+      "mean_ms": 7529.87,
+      "min_ms": 6892.03,
+      "max_ms": 8351.25
+    },
+    "预算300元买小米手环9 NFC版": {
+      "n": 3,
+      "mean_ms": 7296.553333333333,
+      "min_ms": 6638.16,
+      "max_ms": 7730.6
+    },
+    "预算300元买荣耀手环9": {
+      "n": 3,
+      "mean_ms": 8991.146666666667,
+      "min_ms": 6621.47,
+      "max_ms": 13007.5
+    }
+  },
+  "scope": "已完成规格澄清的历史真实采集报价，每组45条；仅测预算调整后的HTTP及真实模型重新决策，不包含采集、预先澄清或人工输入等待。"
+}
