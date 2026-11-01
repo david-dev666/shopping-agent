@@ -1,0 +1,232 @@
+"""Run full HTTP workflows with frozen collection fixtures and controlled/model decisions."""
+
+import argparse
+import json
+import random
+import tempfile
+from copy import deepcopy
+from pathlib import Path
+from time import perf_counter
+from types import SimpleNamespace
+from unittest.mock import patch
+
+from fastapi.testclient import TestClient
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
+from app.agents import graph
+from app.agents.llm_utils import extract_json
+from app.config import get_settings
+from app.main import app
+from app.models.offers import RawOffer, offer_key
+from app.storage import db
+from eval.workflow import fingerprint, load_cases, score_phase, summarize
+
+
+class RecordedModel:
+    def __init__(self, engine, model=None):
+        self.engine, self.model = engine, model
+        self.decisions = []
+        self.calls = []
+
+    def invoke(self, prompt):
+        stage = "decision" if prompt.startswith(graph.DECIDE_PROMPT.splitlines()[0]) else "intent"
+        call = {"stage": stage}
+        self.calls.append(call)
+        try:
+            if self.engine == "llm":
+                result = self.model.invoke(prompt)
+            elif stage == "intent":
+                query = prompt.rsplit("用户需求：", 1)[-1].strip()
+                result = SimpleNamespace(
+                    content=json.dumps(
+                        {
+                            "product": query,
+                            "budget": graph.explicit_budget(query),
+                            "preference": "",
+                        }
+                    )
+                )
+            else:
+                # Deliberately rank the first candidate first, without seeing expected labels.
+                import re
+
+                indexes = re.findall(r"^(\d+) \|", prompt, re.M)
+                result = SimpleNamespace(
+                    content=json.dumps(
+                        {
+                            "worth": "buy",
+                            "confidence": 100,
+                            "reason": "controlled first-item output",
+                            "items": [
+                                {"index": int(i), "score": 100 - n, "reason": "injected"}
+                                for n, i in enumerate(indexes)
+                            ],
+                        }
+                    )
+                )
+            call["usage"] = getattr(result, "usage_metadata", None)
+            if stage == "decision":
+                try:
+                    self.decisions.append(
+                        graph.DecisionResult.model_validate(
+                            extract_json(result.content)
+                        ).model_dump()
+                    )
+                except ValueError:
+                    call["invalid_schema"] = True
+            return result
+        except Exception as exc:
+            call["error_type"] = type(exc).__name__
+            raise
+
+
+def run_case(client, case, engine, model, seed):
+    row = {"id": case["id"], "group": case["group"], "seed": seed, "phases": []}
+    offers = deepcopy(case["offers"])
+    random.Random(seed).shuffle(offers)
+    recorder = RecordedModel(engine, model)
+    collection_calls = []
+
+    async def collect(query, adapters):
+        collection_calls.append(query)
+        return [RawOffer.model_validate(o) for o in offers], dict(case["collection_errors"])
+
+    with (
+        patch.object(graph, "_llm", lambda: recorder),
+        patch.object(graph, "get_adapters", lambda _: []),
+        patch.object(graph, "search_all", collect),
+    ):
+        try:
+            steps = [{"expected": case["expected"]}, *case["steps"]]
+            result = None
+            for index, step in enumerate(steps):
+                before = len(recorder.decisions)
+                started = perf_counter()
+                response = (
+                    client.post("/api/chat", json={"query": case["query"], "data_mode": "live"})
+                    if index == 0
+                    else client.post(
+                        "/api/refine",
+                        json={
+                            "snapshot_id": result["snapshot_id"],
+                            **{k: v for k, v in step.items() if k != "expected"},
+                        },
+                    )
+                )
+                response.raise_for_status()
+                result = response.json()
+                phase = score_phase(step["expected"], result, len(collection_calls))
+                phase.update(
+                    index=index,
+                    elapsed_ms=round((perf_counter() - started) * 1000, 2),
+                    result=result,
+                    raw_available=False,
+                )
+                if len(recorder.decisions) > before:
+                    raw = recorder.decisions[-1]
+                    items = raw["items"]
+                    idx = items[0]["index"] if items and raw["worth"] != "skip" else None
+                    chosen = (
+                        result["offers"][idx]
+                        if idx is not None and 0 <= idx < len(result["offers"])
+                        else None
+                    )
+                    raw_key = offer_key(RawOffer.model_validate(chosen)) if chosen else None
+                    budget = step["expected"]["budget"]
+                    phase.update(
+                        raw_available=True,
+                        raw_selected=raw_key,
+                        raw_unacceptable=bool(
+                            idx is not None and raw_key not in step["expected"]["acceptable_keys"]
+                        ),
+                        raw_over_budget=bool(
+                            chosen and budget is not None and chosen["price"] > budget
+                        ),
+                    )
+                row["phases"].append(phase)
+            row["passed"] = all(p["passed"] for p in row["phases"])
+        except Exception as exc:
+            row.update(error=type(exc).__name__, passed=False)
+    row["model_calls"] = recorder.calls
+    return row
+
+
+def evaluate(dataset, engine, permutations=1):
+    cases = load_cases(dataset)
+    original_factory = graph._llm
+    model = original_factory() if engine == "llm" else None
+    if engine == "llm" and model is None:
+        raise ValueError("LLM mode requires configured model; no rules-only substitution")
+    previous = db._engine, db._SessionLocal
+    with tempfile.TemporaryDirectory(prefix="shopping-workflow-") as temporary:
+        isolated_engine = create_engine(
+            f"sqlite:///{temporary}/eval.db", connect_args={"check_same_thread": False}
+        )
+        db._engine = isolated_engine
+        db._SessionLocal = sessionmaker(bind=isolated_engine, expire_on_commit=False)
+        try:
+            with TestClient(app) as client:
+                rows = []
+                for case in cases:
+                    for seed in range(permutations):
+                        row = run_case(client, case, engine, model, seed)
+                        rows.append(row)
+                        print(
+                            json.dumps({"id": row["id"], "seed": seed, "passed": row["passed"]}),
+                            flush=True,
+                        )
+        finally:
+            isolated_engine.dispose()
+            db._engine, db._SessionLocal = previous
+    return {
+        "source_sha256": {
+            name: fingerprint(Path(__file__).resolve().parents[1] / name)
+            for name in (
+                "app/agents/graph.py",
+                "app/agents/llm_utils.py",
+                "app/matching/identity.py",
+                "app/matching/filter.py",
+                "scripts/eval_workflow.py",
+                "eval/workflow.py",
+            )
+        },
+        "dataset_sha256": fingerprint(dataset),
+        "distinct_cases": len(cases),
+        "distinct_queries": len({c["query"] for c in cases}),
+        "requested_engine": engine,
+        "model": get_settings().llm_model if engine == "llm" else None,
+        "permutations": permutations,
+        "summary": summarize(rows),
+        "by_group": {
+            g: summarize([r for r in rows if r["group"] == g])
+            for g in sorted({r["group"] for r in rows})
+        },
+        "scope": "固定采集候选的HTTP编排验收；采集被替换，不测真实平台、实际SKU或线上延迟。",
+        "raw_comparison_scope": "同一次有效模型决策输出在最终约束前后的对照；模型已收到标题证据。",
+        "independent_ground_truth": False,
+        "rows": rows,
+    }
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--dataset", type=Path, default=Path("eval/workflow_cases.jsonl"))
+    parser.add_argument(
+        "--engine",
+        choices=("adversarial", "llm"),
+        required=True,
+    )
+    parser.add_argument("--permutations", type=int, default=1, choices=range(1, 11))
+    parser.add_argument("--output", type=Path, required=True)
+    args = parser.parse_args()
+    if args.output.exists():
+        parser.error("output already exists")
+    report = evaluate(args.dataset, args.engine, args.permutations)
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
+    print(json.dumps(report["summary"], ensure_ascii=False))
+
+
+if __name__ == "__main__":
+    main()

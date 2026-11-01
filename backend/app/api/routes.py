@@ -8,6 +8,12 @@ from pydantic import BaseModel, ConfigDict, Field
 from starlette.concurrency import run_in_threadpool
 
 from app.adapters.registry import get_adapters
+from app.agents.clarification import (
+    ClarificationAnswers,
+    effective_query,
+    questions_for,
+    validate_answers,
+)
 from app.agents.graph import run_agent, run_refine
 from app.agents.ranker import rank_offers
 from app.api.streaming import agent_events, encode_event
@@ -20,10 +26,12 @@ from app.demo_data import (
     demo_refine_response,
 )
 from app.matching.filter import REASON_LABELS, filter_offers
+from app.matching.identity import assess_offers
 from app.matching.specs import group_specs
 from app.models.filters import FilterSpec, PurchaseConstraints
 from app.models.offers import RawOffer, offer_key
 from app.storage.db import (
+    derive_candidate_snapshot,
     get_feedback_ids,
     load_candidate_snapshot,
     load_trace,
@@ -200,6 +208,7 @@ class RefineRequest(BaseModel):
     snapshot_id: str = Field(pattern=r"^[0-9a-f]{32}$")
     filters: FilterSpec = FilterSpec()
     constraints: PurchaseConstraints | None = None
+    answers: ClarificationAnswers | None = None
 
 
 @router.post("/refine")
@@ -214,6 +223,23 @@ async def refine(req: RefineRequest) -> dict:
     if not offers:
         raise HTTPException(status_code=400, detail="快照中没有可用候选，请重新查询")
     constraints = req.constraints.model_dump() if req.constraints is not None else None
+    clarifications = dict(snapshot.get("clarifications", {}))
+    if constraints is None and clarifications:
+        constraints = PurchaseConstraints.model_validate(snapshot["intent"]).model_dump()
+    answers = req.answers.model_dump(exclude_none=True) if req.answers else {}
+    if answers:
+        if snapshot["demo"]:
+            raise HTTPException(status_code=422, detail="固定样例不支持规格追问，请使用真实查询")
+        assess_offers(offers, effective_query(snapshot["query"], clarifications))
+        budget = (constraints or snapshot["intent"]).get("budget")
+        # Options come from the full immutable snapshot, unaffected by temporary filters.
+        try:
+            validate_answers(
+                questions_for(snapshot["query"], offers, budget, clarifications), answers
+            )
+        except ValueError as exc:
+            raise HTTPException(status_code=422, detail=str(exc)) from exc
+        clarifications.update(answers)
     if snapshot["demo"]:
         result = demo_refine_response(
             req.filters.model_dump(),
@@ -230,12 +256,18 @@ async def refine(req: RefineRequest) -> dict:
                 req.filters.model_dump(),
                 snapshot["intent"],
                 constraints,
+                clarifications,
             )
         except CollectionBusy:
             raise
         except RuntimeError as e:
             raise HTTPException(status_code=503, detail=str(e)) from e
-    # 始终引用初始全量快照，放宽筛选时可恢复候选，不重写已保存的报价。
+    if answers:
+        derived = derive_candidate_snapshot(req.snapshot_id, result["intent"], clarifications)
+        if derived is None:
+            raise HTTPException(status_code=404, detail="候选快照已过期，请重新查询")
+        return {**result, **derived}
+    # Keep the full candidate set when narrowing filters.
     return {**result, "snapshot_id": req.snapshot_id}
 
 

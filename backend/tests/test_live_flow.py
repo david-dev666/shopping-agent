@@ -12,6 +12,7 @@ from app.config import Settings
 from app.main import app
 from app.models.offers import RawOffer
 from app.storage.db import load_trace
+from tests.model_stub import ScriptedModel
 
 
 def offer(price=199, identifier="flow", shop="普通店"):
@@ -33,7 +34,7 @@ def research(monkeypatch):
         calls.append(query)
         return [offer(), offer(299, "flow-2", "小米旗舰店")], {}
 
-    monkeypatch.setattr("app.agents.graph._llm", lambda: None)
+    monkeypatch.setattr("app.agents.graph._llm", lambda: ScriptedModel())
     monkeypatch.setattr("app.agents.graph.get_adapters", lambda _: [])
     monkeypatch.setattr("app.agents.graph.search_all", search)
     return calls
@@ -45,10 +46,10 @@ def test_real_stream_reports_actual_graph_updates(research):
     assert completed == list(AGENT_NODES)
     result = events[-1]["result"]
     assert result["origin"] == "live" and result["cached"] is False
-    assert result["decision"]["engine"] == "rules"
+    assert result["decision"]["engine"] == "llm"
     assert result["top_pick"]["price"] == 199
     assert len(research) == 1
-    assert len(load_trace(result["trace_id"])["steps"]) == 6
+    assert len(load_trace(result["trace_id"])["steps"]) == len(AGENT_NODES)
 
 
 def test_cancellation_prevents_starting_research(research):
@@ -85,14 +86,14 @@ def test_explicit_requirement_edit_overrides_original_sentence(research, budget)
     assert research == []
 
 
-def test_shop_preference_is_used_in_rules_fallback(research):
+def test_shop_preference_is_sent_to_model(research):
     result = run_refine(
         "小米手环9",
         [offer(), offer(299, "flow-2", "小米旗舰店")],
         constraints={"preference": "优先自营/旗舰"},
     )
     assert result["top_pick"]["price"] == 299
-    assert "店铺文本" in result["decision"]["reason"]
+    assert result["decision"]["engine"] == "llm"
 
 
 def frames(text):
@@ -141,7 +142,7 @@ async def test_live_stream_endpoint_returns_serializable_offers(monkeypatch, res
     ) as c:
         result = await c.post("/api/chat/stream", json={"query": "小米手环9", "data_mode": "live"})
     events = frames(result.text)
-    assert len(events) == 13
+    assert len(events) == 2 * len(AGENT_NODES) + 1
     assert events[-1]["result"]["offers"][0]["price"] == 199
     assert events[-1]["result"]["demo"] is False
 
@@ -202,7 +203,7 @@ def test_stream_durations_survive_later_graph_state_updates(monkeypatch, researc
     clock = iter(range(20))
     monkeypatch.setattr("app.agents.graph.perf_counter", lambda: next(clock))
     result = list(stream_agent("小米手环9"))[-1]["result"]
-    assert [step["elapsed_ms"] for step in result["trace"]] == [1000] * 6
+    assert [step["elapsed_ms"] for step in result["trace"]] == [1000] * len(AGENT_NODES)
     saved = load_trace(result["trace_id"])
     assert saved["steps"][0]["elapsed_ms"] == 1000
 

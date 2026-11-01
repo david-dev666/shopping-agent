@@ -64,7 +64,7 @@ class TraceORM(Base):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     trace_id: Mapped[str] = mapped_column(String(32), index=True)
     query: Mapped[str] = mapped_column(String(256))
-    steps_json: Mapped[str] = mapped_column(String(20000))
+    steps_json: Mapped[str] = mapped_column(Text)
     ts: Mapped[datetime] = mapped_column(DateTime)
 
 
@@ -87,6 +87,7 @@ def snapshot_response(result: dict) -> dict:
         "query": result.get("query", ""),
         "offers": [RawOffer.model_validate(o).model_dump(mode="json") for o in result["offers"]],
         "intent": result.get("intent", {}),
+        "clarifications": result.get("clarifications", {}),
         **({"rank_items": result["rank_items"]} if "rank_items" in result else {}),
         "demo": bool(result.get("demo", False)),
     }
@@ -119,6 +120,29 @@ def load_candidate_snapshot(identifier: str) -> dict | None:
         return json.loads(row.payload_json) if row else None
 
 
+def derive_candidate_snapshot(
+    identifier: str, intent: dict, clarifications: dict[str, str]
+) -> dict | None:
+    """Persist continuation context without changing candidates or extending their freshness."""
+    assert _SessionLocal is not None
+    with _SessionLocal() as session:
+        parent = session.get(CandidateSnapshotORM, identifier)
+        if parent is None:
+            return None
+        expires_at = parent.expires_at.replace(tzinfo=UTC)
+        if expires_at <= datetime.now(UTC):
+            return None
+        payload = json.loads(parent.payload_json)
+        payload.update(intent=intent, clarifications=clarifications)
+        child_id = uuid.uuid4().hex
+        session.add(CandidateSnapshotORM(
+            id=child_id, payload_json=json.dumps(payload, ensure_ascii=False),
+            expires_at=expires_at,
+        ))
+        session.commit()
+    return {"snapshot_id": child_id, "snapshot_expires_at": expires_at.isoformat()}
+
+
 def save_trace(trace: dict) -> None:
     """保存一次 agent 运行的完整轨迹。"""
     assert _SessionLocal is not None
@@ -127,7 +151,7 @@ def save_trace(trace: dict) -> None:
             TraceORM(
                 trace_id=trace["trace_id"],
                 query=trace["query"][:256],
-                steps_json=json.dumps(trace["steps"], ensure_ascii=False)[:20000],
+                steps_json=json.dumps(trace["steps"], ensure_ascii=False),
                 ts=datetime.now(UTC),
             )
         )

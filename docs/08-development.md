@@ -4,6 +4,10 @@
 
 在仓库根目录进入 `backend` 并执行 `uv sync --extra dev`。配置参考 [.env.example](../backend/.env.example)，接口文档在服务启动后的 `/docs`。
 
+## Agent 主评测
+
+见 [评测说明](13-agent-evaluation.md)。真实模型评测只替换采集层，不访问电商平台；测试智能选购时必须配置模型。固定样例及直接比价仍可独立使用。
+
 ## 常用检查
 
 以下命令在 backend 目录执行：
@@ -38,6 +42,8 @@ uv pip install --no-deps --target /tmp/shopping-package /tmp/shopping-dist/*.whl
 依赖使用当前环境，业务数据写入临时数据库，不调用平台或模型；结束后清理临时数据库。输出目录建议使用空目录。
 
 ## 数据库
+
+2026-11-01 新增迁移 `a4f91b2c730e`，将轨迹 JSON 列改为 Text，避免字符截断。已有数据库先备份再执行下述迁移；历史上已截断的记录无法由迁移还原。
 
 默认 SQLite，启动自动建表。使用迁移记录版本：
 

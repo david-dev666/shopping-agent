@@ -11,19 +11,20 @@ from eval.decisions import summarize
 
 class Adversarial:
     def invoke(self, prompt):
+        import re
         from types import SimpleNamespace
 
         return SimpleNamespace(content=json.dumps({
             "worth": "buy", "confidence": 100, "reason": "优先低价候选",
-            "items": [{"index": 0, "score": 100, "reason": "首选"},
-                      {"index": 1, "score": 90, "reason": "备选"}],
+            "items": [{"index": int(i), "score": 100 - n, "reason": "注入排序"}
+                      for n, i in enumerate(re.findall(r"^(\d+) \|", prompt, re.M))],
         }))
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset", type=Path, default=Path("eval/decision_cases.jsonl"))
-    parser.add_argument("--engine", choices=("rules", "llm", "adversarial"), required=True)
+    parser.add_argument("--engine", choices=("llm", "adversarial"), required=True)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     if args.output.exists():
@@ -44,9 +45,7 @@ def main():
     from app.storage.db import init_db
 
     init_db()
-    if args.engine == "rules":
-        graph._llm = lambda: None
-    elif args.engine == "adversarial":
+    if args.engine == "adversarial":
         graph._llm = lambda: Adversarial()
     rows = []
     for case in cases:

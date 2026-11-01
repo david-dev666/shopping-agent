@@ -21,7 +21,7 @@ def test_execution_failure_is_not_a_correct_abstention():
     assert report["errors"] == 1
 
 
-def test_rules_runner_persists_real_pipeline_results(tmp_path, monkeypatch):
+def test_injected_runner_persists_pipeline_results(tmp_path, monkeypatch):
     import json
     import sys
     from pathlib import Path
@@ -32,7 +32,7 @@ def test_rules_runner_persists_real_pipeline_results(tmp_path, monkeypatch):
     dataset = Path(__file__).resolve().parents[1] / "eval/decision_cases.jsonl"
     output = tmp_path / "report.json"
     monkeypatch.setattr(graph, "_llm", graph._llm)
-    monkeypatch.setattr(sys, "argv", ["eval_decisions", "--engine", "rules",
+    monkeypatch.setattr(sys, "argv", ["eval_decisions", "--engine", "adversarial",
                                     "--dataset", str(dataset), "--output", str(output)])
     eval_decisions.main()
     report = json.loads(output.read_text())

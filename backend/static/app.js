@@ -1,11 +1,12 @@
 import { PLATFORMS, offerKey, money, escapeHtml as h, safeUrl, emptyFilters, filterOffers, orderOffers, validTopPick, readRecent, salesLabel, provenance, moneyRange } from './helpers.mjs?v=20261017-identity2';
 import { streamChat } from './stream.mjs';
 import { evidencePanel, evidenceSummary } from './evidence.mjs';
+import { clarificationPanel } from './clarification.mjs';
 
 const $ = selector => document.querySelector(selector);
 const icon = name => `<svg class="icon" aria-hidden="true"><use href="#i-${name}"/></svg>`;
 const state = { mode: 'agent', base: null, data: null, filters: emptyFilters(), applied: '', sort: 'recommended', selected: new Set(), busy: false, request: null, config: null, query: '', budget: null, preference: '', progress: {}, formErrors: {} };
-const nodeNames = { intent: '理解需求', research: '跨平台采集', match: '相关性标注', filters: '筛选候选', decide: '评估与排序', recommend: '生成建议' };
+const nodeNames = { intent: '理解需求', research: '跨平台采集', match: '相关性标注', filters: '筛选候选', review: '检查规格缺口', decide: '评估与排序', recommend: '生成建议' };
 const filtersSignature = () => JSON.stringify({ filters: state.filters, budget: state.budget, preference: state.preference });
 const isStale = () => state.applied !== filtersSignature();
 const visible = () => state.base ? filterOffers(state.base.offers, state.filters, state.base.specs) : [];
@@ -45,7 +46,7 @@ function showSources() {
   $('#source-content').innerHTML = `<p class="source-intro">默认查询会采集平台报价。浏览器采集需要本机扩展和相应平台登录状态，配置成功不代表平台当前可访问。</p><div class="source-list">${Object.entries(PLATFORMS).map(([p,name]) => {
     const source = config?.sources?.find(s => s.platform === p);
     return `<div><strong>${name}</strong><span>${source ? source.source === 'api' ? '联盟 API 已配置' : '浏览器采集 · 需本机登录' : config ? '未配置' : '状态暂不可用'}</span></div>`;
-  }).join('')}</div><div class="source-explainer"><h3>推荐如何生成</h3><p>${config?.llm_configured ? '已配置语义模型；不可用时自动降级为规则排序。' : '当前使用规则排序，配置语义模型后可理解更多选购偏好。'} 实际使用的方式会显示在结果中。</p><h3>为什么有时返回很快</h3><p>直接比价会复用 5 分钟内的相同查询，并标记“缓存报价”。点击“重新采集”可跳过缓存。智能选购目前每次执行完整链路，不使用这层缓存。</p><h3>样例与真实查询</h3><p>只有主动点击“体验选购样例”才展示固定快照；真实查询失败时会显示失败原因，不会换成样例数据。</p></div>`;
+  }).join('')}</div><div class="source-explainer"><h3>推荐如何生成</h3><p>${config?.llm_configured ? '已配置模型，用于需求理解与推荐决策；调用失败时会明确提示。' : '智能选购需要配置模型；你仍可以直接比价或查看固定样例。'} 实际使用的方式会显示在结果中。</p><h3>为什么有时返回很快</h3><p>直接比价会复用 5 分钟内的相同查询，并标记“缓存报价”。点击“重新采集”可跳过缓存。智能选购目前每次执行完整链路，不使用这层缓存。</p><h3>样例与真实查询</h3><p>只有主动点击“体验选购样例”才展示固定快照；真实查询失败时会显示失败原因，不会换成样例数据。</p></div>`;
   $('#source-dialog').showModal();
 }
 $('#connection').addEventListener('click', async () => { if (!state.config) await loadStatus(); showSources(); });
@@ -105,7 +106,7 @@ async function search(query, refining = false, options = {}) {
   const timer = setInterval(() => $('#elapsed').textContent = `已等待 ${Math.floor((Date.now() - started) / 1000)} 秒`, 1000);
   const applied = refining ? filtersSignature() : null;
   try {
-    const body = refining ? { snapshot_id: state.base.snapshot_id, filters: { ...state.filters }, constraints: { budget: state.budget, preference: state.preference } } : { query: query.trim(), data_mode: source, refresh: !!options.refresh };
+    const body = refining ? { snapshot_id: state.data.snapshot_id || state.base.snapshot_id, ...(options.answers ? { answers: options.answers } : {}), filters: { ...state.filters }, constraints: { budget: state.budget, preference: state.preference } } : { query: query.trim(), data_mode: source, refresh: !!options.refresh };
     const data = !refining && state.mode === 'agent'
       ? await streamChat(body, controller.signal, renderProgress)
       : await post(refining ? '/api/refine' : '/api/query', body, controller.signal);
@@ -123,6 +124,11 @@ async function search(query, refining = false, options = {}) {
       document.body.classList.add('has-results');
       window.scrollTo({ top: 0, behavior: 'instant' });
     }
+    if (refining && data.candidate_offers) {
+      state.base = { ...state.base, offers: data.candidate_offers, snapshot_id: data.snapshot_id,
+        snapshot_expires_at: data.snapshot_expires_at || state.base.snapshot_expires_at,
+        clarifications: data.clarifications };
+    }
     state.data = data;
     state.applied = applied ?? filtersSignature();
     render();
@@ -137,6 +143,12 @@ async function search(query, refining = false, options = {}) {
     renderTray();
   }
 }
+document.addEventListener('submit', event => {
+  if (event.target.id !== 'clarification-form') return;
+  event.preventDefault();
+  if (isStale() || !event.target.reportValidity()) return;
+  search(state.query, true, { answers: Object.fromEntries(new FormData(event.target)) });
+});
 $('#search-form').addEventListener('submit', event => { event.preventDefault(); search($('#query').value); });
 $('#cancel').addEventListener('click', () => state.request?.abort());
 document.addEventListener('click', event => {
@@ -263,16 +275,21 @@ function filtersChanged() {
 function resetFilters() {
   if (!state.base) return;
   state.filters = emptyFilters();
-  if (state.budget === (state.base.intent?.budget ?? null) && state.preference === (state.base.intent?.preference || '')) { state.data = state.base; state.applied = filtersSignature(); }
+  if (!Object.keys(state.base.clarifications || {}).length && state.budget === (state.base.intent?.budget ?? null) && state.preference === (state.base.intent?.preference || '')) { state.data = state.base; state.applied = filtersSignature(); }
   feedback(); render();
 }
-function decEngine(data) { return data.decision?.engine === 'rules' ? '规则排序' : data.decision?.engine === 'llm' ? 'Agent 综合评估' : '候选建议'; }
+function decEngine(data) { return data.decision?.engine === 'llm' ? 'Agent 综合评估' : '候选建议'; }
 function renderRecommendation() {
   const data = state.data;
   const stale = isStale();
   const top = validTopPick(data);
   const decision = data.decision || {};
   const note = stale ? '<div class="stale-note">选购要求已改变，当前显示上次推荐。更新后会重新评估预算、偏好与筛选条件。</div>' : '';
+  const clarification = clarificationPanel(data, stale);
+  if (clarification) {
+    $('#recommendation').innerHTML = `${note}${clarification}`;
+    return;
+  }
   if (!top) {
     $('#recommendation').innerHTML = `${note}<div class="no-pick"><h3>${!data.decision ? '报价已整理' : '当前没有可推荐的候选'}</h3><p>${h(decision.reason || '按平台、规格与价格筛选候选，也可以勾选商品进行对比。')}</p></div>`;
     return;

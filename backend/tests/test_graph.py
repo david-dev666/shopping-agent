@@ -3,7 +3,6 @@ from unittest.mock import patch
 from app.agents.graph import (
     AgentState,
     TraceRecorder,
-    _cheapest_fallback,
     _pop_trace,
     get_graph,
     get_refine_graph,
@@ -70,13 +69,14 @@ def test_node_intent_parses_llm_output() -> None:
     assert out["steps"][0]["node"] == "intent"
 
 
-def test_node_intent_degrades_to_raw_query() -> None:
-    """LLM 持续失败 → 原句当搜索词，不抛异常。"""
-    state = AgentState(query="随便一句话", trace_id="t4", steps=[])
+def test_invalid_intent_returns_a_model_error() -> None:
+    import pytest
+
+    from app.agents.llm_utils import ModelResponseError
+
     with patch("app.agents.graph._llm", return_value=FakeLLM("乱输出")):
-        out = node_intent(state)
-    assert out["intent"]["product"] == "随便一句话"
-    assert out["intent"]["budget"] is None
+        with pytest.raises(ModelResponseError):
+            node_intent(AgentState(query="随便一句话"))
 
 
 # --- _pop_trace 恢复 ---
@@ -124,17 +124,6 @@ def test_node_filters_noop_without_filters() -> None:
 def test_both_graphs_compile() -> None:
     assert get_graph() is not None
     assert get_refine_graph() is not None
-
-
-# --- decide 降级 ---
-
-def test_cheapest_fallback_prefers_high_sales_low_price() -> None:
-    offers = _offers()
-    fb = _cheapest_fallback(offers)
-    assert fb["top_pick"] == 1  # pdd：159 + 81000 销量
-    assert fb["worth"] == "wait"
-    assert fb["confidence"] == 0
-    assert fb["items"][0]["index"] == 1
 
 
 # --- recommend 拼装 ---

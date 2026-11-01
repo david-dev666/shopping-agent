@@ -1,0 +1,20 @@
+{
+  "cases": 25,
+  "query_count": 15,
+  "groups": [
+    "budget",
+    "clarification",
+    "evidence",
+    "failure",
+    "identity",
+    "intent",
+    "ranking",
+    "refinement",
+    "risk"
+  ],
+  "sha256": "1673615e0e715d8ca7c1a5e655a061c59193072f6020227ea82a4646b9f0eff6",
+  "labels_frozen_before_scoring": true,
+  "independent_ground_truth": false,
+  "source": "constructed_workflow_cases",
+  "scope": "固定采集候选的完整HTTP编排验收；不测真实平台、实际SKU或独立泛化质量。"
+}

@@ -7,12 +7,13 @@ import httpx
 import pytest
 
 from app.agents.graph import AgentState, explicit_budget, node_decide, node_recommend, run_agent
-from app.agents.llm_utils import invoke_json
+from app.agents.llm_utils import ModelResponseError, ModelUnavailable, invoke_json
 from app.agents.ranker import RankResult
 from app.matching.filter import apply_filters
 from app.models.filters import FilterSpec
 from app.models.offers import RawOffer
 from eval.rules import load_cases, predict
+from tests.model_stub import ScriptedModel
 
 
 class ReplyLLM:
@@ -107,7 +108,8 @@ def test_model_sees_candidates_beyond_twentieth():
             "worth": "wait",
             "confidence": 50,
             "reason": "需确认",
-            "items": [{"index": 29, "score": 90, "reason": "匹配"}],
+            "items": [{"index": i, "score": 90, "reason": "匹配"}
+                      for i in [29, *range(29)]],
         }
     )
     with patch("app.agents.graph._llm", return_value=llm):
@@ -125,17 +127,16 @@ def test_model_sees_candidates_beyond_twentieth():
         {"worth": "buy", "confidence": 90, "reason": "x", "items": [{"index": 0, "score": "bad"}]},
     ],
 )
-def test_malformed_decision_schema_degrades(data):
+def test_malformed_decision_schema_returns_error(data):
     with patch("app.agents.graph._llm", return_value=ReplyLLM(data)):
-        result = node_decide(AgentState(offers=[offer()]))
-    assert result["decision"]["worth"] == "wait"
-    assert result["rank_items"][0]["index"] == 0
+        with pytest.raises(ModelResponseError):
+            node_decide(AgentState(offers=[offer()]))
 
 
 @pytest.mark.parametrize("tag", ["其他型号", "配件", "疑似二手", "价格异常", "销量偏低"])
 def test_all_warned_candidates_do_not_get_top_pick(tag):
     state = AgentState(offers=[offer(tags=[tag])])
-    with patch("app.agents.graph._llm", return_value=None):
+    with patch("app.agents.graph._llm", return_value=ScriptedModel()):
         result = node_decide(state)
     with patch("app.agents.graph.save_trace"):
         rec = node_recommend(state.model_copy(update=result))
@@ -146,23 +147,19 @@ def test_all_warned_candidates_do_not_get_top_pick(tag):
 @pytest.mark.parametrize(
     "failure", [TimeoutError(), ConnectionError(), httpx.ConnectError("offline")]
 )
-def test_network_failures_use_fallback(failure):
+def test_network_failure_returns_model_unavailable(failure):
     class Offline:
         def invoke(self, prompt):
             raise failure
 
-    assert invoke_json(Offline(), "p", fallback={"degraded": True}) == {"degraded": True}
+    with pytest.raises(ModelUnavailable):
+        invoke_json(Offline(), "p")
 
 
-def test_schema_validation_is_inside_retry_and_fallback():
-    result = invoke_json(
-        ReplyLLM({"items": [None]}),
-        "p",
-        retries=0,
-        fallback={"items": [], "summary": "降级"},
-        validate=lambda d: RankResult.model_validate(d).model_dump(),
-    )
-    assert result["summary"] == "降级"
+def test_schema_validation_is_inside_retry():
+    with pytest.raises(ModelResponseError):
+        invoke_json(ReplyLLM({"items": [None]}), "p", retries=0,
+                    validate=lambda d: RankResult.model_validate(d).model_dump())
 
 
 def test_refine_spec_uses_platform_scoped_ids():
@@ -173,11 +170,11 @@ def test_refine_spec_uses_platform_scoped_ids():
     assert apply_filters(offers, FilterSpec(spec="NFC版")) == [offers[0]]
 
 
-def test_full_graph_without_llm_keeps_explicit_budget_and_feedback(monkeypatch):
+def test_full_graph_keeps_explicit_budget_and_feedback(monkeypatch):
     async def search_all(query, adapters):
         return [offer(299), offer(399, platform_id="2"), offer(99, platform_id="hidden")], {}
 
-    monkeypatch.setattr("app.agents.graph._llm", lambda: None)
+    monkeypatch.setattr("app.agents.graph._llm", lambda: ScriptedModel())
     monkeypatch.setattr("app.agents.graph.get_adapters", lambda _: [])
     monkeypatch.setattr("app.agents.graph.search_all", search_all)
     monkeypatch.setattr("app.agents.graph.record_search", lambda *args: None)
@@ -192,6 +189,7 @@ def test_full_graph_without_llm_keeps_explicit_budget_and_feedback(monkeypatch):
         "research",
         "match",
         "filters",
+        "review",
         "decide",
         "recommend",
     ]
@@ -201,17 +199,17 @@ def test_full_graph_without_llm_keeps_explicit_budget_and_feedback(monkeypatch):
 def test_refine_explicit_budget_overrides_returned_intent(monkeypatch):
     from app.agents.graph import run_refine
 
-    monkeypatch.setattr("app.agents.graph._llm", lambda: None)
+    monkeypatch.setattr("app.agents.graph._llm", lambda: ScriptedModel())
     monkeypatch.setattr("app.agents.graph.save_trace", lambda _: None)
     result = run_refine("预算100元买手环", [offer(199)], intent={"budget": 999})
     assert result["intent"]["budget"] == 100
     assert result["top_pick"] is None
 
 
-def test_fallback_ranking_agrees_with_actual_top_pick(monkeypatch):
+def test_model_ranking_agrees_with_actual_top_pick(monkeypatch):
     from app.agents.graph import run_refine
 
-    monkeypatch.setattr("app.agents.graph._llm", lambda: None)
+    monkeypatch.setattr("app.agents.graph._llm", lambda: ScriptedModel())
     monkeypatch.setattr("app.agents.graph.save_trace", lambda _: None)
     result = run_refine("小米手环9", [offer(50, tags=["配件"]), offer(200, platform_id="2")])
     top = result["offers"][result["rank_items"][0]["index"]]

@@ -1,4 +1,4 @@
-"""LangGraph 编排：intent → research → match → filters → decide → recommend。
+"""LangGraph 编排：intent → research → match → filters → review → decide → recommend。
 
 两条入口：
 
@@ -24,12 +24,12 @@ from langgraph.graph import END, StateGraph
 from pydantic import BaseModel, Field
 
 from app.adapters.registry import get_adapters
-from app.agents.llm_utils import invoke_json
+from app.agents.clarification import effective_query, questions_for
+from app.agents.llm_utils import ModelUnavailable, invoke_json
 from app.agents.ranker import RankedItem
 from app.collection import request_cancel, search_all
 from app.config import get_settings
 from app.matching.filter import (
-    WARN_TAGS,
     apply_filters,
     eligible_indexes,
     filter_offers,
@@ -61,6 +61,8 @@ class AgentState(BaseModel):
     rank_items: list[dict[str, Any]] = Field(default_factory=list)
     top_pick: dict[str, Any] | None = None
     trace_id: str = ""
+    clarifications: dict[str, str] = Field(default_factory=dict)
+    clarification_questions: list[dict] = Field(default_factory=list)
     streaming: bool = False
     steps: list[dict[str, Any]] = Field(default_factory=list)
 
@@ -160,25 +162,27 @@ class DecisionResult(BaseModel):
 
 def explicit_budget(query: str) -> float | None:
     """只识别明确预算表达，不把型号中的数字当金额。"""
+    amount = r"\d+(?:,\d{3})*(?:\.\d{1,2})?"
     patterns = (
-        r"预算\s*[¥￥]?\s*(\d+(?:\.\d{1,2})?)",
-        r"(\d+(?:\.\d{1,2})?)\s*元?\s*(?:以内|以下|封顶)",
+        rf"(?:预算(?:上限)?(?:为|是|在)?|最多(?:花|用)?|不超过|不高于|最高(?:预算)?|"
+        rf"上限)(?:为|是|在)?\s*[¥￥]?\s*(?P<amount>{amount})"
+        rf"(?:\s*元?\s*(?:[-–~～]|到|至)\s*(?P<upper>{amount}))?",
+        rf"(?P<amount>{amount})\s*元?\s*(?:以内|以下|封顶)",
     )
+    ceilings = []
     for pattern in patterns:
-        match = re.search(pattern, query)
-        if match:
-            return float(match[1])
-    return None
+        for match in re.finditer(pattern, query):
+            value = match.groupdict().get("upper") or match["amount"]
+            ceilings.append(float(value.replace(",", "")))
+    return min(ceilings) if ceilings else None
 
 
 def node_intent(state: AgentState) -> dict:
     trace = _pop_trace(state)
-    # LLM 失败降级：直接把原句当搜索词
     intent = invoke_json(
         _llm(),
         INTENT_PROMPT.format(query=state.query),
         retries=1,
-        fallback={"product": state.query, "budget": explicit_budget(state.query), "preference": ""},
         validate=lambda d: IntentResult.model_validate(d).model_dump(),
     )
     # 明确写出的数值预算始终优先于模型推断。
@@ -241,7 +245,7 @@ def node_filters(state: AgentState) -> dict:
     trace = _pop_trace(state)
     # Recompute original-query evidence even on refine; client reports and model-normalized
     # search terms must not erase an explicit version or select a mixed listing's SKU.
-    assess_offers(state.offers, state.query)
+    assess_offers(state.offers, effective_query(state.query, state.clarifications))
     spec = FilterSpec.model_validate(state.filters or {})
     before = len(state.offers)
     kept = apply_filters(state.offers, spec)
@@ -263,6 +267,33 @@ def node_filters(state: AgentState) -> dict:
 
     trace.step("filters", f"{before} 条候选（{cond}）", f"保留 {len(kept)} 条")
     return {"offers": kept, "steps": trace.steps}
+
+
+def node_review(state: AgentState) -> dict:
+    trace = _pop_trace(state)
+    questions = questions_for(
+        effective_query(state.query, state.clarifications), state.offers,
+        state.intent.get("budget"), state.clarifications,
+    )
+    trace.step(
+        "review", f"{len(state.offers)} 条候选", questions or "关键规格无需补充",
+        detail=f"确认规格: {state.clarifications} | 生效需求: "
+        + effective_query(state.query, state.clarifications),
+    )
+    result = {"clarification_questions": questions, "steps": trace.steps}
+    if questions:
+        message = "请先确认候选间影响比较的规格，再继续推荐；也可以选择不限。"
+        result.update(
+            decision={"worth": "wait", "confidence": 0, "engine": "policy", "reason": message},
+            recommendation=message, rank_items=[], top_pick=None,
+        )
+        if not state.streaming:
+            save_trace(trace.to_dict())
+    return result
+
+
+def after_review(state: AgentState) -> str:
+    return END if state.clarification_questions else "decide"
 
 
 DECIDE_PROMPT = """你是购物决策助手。一次完成两件事：
@@ -292,46 +323,19 @@ DECIDE_PROMPT = """你是购物决策助手。一次完成两件事：
 {offers_text}"""
 
 
-def _cheapest_fallback(offers: list[RawOffer], preference: str = "") -> dict:
-    """规则降级按警示、价格、销量排序，不声称已判断历史买点。"""
-    shop_priority = any(word in preference for word in ("自营", "旗舰"))
-    order = sorted(
-        range(len(offers)),
-        key=lambda i: (
-            bool(set(offers[i].tags) & WARN_TAGS),
-            (not any(word in (offers[i].shop or "") for word in ("自营", "旗舰")))
-            if shop_priority
-            else False,
-            offers[i].price,
-            -(offers[i].sales or 0),
-        ),
-    )
-    return {
-        "worth": "wait",
-        "engine": "rules",
-        "confidence": 0,
-        "reason": "AI 暂不可用，已按警示、店铺文本和价格排序；店铺资质仍需核对"
-        if shop_priority
-        else "AI 暂不可用，已按警示与价格排序；请确认规格及优惠条件",
-        "top_pick": order[0] if order else None,
-        "items": [
-            {
-                "index": i,
-                "score": 0,
-                "reason": "规则排序：警示、店铺文本、报价"
-                if shop_priority
-                else "规则排序：警示优先排后，再按报价",
-            }
-            for i in order
-        ],
-    }
+def validate_decision(data: dict, count: int) -> dict:
+    result = DecisionResult.model_validate(data)
+    indexes = [item.index for item in result.items]
+    if len(indexes) != count or set(indexes) != set(range(count)):
+        raise ValueError("排序必须覆盖全部候选，且下标不重复、不越界")
+    return result.model_dump()
 
 
 def node_decide(state: AgentState) -> dict:
     """一次 LLM 推理同时产出决策与全量排序，保证二者自洽。"""
     trace = _pop_trace(state)
     offers = state.offers
-    assess_offers(offers, state.query)
+    assess_offers(offers, effective_query(state.query, state.clarifications))
     if not offers:
         decision = {"worth": "skip", "confidence": 0, "reason": "无有效报价", "top_pick": None}
         trace.step("decide", "0 条报价", decision)
@@ -350,14 +354,13 @@ def node_decide(state: AgentState) -> dict:
     data = invoke_json(
         _llm(),
         DECIDE_PROMPT.format(
-            query=state.query,
+            query=effective_query(state.query, state.clarifications),
             budget=budget if budget is not None else "未说明",
             preference=state.intent.get("preference") or "无",
             offers_text="\n".join(lines),
         ),
         retries=2,
-        fallback=_cheapest_fallback(offers, state.intent.get("preference", "")),
-        validate=lambda d: DecisionResult.model_validate(d).model_dump(),
+        validate=lambda d: validate_decision(d, len(offers)),
     )
 
     decision = {
@@ -366,24 +369,7 @@ def node_decide(state: AgentState) -> dict:
         "confidence": data.get("confidence"),
         "reason": data.get("reason"),
     }
-    # 排序 items：确定性校验下标，越界丢弃；排序依据 LLM 顺序（与其 score 自洽）
-    valid = set(range(len(offers)))
-    seen: set[int] = set()
-    rank_items: list[dict] = []
-    for it in data.get("items") or []:
-        try:
-            idx = int(it.get("index"))
-        except (TypeError, ValueError):
-            continue
-        if idx in valid and idx not in seen:
-            seen.add(idx)
-            rank_items.append(
-                {"index": idx, "score": int(it.get("score") or 0), "reason": it.get("reason", "")}
-            )
-    # 缺失的按价格升序补在尾部
-    missing = sorted((i for i in valid if i not in seen), key=lambda i: offers[i].price)
-    for i in missing:
-        rank_items.append({"index": i, "score": 0, "reason": ""})
+    rank_items = [dict(item) for item in data["items"]]
 
     rank_items = guard_ranking(rank_items, offers, budget)
     eligible = eligible_indexes(offers, budget)
@@ -500,7 +486,7 @@ _refine_graph = None
 
 
 def get_graph():
-    """全量链路：intent → research → match → filters → decide → recommend。"""
+    """全量链路：intent → research → match → filters → review → decide → recommend。"""
     global _graph
     with _build_lock:
         if _graph is None:
@@ -509,6 +495,7 @@ def get_graph():
             g.add_node("research", node_research)
             g.add_node("match", node_match)
             g.add_node("filters", node_filters)
+            g.add_node("review", node_review)
             g.add_node("decide", node_decide)
             g.add_node("recommend", node_recommend)
             g.set_entry_point("intent")
@@ -516,10 +503,11 @@ def get_graph():
                 ("intent", "research"),
                 ("research", "match"),
                 ("match", "filters"),
-                ("filters", "decide"),
+                ("filters", "review"),
                 ("decide", "recommend"),
             ):
                 g.add_edge(src, dst)
+            g.add_conditional_edges("review", after_review, {"decide": "decide", END: END})
             g.add_edge("recommend", END)
             _graph = g.compile()
         return _graph
@@ -532,11 +520,13 @@ def get_refine_graph():
         if _refine_graph is None:
             g = StateGraph(AgentState)
             g.add_node("filters", node_filters)
+            g.add_node("review", node_review)
             g.add_node("decide", node_decide)
             g.add_node("recommend", node_recommend)
             g.set_entry_point("filters")
-            g.add_edge("filters", "decide")
+            g.add_edge("filters", "review")
             g.add_edge("decide", "recommend")
+            g.add_conditional_edges("review", after_review, {"decide": "decide", END: END})
             g.add_edge("recommend", END)
             _refine_graph = g.compile()
         return _refine_graph
@@ -548,6 +538,10 @@ def _response(final: dict, query: str, trace_id: str, origin: str = "live") -> d
     spec_groups = group_specs(offers) if offers else {}
     return {
         "trace_id": trace_id,
+        "status": "awaiting_clarification" if final.get("clarification_questions") else "complete",
+        "clarification_questions": final.get("clarification_questions", []),
+        "clarifications": final.get("clarifications", {}),
+        "effective_query": effective_query(query, final.get("clarifications", {})),
         "origin": origin,
         "demo": False,
         "cached": False,
@@ -566,11 +560,25 @@ def _response(final: dict, query: str, trace_id: str, origin: str = "live") -> d
     }
 
 
+def invoke_traced(graph, state: AgentState) -> dict:
+    final = state.model_dump()
+    try:
+        for update in graph.stream(state, config={"recursion_limit": 20}, stream_mode="updates"):
+            for values in update.values():
+                final.update(values)
+        return final
+    except Exception:
+        trace = _pop_trace(AgentState.model_validate(final))
+        trace.step("failed", "", "执行未完成")
+        save_trace(trace.to_dict())
+        raise
+
+
 def run_agent(query: str, filters: dict[str, Any] | None = None) -> dict[str, Any]:
     """执行完整 agent 链路，返回 recommendation + offers + trace。"""
     trace_id = uuid.uuid4().hex[:12]
     state = AgentState(query=query.strip(), trace_id=trace_id, filters=filters or {})
-    final = get_graph().invoke(state, config={"recursion_limit": 20})
+    final = invoke_traced(get_graph(), state)
     return _response(final, query, trace_id)
 
 
@@ -580,8 +588,11 @@ def run_refine(
     filters: dict[str, Any] | None = None,
     intent: dict[str, Any] | None = None,
     constraints: dict[str, Any] | None = None,
+    clarifications: dict[str, str] | None = None,
 ) -> dict[str, Any]:
-    """按筛选条件重排：复用已有候选集，跑 filters → decide → recommend。"""
+    """按筛选条件重排：复用已有候选集，跑 filters → review → decide → recommend。"""
+    if _llm() is None:
+        raise ModelUnavailable("智能选购需要配置模型；请配置后重试，或使用直接比价")
     trace_id = uuid.uuid4().hex[:12]
     normalized_intent = IntentResult.model_validate(
         {"product": query, **(intent or {})}
@@ -591,18 +602,30 @@ def run_refine(
         normalized_intent["budget"] = budget
     if constraints is not None:
         normalized_intent.update(PurchaseConstraints.model_validate(constraints).model_dump())
+    assess_offers(offers, effective_query(query, clarifications or {}))
     state = AgentState(
         query=query.strip(),
         trace_id=trace_id,
         offers=list(offers),
         filters=filters or {},
         intent=normalized_intent,
+        clarifications=clarifications or {},
     )
-    final = get_refine_graph().invoke(state, config={"recursion_limit": 12})
-    return _response(final, query, trace_id, origin="refine")
+    final = invoke_traced(get_refine_graph(), state)
+    response = _response(final, query, trace_id, origin="refine")
+    if clarifications:
+        response["candidate_offers"] = offers
+    return response
 
 
-AGENT_NODES = ("intent", "research", "match", "filters", "decide", "recommend")
+AGENT_NODES = ("intent", "research", "match", "filters", "review", "decide", "recommend")
+
+
+def next_agent_node(node: str, final: dict) -> str | None:
+    if node == "review" and final.get("clarification_questions"):
+        return None
+    index = AGENT_NODES.index(node)
+    return AGENT_NODES[index + 1] if index + 1 < len(AGENT_NODES) else None
 
 
 def stream_agent(query: str, cancelled: Event | None = None) -> Iterator[dict]:
@@ -643,9 +666,9 @@ def stream_agent(query: str, cancelled: Event | None = None) -> Iterator[dict]:
                     "summary": (values.get("steps") or [{}])[-1].get("output", ""),
                 }
                 started = perf_counter()
-                index = AGENT_NODES.index(node)
-                if index + 1 < len(AGENT_NODES) and not cancelled.is_set():
-                    yield {"event": "progress", "node": AGENT_NODES[index + 1], "status": "running"}
+                next_node = next_agent_node(node, final)
+                if next_node and not cancelled.is_set():
+                    yield {"event": "progress", "node": next_node, "status": "running"}
         if not cancelled.is_set():
             final["steps"] = measured_steps()
             save_trace({"trace_id": trace_id, "query": query, "steps": final["steps"]})

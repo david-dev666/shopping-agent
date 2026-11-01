@@ -2173,3 +2173,17 @@ body.is-busy #search-submit { cursor:progress; }
 .match-fields q { display:block; margin-top:5px; padding:6px 9px; border-radius:5px; background:#f3f5ef; color:var(--ink); }
 .compare-table .match-evidence { margin:0; border:0; padding:0; }
 @media(max-width:700px) { .match-overview { padding:14px 16px; } .match-fields>div { grid-template-columns:70px minmax(0,1fr); gap:10px; } }
+
+#clarification-form p + p { margin-top:14px; }
+#clarification-form label { display:block; margin-bottom:8px; color:var(--ink); }
+#clarification-form select {
+  display:block;
+  width:100%;
+  min-height:44px;
+  margin-bottom:16px;
+  padding:8px 12px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:white;
+  color:var(--ink);
+}

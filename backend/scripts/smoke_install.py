@@ -33,6 +33,7 @@ async def verify(package_root: Path) -> None:
                 "/helpers.mjs": "filterOffers",
                 "/stream.mjs": "TextDecoder",
                 "/evidence.mjs": "evidencePanel",
+                "/clarification.mjs": "clarificationPanel",
                 "/favicon.svg": "<svg",
             }.items():
                 response = await client.get(path)

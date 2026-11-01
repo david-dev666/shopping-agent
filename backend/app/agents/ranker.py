@@ -3,8 +3,6 @@
 原则：LLM 只输出排序与理由，价格一律取采集原值，不信任模型算出的任何数字。
 """
 
-import logging
-
 from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field
 
@@ -16,8 +14,6 @@ from app.matching.identity import (
     prompt_evidence,
 )
 from app.models.offers import RawOffer
-
-logger = logging.getLogger(__name__)
 
 
 class RankedItem(BaseModel):
@@ -76,27 +72,18 @@ def _offers_text(offers: list[RawOffer]) -> str:
     return "\n".join(lines)
 
 
-def _price_fallback(offers: list[RawOffer]) -> dict:
-    """LLM 持续失败时的确定性降级：按采集报价升序打分。"""
-    order = sorted(range(len(offers)), key=lambda i: offers[i].price)
-    n = len(offers) or 1
-    return {
-        "items": [
-            {
-                "index": i,
-                "score": max(0, 100 - round(order.index(i) * (80 / n))),
-                "reason": "价格排序兜底",
-            }
-            for i in order
-        ],
-        "summary": "AI 排序暂不可用，已按采集报价升序排列",
-    }
+def validate_rank(data: dict, count: int) -> dict:
+    result = RankResult.model_validate(data)
+    indexes = [item.index for item in result.items]
+    if len(indexes) != count or set(indexes) != set(range(count)):
+        raise ValueError("排序必须覆盖全部候选，且下标不重复、不越界")
+    return result.model_dump()
 
 
 def rank_offers(query: str, offers: list[RawOffer]) -> dict:
     """LLM 综合排序。返回 {items: [{index, score, reason}], summary}。
 
-    未配置、服务不可用或输出校验失败时，降级为价格排序。
+    未配置、服务不可用或有限重试后仍不合法时，返回明确错误。
     """
     settings = get_settings()
     assess_offers(offers, query)
@@ -115,31 +102,14 @@ def rank_offers(query: str, offers: list[RawOffer]) -> dict:
 
     prompt = PROMPT.format(query=query, offers_text=_offers_text(offers))
     # 不用 with_structured_output：DeepSeek 等服务不支持 response_format，
-    # 改为提示词约定 JSON + 容错解析；持续失败降级为价格排序
+    # 改为提示词约定 JSON 与结构校验。
     data = invoke_json(
         llm,
         prompt,
         retries=1,
-        fallback=_price_fallback(offers),
-        validate=lambda d: RankResult.model_validate(d).model_dump(),
+        validate=lambda d: validate_rank(d, len(offers)),
     )
     result = RankResult.model_validate(data)
 
-    # 确定性校验：下标必须落在输入范围内且不重复
-    valid = set(range(len(offers)))
-    seen: set[int] = set()
-    items = []
-    for it in result.items:
-        if it.index in valid and it.index not in seen:
-            seen.add(it.index)
-            items.append(it.model_dump())
-    if len(items) != len(offers):
-        logger.warning(
-            "rank result incomplete: %d/%d covered, filling rest by price", len(items), len(offers)
-        )
-        # 缺失的按价格升序补齐，保证输出完整
-        missing = sorted((i for i in valid if i not in seen), key=lambda i: offers[i].price)
-        for i in missing:
-            items.append({"index": i, "score": 0, "reason": ""})
-
+    items = [item.model_dump() for item in result.items]
     return {"items": guard_ranking(items, offers), "summary": result.summary}

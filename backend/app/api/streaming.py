@@ -13,6 +13,7 @@ from fastapi.encoders import jsonable_encoder
 from starlette.concurrency import run_in_threadpool
 
 from app.agents.graph import stream_agent
+from app.agents.llm_utils import ModelResponseError, ModelUnavailable
 from app.collection import CollectionBusy
 from app.storage.db import snapshot_response
 
@@ -39,6 +40,8 @@ async def agent_events(query: str, request: Request) -> AsyncIterator[str]:
                 messages.put(event)
         except CollectionBusy as exc:
             messages.put({"event": "error", "message": str(exc), "code": "collection_busy"})
+        except (ModelUnavailable, ModelResponseError) as exc:
+            messages.put({"event": "error", "message": str(exc), "code": "model_unavailable"})
         except Exception:
             logger.exception("agent stream failed")
             messages.put({"event": "error", "message": "本次任务未完成，请重试或检查数据源配置"})

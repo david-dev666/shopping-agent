@@ -1,5 +1,7 @@
 # 架构设计
 
+2026-11-01 当前增补：[规格澄清与快照续接](12-clarification.md)。下文保留早期设计，价格历史、三级匹配与 checkpointer 等规划不能视为已实现。
+
 ## 分层
 
 ```
@@ -116,11 +118,12 @@ intent        解析用户意图与约束（预算、品类、偏好）        L
 research      三平台采集候选                              工具
 match         相关性打标（软标签，不剔除任何报价）         确定性
 filters       按用户筛选条件（平台 / 规格 / 标签 / 价格）缩小候选集  确定性
+review        检查规格缺口，有问题则结束本轮并等待用户回答   确定性
 decide        是否值得买 + 全量综合排序                    LLM
 recommend     汇总成结构化建议与购买入口                  确定性
 
 重排运行  POST /api/refine（跳过采集与打标，复用已有候选集）
-filters  →  decide  →  recommend
+filters  →  review  →  decide  →  recommend
 
 规划中
 price         历史价格曲线（阶段 1 / 4）

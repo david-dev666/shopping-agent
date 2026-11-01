@@ -109,3 +109,27 @@ async def test_status_does_not_expose_credentials(monkeypatch):
         result = await c.get("/api/status")
     assert result.json()["llm_configured"] is True
     assert "private-value" not in result.text
+
+
+@pytest.mark.parametrize("path", ["/api/chat", "/api/refine"])
+async def test_intelligent_requests_require_model_without_rule_substitution(monkeypatch, path):
+    from app.storage.db import snapshot_response
+
+    monkeypatch.setattr("app.agents.graph._llm", lambda: None)
+
+    async def forbidden(*args):
+        pytest.fail("collection must not run without a model")
+
+    monkeypatch.setattr("app.agents.graph.search_all", forbidden)
+    body = {"query": "小米手环9", "data_mode": "live"}
+    if path == "/api/refine":
+        saved = snapshot_response({"query": "小米手环9", "offers": [
+            {"platform": "jd", "platform_id": "model-required", "title": "小米手环9", "price": 199},
+        ]})
+        body = {"snapshot_id": saved["snapshot_id"]}
+    async with httpx.AsyncClient(
+        transport=httpx.ASGITransport(app=app), base_url="http://test"
+    ) as client:
+        response = await client.post(path, json=body)
+    assert response.status_code == 503
+    assert "需要配置模型" in response.json()["detail"]

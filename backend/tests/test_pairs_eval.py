@@ -7,6 +7,7 @@ from pydantic import ValidationError
 
 from eval.pairs import evaluate_pairs, validate_pairs
 from scripts.eval_pairs import DATASET, predict
+from tests.model_stub import ScriptedModel
 
 
 def rows():
@@ -116,11 +117,11 @@ def test_empty_titles_are_pending_and_all_pending_has_no_fake_rate():
 
 
 def test_actual_pipeline_applies_tags_and_never_receives_ai_labels(monkeypatch):
-    monkeypatch.setattr("app.agents.graph._llm", lambda: None)
+    monkeypatch.setattr("app.agents.graph._llm", lambda: ScriptedModel())
     cases = rows()[:2]
     cases[1]["candidate"].update(title="小米手环12 NFC版 保护膜", price=50)
     picks, engines = predict(cases)
-    assert picks == {"q1": "0"} and engines == {"rules": 1}
+    assert picks == {"q1": "0"} and engines == {"llm": 1}
     cases[0]["suitable"] = False
     cases[0]["evidence"] = "修改评阅结论，不应改变系统输入"
     assert predict(cases)[0] == picks

@@ -1,4 +1,4 @@
-from app.agents.llm_utils import extract_json, invoke_json
+from app.agents.llm_utils import ModelResponseError, extract_json, invoke_json
 
 
 class FakeLLM:
@@ -47,16 +47,9 @@ def test_invoke_json_retries_then_succeeds() -> None:
     assert "无法解析" in llm.calls[1]
 
 
-def test_invoke_json_fallback_after_retries() -> None:
-    llm = FakeLLM(["坏", "也坏", "还是坏"])
-    fb = {"degraded": True}
-    assert invoke_json(llm, "p", retries=2, fallback=fb) == fb
-    assert len(llm.calls) == 3
-
-
-def test_invoke_json_no_fallback_raises() -> None:
+def test_invoke_json_rejects_invalid_response() -> None:
     import pytest
 
     llm = FakeLLM(["坏"])
-    with pytest.raises((ValueError, Exception)):
+    with pytest.raises(ModelResponseError):
         invoke_json(llm, "p", retries=0)

@@ -1,4 +1,4 @@
-"""LLM 输出解析的公共工具：JSON 提取 + 容错重试 + 优雅降级。"""
+"""LLM 输出解析的公共工具：JSON 提取、结构校验与有限重试。"""
 
 import json
 import logging
@@ -10,10 +10,18 @@ from openai import APIError
 logger = logging.getLogger(__name__)
 
 
+class ModelUnavailable(RuntimeError):
+    """A configured, reachable model is required for intelligent shopping."""
+
+
+class ModelResponseError(RuntimeError):
+    """The model did not return a usable structured response."""
+
+
 def extract_json(text: str) -> dict:
     """从模型输出中提取 JSON（容忍 markdown 代码块包裹）。
 
-    解析失败抛 ValueError，由调用方决定重试或降级。
+    解析失败抛 ValueError，由调用方决定重试或返回错误。
     """
     if not isinstance(text, str):
         raise ValueError("模型输出必须为文本")
@@ -36,18 +44,11 @@ def invoke_json(
     prompt: str,
     *,
     retries: int = 2,
-    fallback: dict | None = None,
     validate: Callable[[dict], dict] | None = None,
 ) -> dict:
-    """调用 LLM 并解析为 JSON，带重试与降级。
-
-    - 首次 + 最多 retries 次重试（在提示词后附加纠错指令）
-    - 全部失败时：fallback 有值则降级返回，无值则抛最后异常
-    """
+    """调用模型并校验结构；有限纠错后明确报错，不替换为规则结论。"""
     if llm is None:
-        if fallback is not None:
-            return fallback
-        raise RuntimeError("LLM 未配置")
+        raise ModelUnavailable("智能选购需要配置模型；请配置后重试，或使用直接比价")
     last_err: Exception | None = None
     attempt_prompt = prompt
     for attempt in range(retries + 1):
@@ -56,17 +57,12 @@ def invoke_json(
             data = extract_json(result.content)
             return validate(data) if validate else data
         except (APIError, httpx.HTTPError, TimeoutError, ConnectionError) as e:
-            # 服务不可用时直接走规则降级；不叠加 SDK 重试造成长时间等待。
-            last_err = e
             logger.warning("llm unavailable: %s", type(e).__name__)
-            break
+            raise ModelUnavailable("模型暂时不可用，请稍后重试") from e
         except ValueError as e:
             last_err = e
             logger.warning("llm json parse failed (attempt %d/%d): %s", attempt + 1, retries + 1, e)
             attempt_prompt = (
                 prompt + "\n\n注意：你上一次的输出无法解析为 JSON，本次必须只输出合法 JSON。"
             )
-    if fallback is not None:
-        logger.warning("llm json degraded to fallback: %r", last_err)
-        return fallback
-    raise last_err if last_err else RuntimeError("invoke_json: no result")
+    raise ModelResponseError("模型输出未通过校验，请重试") from last_err

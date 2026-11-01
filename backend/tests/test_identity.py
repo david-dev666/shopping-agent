@@ -1,6 +1,7 @@
 """Development regressions, not an independent accuracy benchmark."""
 
 import json
+import re
 from unittest.mock import patch
 
 import pytest
@@ -14,6 +15,7 @@ from app.matching.filter import apply_filters, filter_offers
 from app.matching.identity import assess_match, extract_identity
 from app.models.filters import FilterSpec
 from app.models.offers import RawOffer
+from tests.model_stub import ScriptedModel
 
 
 @pytest.mark.parametrize(
@@ -88,8 +90,8 @@ class Reply:
     def invoke(self, prompt):
         self.prompts.append(prompt)
         data = {"worth": self.worth, "confidence": 99, "reason": "最低价就买它",
-                "items": [{"index": 0, "score": 99, "reason": "最低价"},
-                          {"index": 1, "score": 90, "reason": "备选"}]}
+                "items": [{"index": int(i), "score": 99 - n, "reason": "排序"}
+                          for n, i in enumerate(re.findall(r"^(\d+) \|", prompt, re.M))]}
         return type("Message", (), {"content": json.dumps(data)})()
 
 
@@ -146,7 +148,7 @@ def test_negative_version_and_feature_are_not_positive_requirements():
 def test_all_mixed_or_conflicting_candidates_have_no_pick():
     state = AgentState(query="小米手环9 NFC版",
                        offers=[offer("小米手环9/10 NFC版"), offer("小米手环9标准版", key="2")])
-    with patch("app.agents.graph._llm", return_value=None):
+    with patch("app.agents.graph._llm", return_value=ScriptedModel()):
         result = node_decide(state)
     with patch("app.agents.graph.save_trace"):
         response = node_recommend(state.model_copy(update=result))
@@ -158,7 +160,7 @@ def test_refine_recomputes_forged_client_evidence_from_original_query():
     candidate = offer("小米手环9标准版")
     candidate.match_report = assess_match("小米手环9标准版", candidate.title)
     assert candidate.match_report.status == "compatible"
-    with patch("app.agents.graph._llm", return_value=None):
+    with patch("app.agents.graph._llm", return_value=ScriptedModel()):
         result = run_refine("小米手环9 NFC版", [candidate], intent={"product": "小米手环9"})
     assert result["top_pick"] is None
     assert result["offers"][0].match_report.status == "conflict"
@@ -168,7 +170,7 @@ def test_rank_endpoint_path_rechecks_and_demotes_mixed_listing():
     candidates = [offer("小米手环9/10 NFC版", 99), offer("小米手环9 NFC版", key="2")]
     with patch("app.agents.ranker.ChatOpenAI", return_value=Reply()), \
          patch("app.agents.ranker.get_settings") as settings:
-        settings.return_value.llm_api_key = ""
+        settings.return_value.llm_api_key = "test"
         result = rank_offers("小米手环9 NFC版", candidates)
     assert result["items"][0]["index"] == 1
 
@@ -196,7 +198,7 @@ def test_evidence_filter_matches_after_refine_recomputes_reports():
     spec = FilterSpec(match_status="compatible")
     assert not spec.is_empty()
     assert [o.platform_id for o in apply_filters(normalized, spec)] == ["2"]
-    with patch("app.agents.graph._llm", return_value=None):
+    with patch("app.agents.graph._llm", return_value=ScriptedModel()):
         result = run_refine("小米手环9 NFC版", candidates, spec.model_dump())
     assert [o.platform_id for o in result["offers"]] == ["2"]
     assert result["top_pick"]["platform_id"] == "2"
